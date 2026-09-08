@@ -1,0 +1,30 @@
+---
+/**
+ * S2. Carries the research phase implicitly: this describes a way of looking at
+ * the work, and makes no offer. The one Reflection on the page sits here, which
+ * is also the only place Newsreader appears.
+ */
+import { COPY, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = COPY[lang];
+---
+
+<section class="section" id="visie" aria-labelledby="vision-heading">
+  <div class="aiw-container">
+    <p class="aiw-eyebrow section__eyebrow">{t.vision.eyebrow}</p>
+    <h2 class="section__heading" id="vision-heading">{t.vision.heading}</h2>
+
+    <div class="section__body">
+      <p class="aiw-body">{t.vision.paragraphs[0]}</p>
+
+      <p class="aiw-reflective vision__reflection">{t.vision.reflection}</p>
+
+      {t.vision.paragraphs.slice(1).map((p) => <p class="aiw-body">{p}</p>)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+/**
+ * S4. Also carries the "who this is for", implicitly: the copy addresses an
+ * organization orienting itself and a fellow developer wanting to compare notes,
+ * without labelling either as a category.
+ *
+ * Two routes, both as text links. No second signal fill on the page.
+ */
+import { COMPANY, COPY, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = COPY[lang];
+const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.contact.whatsappPrefill)}`;
+---
+
+<section class="section" id="contact" aria-labelledby="contact-heading">
+  <div class="aiw-container">
+    <p class="aiw-eyebrow section__eyebrow">{t.contact.eyebrow}</p>
+    <h2 class="section__heading" id="contact-heading">{t.contact.heading}</h2>
+
+    <div class="section__body">
+      {t.contact.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}
+
+      <div class="contact__routes">
+        <span class="contact__route">
+          <span class="contact__route-label">{t.contact.emailLabel}</span>
+          <a class="contact__route-value" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+        </span>
+        <span class="contact__route">
+          <span class="contact__route-label">{t.contact.whatsappLabel}</span>
+          <a
+            class="contact__route-value"
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >{t.contact.whatsappValue}</a>
+        </span>
+      </div>
+
+      <p class="contact__note">{t.contact.note}</p>
+    </div>
+  </div>
+</section>

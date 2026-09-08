@@ -1,0 +1,44 @@
+/* AI Wise spacing and radius. Both were open in the brand record; PROPOSED here.
+
+   Spacing is a 4px base with a doubling spine (4/8/16/32/64/128) and half-steps
+   where real layouts need them. Vertical rhythm on documents is 8px.
+
+   Radius is near-zero on purpose. The only curves in this identity belong to the
+   cord — round caps, round joins, a full-period sine. If interface containers also
+   round off, the weave stops reading as the organic element. Containers stay square;
+   the cord curves. */
+
+:root{
+  --aiw-space-0:0;
+  --aiw-space-px:1px;
+  --aiw-space-1:4px;
+  --aiw-space-2:8px;
+  --aiw-space-3:12px;
+  --aiw-space-4:16px;
+  --aiw-space-5:20px;
+  --aiw-space-6:24px;
+  --aiw-space-8:32px;
+  --aiw-space-10:40px;
+  --aiw-space-12:48px;
+  --aiw-space-16:64px;
+  --aiw-space-20:80px;
+  --aiw-space-24:96px;
+  --aiw-space-32:128px;
+  --aiw-space-40:160px;
+  --aiw-space-48:192px;
+
+  --aiw-radius-none:0;
+  --aiw-radius-sm:2px;    /* buttons, inputs, cards, image crops             */
+  --aiw-radius-md:3px;    /* dialogs and other large containers              */
+  --aiw-radius-pill:999px;/* status dots and tags only                       */
+
+  --aiw-border-width:1px; /* @kind other */
+  --aiw-border-width-strong:2px; /* @kind other */
+  --aiw-rule-width:1px; /* @kind other */   /* horizontal rules                                */
+  --aiw-focus-width:2px; /* @kind other */
+  --aiw-focus-offset:2px; /* @kind other */
+
+  /* No shadow tokens exist. The brand forbids shadows, glows and gradients on
+     brand graphics; this system extends that to the whole interface. Elevation
+     is carried by surface value and a hairline border. */
+}

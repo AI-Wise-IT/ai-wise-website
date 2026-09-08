@@ -1,0 +1,11 @@
+---
+import Base from "../layouts/Base.astro";
+import PrivacyBody from "../components/PrivacyBody.astro";
+import { COPY } from "../content/copy";
+
+const t = COPY.nl;
+---
+
+<Base lang="nl" page="privacy" title={`${t.privacy.title} · AI Wise`} description={t.privacy.lead}>
+  <PrivacyBody lang="nl" />
+</Base>

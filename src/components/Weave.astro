@@ -1,0 +1,34 @@
+---
+/**
+ * The weave. One placement per page, never repeated, near-black surfaces only.
+ *
+ * The arithmetic lives in the design system's base.css: the master is scaled so
+ * its short edge matches the surface's short edge, which puts the strand at
+ * exactly 5.2% of that edge, and the surface then crops it. This component only
+ * chooses the master and where along the surface the cord sits.
+ *
+ * Decorative. It carries no meaning a screen reader needs, and it must never sit
+ * behind text, so it is hidden from the accessibility tree.
+ */
+interface Props {
+  shape?: "calm-drift" | "close-cord" | "strong-drift" | "held-right";
+  /** Horizontal position of the cord's centre line across the surface. */
+  x?: string;
+  /** Rotation in 90 degree steps only. */
+  rotate?: 0 | 90 | 180 | 270;
+  class?: string;
+}
+
+const { shape = "held-right", x, rotate = 0, class: className } = Astro.props;
+
+const vars = [
+  x ? `--aiw-weave-x:${x}` : null,
+  rotate ? `--aiw-weave-rotate:${rotate}deg` : null,
+]
+  .filter(Boolean)
+  .join(";");
+---
+
+<div class:list={["aiw-weave", `aiw-weave--${shape}`, className]} style={vars} aria-hidden="true">
+  <div class="aiw-weave__cord"></div>
+</div>

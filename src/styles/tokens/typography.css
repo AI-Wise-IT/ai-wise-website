@@ -1,0 +1,52 @@
+/* AI Wise typography.
+   Families and roles are approved. The scale, weights and line spacing below are
+   PROPOSED by this design system — the brand record left them open.
+
+   Step ratio ~1.19 (a quiet scale; the palette and the weave carry the drama).
+   Base is 17px on web, 11pt in documents, 24px minimum on slides.
+   Source Sans 3 sets everything including major headings. Newsreader appears only
+   for key questions, quotations, short reflective statements and brochure covers. */
+
+:root{
+  --aiw-font-primary:"Source Sans 3","Source Sans Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --aiw-font-additive:"Newsreader",Georgia,"Times New Roman",serif;
+
+  /* ---- scale (rem, 16px root) ------------------------------------------- */
+  --aiw-text-2xs:0.75rem;    /* 12px — legal, table micro-labels            */
+  --aiw-text-xs:0.8125rem;   /* 13px — captions, eyebrows, meta             */
+  --aiw-text-sm:0.9375rem;   /* 15px — dense UI, table body, footnotes      */
+  --aiw-text-base:1.0625rem; /* 17px — web body                             */
+  --aiw-text-md:1.1875rem;   /* 19px — lead paragraph, document body large  */
+  --aiw-text-lg:1.375rem;    /* 22px — h4, slide body minimum               */
+  --aiw-text-xl:1.625rem;    /* 26px — h3                                   */
+  --aiw-text-2xl:1.9375rem;  /* 31px — h2                                   */
+  --aiw-text-3xl:2.3125rem;  /* 37px — h1, document title                   */
+  --aiw-text-4xl:2.8125rem;  /* 45px — slide heading                        */
+  --aiw-text-5xl:3.375rem;   /* 54px — web hero, slide title                */
+  --aiw-text-6xl:4.125rem;   /* 66px — section opener                       */
+  --aiw-text-7xl:4.9375rem;  /* 79px — cover statement, used once           */
+
+  /* ---- weights: two, plus italic ---------------------------------------- */
+  --aiw-weight-regular:400; /* @kind other */
+  --aiw-weight-semibold:600; /* @kind other */  /* the logo's weight; all headings and labels  */
+
+  /* ---- line height ------------------------------------------------------ */
+  --aiw-leading-tight:1.05;   /* 54px and up                                 */
+  --aiw-leading-snug:1.18;    /* 31–45px                                     */
+  --aiw-leading-heading:1.28; /* 19–26px headings                            */
+  --aiw-leading-body:1.6;     /* body copy on screen                         */
+  --aiw-leading-loose:1.75;   /* long-form documents and print               */
+
+  /* ---- tracking --------------------------------------------------------- */
+  --aiw-tracking-display:-0.015em; /* 45px and up, optical correction        */
+  --aiw-tracking-normal:0;
+  --aiw-tracking-label:0.1em;      /* uppercase eyebrows and labels          */
+  --aiw-tracking-wordmark:0.14em;  /* logo only — do not reduce, do not reuse */
+
+  /* ---- optical size (Newsreader is a variable font) --------------------- */
+  --aiw-opsz-quote:18; /* @kind other */        /* the logo tagline's optical size             */
+
+  /* ---- measure ---------------------------------------------------------- */
+  --aiw-measure:68ch;         /* body column                                 */
+  --aiw-measure-narrow:52ch;  /* lead paragraphs, reflective statements      */
+}

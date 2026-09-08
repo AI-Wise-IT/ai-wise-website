@@ -1,0 +1,31 @@
+---
+/**
+ * S0. Glyph plus wordmark on the left, language switch on the right, nothing
+ * else. Four sections do not need navigation, and the design system permits
+ * exactly one sticky element on a site: this one.
+ */
+import { COPY, path, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+  page: "home" | "privacy";
+}
+
+const { lang, page } = Astro.props;
+const t = COPY[lang];
+---
+
+<header class="site-header">
+  <div class="aiw-container site-header__inner">
+    <a class="site-header__brand" href={path(lang, "home")} aria-label={t.nav.home}>
+      <img class="site-header__glyph" src="/assets/logo/glyph.svg" alt="" width="30" height="30" />
+      <img class="site-header__wordmark" src="/assets/logo/wordmark.svg" alt="AI Wise" height="15" />
+    </a>
+
+    <nav class="lang-switch" aria-label={t.nav.language}>
+      <a href={path("nl", page)} hreflang="nl" lang="nl" aria-current={lang === "nl" ? "true" : undefined}>NL</a>
+      <span class="lang-switch__sep" aria-hidden="true">/</span>
+      <a href={path("en", page)} hreflang="en" lang="en" aria-current={lang === "en" ? "true" : undefined}>EN</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,23 @@
+# AI Wise crawler policy.
+#
+# Four categories, following the policy AI Wise applies for clients
+# (projects/stavast/decisions/2026-08-05-crawler-and-canonical-policy.md):
+#
+#   1. Regular search crawlers        Googlebot, Bingbot
+#   2. AI search and discovery        OAI-SearchBot, PerplexityBot
+#   3. User-triggered fetchers        ChatGPT-User, Perplexity-User, Claude-User
+#   4. Model-training crawlers        GPTBot, ClaudeBot, Google-Extended, CCBot
+#
+# Categories 1 to 3 are allowed: this is a public site whose whole purpose is to
+# be found and understood. Category 4 is a separate decision, currently allowed.
+# Everything here is public marketing copy about a one-person business; there is
+# nothing on this site that would be harmful in a training set, and being known
+# to models is part of what the site is for. See docs/prd.md, O-8.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://aiwise.it.com/sitemap-index.xml
+
+# Orientation file for language models, in the llms.txt convention.
+# https://aiwise.it.com/llms.txt

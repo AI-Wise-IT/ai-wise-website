@@ -1,0 +1,55 @@
+/* AI Wise colour.
+   TIER 1 — APPROVED. The complete core palette. Never extended, never altered.
+   TIER 2 — DERIVED. Neutrals are straight interpolations between the two
+            approved neutrals (#0B0D0C → #F0EEE7). No hue is introduced.
+   TIER 3 — PROPOSED, pending Simon's sign-off. Deep accent variants for warm-light
+            surfaces, and two interface semantics. These are interface colours only:
+            never in the logo, never in the weave, never in any brand graphic.
+   Contrast figures are measured, WCAG 2.1, against the surface named. */
+
+:root{
+  /* ---- Tier 1: approved core -------------------------------------------- */
+  --aiw-near-black:#0B0D0C;   /* primary environment                        */
+  --aiw-moss-green:#7F896D;   /* accent — grounding, organic warmth  5.29:1 on near-black */
+  --aiw-signal-blue:#378CAC;  /* accent — intelligence, interaction  5.11:1 on near-black */
+  --aiw-warm-light:#F0EEE7;   /* light neutral                      16.79:1 on near-black */
+
+  /* ---- Tier 2: derived neutral ramp ------------------------------------- */
+  /* Named by lightness. 900 is the approved near-black, 0 the approved warm light. */
+  --aiw-ink-900:#0B0D0C;  /* page, dark                                     */
+  --aiw-ink-850:#131514;  /* raised surface, dark            15.80:1 to light text */
+  --aiw-ink-800:#181918;  /* card, dark                                     */
+  --aiw-ink-750:#1E201F;  /* subtle border, dark                            */
+  --aiw-ink-700:#262826;  /* border, dark                                   */
+  --aiw-ink-600:#333432;  /* strong border, dark                            */
+  --aiw-ink-500:#474845;  /* secondary text on warm light        7.93:1     */
+  --aiw-ink-400:#676764;  /* muted text on warm light            4.89:1     */
+  --aiw-ink-300:#8B8B87;  /* muted text on near-black            5.70:1     */
+  --aiw-ink-200:#B0AFAA;  /* secondary text on near-black        8.87:1     */
+  --aiw-ink-100:#D0CFC8;  /* border on warm light                           */
+  --aiw-ink-50:#E3E2DB;   /* inset surface, light                           */
+  --aiw-ink-25:#E9E8E1;   /* raised surface and card, light                 */
+  --aiw-ink-0:#F0EEE7;    /* page, light                                    */
+
+  /* ---- Tier 3: proposed deep accents, for warm-light surfaces only ------ */
+  /* Same hue and chroma as the approved accents, taken down in lightness until
+     they clear AA for normal-size text on #F0EEE7. Nothing else changes.     */
+  --aiw-moss-deep:#636B55;    /* 4.80:1 on warm light                       */
+  --aiw-blue-deep:#2A6F8A;    /* 4.84:1 on warm light                       */
+
+  /* ---- Tier 3: proposed interface semantics ----------------------------- */
+  /* Pitched at the same perceived brightness as the two approved accents on
+     near-black (5.20:1), so a status row stays visually level.              */
+  --aiw-amber:#A77C40;        /* attention / needs a decision   5.20:1 on near-black */
+  --aiw-amber-deep:#846131;   /* 4.84:1 on warm light                       */
+  --aiw-clay:#B6735D;         /* problem / blocked              5.20:1 on near-black */
+  --aiw-clay-deep:#915A49;    /* 4.81:1 on warm light                       */
+  /* Positive and informational reuse the approved accents:
+     positive = moss, informational = signal blue. No new colour for either.  */
+
+  /* ---- Interaction mixes ------------------------------------------------ */
+  /* States are computed from a fill against the two approved neutrals. They are
+     UI states, not palette entries; do not name them as brand colours.       */
+  --aiw-state-hover:10%; /* @kind other */
+  --aiw-state-press:14%; /* @kind other */
+}

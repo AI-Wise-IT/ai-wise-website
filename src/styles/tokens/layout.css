@@ -1,0 +1,44 @@
+/* AI Wise layout. Open in the brand record; PROPOSED here.
+
+   One 12-column grid, four surface classes. The weave is placed after the text
+   column is set, never before: the column moves out of the cord's way.
+   Reading gutter is the clear space the cord may not enter. */
+
+:root{
+  --aiw-grid-columns:12; /* @kind other */
+  --aiw-grid-gutter:24px;
+
+  /* web */
+  --aiw-container:1200px; /* @kind other */      /* max content width                          */
+  --aiw-container-narrow:760px; /* @kind other *//* article and brief column                   */
+  --aiw-container-wide:1440px; /* @kind other */ /* full-bleed sections with inset content     */
+  --aiw-page-margin:24px;      /* small screens                              */
+  --aiw-page-margin-md:48px;
+  --aiw-page-margin-lg:80px;
+  --aiw-section-gap:96px;      /* between page sections                      */
+  --aiw-section-gap-lg:128px;
+
+  /* document and print — A4 210×297mm */
+  --aiw-doc-width:210mm; /* @kind other */
+  --aiw-doc-height:297mm; /* @kind other */
+  --aiw-doc-margin:20mm;
+  --aiw-doc-margin-outer:24mm; /* the edge a cord may run down              */
+  --aiw-doc-baseline:8px;
+
+  /* slides — 16:9 authored at 1280×720 */
+  --aiw-slide-width:1280px; /* @kind other */
+  --aiw-slide-height:720px; /* @kind other */
+  --aiw-slide-margin:80px;
+  --aiw-slide-margin-tight:56px;
+
+  /* business card — 85×55mm */
+  --aiw-card-width:85mm; /* @kind other */
+  --aiw-card-height:55mm; /* @kind other */
+  --aiw-card-margin:7mm;
+
+  /* the weave */
+  --aiw-weave-strand-ratio:0.052; /* @kind other */  /* of the surface short edge             */
+  --aiw-weave-min-gap-strands:1.5; /* @kind other */
+  --aiw-weave-crossings:2; /* @kind other */
+  --aiw-weave-clear:48px;          /* minimum gap between cord and text column */
+}

@@ -1,0 +1,95 @@
+/* AI Wise semantic aliases.
+   Near-black is the identifying environment: the dark set lives on :root.
+   Warm light is a full, equal surface — see readme.md, "The light surface" —
+   scoped to [data-aiw-surface="light"]. Two rules make it work without adding
+   brand colours: accent FILLS keep the approved accents (near-black type on them
+   clears AA either way), and accent TEXT switches to the deep variants. The weave
+   appears on a light page only inside a near-black band. */
+
+:root{
+  /* surfaces */
+  --aiw-surface-page:var(--aiw-ink-900);
+  --aiw-surface-raised:var(--aiw-ink-850);
+  --aiw-surface-card:var(--aiw-ink-800);
+  --aiw-surface-inset:var(--aiw-ink-750);
+  --aiw-surface-scrim:rgba(11,13,12,0.92);
+  /* the band: on near-black it is the page itself */
+  --aiw-band-bg:var(--aiw-near-black);
+  --aiw-band-text:var(--aiw-warm-light);
+
+  /* text */
+  --aiw-text-primary:var(--aiw-warm-light);
+  --aiw-text-secondary:var(--aiw-ink-200);
+  --aiw-text-muted:var(--aiw-ink-300);
+  --aiw-text-disabled:var(--aiw-ink-500);
+  --aiw-text-inverse:var(--aiw-near-black);
+  --aiw-text-accent-ground:var(--aiw-moss-green);
+  --aiw-text-accent-signal:var(--aiw-signal-blue);
+
+  /* lines */
+  --aiw-border-subtle:var(--aiw-ink-750);
+  --aiw-border-default:var(--aiw-ink-700);
+  --aiw-border-strong:var(--aiw-ink-600);
+  --aiw-rule:var(--aiw-ink-700);
+
+  /* interaction */
+  --aiw-interactive:var(--aiw-signal-blue);        /* text and icon colour   */
+  --aiw-interactive-fill:var(--aiw-signal-blue);   /* button and chip fill   */
+  --aiw-interactive-on-fill:var(--aiw-near-black);
+  --aiw-ground-fill:var(--aiw-moss-green);
+  --aiw-ground-on-fill:var(--aiw-near-black);
+  --aiw-focus-ring:var(--aiw-signal-blue);
+  --aiw-focus-ring-on-fill:var(--aiw-warm-light);
+
+  /* status */
+  --aiw-status-positive:var(--aiw-moss-green);
+  --aiw-status-info:var(--aiw-signal-blue);
+  --aiw-status-attention:var(--aiw-amber);
+  --aiw-status-problem:var(--aiw-clay);
+
+  /* link */
+  --aiw-link:var(--aiw-signal-blue);
+  --aiw-link-hover:var(--aiw-warm-light);
+}
+
+[data-aiw-surface="light"]{
+  --aiw-surface-page:var(--aiw-ink-0);
+  --aiw-surface-raised:var(--aiw-ink-25);
+  --aiw-surface-card:var(--aiw-ink-25);
+  --aiw-surface-inset:var(--aiw-ink-50);
+  --aiw-surface-scrim:rgba(240,238,231,0.94);
+  --aiw-band-bg:var(--aiw-near-black);
+  --aiw-band-text:var(--aiw-warm-light);
+
+  --aiw-text-primary:var(--aiw-near-black);
+  --aiw-text-secondary:var(--aiw-ink-500);
+  --aiw-text-muted:var(--aiw-ink-400);
+  --aiw-text-disabled:var(--aiw-ink-200);
+  --aiw-text-inverse:var(--aiw-warm-light);
+  --aiw-text-accent-ground:var(--aiw-moss-deep);
+  --aiw-text-accent-signal:var(--aiw-blue-deep);
+
+  --aiw-border-subtle:var(--aiw-ink-50);
+  --aiw-border-default:var(--aiw-ink-100);
+  --aiw-border-strong:var(--aiw-ink-200);
+  --aiw-rule:var(--aiw-ink-100);
+
+  /* Fills keep the approved accents: near-black on signal blue is 5.11:1 and on
+     moss 5.29:1, so a filled button needs no new colour on either surface. Only
+     text-weight colour switches to the deep variants. */
+  --aiw-interactive:var(--aiw-blue-deep);
+  --aiw-interactive-fill:var(--aiw-signal-blue);
+  --aiw-interactive-on-fill:var(--aiw-near-black);
+  --aiw-ground-fill:var(--aiw-moss-green);
+  --aiw-ground-on-fill:var(--aiw-near-black);
+  --aiw-focus-ring:var(--aiw-blue-deep);
+  --aiw-focus-ring-on-fill:var(--aiw-near-black);
+
+  --aiw-status-positive:var(--aiw-moss-deep);
+  --aiw-status-info:var(--aiw-blue-deep);
+  --aiw-status-attention:var(--aiw-amber-deep);
+  --aiw-status-problem:var(--aiw-clay-deep);
+
+  --aiw-link:var(--aiw-blue-deep);
+  --aiw-link-hover:var(--aiw-near-black);
+}

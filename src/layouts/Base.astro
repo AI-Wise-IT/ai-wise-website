@@ -1,0 +1,143 @@
+---
+/**
+ * Document shell: head, skip link, header, footer, floating WhatsApp button.
+ *
+ * Discoverability is handled here rather than bolted on: canonical, hreflang for
+ * both languages plus x-default, Open Graph, and JSON-LD describing the person
+ * and the business. Everything in the structured data is a confirmed fact from
+ * business-details/company-profile.json. Nothing is inferred.
+ */
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+import { COMPANY, COPY, LANGS, path, type Lang } from "../content/copy";
+import "../styles/styles.css";
+
+interface Props {
+  lang: Lang;
+  page: "home" | "privacy";
+  title?: string;
+  description?: string;
+}
+
+const { lang, page, title, description } = Astro.props;
+const t = COPY[lang];
+
+const site = Astro.site ?? new URL(COMPANY.site);
+const abs = (p: string) => new URL(p, site).href;
+
+const pageTitle = title ?? t.meta.title;
+const pageDescription = description ?? t.meta.description;
+const canonical = abs(path(lang, page));
+const ogImage = abs("/assets/logo/png/card-1700.png");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${site.origin}/#organization`,
+      name: COMPANY.name,
+      alternateName: COMPANY.tagline,
+      url: site.origin,
+      email: COMPANY.email,
+      telephone: COMPANY.phoneIntl,
+      description: pageDescription,
+      founder: { "@id": `${site.origin}/#simon` },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: COMPANY.city,
+        addressCountry: "NL",
+      },
+      areaServed: { "@type": "Country", name: "Netherlands" },
+      knowsLanguage: ["nl", "en"],
+      vatID: COMPANY.vat,
+      identifier: {
+        "@type": "PropertyValue",
+        name: "KvK",
+        value: COMPANY.kvk,
+      },
+      knowsAbout: [
+        "workflow automation",
+        "internal tools",
+        "dashboards and reporting",
+        "data engineering",
+        "applied artificial intelligence",
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": `${site.origin}/#simon`,
+      name: COMPANY.owner,
+      jobTitle: "AI, data and automation engineer",
+      email: COMPANY.email,
+      worksFor: { "@id": `${site.origin}/#organization` },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: COMPANY.city,
+        addressCountry: "NL",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.origin}/#website`,
+      url: site.origin,
+      name: COMPANY.name,
+      inLanguage: LANGS,
+      publisher: { "@id": `${site.origin}/#organization` },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hreflang="nl" href={abs(path("nl", page))} />
+    <link rel="alternate" hreflang="en" href={abs(path("en", page))} />
+    <link rel="alternate" hreflang="x-default" href={abs(path("nl", page))} />
+
+    <link rel="icon" href="/assets/logo/glyph-square.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/logo/png/glyph-square-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/logo/png/glyph-square-512.png" />
+
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <meta name="theme-color" content="#0B0D0C" />
+    <meta name="author" content={COMPANY.owner} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={COMPANY.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={t.localeTag} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={t.meta.ogAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{t.nav.skipToContent}</a>
+    <Header lang={lang} page={page} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <WhatsAppFloat lang={lang} />
+  </body>
+</html>

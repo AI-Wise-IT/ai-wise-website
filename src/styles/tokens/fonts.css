@@ -1,0 +1,35 @@
+/* AI Wise webfonts.
+
+   LOCAL DEVIATION from the design system's tokens/fonts.css. The design system
+   links the three variable TTFs directly, which is right for a prototype and
+   wrong for a production site: the three files together are 1.5 MB.
+
+   What changed, and why:
+   - TTF to WOFF2, subset to Latin plus the punctuation the brand actually uses.
+     Source Sans 3 stays variable (wght 200-900) at 23 KB.
+   - Newsreader is pinned to a single instance, opsz 18 and wght 400, at 19 KB.
+     That is exactly how the design system uses it: .aiw-reflective sets
+     font-weight to regular and opsz to var(--aiw-opsz-quote), which is 18. The
+     variable Newsreader costs 125 KB for one line of text on this site.
+     If Newsreader is ever needed at another weight or optical size here, restore
+     the variable file rather than letting the browser synthesise one.
+   - Newsreader Italic is not shipped. Nothing on this site uses it.
+
+   Source files are the same SIL Open Font License TTFs the design system carries
+   in assets/fonts/. Conversion is reproducible: see docs/design-system-import.md. */
+
+@font-face{
+  font-family:"Source Sans 3";
+  src:url("/fonts/source-sans-3-var.woff2") format("woff2-variations");
+  font-weight:200 900;
+  font-style:normal;
+  font-display:swap;
+}
+
+@font-face{
+  font-family:"Newsreader";
+  src:url("/fonts/newsreader-18-400.woff2") format("woff2");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}

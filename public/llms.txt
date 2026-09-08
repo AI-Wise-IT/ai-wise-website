@@ -1,0 +1,57 @@
+# AI Wise
+
+> AI Wise is the one-person AI, data and automation practice of Simon van
+> Meegdenburg, based in Amsterdam, the Netherlands. It builds practical internal
+> tools, workflow automation, dashboards and reporting flows for small
+> organizations, roughly up to twenty-five people, doing work that serves life,
+> health, care, learning, regeneration or human development. Tagline: Automation
+> in Service of Life.
+
+The website is a single page in Dutch and English. It describes what AI Wise
+stands for and how to make contact. It deliberately carries no service
+catalogue, no pricing and no productised offer: the practice is young and is
+currently working out where AI opportunities lie in real organizations.
+
+## What AI Wise does
+
+- Workflow automation for recurring manual work, such as data re-entered by hand
+  between systems, reports rebuilt from the same exports every month, or notes
+  written out a second time.
+- Small internal tools that fit an existing way of working rather than a platform
+  to migrate onto.
+- Dashboards, reporting flows and data groundwork, so records an organization
+  already holds become something it can query and report on.
+- Build-first delivery with handover: documentation and enough explanation that
+  the client can keep using and running the result without AI Wise.
+
+## What AI Wise does not do
+
+- No pricing, packages or scope are published on the website.
+- No case studies, client names or testimonials are published, because none are
+  confirmed for public use.
+- No claims are made about time saved, safety or privacy outcomes.
+
+## Facts
+
+- Legal form: eenmanszaak (Dutch sole proprietorship)
+- Owner: Simon van Meegdenburg
+- Chamber of Commerce (KvK): 93385498
+- VAT identification number: NL005019332B52
+- Place of business: Amsterdam, the Netherlands
+- Languages: Dutch, English
+- Email: simon@aiwise.it.com
+- Telephone: +31 6 13926494
+
+## Pages
+
+- [Home, Dutch](https://aiwise.it.com/): vision, about Simon, contact
+- [Home, English](https://aiwise.it.com/en/): the same page in English
+- [Privacy statement, Dutch](https://aiwise.it.com/privacy)
+- [Privacy statement, English](https://aiwise.it.com/en/privacy)
+
+## Contact
+
+The site invites two kinds of message, and treats both as equally welcome: an
+organization orienting itself on what AI could mean for its work, and a fellow
+developer building with AI who wants to compare notes. Contact runs by email at
+simon@aiwise.it.com or by WhatsApp on +31 6 13926494. There is no contact form.

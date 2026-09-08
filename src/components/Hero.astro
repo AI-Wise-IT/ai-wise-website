@@ -1,0 +1,39 @@
+---
+/**
+ * S1. The tagline carries the heading, in sentence case, exactly as the design
+ * system's own Home screen sets it. It stays English on the Dutch page, so it is
+ * marked lang="en" for screen readers.
+ *
+ * This section holds the page's only weave and its only signal button.
+ */
+import Icon from "./Icon.astro";
+import Weave from "./Weave.astro";
+import { COPY, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = COPY[lang];
+---
+
+<section class="hero">
+  <div class="hero__weave">
+    <Weave shape="held-right" />
+  </div>
+
+  <div class="aiw-container hero__inner">
+    <div class="hero__col">
+      <p class="aiw-eyebrow hero__eyebrow">{t.hero.eyebrow}</p>
+      <h1 class="aiw-display hero__title" lang="en">{t.hero.title}</h1>
+      <p class="aiw-lead hero__lead">{t.hero.lead}</p>
+      <div class="hero__actions">
+        <a class="btn btn--lg btn--signal" href="#contact">
+          {t.hero.cta}
+          <Icon name="arrow-right" size={18} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+/* AI Wise motion. Restrained: things settle, nothing bounces, nothing overshoots.
+   Composed and precise — the same quality the weave is generated with.
+   durations: instant, fast (hover/focus/colour), base (small position and opacity),
+   slow (panels, dialogs, disclosure), deliberate (first paint of a hero or slide). */
+
+:root{
+  --aiw-duration-instant:80ms; /* @kind other */
+  --aiw-duration-fast:140ms; /* @kind other */
+  --aiw-duration-base:200ms; /* @kind other */
+  --aiw-duration-slow:320ms; /* @kind other */
+  --aiw-duration-deliberate:520ms; /* @kind other */
+
+  --aiw-ease-standard:cubic-bezier(0.2,0,0.2,1); /* @kind other */
+  --aiw-ease-out:cubic-bezier(0.16,1,0.3,1); /* @kind other */
+  --aiw-ease-in:cubic-bezier(0.7,0,0.84,0); /* @kind other */
+  /* No spring, no back, no elastic. */
+
+  --aiw-transition-colour:color var(--aiw-duration-fast) var(--aiw-ease-standard),background-color var(--aiw-duration-fast) var(--aiw-ease-standard),border-color var(--aiw-duration-fast) var(--aiw-ease-standard); /* @kind other */
+}
+
+@media (prefers-reduced-motion:reduce){
+  :root{--aiw-duration-instant:0ms; /* @kind other */ --aiw-duration-fast:0ms; /* @kind other */ --aiw-duration-base:0ms; /* @kind other */ --aiw-duration-slow:0ms; /* @kind other */ --aiw-duration-deliberate:0ms; /* @kind other */}
+}

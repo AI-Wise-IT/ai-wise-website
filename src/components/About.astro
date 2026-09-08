@@ -1,0 +1,42 @@
+---
+/**
+ * S3. The portrait is the only photograph on the site. Cropped 4:5 at 2px
+ * radius, unfiltered and ungraded, as the design system requires.
+ */
+import { Picture } from "astro:assets";
+// Pre-cropped to 4:5 from assets/profile-picture-professional.jpg, which is the
+// original 3000x2001 landscape frame. Cropping at build rather than with
+// object-fit keeps the browser from downloading pixels it throws away.
+import portrait from "../assets/portrait.jpg";
+import { COPY, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = COPY[lang];
+---
+
+<section class="section" id="over" aria-labelledby="about-heading">
+  <div class="aiw-container">
+    <p class="aiw-eyebrow section__eyebrow">{t.about.eyebrow}</p>
+    <h2 class="section__heading" id="about-heading">{t.about.heading}</h2>
+
+    <div class="about__layout">
+      <Picture
+        class="about__portrait"
+        src={portrait}
+        alt={t.about.portraitAlt}
+        widths={[320, 520, 640, 880]}
+        sizes="(min-width: 1024px) 320px, (min-width: 768px) 260px, min(100vw - 48px, 400px)"
+        formats={["avif", "webp"]}
+        loading="lazy"
+      />
+
+      <div class="section__body">
+        {t.about.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}
+      </div>
+    </div>
+  </div>
+</section>

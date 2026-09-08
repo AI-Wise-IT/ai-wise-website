@@ -1,0 +1,30 @@
+---
+/**
+ * S6. Persistent contact route, bottom right.
+ *
+ * Outline rather than a fill: the design system allows one signal button per
+ * view and that is the hero call to action. No WhatsApp green either, because
+ * the palette is four colours and green is not one of them. The icon does not
+ * replace the word, so the label reads "WhatsApp" in text.
+ */
+import Icon from "./Icon.astro";
+import { COMPANY, COPY, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = COPY[lang];
+const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.contact.whatsappPrefill)}`;
+---
+
+<a
+  class="btn btn--md btn--outline wa-float"
+  href={waHref}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Icon name="message-circle" size={18} />
+  {t.contact.whatsappFloatLabel}
+</a>

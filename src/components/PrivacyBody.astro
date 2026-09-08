@@ -1,0 +1,36 @@
+---
+import { COPY, path, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = COPY[lang];
+---
+
+<div class="aiw-container page-head">
+  <h1 class="page-head__title">{t.privacy.title}</h1>
+  <p class="aiw-lead">{t.privacy.lead}</p>
+
+  <div class="prose">
+    {
+      t.privacy.sections.map((s) => (
+        <section>
+          <h2>{s.heading}</h2>
+          {s.paragraphs?.map((p) => <p>{p}</p>)}
+          {s.list && (
+            <ul>
+              {s.list.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))
+    }
+
+    <p style="margin-top:var(--aiw-space-12)"><small class="aiw-caption">{t.privacy.updated}</small></p>
+    <p style="margin-top:var(--aiw-space-6)"><a href={path(lang, "home")}>{t.privacy.backHome}</a></p>
+  </div>
+</div>

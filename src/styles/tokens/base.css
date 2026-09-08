@@ -1,0 +1,76 @@
+/* AI Wise base: reset, document defaults, and the small set of utilities that
+   encode brand rules a component cannot enforce on its own.
+
+   LOCAL DEVIATION: the weave background-image URLs below were changed from the
+   design system's relative "../assets/weave/masters/..." to site-absolute
+   "/assets/weave/masters/...", because this stylesheet is bundled by Astro and
+   the assets are served from public/. Nothing else in this file was altered. */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--aiw-surface-page);color:var(--aiw-text-primary);font-family:var(--aiw-font-primary);font-size:var(--aiw-text-base);font-weight:var(--aiw-weight-regular);line-height:var(--aiw-leading-body);font-feature-settings:"kern" 1;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+h1,h2,h3,h4,h5,h6{margin:0;font-family:var(--aiw-font-primary);font-weight:var(--aiw-weight-semibold);line-height:var(--aiw-leading-heading);text-wrap:balance}
+h1{font-size:var(--aiw-text-3xl);line-height:var(--aiw-leading-snug)}
+h2{font-size:var(--aiw-text-2xl);line-height:var(--aiw-leading-snug)}
+h3{font-size:var(--aiw-text-xl)}
+h4{font-size:var(--aiw-text-lg)}
+h5{font-size:var(--aiw-text-md)}
+h6{font-size:var(--aiw-text-base)}
+p{margin:0}
+p+p{margin-top:var(--aiw-space-4)}
+a{color:var(--aiw-link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.22em;transition:var(--aiw-transition-colour)}
+a:hover{color:var(--aiw-link-hover);text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:var(--aiw-focus-width) solid var(--aiw-focus-ring);outline-offset:var(--aiw-focus-offset)}
+hr{height:0;margin:0;border:0;border-top:var(--aiw-rule-width) solid var(--aiw-rule)}
+img,svg{display:block;max-width:100%}
+strong,b{font-weight:var(--aiw-weight-semibold)}
+small{font-size:var(--aiw-text-sm)}
+ul,ol{margin:0;padding-left:1.15em}
+li+li{margin-top:var(--aiw-space-2)}
+table{border-collapse:collapse;width:100%}
+code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:0.92em}
+::selection{background:var(--aiw-signal-blue);color:var(--aiw-near-black)}
+
+/* ---- type utilities ---------------------------------------------------- */
+.aiw-display{font-size:var(--aiw-text-5xl);line-height:var(--aiw-leading-tight);letter-spacing:var(--aiw-tracking-display);font-weight:var(--aiw-weight-semibold)}
+.aiw-lead{font-size:var(--aiw-text-md);line-height:var(--aiw-leading-body);color:var(--aiw-text-secondary);max-width:var(--aiw-measure-narrow)}
+.aiw-body{font-size:var(--aiw-text-base);line-height:var(--aiw-leading-body);max-width:var(--aiw-measure)}
+.aiw-caption{font-size:var(--aiw-text-xs);line-height:var(--aiw-leading-heading);color:var(--aiw-text-muted)}
+.aiw-eyebrow{font-size:var(--aiw-text-xs);font-weight:var(--aiw-weight-semibold);letter-spacing:var(--aiw-tracking-label);text-transform:uppercase;color:var(--aiw-text-accent-ground)}
+/* Newsreader. Sparing: key questions, quotations, short reflective statements,
+   brochure covers. Never a general-purpose heading face. */
+.aiw-reflective{font-family:var(--aiw-font-additive);font-variation-settings:"opsz" var(--aiw-opsz-quote);font-weight:var(--aiw-weight-regular);font-size:var(--aiw-text-xl);line-height:var(--aiw-leading-heading);max-width:var(--aiw-measure-narrow)}
+.aiw-reflective--italic{font-style:italic}
+
+/* ---- layout utilities -------------------------------------------------- */
+.aiw-container{width:100%;max-width:var(--aiw-container);margin-inline:auto;padding-inline:var(--aiw-page-margin)}
+.aiw-container--narrow{max-width:var(--aiw-container-narrow)}
+@media (min-width:768px){.aiw-container{padding-inline:var(--aiw-page-margin-md)}}
+@media (min-width:1200px){.aiw-container{padding-inline:var(--aiw-page-margin-lg)}}
+.aiw-grid{display:grid;grid-template-columns:repeat(var(--aiw-grid-columns),minmax(0,1fr));gap:var(--aiw-grid-gutter)}
+.aiw-stack{display:flex;flex-direction:column}
+.aiw-row{display:flex;align-items:center}
+
+/* ---- the band ---------------------------------------------------------- */
+/* A near-black band on a warm-light page. This is how the identity reaches a
+   light surface: the lockup is never inverted onto warm light, and the weave is
+   a near-black-environment device — so both live inside a band, which IS a
+   near-black environment. Bleeds to the page edge; on a document that means
+   pulling out into the margin. Text inside a band uses the dark token set. */
+.aiw-band{position:relative;background:var(--aiw-band-bg);color:var(--aiw-band-text);overflow:hidden}
+
+/* ---- the weave --------------------------------------------------------- */
+/* Four masters, one shape per surface, never repeated within a document.
+   Placement follows placements.place(): the master is scaled so its SHORT edge
+   equals the surface's short edge, which puts the strand at exactly 5.2% of that
+   edge, and the surface then crops it. That is what min(100cqw,100cqh) below
+   does. Do not use background-size:cover — on a landscape surface cover scales
+   from the long edge and thickens the cord (measured 5.9% on 16:9, 13.3% on a
+   4:1 banner). Near-black environment only. Never behind body copy, tables or
+   charts; never faded down under text — move the text column instead. */
+.aiw-weave{position:absolute;inset:0;overflow:hidden;background:var(--aiw-near-black);container-type:size}
+.aiw-weave__cord{position:absolute;top:50%;left:var(--aiw-weave-x,50%);width:min(100cqw,100cqh);aspect-ratio:1024/1536;transform:translate(-50%,-50%) rotate(var(--aiw-weave-rotate,0deg));background-repeat:no-repeat;background-size:100% 100%}
+.aiw-weave--calm-drift .aiw-weave__cord{background-image:url("/assets/weave/masters/O1-portrait.svg")}
+.aiw-weave--close-cord .aiw-weave__cord{background-image:url("/assets/weave/masters/O3-portrait.svg")}
+.aiw-weave--strong-drift .aiw-weave__cord{background-image:url("/assets/weave/masters/O5-portrait.svg")}
+.aiw-weave--held-right .aiw-weave__cord{background-image:url("/assets/weave/masters/O9-portrait.svg")}

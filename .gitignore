@@ -1,0 +1,19 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# scratch space for asset conversion, not part of the site
+tmp/
+
+# environment
+.env
+.env.production
+.vercel
+
+# editors and OS
+.DS_Store
+Thumbs.db
+*.log
