@@ -3,19 +3,43 @@
 # Four categories, following the policy AI Wise applies for clients
 # (projects/stavast/decisions/2026-08-05-crawler-and-canonical-policy.md):
 #
-#   1. Regular search crawlers        Googlebot, Bingbot
-#   2. AI search and discovery        OAI-SearchBot, PerplexityBot
-#   3. User-triggered fetchers        ChatGPT-User, Perplexity-User, Claude-User
-#   4. Model-training crawlers        GPTBot, ClaudeBot, Google-Extended, CCBot
+#   1. Regular search crawlers    Googlebot, Bingbot                 allowed
+#   2. AI search and discovery    OAI-SearchBot, PerplexityBot,      allowed
+#                                 Claude-SearchBot
+#   3. User-triggered fetchers    ChatGPT-User, Perplexity-User,     allowed
+#                                 Claude-User
+#   4. Model-training crawlers    GPTBot, ClaudeBot, CCBot,          not allowed
+#                                 Google-Extended, Applebot-Extended
 #
 # Categories 1 to 3 are allowed: this is a public site whose whole purpose is to
-# be found and understood. Category 4 is a separate decision, currently allowed.
-# Everything here is public marketing copy about a one-person business; there is
-# nothing on this site that would be harmful in a training set, and being known
-# to models is part of what the site is for. See docs/prd.md, O-8.
+# be found, understood and cited. Category 4 is a separate choice, and being
+# visible in AI-assisted search does not depend on it. Simon has chosen not to
+# make this content available for model training for now.
 
 User-agent: *
 Allow: /
+
+# Category 4: model training.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
 
 Sitemap: https://aiwise.it.com/sitemap-index.xml
 

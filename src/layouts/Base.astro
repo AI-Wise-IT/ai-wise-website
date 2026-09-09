@@ -7,6 +7,7 @@
  * and the business. Everything in the structured data is a confirmed fact from
  * business-details/company-profile.json. Nothing is inferred.
  */
+import Analytics from "@vercel/analytics/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
@@ -128,7 +129,7 @@ const jsonLd = {
     <meta property="og:image:alt" content={t.meta.ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline></script>
   </head>
 
   <body>
@@ -139,5 +140,18 @@ const jsonLd = {
     </main>
     <Footer lang={lang} />
     <WhatsAppFloat lang={lang} />
+
+    {/*
+      Vercel Web Analytics. Cookieless, and the script is served from this site's
+      own origin, so no third party is added.
+
+      Vercel's docs place this in <head>. Do not. The component renders a
+      <vercel-analytics> custom element, and an unknown element in the head makes
+      the HTML parser close the head and open the body right there. Everything
+      Astro appends afterwards, including the Content-Security-Policy meta tag,
+      then lands in the body, where a CSP meta is ignored outright. In the body
+      the script runs exactly the same and the policy survives.
+    */}
+    <Analytics />
   </body>
 </html>

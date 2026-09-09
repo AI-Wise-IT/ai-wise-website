@@ -1,7 +1,7 @@
 # PRD, AI Wise website
 
-Status: versie 4, gebouwd en klaar voor review
-Datum: 8 september 2026
+Status: versie 5, gebouwd en klaar voor visuele review
+Datum: 9 september 2026
 Eigenaar: Simon van Meegdenburg
 Vervangt: de tijdelijke coming-soon pagina op https://aiwise.it.com
 
@@ -173,11 +173,19 @@ Vier inhoudelijke secties.
 - R-S2.2: Draagt impliciet de onderzoeksfase: de sectie beschrijft een houding en een
   manier van kijken. Er wordt nergens gezegd dat er nog geen aanbod is; er wordt eenvoudig
   geen aanbod gedaan.
-- R-S2.3: **Geen servicegrid.** De vier `Card`-tegels uit `Home` ("Workflow automation",
-  "Dashboards and reporting", "Internal tools", "Data groundwork") worden niet
-  overgenomen. Vier tegels met dienstnamen lezen als een menu, en dat is precies wat deze
-  ronde niet moet. De inhoud ervan mag wel als proza terugkomen, zodat een bezoeker weet
-  wat voor werk dit is. Zie O-1.
+- R-S2.3: **Geen servicegrid, wel een opsomming ter inspiratie.** De vier `Card`-tegels uit
+  `Home` ("Workflow automation", "Dashboards and reporting", "Internal tools", "Data
+  groundwork") worden niet overgenomen: vier tegels met dienstnamen lezen als een menu.
+  In plaats daarvan sluit de sectie af met zes concrete voorbeelden van wat mogelijk is,
+  bedoeld om de gedachten te prikkelen. Elk voorbeeld beschrijft een situatie, niet een
+  dienst: "een maandrapportage die zichzelf samenstelt uit de systemen waar de cijfers toch
+  al in staan", niet "rapportage-automatisering". Uitvoering als lijst, zonder kaders,
+  iconen of kopjes, met een afsluitende regel dat wat zinvol is afhangt van hoe het werk nu
+  loopt.
+- R-S2.3a: De voorbeelden zijn illustratie, geen aanbod. Ze noemen geen prijs, geen
+  doorlooptijd, geen pakket, en er staat geen call to action bij. `llms.txt` zegt er
+  expliciet bij dat het voorbeelden zijn en geen dienstencatalogus, zodat een model er geen
+  aanbod van maakt.
 - R-S2.4: De vier kernwaarden worden **niet** als genummerd blok opgevoerd zoals in de
   kit. Ze zijn herkenbaar in de inhoud aanwezig. Waardentaal die ornamenteel wordt is een
   merkrisico.
@@ -210,7 +218,9 @@ Deze sectie draagt ook het "voor wie", impliciet.
   uitwisselen hier welkom is.
 - R-S4.2: Geen fit-criteria, geen uitsluitingen, geen "ik werk alleen met...". De rode
   lijnen uit het klantprofiel zijn intern materiaal.
-- R-S4.3: Twee contactroutes, als tekstlinks, even prominent: e-mail en WhatsApp.
+- R-S4.3: Contactroutes als tekstlinks, even prominent: e-mail, LinkedIn en WhatsApp. De
+  LinkedIn-route verschijnt pas zodra het profiel-URL bekend is; tot die tijd staat het veld
+  op `null` en laten zowel de contactsectie als `llms.txt` de route weg. Zie O-3.
 - R-S4.4: Eén regel die zegt dat een kort bericht volstaat en dat er geen verplichting aan
   vastzit. Het designsysteem schrijft "boundaries are stated, not implied"; die regel is de
   toepassing daarvan.
@@ -317,9 +327,12 @@ in `tokens/` en `guidelines/`.
   grijpt, doen een komma, een dubbele punt, een punt of haakjes het werk. En-streepjes
   blijven, uitsluitend voor getalsbereiken. Geen Unicode-tekens als icoon; alleen echte
   typografische tekens, `·` als scheider en aanhalingstekens.
-  Deze regel is op 8 september 2026 toegevoegd aan het designsysteem zelf, in `readme.md`
-  onder *Content fundamentals* en in de harde constraints van `SKILL.md`. Zie O-6 voor wat
-  er nog opgeruimd moet worden.
+  De regel is op 8 september 2026 toegevoegd aan het designsysteem, in `readme.md` onder
+  *Content fundamentals* en in de harde constraints van `SKILL.md`, en op 9 september
+  aangescherpt: hij geldt voor alles wat een lezer buiten AI Wise ziet. De handleidingen van
+  het designsysteem zelf zijn interne documentatie en mogen ze houden. Deze PRD houdt zich
+  er ook aan, en de geïmporteerde tokenbestanden zijn de enige uitzondering in deze repo,
+  omdat ze verbatim moeten blijven.
 - R-V13: Motion volgt `motion.css`: 80/140/200/320/520ms, geen spring, geen bounce, geen
   scale-up. De weave animeert nooit. Alles valt terug naar 0ms onder
   `prefers-reduced-motion`.
@@ -333,11 +346,23 @@ in `tokens/` en `guidelines/`.
 
 ### 8.1 Stack
 
-- R-T1: **Astro 5**, statische output. Ingebouwde i18n-routering en geen client-side
-  JavaScript.
+- R-T1: **Astro 7**, statische output. Ingebouwde i18n-routering en geen client-side
+  JavaScript behalve het analytics-script.
+- R-T1a: Alle afhankelijkheden staan op de meest recente stabiele versie, met één bewuste
+  uitzondering: **TypeScript 6, niet 7**. `@astrojs/check` accepteert `^5 || ^6`, dus TS 7
+  zou de typecontrole breken. Zodra `@astrojs/check` TS 7 ondersteunt, kan dat mee omhoog.
 - R-T2: Geen serveradapter. Zonder formulier is er geen serverfunctie nodig, dus Vercel
   serveert alleen statische bestanden.
-- R-T3: TypeScript, in strict mode. `astro check` hoort schoon te draaien.
+- R-T3: TypeScript in strict mode. `astro check` hoort schoon te draaien.
+- R-T3a: **Content-Security-Policy via Astro**, niet via een header in `vercel.json`.
+  `security.csp` is stabiel sinds Astro 6 en berekent hashes voor de inline stylesheet en
+  het analytics-script, zodat `'unsafe-inline'` niet nodig is. Twee gevolgen die vastliggen:
+  er staan **geen inline `style`-attributen** in de opgeleverde HTML, want CSP-hashes dekken
+  stylesheets en geen style-attributen; en de `<Analytics />` component staat aan het einde
+  van de `body`, niet in de `head`, omdat het `<vercel-analytics>` element de head vroegtijdig
+  sluit en de CSP-meta dan in de body belandt, waar hij genegeerd wordt. `frame-ancestors`
+  staat niet in de meta, want dat wordt daar genegeerd; `vercel.json` dekt dat met
+  `X-Frame-Options`.
 - R-T4: De componenten in het designsysteem zijn JSX die van een globale
   `window.AIWiseDesignSystem_0a1bab` uitgaat, een prototypepatroon. Ze zijn niet
   geïmporteerd. `base.css` draagt de weave, de container, de eyebrow, de display- en
@@ -386,9 +411,12 @@ in `tokens/` en `guidelines/`.
 ### 8.4 Hosting en domein
 
 - R-T17: Hosting op Vercel, Pro-account aanwezig. `vercel.json` legt het framework, de
-  cachekoppen voor fonts en gebundelde assets, en een set securitykoppen vast, inclusief
-  een Content-Security-Policy die alleen `self` toestaat. Dat kan omdat de site niets
-  extern laadt.
+  cachekoppen voor fonts en gebundelde assets en de securitykoppen vast. De
+  Content-Security-Policy zit niet in `vercel.json` maar wordt door Astro gegenereerd, zie
+  R-T3a; twee policies naast elkaar zouden elkaar doorsnijden.
+- R-T17a: Web Analytics moet in het Vercel-dashboard worden aangezet. Tot dat gebeurt geeft
+  `/_vercel/insights/script.js` een 404 en logt de pagina één regel in de console. Lokaal is
+  die 404 er altijd, want dat pad bestaat alleen op Vercel.
 - R-T18: Productiedomein `aiwise.it.com`, één canonieke variant, geen trailing slash.
 - R-T19: DNS wordt omgezet van GitHub Pages naar Vercel, pas nadat de site op een
   Vercel-preview-URL is goedgekeurd.
@@ -465,11 +493,13 @@ behandeld.
 - R-S.11: `robots.txt` benoemt de vier categorieën uit het Stavast-besluit en waarom ze wel
   of niet zijn toegestaan.
 - R-S.12: Gewone zoekcrawlers, AI-zoekcrawlers en door de gebruiker aangeroepen fetchers
-  zijn toegestaan. Dit is een publieke site die bedoeld is om gevonden te worden.
-- R-S.13: Modeltrainingcrawlers zijn op dit moment toegestaan. Alles op de site is publieke
-  marketingtekst over een eenmanszaak; er staat niets op dat in een trainingsset schadelijk
-  zou zijn, en bekend zijn bij modellen is deels waar de site voor is. Dit is een aparte
-  beslissing en omkeerbaar, zie O-7.
+  zijn toegestaan. Dit is een publieke site die bedoeld is om gevonden, begrepen en
+  geciteerd te worden.
+- R-S.13: Modeltrainingcrawlers zijn **niet** toegestaan: GPTBot, ClaudeBot, CCBot,
+  Google-Extended, Applebot-Extended, meta-externalagent en Bytespider staan op disallow.
+  Dat is een bewuste keuze, los van AI-zoekvindbaarheid: die twee hangen niet samen, en de
+  site blijft volledig vindbaar en citeerbaar in AI-ondersteund zoeken. `llms.txt` benoemt
+  het onderscheid, zodat de keuze leesbaar is voor wie het bestand ophaalt.
 - R-S.14: Er wordt geen enkele belofte gedaan over posities in zoekresultaten of over hoe
   AI-systemen AI Wise noemen. Dat is dezelfde afbakening die AI Wise klanten geeft.
 
@@ -478,8 +508,13 @@ behandeld.
 ## 10. Privacy en juridisch
 
 - R-J1: Geen cookies, dus geen cookiebanner.
-- R-J2: Op dit moment geen webstatistieken. Als die er komen, dan cookieloos en zonder
-  persoonsgegevens. Zie O-4.
+- R-J2: Bezoekersstatistiek via Vercel Web Analytics. Cookieloos: in plaats van een
+  bezoeker te markeren wordt uit het binnenkomende verzoek een hash afgeleid die na 24 uur
+  vervalt en niet wordt bewaard. Wat zichtbaar is, is geaggregeerd: paginaweergaven,
+  verwijzende sites, land, apparaattype. Geen profielen, geen tracking over sites heen. Het
+  script wordt vanaf het eigen domein geserveerd, dus er komt geen derde partij bij.
+  Vercel verwerkt deze gegevens buiten de EU; omdat er geen persoonsgegevens in zitten is
+  dat voor deze verwerking geen bezwaar. De privacyverklaring beschrijft dit in beide talen.
 - R-J3: Privacyverklaring op `/privacy` en `/en/privacy`, met een link in de footer. Zonder
   formulier is de inhoud kort: de site verwerkt zelf geen persoonsgegevens, de
   hostingprovider verwerkt technische logbestanden, en contact via e-mail of WhatsApp
@@ -488,8 +523,8 @@ behandeld.
   btw-identificatienummer, contactgegevens en vestigingsadres eenvoudig vindbaar. Het adres
   is een open punt, zie O-2.
 - R-J5: Geen claims over veiligheid, privacy of resultaten zonder onderbouwing.
-- R-J6: De privacyverklaring beschrijft alleen wat er werkelijk gebeurt. Als er later
-  statistiek bijkomt, wordt de tekst in dezelfde commit aangepast.
+- R-J6: De privacyverklaring beschrijft alleen wat er werkelijk gebeurt. Als er iets aan de
+  verwerking verandert, wordt de tekst in dezelfde commit aangepast.
 
 ---
 
@@ -517,12 +552,13 @@ behandeld.
 3. Er staat nergens een aanbod, prijs of scan, en de onderzoeksfase hoeft nergens uitgelegd
    te worden.
 4. NL en EN zijn inhoudelijk gelijkwaardig.
-5. Beide contactroutes werken aantoonbaar op desktop en mobiel.
+5. Alle contactroutes werken aantoonbaar op desktop en mobiel.
 6. De Lighthouse-drempels uit R-P1 worden gehaald.
 7. Elke visuele waarde is herleidbaar tot het designsysteem. De afwijkingen die deze PRD
    maakt (geen servicegrid, geen waardenblok, geen formulier, Lucide zonder CDN) staan hier
    expliciet.
 8. Simon heeft de copy in beide talen goedgekeurd.
+9. De opgeleverde pagina's laden zonder enige CSP-schending in de browserconsole.
 
 Wat de site *oplevert* is in deze fase niet meetbaar en wordt niet als doelstelling
 opgevoerd. Het aantal contactverzoeken is de enige interessante indicator, en die telt
@@ -536,24 +572,26 @@ Alles wat niet op een open punt wachtte, staat er.
 
 | Onderdeel | Status |
 | --- | --- |
-| Astro-project, statische build, TypeScript strict | Klaar, `astro check` schoon |
+| Astro 7, statische build, TypeScript 6 strict | Klaar, `astro check` schoon |
 | Designsysteem-import: acht tokenbestanden, logo, weave-masters, favicons | Klaar |
 | Fonts gesubset en geconverteerd, samen 42 KB | Klaar |
 | S0 header met taalwissel | Klaar |
 | S1 hero met de enige weave-plaatsing en de enige signal-knop | Klaar |
-| S2 visie met de reflectie in Newsreader | Klaar, copy is concept |
+| S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
 | S3 over Simon, portret 4:5 gecropt bij de build | Klaar, copy is concept |
-| S4 contact met e-mail en WhatsApp | Klaar, LinkedIn ontbreekt (O-3) |
-| S5 footer met KvK, btw-id en privacylink | Klaar, adres nog te besluiten (O-2) |
+| S4 contact met e-mail en WhatsApp | Klaar; LinkedIn is voorbereid en wacht op de URL (O-3) |
+| S5 footer met KvK, btw-id, vestigingsplaats en privacylink | Klaar |
 | S6 zwevende WhatsApp-knop, outline | Klaar |
-| Privacyverklaring in NL en EN | Klaar |
+| Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
 | i18n-routering, hreflang, canonical, sitemap | Klaar |
 | JSON-LD, Open Graph, favicons | Klaar |
-| `robots.txt` en `llms.txt` | Klaar |
+| `robots.txt` met modeltraining op disallow, en `llms.txt` | Klaar |
+| Vercel Web Analytics, cookieloos, eigen domein | Klaar in code; aanzetten in het dashboard bij de deploy |
+| Content-Security-Policy met hashes, geen `unsafe-inline` | Klaar, geverifieerd in de browser |
 | `vercel.json` met cache- en securitykoppen | Klaar, nog niet gedeployed |
-| Em-dash-regel toegevoegd aan het designsysteem | Klaar in `readme.md` en `SKILL.md` |
+| Em-dash-regel in het designsysteem, afgebakend tot publieke teksten | Klaar in `readme.md` en `SKILL.md` |
 
-Wat nog moet gebeuren staat in O-1 tot en met O-8, plus de deploy zelf.
+Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 ---
 
@@ -561,18 +599,25 @@ Wat nog moet gebeuren staat in O-1 tot en met O-8, plus de deploy zelf.
 
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
-| O-1 | **Hoeveel concreetheid mag in de visie?** De kit heeft vier dienstentegels: workflow-automatisering, dashboards en rapportage, interne tools, datafundament. Als categorieënlijst lezen ze als een menu, en dat is precies wat deze ronde niet moet. Als proza binnen de visie geven ze een bezoeker wél houvast over wat voor werk dit is. De huidige tekst blijft bewust dicht bij de houding en noemt drie concrete werksituaties, geen dienstnamen. | Simon: bevestigen of bijsturen | Bepaalt of S2 zo blijft of concreter wordt |
-| O-2 | **Vestigingsadres in de footer.** Het geregistreerde adres is een woonadres. De informatieplicht vraagt om geografische adresgegevens; volledige publicatie is een privacyafweging. De footer noemt nu alleen "Amsterdam" plus het KvK-nummer, waarmee het volledige adres via het Handelsregister vindbaar blijft. Dat is de lichtste invulling die verdedigbaar is. | Simon: keuze | Klein juridisch risico als het zo blijft |
-| O-3 | **LinkedIn-profiel-URL.** Collega-developers zoeken eerder via LinkedIn dan via WhatsApp. Een derde route in S4 en in `llms.txt`. | Simon: URL, of laten vervallen | Gemiste route voor de secundaire doelgroep |
-| O-4 | **Webstatistieken ja of nee.** Vercel Web Analytics is cookieloos en zit bij Pro. De privacyverklaring zegt nu dat er geen statistiek is; die tekst moet mee veranderen. | Simon: keuze | Geen zicht op bezoek |
-| O-5 | **Lighthouse nog niet gemeten.** De preview in deze omgeving rendert onbetrouwbaar, dus R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
-| O-6 | **Em-dashes in de rest van het designsysteem.** De regel staat nu in `readme.md` en `SKILL.md`. De prose van `readme.md` zelf, de `.prompt.md` bestanden bij de componenten, de guideline-kaarten en de copy in de UI-kits bevatten nog em-dashes van vóór de regel. Dit is als laatste punt onder "Still open" in het designsysteem genoteerd. | Simon: opdracht geven voor een sweep | Agents lezen een regel die het document zelf nog niet volgt |
-| O-7 | **Modeltraining toestaan ja of nee.** `robots.txt` staat GPTBot, ClaudeBot, Google-Extended en CCBot nu toe, met de redenering erbij. Dit is bewust een aparte beslissing van AI-zoekvindbaarheid. | Simon: bevestigen | Omkeerbaar, één regel in `robots.txt` |
-| O-8 | **De PROPOSED-tokens worden hiermee in de praktijk vastgelegd.** Typeschaal, gewichten, regelafstand, spacing, grid, marges en radius zijn voorstellen die het designsysteem expliciet ter goedkeuring aanbiedt. Door ze op de website te gebruiken, worden ze de facto de standaard. | Simon: bewust van zijn | Geen bouwrisico, wel een merkbeslissing die stilzwijgend zou kunnen vallen |
+| O-1 | **LinkedIn-profiel-URL.** De route is gebouwd en staat uit zolang `COMPANY.linkedin` `null` is, zodat de site niet naar een profiel wijst dat nog het oude verhaal vertelt. Zodra het profiel is bijgewerkt: één regel in `copy.ts` en de route verschijnt in de contactsectie en in `llms.txt`. | Simon: URL | Gemiste route voor de secundaire doelgroep |
+| O-2 | **Copy reviewen.** Beide talen, vier secties plus de privacyverklaring. De voorbeelden in de visie zijn nieuw en het meest gebaat bij een blik: zijn dit de dingen die je wilt oproepen? | Simon: lezen | De site kan niet live |
+| O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
+| O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
+| O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
 
-Iconenrichting is geschrapt als open punt voor deze site: er staan twee iconen op de
-pagina en `Icon.astro` vervangen raakt verder niets. De keuze blijft open in het
-designsysteem zelf.
+Gesloten sinds versie 4:
+
+- Concreetheid in de visie: er staan nu zes voorbeelden in, ter inspiratie. Zie R-S2.3.
+- Vestigingsadres: alleen "Amsterdam" plus het KvK-nummer, zoals voorgesteld.
+- Webstatistiek: Vercel Web Analytics, cookieloos. Zie R-J2.
+- Modeltraining: niet toegestaan. Zie R-S.13.
+- Em-dashes in het designsysteem: de regel is afgebakend tot publieke teksten, de
+  handleidingen zijn expliciet uitgezonderd, en er hoeft dus geen sweep door de guides.
+  Alleen de voorbeeldcopy in `ui_kits/` en `slides/` is nog een keer nalopen waard, en dat
+  staat als zodanig genoteerd onder "Still open" in het designsysteem.
+- PROPOSED-tokens: het designsysteem krijgt een update op het moment dat de site live gaat.
+- Iconenrichting: geen open punt voor deze site. Er staan twee iconen op de pagina en
+  `Icon.astro` vervangen raakt verder niets. De keuze blijft open in het designsysteem.
 
 ---
 
@@ -580,25 +625,31 @@ designsysteem zelf.
 
 | Stap | Inhoud | Afhankelijk van |
 | --- | --- | --- |
-| 1 | Copy reviewen in NL en EN | Simon |
-| 2 | Open punten O-1 tot en met O-4 en O-7 beslissen | Simon |
-| 3 | Repo koppelen aan Vercel, preview-deploy | Simon: Vercel-toegang |
-| 4 | Lighthouse meten op de preview, O-5 sluiten | Stap 3 |
-| 5 | Visuele review op de preview, op desktop en mobiel | Stap 3 |
+| 1 | Site lokaal bekijken en de copy in beide talen reviewen | Simon, O-2 en O-3 |
+| 2 | Repo koppelen aan Vercel, preview-deploy | Simon: Vercel-toegang |
+| 3 | Web Analytics aanzetten in het dashboard, O-4 sluiten | Stap 2 |
+| 4 | Lighthouse meten op de preview, O-5 sluiten | Stap 2 |
+| 5 | LinkedIn-URL toevoegen zodra het profiel is bijgewerkt, O-1 sluiten | Simon |
 | 6 | DNS omzetten van GitHub Pages naar Vercel | Goedkeuring Simon |
-| 7 | Em-dash-sweep door het designsysteem, O-6 | Aparte opdracht |
+| 7 | Designsysteem bijwerken bij livegang: PROPOSED-tokens bevestigen, repo-verwijzing in `github.md` corrigeren, voorbeeldcopy in `ui_kits/` en `slides/` nalopen op em-dashes | Bij livegang |
 
 ---
 
-## 16. Wijzigingen ten opzichte van versie 3
+## 16. Wijzigingen ten opzichte van versie 4
 
-- Het designsysteem is geïmporteerd en de site is gebouwd. Hoofdstuk 13 zegt wat er staat.
-- Em-dashes zijn verboden, in R-V12 en R-C3, en de regel is in het designsysteem zelf
-  vastgelegd. Deze PRD gebruikt ze zelf ook niet meer.
-- Hoofdstuk 9.3 is uitgebreid van een SEO-lijstje naar een volledige vindbaarheidsparagraaf
-  die zoekmachines en AI-systemen apart behandelt, volgens het Stavast-materiaal.
-- R-V4a is toegevoegd: hoe de weave zich onder 1024px gedraagt. De alternatieve oplossing,
-  hem verbergen, is verworpen en de reden staat erbij.
-- R-L7 is aangescherpt: de taalkeuze wordt niet onthouden. Dat scheelt JavaScript en een
-  regel in de privacyverklaring.
+- **Astro 5 naar Astro 7.3.2**, met alle afhankelijkheden op de nieuwste stabiele versie.
+  Eén uitzondering: TypeScript blijft op 6, omdat `@astrojs/check` nog geen 7 accepteert.
+  Twee breaking changes geraakt: `redirectToDefaultLocale` mag sinds Astro 6 alleen nog bij
+  `prefixDefaultLocale: true` en is verwijderd, en de strengere compiler in Astro 7 vroeg om
+  een correct gesloten `<script>` in plaats van een self-closing tag.
+- **Content-Security-Policy nu via Astro**, met hashes in plaats van `unsafe-inline`. Dat
+  bracht twee echte fouten aan het licht die in versie 4 onopgemerkt waren gebleven, beide
+  beschreven in R-T3a: de CSP-meta belandde buiten de `head` en werd genegeerd, en de inline
+  `style`-attributen werden geblokkeerd. Beide opgelost en in de browser geverifieerd.
+- Zes voorbeelden toegevoegd aan de visie, ter inspiratie. R-S2.3 en R-S2.3a.
+- Vercel Web Analytics toegevoegd, met een eigen paragraaf in de privacyverklaring. R-J2.
+- Modeltrainingcrawlers uitgesloten in `robots.txt`. R-S.13.
+- LinkedIn-route gebouwd maar uitgeschakeld tot de URL bekend is. R-S4.3.
+- De em-dash-regel is afgebakend tot publieke teksten; de handleidingen van het
+  designsysteem zijn uitgezonderd. R-V12.
 - Het oude open punt over iconenrichting is geschrapt voor deze site.

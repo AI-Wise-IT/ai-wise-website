@@ -30,6 +30,17 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
           <span class="contact__route-label">{t.contact.emailLabel}</span>
           <a class="contact__route-value" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
         </span>
+        {COMPANY.linkedin && (
+          <span class="contact__route">
+            <span class="contact__route-label">{t.contact.linkedinLabel}</span>
+            <a
+              class="contact__route-value"
+              href={COMPANY.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >{t.contact.linkedinValue}</a>
+          </span>
+        )}
         <span class="contact__route">
           <span class="contact__route-label">{t.contact.whatsappLabel}</span>
           <a

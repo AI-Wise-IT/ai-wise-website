@@ -24,7 +24,7 @@ const PATHS: Record<Props["name"], string[]> = {
 ---
 
 <svg
-  class={className}
+  class:list={["icon", className]}
   xmlns="http://www.w3.org/2000/svg"
   width={size}
   height={size}
@@ -36,7 +36,6 @@ const PATHS: Record<Props["name"], string[]> = {
   stroke-linejoin="round"
   aria-hidden="true"
   focusable="false"
-  style="flex:0 0 auto"
 >
   {PATHS[name].map((d) => <path d={d} />)}
 </svg>

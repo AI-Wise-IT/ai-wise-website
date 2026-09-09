@@ -30,6 +30,12 @@ export const COMPANY = {
   vat: "NL005019332B52",
   site: "https://aiwise.it.com",
   tagline: "Automation in Service of Life",
+  /**
+   * Simon's LinkedIn profile. Null until the profile itself has been updated for
+   * AI Wise; the contact section and llms.txt leave the route out while it is
+   * null, so nothing points at a page that does not say the right thing yet.
+   */
+  linkedin: null as string | null,
 } as const;
 
 export interface Copy {
@@ -50,6 +56,10 @@ export interface Copy {
     heading: string;
     paragraphs: string[];
     reflection: string;
+    /** Concrete possibilities, to give the reader something to react to. */
+    examplesIntro: string;
+    examples: string[];
+    examplesNote: string;
   };
   about: {
     eyebrow: string;
@@ -62,6 +72,8 @@ export interface Copy {
     heading: string;
     paragraphs: string[];
     emailLabel: string;
+    linkedinLabel: string;
+    linkedinValue: string;
     whatsappLabel: string;
     whatsappValue: string;
     whatsappPrefill: string;
@@ -114,6 +126,16 @@ const nl: Copy = {
       "Waar ik naar zoek is de grens tussen die twee: wat kan worden weggenomen, zodat er meer week overblijft voor wat mensen doen. Dat bouw ik vervolgens ook, met genoeg documentatie en overdracht dat je er zonder mij mee verder kunt.",
     ],
     reflection: "Je ziet AI aankomen. Wat je nog niet ziet, is waar het hier werkelijk zou helpen.",
+    examplesIntro: "Een paar dingen die mogelijk zijn, om een idee te geven van waar dit over kan gaan:",
+    examples: [
+      "Een aanmeldformulier dat zichzelf omzet in een dossier, een bevestigingsmail en een regel in de planning.",
+      "Een maandrapportage die zichzelf samenstelt uit de systemen waar de cijfers toch al in staan.",
+      "Gespreksverslagen die uit een opname komen rollen, in jullie eigen vorm en met jullie eigen woorden.",
+      "Een overzicht waarin je ziet wat het werk oplevert, in plaats van dat elk kwartaal opnieuw bij elkaar te zoeken.",
+      "Aanmeldingen, deelnemers en communicatie die op één plek samenkomen in plaats van in vier.",
+      "Een klein intern hulpmiddel dat precies één stap uit jullie proces overneemt, en verder niets.",
+    ],
+    examplesNote: "Wat hiervan zinvol is, hangt af van hoe het werk nu loopt. Daar begint het gesprek.",
   },
   about: {
     eyebrow: "Over mij",
@@ -133,6 +155,8 @@ const nl: Copy = {
       "Bouw je zelf met AI en wil je een keer sparren over hoe je het aanpakt? Ook daar ben ik voor in.",
     ],
     emailLabel: "E-mail",
+    linkedinLabel: "LinkedIn",
+    linkedinValue: "Simon van Meegdenburg",
     whatsappLabel: "WhatsApp",
     whatsappValue: "Stuur een bericht",
     whatsappPrefill: "Hoi Simon, ik kwam op de site van AI Wise terecht en heb een vraag.",
@@ -149,20 +173,28 @@ const nl: Copy = {
   },
   privacy: {
     title: "Privacyverklaring",
-    lead: "Deze website verzamelt zelf geen persoonsgegevens. Hieronder staat wat er wel gebeurt zodra je contact opneemt.",
-    updated: "Laatst bijgewerkt op 8 september 2026.",
+    lead: "Deze website plaatst geen cookies en vraagt je nergens om gegevens. Hieronder staat wat er wel gebeurt: bij het bezoeken van de site, en zodra je contact opneemt.",
+    updated: "Laatst bijgewerkt op 9 september 2026.",
     sections: [
       {
         heading: "Wat deze website doet",
         paragraphs: [
-          "De site bestaat uit statische pagina's. Er staan geen formulieren op, geen trackingscripts, geen advertentienetwerken en geen ingesloten inhoud van derden. Lettertypen en afbeeldingen worden vanaf deze site zelf geladen, niet vanaf een externe dienst.",
-          "Er worden geen cookies geplaatst en er wordt geen bezoekersstatistiek bijgehouden. De site slaat niets op in je browser.",
+          "De site bestaat uit statische pagina's. Er staan geen formulieren op, geen advertentienetwerken en geen ingesloten inhoud van derden. Lettertypen en afbeeldingen worden vanaf deze site zelf geladen, niet vanaf een externe dienst.",
+          "Er worden geen cookies geplaatst, voor geen enkel doel. De site slaat niets op in je browser.",
         ],
       },
       {
         heading: "Hosting en logbestanden",
         paragraphs: [
           "De website wordt gehost door Vercel Inc. Om de site te kunnen leveren en te beschermen tegen misbruik verwerkt Vercel technische gegevens zoals je IP-adres, het opgevraagde adres, tijdstip en browsertype. Dat gebeurt op grond van gerechtvaardigd belang. Ik gebruik deze logbestanden niet om bezoekers te herkennen of te volgen.",
+        ],
+      },
+      {
+        heading: "Bezoekersstatistiek",
+        paragraphs: [
+          "Ik gebruik Vercel Web Analytics om te zien hoeveel mensen de site bezoeken en welke pagina's ze bekijken. Dat gebeurt zonder cookies. In plaats van een bezoeker te markeren, berekent Vercel uit het binnenkomende verzoek een versleutelde waarde om herhaalbezoeken binnen een dag te kunnen tellen; die waarde vervalt na 24 uur en wordt niet bewaard.",
+          "Wat ik zie is geaggregeerd: aantallen paginaweergaven, verwijzende websites, land, en soort apparaat of browser. Er wordt geen profiel opgebouwd, niets gekoppeld aan een persoon, en niets gevolgd over andere websites heen. Het script komt van deze site zelf, niet van een externe domein.",
+          "Vercel verwerkt deze gegevens buiten de Europese Unie. Omdat er geen persoonsgegevens in zitten, is dat voor deze verwerking geen bezwaar. De grondslag is gerechtvaardigd belang: ik wil weten of de site gelezen wordt.",
         ],
       },
       {
@@ -221,6 +253,16 @@ const en: Copy = {
       "What I look for is the line between the two: what can be taken off the pile, so more of the week is left for what people do. Then I build it, with enough documentation and handover that you can keep going without me.",
     ],
     reflection: "You can see AI arriving. What you cannot see yet is where it would actually help here.",
+    examplesIntro: "A few things that are possible, to give a sense of what this can be about:",
+    examples: [
+      "A sign-up form that turns itself into a record, a confirmation email and a line in the planning.",
+      "A monthly report that assembles itself from the systems the numbers already live in.",
+      "Meeting notes that come out of a recording, in your own shape and your own words.",
+      "A view of what the work is producing, instead of piecing that together again every quarter.",
+      "Registrations, participants and messages arriving in one place rather than four.",
+      "A small internal tool that takes over exactly one step of your process, and nothing else.",
+    ],
+    examplesNote: "Which of these would be worth it depends on how the work runs now. That is where the conversation starts.",
   },
   about: {
     eyebrow: "About me",
@@ -240,6 +282,8 @@ const en: Copy = {
       "Building with AI yourself and want to compare notes on how you approach it? Equally welcome.",
     ],
     emailLabel: "Email",
+    linkedinLabel: "LinkedIn",
+    linkedinValue: "Simon van Meegdenburg",
     whatsappLabel: "WhatsApp",
     whatsappValue: "Send a message",
     whatsappPrefill: "Hi Simon, I came across the AI Wise site and have a question.",
@@ -256,20 +300,28 @@ const en: Copy = {
   },
   privacy: {
     title: "Privacy statement",
-    lead: "This website collects no personal data of its own. Below is what does happen once you get in touch.",
-    updated: "Last updated 8 September 2026.",
+    lead: "This website sets no cookies and asks you for nothing. Below is what does happen: when you visit, and once you get in touch.",
+    updated: "Last updated 9 September 2026.",
     sections: [
       {
         heading: "What this website does",
         paragraphs: [
-          "The site is a set of static pages. There are no forms, no tracking scripts, no ad networks and no embedded third-party content. Fonts and images are served from this site rather than from an external service.",
-          "No cookies are set and no visitor statistics are kept. The site stores nothing in your browser.",
+          "The site is a set of static pages. There are no forms, no ad networks and no embedded third-party content. Fonts and images are served from this site rather than from an external service.",
+          "No cookies are set, for any purpose. The site stores nothing in your browser.",
         ],
       },
       {
         heading: "Hosting and log files",
         paragraphs: [
           "The site is hosted by Vercel Inc. To deliver the site and protect it from abuse, Vercel processes technical data such as your IP address, the address requested, the time and your browser type, on the basis of legitimate interest. I do not use those logs to recognise or follow visitors.",
+        ],
+      },
+      {
+        heading: "Visitor statistics",
+        paragraphs: [
+          "I use Vercel Web Analytics to see how many people visit the site and which pages they read. It works without cookies. Rather than marking a visitor, Vercel derives a hashed value from the incoming request so that repeat visits within a day can be counted; that value expires after 24 hours and is not retained.",
+          "What I see is aggregated: page view counts, referring sites, country, and device or browser type. No profile is built, nothing is tied to a person, and nothing is followed across other websites. The script is served from this site itself, not from an external domain.",
+          "Vercel processes this data outside the European Union. Since it contains no personal data, that is not an obstacle for this processing. The basis is legitimate interest: I want to know whether the site is being read.",
         ],
       },
       {

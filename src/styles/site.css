@@ -81,6 +81,17 @@
 /* ---- vision ------------------------------------------------------------- */
 .vision__reflection{margin-block:var(--aiw-space-10);padding-left:var(--aiw-space-6);border-left:var(--aiw-border-width-strong) solid var(--aiw-moss-green)}
 
+/* The examples. A list, deliberately: no boxes, no icons, no service names,
+   because a tiled grid of capabilities reads as a menu and there is no offer
+   on this page. Two columns only where there is room for two full lines. */
+.vision__examples{margin-top:var(--aiw-space-12);padding-top:var(--aiw-space-8);border-top:var(--aiw-border-width) solid var(--aiw-border-subtle)}
+.vision__examples-intro{color:var(--aiw-text-secondary)}
+.vision__examples-list{margin-top:var(--aiw-space-6);padding-left:1.1em;display:grid;gap:var(--aiw-space-4) var(--aiw-space-12)}
+.vision__examples-list li{margin-top:0;max-width:46ch;line-height:var(--aiw-leading-body)}
+.vision__examples-list li::marker{color:var(--aiw-moss-green)}
+.vision__examples-note{margin-top:var(--aiw-space-8);color:var(--aiw-text-secondary)}
+@media (min-width:900px){.vision__examples-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 /* ---- about -------------------------------------------------------------- */
 .about__layout{display:grid;gap:var(--aiw-space-10);align-items:start}
 @media (min-width:768px){.about__layout{grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:var(--aiw-space-12)}}
@@ -122,5 +133,14 @@
 .prose h2:first-of-type{margin-top:var(--aiw-space-10)}
 .prose p+p,.prose ul{margin-top:var(--aiw-space-4)}
 .prose li{color:var(--aiw-text-secondary)}
+.prose__updated{margin-top:var(--aiw-space-12)}
+.prose__back{margin-top:var(--aiw-space-6)}
 .page-head{padding-top:var(--aiw-space-16)}
 .page-head__title{margin-bottom:var(--aiw-space-4)}
+
+/* ---- icons -------------------------------------------------------------- */
+/* Sizing comes from the width and height attributes; this only stops an icon
+   from being squeezed by a flex parent. Kept in CSS rather than a style
+   attribute, because the Content-Security-Policy hashes cover stylesheets and
+   not style attributes. */
+.icon{flex:0 0 auto}

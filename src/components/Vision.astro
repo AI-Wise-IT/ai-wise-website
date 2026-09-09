@@ -26,5 +26,16 @@ const t = COPY[lang];
 
       {t.vision.paragraphs.slice(1).map((p) => <p class="aiw-body">{p}</p>)}
     </div>
+
+    {/* Possibilities, to give the reader something concrete to react to. A list,
+        not a card grid: four tiles carrying service names would read as a menu,
+        and this round makes no offer. See docs/prd.md, R-S2.3. */}
+    <div class="vision__examples">
+      <p class="aiw-body vision__examples-intro">{t.vision.examplesIntro}</p>
+      <ul class="vision__examples-list">
+        {t.vision.examples.map((e) => <li>{e}</li>)}
+      </ul>
+      <p class="aiw-body vision__examples-note">{t.vision.examplesNote}</p>
+    </div>
   </div>
 </section>

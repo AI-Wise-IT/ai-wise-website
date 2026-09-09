@@ -24,6 +24,9 @@ currently working out where AI opportunities lie in real organizations.
 - Build-first delivery with handover: documentation and enough explanation that
   the client can keep using and running the result without AI Wise.
 
+The website gives these as illustrations of what is possible, not as a service
+catalogue. They are examples to think with, and the site says so.
+
 ## What AI Wise does not do
 
 - No pricing, packages or scope are published on the website.
@@ -55,3 +58,10 @@ The site invites two kinds of message, and treats both as equally welcome: an
 organization orienting itself on what AI could mean for its work, and a fellow
 developer building with AI who wants to compare notes. Contact runs by email at
 simon@aiwise.it.com or by WhatsApp on +31 6 13926494. There is no contact form.
+
+## Crawling
+
+Regular search crawlers, AI search and discovery crawlers, and user-triggered
+fetchers are welcome to read and cite this site. Model-training crawlers are
+disallowed in robots.txt; that is a deliberate and separate choice from being
+findable in AI-assisted search.
