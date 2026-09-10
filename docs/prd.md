@@ -176,12 +176,18 @@ Vier inhoudelijke secties.
 - R-S2.3: **Geen servicegrid, wel een opsomming ter inspiratie.** De vier `Card`-tegels uit
   `Home` ("Workflow automation", "Dashboards and reporting", "Internal tools", "Data
   groundwork") worden niet overgenomen: vier tegels met dienstnamen lezen als een menu.
-  In plaats daarvan sluit de sectie af met zes concrete voorbeelden van wat mogelijk is,
-  bedoeld om de gedachten te prikkelen. Elk voorbeeld beschrijft een situatie, niet een
-  dienst: "een maandrapportage die zichzelf samenstelt uit de systemen waar de cijfers toch
-  al in staan", niet "rapportage-automatisering". Uitvoering als lijst, zonder kaders,
-  iconen of kopjes, met een afsluitende regel dat wat zinvol is afhangt van hoe het werk nu
-  loopt.
+  In plaats daarvan draagt de sectie zes concrete voorbeelden van wat mogelijk is, bedoeld
+  om de gedachten te prikkelen. Elk voorbeeld beschrijft een situatie, niet een dienst: "een
+  maandrapportage die zichzelf samenstelt uit de systemen waar de cijfers toch al in staan",
+  niet "rapportage-automatisering". Uitvoering als lijst, zonder kaders, iconen of kopjes,
+  met een afsluitende regel dat wat zinvol is afhangt van hoe het werk nu loopt.
+- R-S2.3b: **Twee kolommen vanaf 1024px.** De houding staat links, de voorbeelden rechts,
+  gescheiden door een hairline in `border-subtle`. Beide kolommen komen op 488px uit binnen
+  de 1200px-container, wat neerkomt op 58 tekens: binnen de leesmaat van 68 die het
+  designsysteem stelt. Op het breekpunt zelf is elke kolom 432px, ofwel 51 tekens, wat nog
+  comfortabel leest. Onder 1024px stapelen ze, houding eerst, en wordt de verticale hairline
+  een horizontale scheiding boven de voorbeelden. De voorbeeldenlijst is altijd één kolom;
+  twee kolommen binnen een kolom zouden de lijst terugbrengen tot losse fragmenten.
 - R-S2.3a: De voorbeelden zijn illustratie, geen aanbod. Ze noemen geen prijs, geen
   doorlooptijd, geen pakket, en er staat geen call to action bij. `llms.txt` zegt er
   expliciet bij dat het voorbeelden zijn en geen dienstencatalogus, zodat een model er geen

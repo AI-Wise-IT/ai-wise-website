@@ -81,16 +81,25 @@
 /* ---- vision ------------------------------------------------------------- */
 .vision__reflection{margin-block:var(--aiw-space-10);padding-left:var(--aiw-space-6);border-left:var(--aiw-border-width-strong) solid var(--aiw-moss-green)}
 
+/* The stance and the examples. Stacked below 1024px, side by side above it. */
+.vision__layout{display:grid;gap:var(--aiw-space-12)}
+
 /* The examples. A list, deliberately: no boxes, no icons, no service names,
    because a tiled grid of capabilities reads as a menu and there is no offer
-   on this page. Two columns only where there is room for two full lines. */
-.vision__examples{margin-top:var(--aiw-space-12);padding-top:var(--aiw-space-8);border-top:var(--aiw-border-width) solid var(--aiw-border-subtle)}
+   on this page. */
+.vision__examples{max-width:var(--aiw-measure);padding-top:var(--aiw-space-8);border-top:var(--aiw-border-width) solid var(--aiw-border-subtle)}
 .vision__examples-intro{color:var(--aiw-text-secondary)}
-.vision__examples-list{margin-top:var(--aiw-space-6);padding-left:1.1em;display:grid;gap:var(--aiw-space-4) var(--aiw-space-12)}
-.vision__examples-list li{margin-top:0;max-width:46ch;line-height:var(--aiw-leading-body)}
+.vision__examples-list{margin-top:var(--aiw-space-6);padding-left:1.1em;display:grid;gap:var(--aiw-space-4)}
+.vision__examples-list li{margin-top:0;line-height:var(--aiw-leading-body)}
 .vision__examples-list li::marker{color:var(--aiw-moss-green)}
 .vision__examples-note{margin-top:var(--aiw-space-8);color:var(--aiw-text-secondary)}
-@media (min-width:900px){.vision__examples-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media (min-width:1024px){
+  .vision__layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--aiw-space-16);align-items:start}
+  /* The rule turns from a divider above the block into one beside it, which is
+     what separates the two columns. */
+  .vision__examples{max-width:none;padding-top:0;padding-left:var(--aiw-space-12);border-top:0;border-left:var(--aiw-border-width) solid var(--aiw-border-subtle)}
+}
 
 /* ---- about -------------------------------------------------------------- */
 .about__layout{display:grid;gap:var(--aiw-space-10);align-items:start}

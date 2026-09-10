@@ -19,23 +19,29 @@ const t = COPY[lang];
     <p class="aiw-eyebrow section__eyebrow">{t.vision.eyebrow}</p>
     <h2 class="section__heading" id="vision-heading">{t.vision.heading}</h2>
 
-    <div class="section__body">
-      <p class="aiw-body">{t.vision.paragraphs[0]}</p>
+    {/* Two blocks side by side from 1024px up: the stance on the left, what it
+        can look like in practice on the right. Below that they stack, stance
+        first. Each column lands at roughly 58 characters, inside the 68 the
+        design system sets as the reading measure. */}
+    <div class="vision__layout">
+      <div class="section__body">
+        <p class="aiw-body">{t.vision.paragraphs[0]}</p>
 
-      <p class="aiw-reflective vision__reflection">{t.vision.reflection}</p>
+        <p class="aiw-reflective vision__reflection">{t.vision.reflection}</p>
 
-      {t.vision.paragraphs.slice(1).map((p) => <p class="aiw-body">{p}</p>)}
-    </div>
+        {t.vision.paragraphs.slice(1).map((p) => <p class="aiw-body">{p}</p>)}
+      </div>
 
-    {/* Possibilities, to give the reader something concrete to react to. A list,
-        not a card grid: four tiles carrying service names would read as a menu,
-        and this round makes no offer. See docs/prd.md, R-S2.3. */}
-    <div class="vision__examples">
-      <p class="aiw-body vision__examples-intro">{t.vision.examplesIntro}</p>
-      <ul class="vision__examples-list">
-        {t.vision.examples.map((e) => <li>{e}</li>)}
-      </ul>
-      <p class="aiw-body vision__examples-note">{t.vision.examplesNote}</p>
+      {/* Possibilities, to give the reader something concrete to react to. A
+          list, not a card grid: tiles carrying service names would read as a
+          menu, and this round makes no offer. See docs/prd.md, R-S2.3. */}
+      <div class="vision__examples">
+        <p class="aiw-body vision__examples-intro">{t.vision.examplesIntro}</p>
+        <ul class="vision__examples-list">
+          {t.vision.examples.map((e) => <li>{e}</li>)}
+        </ul>
+        <p class="aiw-body vision__examples-note">{t.vision.examplesNote}</p>
+      </div>
     </div>
   </div>
 </section>
