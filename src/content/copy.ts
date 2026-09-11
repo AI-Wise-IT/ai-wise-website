@@ -130,7 +130,7 @@ const nl: Copy = {
     description:
       "Heb je een idee voor een app, website, tool of agent waar de wereld iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.",
     ogAlt:
-      "Logo van AI Wise met de contactgegevens van Simon van Meegdenburg en de tagline Automation in Service of Life",
+      "Logo van AI Wise met de tagline Automation in Service of Life, op een donkere foto van beboste heuvels",
   },
   nav: {
     skipToContent: "Direct naar de inhoud",
@@ -266,7 +266,7 @@ const en: Copy = {
     description:
       "Have an idea for an app, website, tool or agent that makes a difference? With AI it’s now within reach, and I’d be glad to build it for you.",
     ogAlt:
-      "AI Wise logo with Simon van Meegdenburg’s contact details and the tagline Automation in Service of Life",
+      "AI Wise logo with the tagline Automation in Service of Life, over a dark photograph of wooded hills",
   },
   nav: {
     skipToContent: "Skip to content",

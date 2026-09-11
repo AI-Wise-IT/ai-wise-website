@@ -130,6 +130,34 @@ column beside the text. Both keep the face on the horizontal centre with the eye
 near the upper third. `About.astro` builds the `<picture>` with `getImage()`, the
 same way `Hero.astro` does.
 
+## Share image
+
+`public/assets/og/share.jpg` is the Open Graph image every page points to
+(`og:image` in `Base.astro`), 1200x630. It is not a design-system asset. It is
+generated in this repo from two files that are: the hero photograph
+`src/assets/hero/eagle-forest-landscape.jpg` and `public/assets/logo/lockup-en.svg`.
+The photograph is cropped from its centre to cover the frame, one even near-black
+layer at 86% opacity lies over all of it, and the lockup, without its backing
+rectangle, sits in the middle at 582px wide. The layer keeps the moss tagline at
+4.5:1 or better against the photograph behind it (4.6:1 against the lightest 5%).
+The width keeps the whole lockup, with 24px to spare, inside the centred 630x630
+square that chat apps cut for a small thumbnail. The file is a JPEG at mozjpeg
+quality 84 with 4:4:4 chroma, 36 KB. `public/assets/logo/png/card-1700.png`, the
+share image before it, stays as an imported asset.
+
+To regenerate, from the repo root:
+
+```bash
+node docs/share-image/generate.mjs
+```
+
+The script prints the measured tagline contrast. `--overlay` tries another
+opacity, `--no-jpg` leaves the JPEG alone, and `--png` and `--square` write a
+lossless copy and the square crop for checking. It needs no browser and no fonts,
+because the lockup is outlined paths: sharp, which is installed with Astro, renders
+and composites the SVG. If the photograph or the lockup changes, run it again and
+commit the new JPEG.
+
 ## Reproducing the font conversion
 
 Requires `fonttools` and `brotli`.

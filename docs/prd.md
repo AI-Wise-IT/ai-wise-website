@@ -807,11 +807,24 @@ behandeld.
     *rapportage*) staat nergens meer in Nederlandse tekst. In het Engels is ze uit de hero, de
     visie, over mij, contact en de meta weg; de secties die nog concept zijn hebben haar nog.
     `llms.txt` en de JSON-LD volgen de nieuwe positionering, zie R-S.7 en R-S.9.
-- R-S.2: Open Graph en Twitter card, met `card-1700.png` als deelafbeelding. De alt-tekst
-  (`meta.ogAlt`) beschrijft wat erop staat. NL: *Logo van AI Wise met de contactgegevens van
-  Simon van Meegdenburg en de tagline Automation in Service of Life*. EN: *AI Wise logo with
-  Simon van Meegdenburg’s contact details and the tagline Automation in Service of Life*. Het
-  plaatje zelf blijft zoals het is; een deelplaatje met de arendfoto is O-7.
+- R-S.2: Open Graph en Twitter card (`summary_large_image`), met `/assets/og/share.jpg` als
+  deelafbeelding en `og:image:width` 1200, `og:image:height` 630 en `og:image:type`
+  `image/jpeg` erbij, op elke pagina, ook de 404-pagina.
+  - Het plaatje is de herofoto, uit het midden bijgesneden tot 1200x630, onder één
+    gelijkmatige near-black laag van 86%, met de lockup (glyph, wordmark en tagline) 582px
+    breed in het midden. De laag houdt de tagline in moss op minimaal 4,5:1 tegen de foto
+    erachter (gemeten 4,6:1 tegen de lichtste 5%). Door die breedte houdt het vierkant van
+    630x630 uit het midden, dat chat-apps als kleine thumbnail tonen, het hele logo, met
+    24px marge.
+  - JPEG, mozjpeg kwaliteit 84, 36 KB, ruim onder de 300 KB waarboven WhatsApp een
+    voorbeeld kan overslaan. Opnieuw maken met `node docs/share-image/generate.mjs`, zie
+    `docs/design-system-import.md`.
+  - `card-1700.png` blijft als designsysteem-asset in `public/assets/logo/png/`, maar is geen
+    deelafbeelding meer.
+  - De alt-tekst (`meta.ogAlt`) beschrijft wat erop staat. NL: *Logo van AI Wise met de
+    tagline Automation in Service of Life, op een donkere foto van beboste heuvels*. EN: *AI
+    Wise logo with the tagline Automation in Service of Life, over a dark photograph of
+    wooded hills*.
 - R-S.3: Favicon uit `glyph-square.svg` en `glyph-square-32.png`, zoals het designsysteem
   voorschrijft. De oude `favicon.svg` is vervangen.
 - R-S.4: Eén canonieke host en één schrijfwijze per URL: geen trailing slash, afgedwongen
@@ -899,11 +912,15 @@ behandeld.
   formulier is de inhoud kort, en dekt ze wat artikel 13 AVG vraagt: de
   verwerkingsverantwoordelijke, doel en grondslag per verwerking, de ontvangers (Vercel voor
   hosting en statistiek, Google Workspace voor e-mail, WhatsApp), doorgifte buiten de EER
-  met de waarborg, bewaartermijnen (statistiek 12 maanden, contact dat niet tot een opdracht leidt uiterlijk een
-  jaar na het laatste contact, administratie zeven jaar), alle rechten, de klacht bij de
-  Autoriteit Persoonsgegevens, dat niemand gegevens hoeft te geven, en dat er geen
+  met de waarborg, bewaartermijnen (statistiek 12 maanden, contact dat niet tot een opdracht
+  leidt uiterlijk een jaar na het laatste contact, contact dat wel tot een opdracht leidt
+  zolang de opdracht dat nodig heeft, administratie zeven jaar), alle rechten, de klacht bij
+  de Autoriteit Persoonsgegevens, dat niemand gegevens hoeft te geven, en dat er geen
   geautomatiseerde besluitvorming of profilering is. Eén zin zegt dat na doorklikken naar
-  LinkedIn of WhatsApp hun eigen voorwaarden gelden.
+  LinkedIn of WhatsApp hun eigen voorwaarden gelden. De bewaarzin voor contact dat wel tot
+  een opdracht leidt is door Simon bevestigd: *Komt er wel een opdracht uit voort, dan bewaar
+  ik ze zolang ze daarvoor nodig zijn.* en *If it does, I keep them for as long as the work
+  needs them.*
 - R-J4: Informatieplicht (art. 3:15d BW): bedrijfsnaam, KvK-nummer,
   btw-identificatienummer, contactgegevens en vestigingsadres eenvoudig vindbaar. Het adres
   is een open punt, zie O-2.
@@ -996,7 +1013,6 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
-| O-7 | **Deelplaatje met de adelaarsfoto, na livegang.** Tot dan blijft `card-1700.png` de deelafbeelding (R-S.2). | Simon: na livegang | Gedeelde links tonen nog het logoplaatje |
 
 Gesloten sinds versie 4:
 
@@ -1005,6 +1021,8 @@ Gesloten sinds versie 4:
 - O-6, eyebrow boven de herofoto: moss blijft, de laag blijft. De norm blijft 4,5:1 en de
   tagline in de hero-eyebrow is een vastgelegde uitzondering met minimaal 3:1, op 15px.
   Zie R-A1b.
+- O-7, deelplaatje met de adelaarsfoto: opgelost, al voor livegang. `share.jpg` vervangt
+  `card-1700.png` als deelafbeelding. Zie R-S.2.
 
 - Concreetheid in de visie: er staan nu zeven voorbeelden in, ter inspiratie. Zie R-S2.3.
 - Vestigingsadres: alleen "Amsterdam" plus het KvK-nummer, zoals voorgesteld.
@@ -1096,6 +1114,11 @@ Gesloten sinds versie 4:
   linkstijl van de privacylink; bij Vercel noemt de privacyverklaring alleen nog de
   standaardcontractbepalingen; de statistiek wordt 12 maanden bewaard, en contact dat niet tot
   een opdracht leidt uiterlijk een jaar na het laatste contact. R-S5.2, R-S5.3, R-J2 en R-J3.
+- **Nieuw deelplaatje, en de bewaarzin bevestigd**: `share.jpg` (1200x630, 36 KB) vervangt
+  `card-1700.png` als `og:image`, nu met breedte, hoogte en type: de herofoto onder een
+  gelijkmatige near-black laag van 86% met de lockup in het midden, gemaakt met
+  `docs/share-image/generate.mjs`, en een nieuwe alt-tekst in beide talen. Simon heeft de zin
+  over bewaren zolang een opdracht dat nodig heeft bevestigd. R-S.2, R-J3 en O-7.
 
 ### Versie 6 ten opzichte van versie 5
 
