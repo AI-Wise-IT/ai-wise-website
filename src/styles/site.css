@@ -419,3 +419,42 @@
    attribute, because the Content-Security-Policy hashes cover stylesheets and
    not style attributes. */
 .icon{flex:0 0 auto}
+
+/* ---- cord ---------------------------------------------------------------- */
+/* One of the brand's woven cords as a quiet accent under the content: a band
+   across the seam between the vision and the about section. Markup:
+   Cord.astro. It takes no space: the band hangs from a marker of zero height.
+   It sits at z-index -1, under text, cards, photograph and buttons, and never
+   takes pointer events.
+
+   The band is cord-o3-horizontal.svg, derived from the O3 master (3379x436).
+   It is drawn at the page width, so its strands grow and shrink with the
+   screen: about 12px wide at 1440px. It is lifted by a third of its own height
+   above the seam, so its high left end runs past the bottom of the vision and
+   its low right end towards the about heading. */
+.cord{pointer-events:none;user-select:none}
+.cord--band{position:relative;height:0;overflow-x:clip}
+.cord--band .cord__art{position:absolute;z-index:-1;left:0;right:0;top:0;aspect-ratio:3379/436;transform:translateY(-32%);background:url("/assets/weave/cord-o3-horizontal.svg") center / 100% 100% no-repeat}
+
+/* Between 1024 and 1199px the columns are narrow and the vision text can end
+   lower than the examples card, just above the seam. The band is lifted less
+   there, so its high end stays clear of that text. */
+@media (min-width:1024px) and (max-width:1199.98px){
+  .cord--band .cord__art{transform:translateY(-20%)}
+}
+
+/* Narrow screens: the band keeps the height of the gap between the sections
+   (96px, drawn 744px wide), so the strands keep some body and only its middle
+   part crosses the screen. It starts just under the bottom edge of the
+   examples card and ends above the about eyebrow. Past 744px it follows the
+   page width again, so its ends never stop short of the screen edge. */
+@media (max-width:767.98px){
+  .cord--band .cord__art{aspect-ratio:auto;height:max(var(--aiw-section-gap),12.91vw);transform:translateY(-4%);background-size:max(100%,744px) auto}
+}
+
+/* Readability comes from placement, not from a layer over the cord. The band
+   lies in the gap between the sections, where there is no text: under the
+   bottom edge of the examples card (which is opaque and covers it), in the page
+   margins, and above the about eyebrow. A soft halo in the page colour behind
+   the text was tried and dropped: Chromium draws text-shadow darker than its
+   colour, so it showed as a smudge around every line on the plain page. */

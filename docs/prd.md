@@ -595,6 +595,24 @@ in `tokens/` en `guidelines/`.
   Staand: vanaf de bovenrand over het hele tekstblok (84% naar 78%) en daarna in 192px
   uitlopend; de laag hangt aan het tekstblok en volgt dus de teksthoogte op elke breedte.
   Metingen staan in R-A1a.
+- R-V4c: **Eén koord als stil accent op de naad tussen visie en Over mij.**
+  - Het koord loopt hoog links en laag rechts over de volle breedte:
+    `cord-o3-horizontal.svg`, afgeleid van O3. Het is een kwartslag gedraaid en 2,2 keer
+    verlengd langs het koord, met ronde strengen van ongeveer 12px op 1440px.
+  - Het staat in `Cord.astro`, als achtergrondafbeelding onder de inhoud, zonder eigen
+    ruimte of marge.
+  - Leesbaarheid komt uit de plaatsing: het koord ligt in de ruimte tussen de secties, onder
+    de onderrand van de voorbeeldenkaart en in de marges. Gemeten op 1440, 1280, 1024, 768 en
+    375px in beide talen ligt er geen tekst op het koord. Het laagste tekstcontrast binnen het
+    koordvlak is 15,19:1: de laatste voorbeeldregel, op de kaart.
+  - Een halo in de paginakleur achter de tekst is geprobeerd en afgevallen, omdat Chromium
+    die donkerder tekent dan de pagina.
+  - Het uitrekken wijkt bewust af van R-V3, R-V4 en R-V5 en van de aanwijzing bij de masters
+    om de koorden niet uit te rekken. Het koord is hier lijnwerk in de marge, geen merkgrafiek
+    op ware verhouding; dat is de enige plek waar de site die vrijheid neemt.
+  - Een ring naast de contacttekst is geprobeerd en in deze vorm afgewezen: Simon had niet een
+    hele ring in de lege ruimte voor ogen, maar 50 à 60 procent ervan, aflopend over de
+    paginarand. Misschien een andere keer opnieuw te proberen.
 - R-V5: **Geen schaduwen, glows, gradients of blur.** Elevatie is een stap op de neutrale
   ramp plus een 1px hairline. Radius is 2px voor knoppen, kaarten en beeldcrops, 0 voor
   banden en rules. De enige uitzondering is de leesbaarheidslaag over de herofoto uit
