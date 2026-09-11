@@ -380,13 +380,12 @@
    not style attributes. */
 .icon{flex:0 0 auto}
 
-/* ---- cords (EXPERIMENT, branch experiment/koorden) ---------------------- */
-/* The two woven cords as quiet accents under the content: a band across the
-   seam between the vision and the about section, and the ring beside the
-   contact text. Markup: Cord.astro. They take no space: the band hangs from a
-   marker of zero height and the ring is absolutely positioned inside a wrapper
-   around the contact section. Both sit at z-index -1, under text, cards,
-   photograph and buttons, and never take pointer events.
+/* ---- cord ---------------------------------------------------------------- */
+/* One of the brand's woven cords as a quiet accent under the content: a band
+   across the seam between the vision and the about section. Markup:
+   Cord.astro. It takes no space: the band hangs from a marker of zero height.
+   It sits at z-index -1, under text, cards, photograph and buttons, and never
+   takes pointer events.
 
    The band is cord-o3-horizontal.svg, derived from the O3 master (3379x436).
    It is drawn at the page width, so its strands grow and shrink with the
@@ -396,19 +395,6 @@
 .cord{pointer-events:none;user-select:none}
 .cord--band{position:relative;height:0;overflow-x:clip}
 .cord--band .cord__art{position:absolute;z-index:-1;left:0;right:0;top:0;aspect-ratio:3379/436;transform:translateY(-32%);background:url("/assets/weave/cord-o3-horizontal.svg") center / 100% 100% no-repeat}
-
-/* The ring: its centre lies halfway between the right edge of the text column
-   (68ch) and the right edge of the container, which from 1024px up is always
-   34ch right of the page centre. Vertically it centres on the section's
-   content, below the section's top padding. */
-.cord-host{position:relative;isolation:isolate;overflow-x:clip}
-.cord--ring{position:absolute;inset:0;z-index:-1}
-.cord--ring .cord__art{position:absolute;left:calc(50% + 34ch);top:calc(50% + var(--aiw-section-gap-lg) / 2);width:480px;aspect-ratio:1;transform:translate(-50%,-50%);background:url("/assets/weave/ring.svg") center / contain no-repeat}
-@media (max-width:1199.98px){.cord--ring .cord__art{width:440px}}
-@media (max-width:1023.98px){.cord--ring .cord__art{left:calc(100% - 139px);top:calc(50% + var(--aiw-section-gap) / 2);width:400px}}
-/* Below 920px the space beside the 68ch column is narrower than the ring, so
-   it would lie under the text; there it is left out. */
-@media (max-width:919.98px){.cord--ring{display:none}}
 
 /* Between 1024 and 1199px the columns are narrow and the vision text can end
    lower than the examples card, just above the seam. The band is lifted less
@@ -426,11 +412,9 @@
   .cord--band .cord__art{aspect-ratio:auto;height:max(var(--aiw-section-gap),12.91vw);transform:translateY(-4%);background-size:max(100%,744px) auto}
 }
 
-/* Readability comes from placement, not from a layer over the cords. The band
+/* Readability comes from placement, not from a layer over the cord. The band
    lies in the gap between the sections, where there is no text: under the
    bottom edge of the examples card (which is opaque and covers it), in the page
-   margins, and above the about eyebrow. The ring stands in the free space
-   beside the contact text and is left out where that space is too narrow for
-   it. A soft halo in the page colour behind the text was tried and dropped:
-   Chromium draws text-shadow darker than its colour, so it showed as a smudge
-   around every line on the plain page. */
+   margins, and above the about eyebrow. A soft halo in the page colour behind
+   the text was tried and dropped: Chromium draws text-shadow darker than its
+   colour, so it showed as a smudge around every line on the plain page. */
