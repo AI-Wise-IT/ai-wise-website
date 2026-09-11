@@ -95,10 +95,11 @@
 /* The stance and the examples. Stacked below 1024px, side by side above it. */
 .vision__layout{display:grid;gap:var(--aiw-space-12)}
 
-/* The examples. A list, deliberately: no boxes, no icons, no service names,
-   because a tiled grid of capabilities reads as a menu and there is no offer
-   on this page. */
-.vision__examples{max-width:var(--aiw-measure);padding-top:var(--aiw-space-8);border-top:var(--aiw-border-width) solid var(--aiw-border-subtle)}
+/* The examples: one list inside one frame. The frame sets the possibilities
+   apart from the vision beside them; inside it there are still no tiles, icons
+   or service names, because a grid of capabilities reads as a menu and there is
+   no offer on this page. */
+.vision__examples{max-width:var(--aiw-measure)}
 .vision__examples-intro{color:var(--aiw-text-secondary)}
 .vision__examples-list{margin-top:var(--aiw-space-6);padding-left:1.1em;display:grid;gap:var(--aiw-space-4)}
 .vision__examples-list li{margin-top:0;line-height:var(--aiw-leading-body)}
@@ -107,10 +108,15 @@
 
 @media (min-width:1024px){
   .vision__layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--aiw-space-16);align-items:start}
-  /* The rule turns from a divider above the block into one beside it, which is
-     what separates the two columns. */
-  .vision__examples{max-width:none;padding-top:0;padding-left:var(--aiw-space-12);border-top:0;border-left:var(--aiw-border-width) solid var(--aiw-border-subtle)}
+  .vision__examples{max-width:none}
 }
+
+/* ---- card --------------------------------------------------------------- */
+/* A CSS translation of components/core/Card.jsx, tone "default": one step up the
+   neutral ramp from the page, a 1px hairline, 2px corners, no shadow. Padding
+   follows the Card's md (24px) and, from 768px, lg (32px). */
+.card{background:var(--aiw-surface-card);border:var(--aiw-border-width) solid var(--aiw-border-default);border-radius:var(--aiw-radius-sm);padding:var(--aiw-space-6)}
+@media (min-width:768px){.card{padding:var(--aiw-space-8)}}
 
 /* ---- about -------------------------------------------------------------- */
 .about__layout{display:grid;gap:var(--aiw-space-10);align-items:start}

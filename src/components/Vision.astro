@@ -34,10 +34,10 @@ const t = COPY[lang];
         <p class="aiw-reflective vision__reflection">{t.vision.reflection}</p>
       </div>
 
-      {/* Possibilities, to give the reader something concrete to react to. A
-          list, not a card grid: tiles carrying service names would read as a
-          menu, and this round makes no offer. See docs/prd.md, R-S2.3. */}
-      <div class="vision__examples">
+      {/* Possibilities, to give the reader something concrete to react to. One
+          list in one frame that sets it apart from the vision; not a grid of
+          tiles, which would read as a menu of services. See docs/prd.md, R-S2.3. */}
+      <div class="vision__examples card">
         <p class="aiw-body vision__examples-intro">{t.vision.examplesIntro}</p>
         <ul class="vision__examples-list">
           {t.vision.examples.map((e) => <li>{e}</li>)}

@@ -185,15 +185,18 @@ Vier inhoudelijke secties.
   `Home` ("Workflow automation", "Dashboards and reporting", "Internal tools", "Data
   groundwork") worden niet overgenomen: tegels met dienstnamen lezen als een menu. In
   plaats daarvan een lijst van zeven korte, volledige voorbeelden onder de intro *Misschien
-  zie je zoiets voor je:*, zonder kaders, iconen, kopjes of categorieën, en zonder
-  afsluitende regel. Elk voorbeeld is kort maar compleet en draagt nog steeds de waarde.
-  De lijst is door Simon zelf geschreven.
-- R-S2.3b: **Twee kolommen vanaf 1024px.** De visie staat links, de voorbeelden rechts,
-  gescheiden door een hairline in `border-subtle`. Beide kolommen komen op 488px uit binnen
+  zie je zoiets voor je:*, zonder iconen, kopjes of categorieën, en zonder afsluitende
+  regel. Elk voorbeeld is kort maar compleet en draagt nog steeds de waarde. De lijst is
+  door Simon zelf geschreven.
+- R-S2.3c: **De lijst staat in één kader** dat iets afsteekt van de achtergrond: de
+  standaardvariant van `Card` uit het designsysteem, dus `surface-card` met een 1px rand in
+  `border-default`, 2px hoeken, 24px binnenruimte op mobiel en 32px vanaf 768px. Eén kader
+  om de hele lijst, geen kader per voorbeeld.
+- R-S2.3b: **Twee kolommen vanaf 1024px.** De visie staat links, de voorbeelden in hun
+  kader rechts. Beide kolommen komen op 488px uit binnen
   de 1200px-container, wat neerkomt op 58 tekens: binnen de leesmaat van 68 die het
   designsysteem stelt. Op het breekpunt zelf is elke kolom 432px, ofwel 51 tekens, wat nog
-  comfortabel leest. Onder 1024px stapelen ze, visie eerst, en wordt de verticale hairline
-  een horizontale scheiding boven de voorbeelden. De voorbeeldenlijst is altijd één kolom;
+  comfortabel leest. Onder 1024px stapelen ze, visie eerst. De voorbeeldenlijst is altijd één kolom;
   twee kolommen binnen een kolom zouden de lijst terugbrengen tot losse fragmenten.
 - R-S2.3a: De voorbeelden zijn illustratie, geen aanbod. Ze noemen geen prijs, geen
   doorlooptijd, geen pakket, en er staat geen call to action bij. `llms.txt` zegt er
