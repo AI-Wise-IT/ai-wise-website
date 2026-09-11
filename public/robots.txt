@@ -1,7 +1,6 @@
 # AI Wise crawler policy.
 #
-# Four categories, following the policy AI Wise applies for clients
-# (projects/stavast/decisions/2026-08-05-crawler-and-canonical-policy.md):
+# Crawlers fall into four categories, and each category is a separate choice:
 #
 #   1. Regular search crawlers    Googlebot, Bingbot                 allowed
 #   2. AI search and discovery    OAI-SearchBot, PerplexityBot,      allowed
@@ -9,7 +8,8 @@
 #   3. User-triggered fetchers    ChatGPT-User, Perplexity-User,     allowed
 #                                 Claude-User
 #   4. Model-training crawlers    GPTBot, ClaudeBot, CCBot,          not allowed
-#                                 Google-Extended, Applebot-Extended
+#                                 Google-Extended, Applebot-Extended,
+#                                 meta-externalagent, Bytespider
 #
 # Categories 1 to 3 are allowed: this is a public site whose whole purpose is to
 # be found, understood and cited. Category 4 is a separate choice, and being

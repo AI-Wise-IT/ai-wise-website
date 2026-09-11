@@ -1,8 +1,8 @@
 # AI Wise
 
-> AI Wise is the one-person practice of Simon van Meegdenburg. Using AI, he
-> builds apps, websites and tools that take recurring work off people's hands,
-> preferably for small practices and organizations doing meaningful work.
+> AI Wise is the one-person practice of Simon van Meegdenburg. He uses AI to
+> build apps, websites, tools and agents, ideally for organisations doing work
+> that matters. Many of them take over repetitive work.
 > Tagline: Automation in Service of Life.
 
 The website is a single page in Dutch and English. It describes what has become
@@ -11,24 +11,35 @@ deliberately carries no service catalogue, no pricing and no productised offer.
 
 ## What has changed
 
-Having a website, an app or a tool built has become considerably more
-accessible. With AI, the path from a clear idea to something that works is much
-shorter, and what used to be a large project is now manageable. That makes it
-feasible for small practices and organizations too. AI is the method here, not
-the subject.
+Having a website, app or tool built has become far more attainable. AI shortens
+the path from a clear idea to a working system, and what used to be a major
+project is now manageable. That opens the door for small practices and
+organisations doing meaningful work. A good idea can start small and still make
+a real difference. AI is the method here, not the subject.
 
 ## Examples
 
 The website gives these as examples of what is possible, to think with. They
 are not a service catalogue.
 
-- A renewed website.
+- A modernised website.
 - A webshop alongside a practice.
-- An online learning environment alongside in-person classes.
-- Registrations that land directly in the administration.
-- Participants who manage their own registrations or membership.
-- Meeting notes that write themselves up.
-- A tool for the one recurring task that takes too much time.
+- An online teaching space to complement in-person classes.
+- Sign-ups landing straight in the records.
+- Participants who manage their own bookings or memberships.
+- Meeting notes processed automatically.
+- An agent that takes over the most tedious task.
+
+## About Simon
+
+- He has been building data systems since 2018, first as a BI consultant and
+  later as a data engineer.
+- In his spare time he learned to build websites and apps, and realised he
+  enjoys that even more.
+- With AI, he can turn an idea into a first prototype in about a day.
+- Experimenting taught him what it takes to build a system ready for everyday
+  use.
+- He is happiest building for organisations he feels connected to.
 
 ## What the website does not include
 
@@ -58,16 +69,18 @@ are not a service catalogue.
 
 ## Contact
 
-The site invites anyone with an idea they want built, a website that needs
-renewing, or recurring work, even when the idea is not fully worked out yet. AI
-Wise is young and still discovering where it can contribute most.
+The site invites anyone with an idea they would like to see built, a website
+that is overdue for an update, or work that keeps coming back, even if it is not
+fully thought through yet. AI Wise is young and Simon is still discovering where
+he can be most useful.
 
-It also invites collaborators: fellow developers, to exchange ways of working in
-a field that moves fast, and designers and content writers, who take on design
-and copy so Simon can focus on building functionality.
+It also invites collaboration. Other developers are welcome to compare notes on
+how they work, since AI moves so fast that people get further together than on
+their own. Designers and content writers are welcome to take on design and
+writing, so Simon can focus on building the functionality.
 
 Contact runs by email at simon@aiwise.it.com, through LinkedIn, or by WhatsApp on
-+31 6 13926494. There is no contact form.
++31 6 13926494. A short message will do. There is no contact form.
 
 ## Crawling
 

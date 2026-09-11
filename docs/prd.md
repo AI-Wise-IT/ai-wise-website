@@ -799,16 +799,18 @@ behandeld.
     difference? With AI it’s now within reach, and I’d be glad to build it for you.*
     (140 tekens).
   - Per taal staat dezelfde tekst in `og:description` en als `description` van de
-    organisatie in de JSON-LD.
+    organisatie in de JSON-LD. De organisatie krijgt die description van de startpagina op
+    elke pagina, ook op de privacypagina's, die zelf hun eigen lead als meta-description
+    hebben.
   - De oude positionering (*AI, data en automatisering*, *workflow-automatisering*,
     *rapportage*) staat nergens meer in Nederlandse tekst. In het Engels is ze uit de hero, de
     visie, over mij, contact en de meta weg; de secties die nog concept zijn hebben haar nog.
-    `llms.txt` beschrijft het werk als apps, websites en tools en noemt agents nog niet. De
-    JSON-LD heeft nog twee Engelse, voor beide talen gedeelde waarden uit de oude
-    positionering: `jobTitle` *AI, data and automation engineer* en in `knowsAbout` onder
-    meer *workflow automation* en *dashboards and reporting*. `llms.txt` en de JSON-LD worden
-    bijgesteld zodra de Engelse tekst helemaal herschreven is.
-- R-S.2: Open Graph en Twitter card, met `card-1700.png` als deelafbeelding.
+    `llms.txt` en de JSON-LD volgen de nieuwe positionering, zie R-S.7 en R-S.9.
+- R-S.2: Open Graph en Twitter card, met `card-1700.png` als deelafbeelding. De alt-tekst
+  (`meta.ogAlt`) beschrijft wat erop staat. NL: *Logo van AI Wise met de contactgegevens van
+  Simon van Meegdenburg en de tagline Automation in Service of Life*. EN: *AI Wise logo with
+  Simon van Meegdenburg’s contact details and the tagline Automation in Service of Life*. Het
+  plaatje zelf blijft zoals het is; een deelplaatje met de arendfoto is O-7.
 - R-S.3: Favicon uit `glyph-square.svg` en `glyph-square-32.png`, zoals het designsysteem
   voorschrijft. De oude `favicon.svg` is vervangen.
 - R-S.4: Eén canonieke host en één schrijfwijze per URL: geen trailing slash, afgedwongen
@@ -821,9 +823,18 @@ behandeld.
 
 - R-S.6: Alle inhoud staat in de geleverde HTML. Niets essentieels vereist JavaScript. Dit
   is de belangrijkste eis: een crawler die alleen een lege app-shell krijgt, ziet niets.
-- R-S.7: JSON-LD met `ProfessionalService`, `Person` en `WebSite`, onderling gekoppeld via
-  `@id`. Uitsluitend bevestigde feiten uit `company-profile.json`: naam, eigenaar, KvK,
-  btw-id, vestigingsplaats, e-mail, telefoon, talen. Niets afgeleid of ingevuld.
+- R-S.7: JSON-LD met `Organization`, `Person` en `WebSite`, onderling gekoppeld via `@id`.
+  - `Organization` en niet `ProfessionalService`: dat is een subtype van `LocalBusiness`,
+    bedoeld voor een zaak met een fysieke vestiging, en AI Wise heeft geen vaste locatie.
+  - De tagline staat als `slogan`, niet als `alternateName`.
+  - `description` is altijd de description van de startpagina in de taal van de pagina
+    (R-S.1), ook op de privacypagina's.
+  - `knowsAbout`: *app development*, *website development*, *AI agents*, *workflow
+    automation*, *generative AI* en *data engineering*.
+  - `jobTitle` van de persoon: *AI-native developer*.
+  - Verder uitsluitend bevestigde feiten uit `company-profile.json`: naam, eigenaar, KvK,
+    btw-id, e-mail, telefoon, talen. Geen adres of vestigingsplaats (R-C6). Niets afgeleid
+    of ingevuld.
 - R-S.8: Semantische koppenstructuur en correcte `lang`-attributen.
 
 **AI-oriëntatie**
@@ -832,6 +843,15 @@ behandeld.
   doet, de bevestigde feiten, de pagina's en de contactroutes. Het bestand benoemt
   expliciet wat er níét is, zodat een model geen dienstencatalogus of prijzen verzint die
   er niet staan.
+- R-S.9a: `llms.txt` volgt de vastgestelde Engelse tekst in `copy.ts`, als feitelijk
+  oriëntatiebestand in Brits Engels, in de derde persoon over Simon, zonder em-streepjes en
+  zonder hype. De samenvatting noemt apps, websites, tools en agents, gebouwd met AI, voor
+  organisaties die werk doen dat ertoe doet, met de tagline. *What has changed* volgt de
+  visie; *Examples* bevat precies de zeven Engelse voorbeelden, alleen waar nodig naar de
+  derde persoon gezet; *About Simon* volgt de vijf punten van Over mij; *Contact* volgt de
+  contactsectie: de uitnodiging, samenwerking met ontwikkelaars, ontwerpers en
+  contentschrijvers, en e-mail, LinkedIn en WhatsApp zonder formulier. De blokken met feiten,
+  pagina's, wat er niet op de site staat en crawlen blijven.
 - R-S.10: De copy zelf is de belangrijkste AI-vindbaarheidsmaatregel. Concrete, herkenbare
   werksituaties zijn beter samen te vatten en te citeren dan abstracte capaciteitenlijstjes.
   Dit valt samen met de voice-regels; er is geen aparte "AI-geoptimaliseerde" tekstlaag.
@@ -839,7 +859,9 @@ behandeld.
 **Crawlerbeleid**
 
 - R-S.11: `robots.txt` benoemt de vier categorieën uit het Stavast-besluit en waarom ze wel
-  of niet zijn toegestaan.
+  of niet zijn toegestaan. Het is een publiek bestand, dus het commentaar staat op zichzelf
+  en verwijst niet naar het besluit of een ander klantproject. Het overzicht van categorie 4
+  noemt alle zeven crawlers die op disallow staan (R-S.13).
 - R-S.12: Gewone zoekcrawlers, AI-zoekcrawlers en door de gebruiker aangeroepen fetchers
   zijn toegestaan. Dit is een publieke site die bedoeld is om gevonden, begrepen en
   geciteerd te worden.
@@ -969,6 +991,7 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
+| O-7 | **Deelplaatje met de adelaarsfoto, na livegang.** Tot dan blijft `card-1700.png` de deelafbeelding (R-S.2). | Simon: na livegang | Gedeelde links tonen nog het logoplaatje |
 
 Gesloten sinds versie 4:
 
@@ -1058,6 +1081,12 @@ Gesloten sinds versie 4:
 - **404-pagina toegevoegd**, in beide talen op één pagina, met noindex en zonder canonical of
   hreflang; `Base.astro` kent daarvoor `page: "404"` en de taalwissel wijst dan naar de twee
   startpagina's. R-S7.1 tot en met R-S7.5.
+- **Onzichtbare metadata bijgewerkt**: de JSON-LD beschrijft AI Wise als `Organization` met
+  de tagline als `slogan`, altijd met de description van de startpagina, nieuwe `knowsAbout`
+  en `jobTitle` *AI-native developer*; `llms.txt` herschreven op de vastgestelde Engelse
+  tekst; een alt-tekst die zegt wat er op het deelplaatje staat; `robots.txt` zonder
+  verwijzing naar een klantproject en met alle zeven trainingscrawlers in het overzicht.
+  R-S.1, R-S.2, R-S.7, R-S.9a, R-S.11 en O-7.
 
 ### Versie 6 ten opzichte van versie 5
 

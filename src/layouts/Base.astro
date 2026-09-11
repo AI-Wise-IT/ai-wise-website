@@ -40,14 +40,19 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "ProfessionalService",
+      // Organization rather than ProfessionalService: ProfessionalService is a
+      // LocalBusiness subtype, meant for a business with physical premises, and
+      // AI Wise has no fixed location.
+      "@type": "Organization",
       "@id": `${site.origin}/#organization`,
       name: COMPANY.name,
-      alternateName: COMPANY.tagline,
+      slogan: COMPANY.tagline,
       url: site.origin,
       email: COMPANY.email,
       telephone: COMPANY.phoneIntl,
-      description: pageDescription,
+      // Always the home page description for this language, also on the privacy
+      // pages: it describes the organisation, not the page it appears on.
+      description: t.meta.description,
       founder: { "@id": `${site.origin}/#simon` },
       // No address or service area: AI Wise works remotely and is not tied to a
       // place. The KvK identifier below points to the registration.
@@ -59,18 +64,19 @@ const jsonLd = {
         value: COMPANY.kvk,
       },
       knowsAbout: [
+        "app development",
+        "website development",
+        "AI agents",
         "workflow automation",
-        "internal tools",
-        "dashboards and reporting",
+        "generative AI",
         "data engineering",
-        "applied artificial intelligence",
       ],
     },
     {
       "@type": "Person",
       "@id": `${site.origin}/#simon`,
       name: COMPANY.owner,
-      jobTitle: "AI, data and automation engineer",
+      jobTitle: "AI-native developer",
       email: COMPANY.email,
       worksFor: { "@id": `${site.origin}/#organization` },
       ...(COMPANY.linkedin ? { sameAs: [COMPANY.linkedin] } : {}),

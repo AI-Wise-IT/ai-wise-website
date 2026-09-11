@@ -129,7 +129,8 @@ const nl: Copy = {
     title: "AI Wise · Apps, websites, tools & agents laten bouwen met AI",
     description:
       "Heb je een idee voor een app, website, tool of agent waar de wereld iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.",
-    ogAlt: "AI Wise, Automation in Service of Life",
+    ogAlt:
+      "Logo van AI Wise met de contactgegevens van Simon van Meegdenburg en de tagline Automation in Service of Life",
   },
   nav: {
     skipToContent: "Direct naar de inhoud",
@@ -264,7 +265,8 @@ const en: Copy = {
     title: "AI Wise · Apps, websites, tools & agents built with AI",
     description:
       "Have an idea for an app, website, tool or agent that makes a difference? With AI it’s now within reach, and I’d be glad to build it for you.",
-    ogAlt: "AI Wise, Automation in Service of Life",
+    ogAlt:
+      "AI Wise logo with Simon van Meegdenburg’s contact details and the tagline Automation in Service of Life",
   },
   nav: {
     skipToContent: "Skip to content",
