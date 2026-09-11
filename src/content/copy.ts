@@ -5,9 +5,9 @@
  * STATUS, Dutch: hero, vision, examples, about, contact, footer and meta text
  * reviewed with Simon and settled; the about text is his own.
  *
- * STATUS, English: the hero is settled. The other sections are still the first
- * draft and are being written afresh one at a time, as their own text rather
- * than a translation. English is British English, consistently (the page is
+ * STATUS, English: the hero, vision, examples and meta text are settled. The
+ * other sections are still the first draft and are being written afresh one at
+ * a time, as their own text rather than a translation. English is British English, consistently (the page is
  * en_GB); the first-draft sections do not follow that yet.
  *
  * Voice: the design system's readme.md, "Content fundamentals", plus Simon's
@@ -71,7 +71,6 @@ export interface Copy {
     /** Concrete possibilities, to give the reader something to react to. */
     examplesIntro: string;
     examples: string[];
-    examplesNote?: string;
   };
   about: {
     eyebrow: string;
@@ -122,9 +121,9 @@ const nl: Copy = {
   htmlLang: "nl",
   localeTag: "nl_NL",
   meta: {
-    title: "AI Wise · Apps, websites & tools laten bouwen met AI",
+    title: "AI Wise · Apps, websites, tools & agents laten bouwen met AI",
     description:
-      "Heb je een idee voor een app, website of tool waar de wereld iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.",
+      "Heb je een idee voor een app, website, tool of agent waar de wereld iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.",
     ogAlt: "AI Wise, Automation in Service of Life",
   },
   nav: {
@@ -154,8 +153,8 @@ const nl: Copy = {
       "Een online lesomgeving naast je fysieke aanbod.",
       "Aanmeldingen die rechtstreeks in je administratie terechtkomen.",
       "Deelnemers die hun aanmeldingen of lidmaatschap kunnen beheren.",
-      "Gespreksverslagen die zichzelf uitschrijven.",
-      "Een tool voor dat ene klusje dat te veel tijd kost.",
+      "Gespreksverslagen die automatisch verwerkt worden.",
+      "Een agent die dat tijdrovende klusje overneemt.",
     ],
   },
   about: {
@@ -252,9 +251,9 @@ const en: Copy = {
   htmlLang: "en",
   localeTag: "en_GB",
   meta: {
-    title: "AI Wise · AI, data and automation for small organizations",
+    title: "AI Wise · Apps, websites, tools & agents built with AI",
     description:
-      "AI Wise is the practice of Simon van Meegdenburg. I build practical internal tools, workflow automation and reporting for small organizations doing work that matters.",
+      "Have an idea for an app, website, tool or agent that does some good in the world? With AI it’s now within reach, and I’d be glad to build it for you.",
     ogAlt: "AI Wise, Automation in Service of Life",
   },
   nav: {
@@ -269,24 +268,23 @@ const en: Copy = {
     cta: "Get in touch",
   },
   vision: {
-    eyebrow: "What I stand for",
-    heading: "Automation should serve work that matters",
+    eyebrow: "What’s possible now",
+    heading: "Your idea is closer than you think",
     paragraphs: [
-      "In a lot of organizations a real part of the week goes to work nobody designed that way. Form entries typed by hand into a second system. A monthly report rebuilt from three exports every time. Notes from a conversation written out again in the evening.",
-      "Some of that a machine can carry. Not all of it, and not all of it should. The attention someone gives a participant, a client or a colleague is exactly the work worth protecting.",
-      "What I look for is the line between the two: what can be taken off the pile, so more of the week is left for what people do. Then I build it, with enough documentation and handover that you can keep going without me.",
+      "Having a website, app or tool built has become far more attainable. AI shortens the path from a clear idea to a working system, and what used to be a major project is now manageable.",
+      "That opens the door for small practices and organisations doing meaningful work. A good idea can start small and still make a real difference.",
     ],
-    reflection: "You can see AI arriving. What you cannot see yet is where it would actually help here.",
-    examplesIntro: "A few things that are possible, to give a sense of what this can be about:",
+    reflection: "What’s the idea you keep coming back to?",
+    examplesIntro: "You may be picturing something like this:",
     examples: [
-      "A sign-up form that turns itself into a record, a confirmation email and a line in the planning.",
-      "A monthly report that assembles itself from the systems the numbers already live in.",
-      "Meeting notes that come out of a recording, in your own shape and your own words.",
-      "A view of what the work is producing, instead of piecing that together again every quarter.",
-      "Registrations, participants and messages arriving in one place rather than four.",
-      "A small internal tool that takes over exactly one step of your process, and nothing else.",
+      "A modernised website.",
+      "A webshop alongside your practice.",
+      "An online teaching space to complement your in-person classes.",
+      "Sign-ups landing straight in your records.",
+      "Participants who manage their own bookings or memberships.",
+      "Meeting notes processed automatically.",
+      "An agent that takes over your most tedious task.",
     ],
-    examplesNote: "Which of these would be worth it depends on how the work runs now. That is where the conversation starts.",
   },
   about: {
     eyebrow: "About me",

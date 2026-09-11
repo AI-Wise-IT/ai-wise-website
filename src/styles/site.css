@@ -237,7 +237,6 @@
 .vision__examples{max-width:var(--aiw-measure)}
 .vision__examples-intro{color:var(--aiw-text-secondary)}
 .vision__examples-list{margin-top:var(--aiw-space-6)}
-.vision__examples-note{margin-top:var(--aiw-space-8);color:var(--aiw-text-secondary)}
 
 @media (min-width:1024px){
   .vision__layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--aiw-space-16);align-items:start}

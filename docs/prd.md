@@ -210,14 +210,19 @@ Vier inhoudelijke secties.
   doel is de lezer te inspireren over wat er nu kan. Er wordt geen aanbod gedaan.
 - R-S2.2a: Kopje *Wat er nu kan*, kop *Wat je voor ogen hebt, is nu binnen bereik*. De
   reflectie sluit de visie af als vraag waarmee de lezer de pagina verlaat: *Welk idee ligt
-  er bij jou nog op de plank?*
+  er bij jou nog op de plank?* In het Engels, als eigen tekst en geen vertaling: kopje
+  *What’s possible now*, kop *Your idea is closer than you think*, reflectie *What’s the
+  idea you keep coming back to?*
 - R-S2.3: **Geen servicegrid, wel een opsomming ter inspiratie.** De vier `Card`-tegels uit
   `Home` ("Workflow automation", "Dashboards and reporting", "Internal tools", "Data
   groundwork") worden niet overgenomen: tegels met dienstnamen lezen als een menu. In
   plaats daarvan een lijst van zeven korte, volledige voorbeelden onder de intro *Misschien
-  zie je zoiets voor je:*, zonder iconen, kopjes of categorieën, en zonder afsluitende
-  regel. Elk voorbeeld is kort maar compleet en draagt nog steeds de waarde. De lijst is
-  door Simon zelf geschreven.
+  zie je zoiets voor je:* (Engels: *You may be picturing something like this:*), zonder
+  iconen, kopjes of categorieën, en zonder afsluitende regel. Beide talen hebben dezelfde
+  opbouw: intro, zeven voorbeelden, geen notitie eronder. Elk voorbeeld is kort maar
+  compleet en draagt nog steeds de waarde. De laatste twee gaan over gespreksverslagen die
+  automatisch verwerkt worden en een agent die een tijdrovend klusje overneemt. De lijst is
+  door Simon zelf geschreven, in beide talen.
 - R-S2.3c: **De lijst staat in één kader** dat iets afsteekt van de achtergrond: de
   standaardvariant van `Card` uit het designsysteem, dus `surface-card` met een 1px rand in
   `border-default`, 2px hoeken, 24px binnenruimte op mobiel en 32px vanaf 768px. Eén kader
@@ -439,8 +444,9 @@ ook: één template per type, niet per taal.
   Omdat de scan hier niet voorkomt, is dit vooral een waarschuwing voor toekomstige
   uitbreiding.
 - R-L9a: **De Engelse versie is consequent Brits Engels**, passend bij `en_GB`:
-  *organisations*, *recognise*. De hero is zo vastgesteld; de secties die nog concept zijn
-  volgen bij het herschrijven.
+  *organisations*, *recognise*, *modernised*. De hero, de visie met de voorbeelden, en de
+  titel en meta-description zijn zo vastgesteld; de secties die nog concept zijn volgen bij
+  het herschrijven.
 - R-L10: Het designsysteem merkt Nederlandse typografische regels aan als open. In de
   praktijk zetten beide talen identiek. Als Nederlandse copy een andere maat of afbreking
   nodig heeft, is dat een bevinding voor het designsysteem, niet iets dat hier lokaal
@@ -705,18 +711,27 @@ behandeld.
 
 **Basis**
 
-- R-S.1: Titel en meta-description per taalversie, handgeschreven. Vastgesteld (NL):
-  - Titel: *AI Wise · Apps, websites & tools laten bouwen met AI*. In de HTML staat de `&`
-    als `&amp;`, in `<title>` en in `og:title`; gecontroleerd in de build.
-  - Description: *Heb je een idee voor een app, website of tool waar de wereld iets aan
-    heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.* (137 tekens). Dezelfde
-    tekst staat in `og:description` en als `description` van de organisatie in de JSON-LD.
+- R-S.1: Titel en meta-description per taalversie, handgeschreven. Vastgesteld in beide
+  talen:
+  - Titel (NL): *AI Wise · Apps, websites, tools & agents laten bouwen met AI*.
+  - Titel (EN): *AI Wise · Apps, websites, tools & agents built with AI*.
+  - In de HTML staat de `&` als `&amp;`, in `<title>` en in `og:title`; gecontroleerd in de
+    build.
+  - Description (NL): *Heb je een idee voor een app, website, tool of agent waar de wereld
+    iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.* (144 tekens).
+  - Description (EN): *Have an idea for an app, website, tool or agent that does some good
+    in the world? With AI it’s now within reach, and I’d be glad to build it for you.*
+    (149 tekens).
+  - Per taal staat dezelfde tekst in `og:description` en als `description` van de
+    organisatie in de JSON-LD.
   - De oude positionering (*AI, data en automatisering*, *workflow-automatisering*,
-    *rapportage*) staat nergens meer in Nederlandse tekst. `llms.txt` beschreef het werk al
-    als apps, websites en tools en is ongewijzigd. De JSON-LD heeft nog twee Engelse, voor
-    beide talen gedeelde waarden uit de oude positionering: `jobTitle` *AI, data and
-    automation engineer* en in `knowsAbout` onder meer *workflow automation* en *dashboards
-    and reporting*. Die zijn niet onjuist en gaan mee in de herziening van de Engelse tekst.
+    *rapportage*) staat nergens meer in Nederlandse tekst. In het Engels is ze uit de hero, de
+    visie en de meta weg; de secties die nog concept zijn hebben haar nog.
+    `llms.txt` beschrijft het werk als apps, websites en tools en noemt agents nog niet. De
+    JSON-LD heeft nog twee Engelse, voor beide talen gedeelde waarden uit de oude
+    positionering: `jobTitle` *AI, data and automation engineer* en in `knowsAbout` onder
+    meer *workflow automation* en *dashboards and reporting*. `llms.txt` en de JSON-LD worden
+    bijgesteld zodra de Engelse tekst helemaal herschreven is.
 - R-S.2: Open Graph en Twitter card, met `card-1700.png` als deelafbeelding.
 - R-S.3: Favicon uit `glyph-square.svg` en `glyph-square-32.png`, zoals het designsysteem
   voorschrijft. De oude `favicon.svg` is vervangen.
@@ -841,7 +856,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | Fonts gesubset en geconverteerd, samen 42 KB | Klaar |
 | S0 header met taalwissel, doorzichtig boven de herofoto en dicht na scrollen, zonder JavaScript | Klaar |
 | S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; tekst in beide talen vastgesteld; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
-| S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
+| S2 visie met de reflectie in Newsreader en zeven voorbeelden ter inspiratie | Klaar; tekst in beide talen vastgesteld |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; Nederlandse tekst door Simon geschreven en goedgekeurd, Engels is concept |
 | S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar, tekst door Simon vastgesteld |
 | S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, privacylink en copyrightregel | Klaar |
@@ -863,7 +878,7 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
-| O-2 | **Copy reviewen.** Beide talen, vier secties plus de privacyverklaring. De voorbeelden in de visie zijn nieuw en het meest gebaat bij een blik: zijn dit de dingen die je wilt oproepen? | Simon: lezen | De site kan niet live |
+| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, en de titel en meta-description vastgesteld; over mij, contact, footer en de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
@@ -876,7 +891,7 @@ Gesloten sinds versie 4:
   tagline in de hero-eyebrow is een vastgelegde uitzondering met minimaal 3:1, op 15px.
   Zie R-A1b.
 
-- Concreetheid in de visie: er staan nu zes voorbeelden in, ter inspiratie. Zie R-S2.3.
+- Concreetheid in de visie: er staan nu zeven voorbeelden in, ter inspiratie. Zie R-S2.3.
 - Vestigingsadres: alleen "Amsterdam" plus het KvK-nummer, zoals voorgesteld.
 - Webstatistiek: Vercel Web Analytics, cookieloos. Zie R-J2.
 - Modeltraining: niet toegestaan. Zie R-S.13.
@@ -928,6 +943,10 @@ Gesloten sinds versie 4:
 - **Engelse hero vastgesteld**, als eerste Engelse sectie: de tagline in de eyebrow zoals op
   de Nederlandse pagina, de kop *You picture it. I’ll build it.* in twee regels, en een
   nieuwe lead. Het Engels is consequent Brits. R-S1.2, R-S1.3 en R-L9a.
+- **Engelse visie, voorbeelden, titel en meta-description vastgesteld, en *agents* erbij in
+  beide talen**: nieuwe Engelse visie met zeven voorbeelden, de afsluitende notitie onder de
+  voorbeelden weg (veld `examplesNote`, de weergave en de CSS), twee Nederlandse voorbeelden
+  herschreven, en titel en description noemen nu ook agents. R-S2.2a, R-S2.3, R-L9a en R-S.1.
 
 ### Versie 6 ten opzichte van versie 5
 
