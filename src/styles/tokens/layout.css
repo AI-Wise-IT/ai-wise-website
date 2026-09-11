@@ -1,8 +1,7 @@
 /* AI Wise layout. Open in the brand record; PROPOSED here.
 
-   One 12-column grid, four surface classes. The weave is placed after the text
-   column is set, never before: the column moves out of the cord's way.
-   Reading gutter is the clear space the cord may not enter. */
+   One 12-column grid, four surface classes. Where text sits beside the weave
+   rather than over it, --aiw-weave-clear is the gap between cord and text. */
 
 :root{
   --aiw-grid-columns:12; /* @kind other */

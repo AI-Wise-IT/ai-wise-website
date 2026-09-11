@@ -66,8 +66,8 @@ code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospa
    edge, and the surface then crops it. That is what min(100cqw,100cqh) below
    does. Do not use background-size:cover — on a landscape surface cover scales
    from the long edge and thickens the cord (measured 5.9% on 16:9, 13.3% on a
-   4:1 banner). Near-black environment only. Never behind body copy, tables or
-   charts; never faded down under text — move the text column instead. */
+   4:1 banner). Near-black environment only. Text may sit beside the cord or over
+   it; over it, a dark layer keeps the text readable (readme.md, Text over images). */
 .aiw-weave{position:absolute;inset:0;overflow:hidden;background:var(--aiw-near-black);container-type:size}
 .aiw-weave__cord{position:absolute;top:50%;left:var(--aiw-weave-x,50%);width:min(100cqw,100cqh);aspect-ratio:1024/1536;transform:translate(-50%,-50%) rotate(var(--aiw-weave-rotate,0deg));background-repeat:no-repeat;background-size:100% 100%}
 .aiw-weave--calm-drift .aiw-weave__cord{background-image:url("/assets/weave/masters/O1-portrait.svg")}
