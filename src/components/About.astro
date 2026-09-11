@@ -3,8 +3,8 @@
  * S3. Who is behind AI Wise, beside the only photograph of a person on the site.
  * The portrait is unfiltered and ungraded, at 2px radius.
  *
- * The text is either a short bulleted list or prose, whichever the language
- * sets in copy.ts. The Dutch page has the list, in Simon's own words.
+ * The text is a short bulleted list in both languages, from copy.ts. The Dutch
+ * list is in Simon's own words.
  *
  * The portrait is art-directed rather than merely resized. Where the layout
  * stacks, below 768px, it is a 3:2 landscape frame across the full content
@@ -83,12 +83,9 @@ const up = await set(upright, UPRIGHT_WIDTHS);
       </picture>
 
       <div class="section__body">
-        {t.about.points && (
-          <ul class="bullet-list">
-            {t.about.points.map((point) => <li>{point}</li>)}
-          </ul>
-        )}
-        {t.about.paragraphs?.map((p) => <p class="aiw-body">{p}</p>)}
+        <ul class="bullet-list">
+          {t.about.points.map((point) => <li>{point}</li>)}
+        </ul>
       </div>
     </div>
   </div>

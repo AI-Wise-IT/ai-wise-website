@@ -5,7 +5,7 @@
  * STATUS, Dutch: hero, vision, examples, about, contact, footer and meta text
  * reviewed with Simon and settled; the about text is his own.
  *
- * STATUS, English: the hero, vision, examples and meta text are settled. The
+ * STATUS, English: the hero, vision, examples, about and meta text are settled. The
  * other sections are still the first draft and are being written afresh one at
  * a time, as their own text rather than a translation. English is British English, consistently (the page is
  * en_GB); the first-draft sections do not follow that yet.
@@ -75,11 +75,8 @@ export interface Copy {
   about: {
     eyebrow: string;
     heading: string;
-    /** The text as prose. A language sets either paragraphs or points; the
-     *  section renders whichever is present. */
-    paragraphs?: string[];
     /** The text as a bulleted list, one short line per point. */
-    points?: string[];
+    points: string[];
     portraitAlt: string;
   };
   contact: {
@@ -253,7 +250,7 @@ const en: Copy = {
   meta: {
     title: "AI Wise · Apps, websites, tools & agents built with AI",
     description:
-      "Have an idea for an app, website, tool or agent that does some good in the world? With AI it’s now within reach, and I’d be glad to build it for you.",
+      "Have an idea for an app, website, tool or agent that makes a difference? With AI it’s now within reach, and I’d be glad to build it for you.",
     ogAlt: "AI Wise, Automation in Service of Life",
   },
   nav: {
@@ -289,10 +286,12 @@ const en: Copy = {
   about: {
     eyebrow: "About me",
     heading: "Simon van Meegdenburg",
-    paragraphs: [
-      "My background is in IT and data engineering. What I have moved toward is the building itself: working tools, small systems, things you can use on Monday morning.",
-      "AI Wise is my one-person practice. I like working with small organizations doing work that matters to someone, close enough to the day-to-day to know where it chafes.",
-      "What makes this craft worth it to me is the care. Understanding the context, keeping scope small, testing, writing down what got built, handing it over properly. AI makes building fast. Keeping it careful is still on you.",
+    points: [
+      "I’ve been building data systems since 2018, first as a BI consultant and later as a data engineer.",
+      "In my spare time I learned to build websites and apps, and realised I enjoy that even more.",
+      "With AI, I can turn an idea into a first prototype in about a day.",
+      "Experimenting taught me what it takes to build a system ready for everyday use.",
+      "I’m happiest building for organisations I feel connected to.",
     ],
     portraitAlt: "Portrait of Simon van Meegdenburg",
   },

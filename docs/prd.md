@@ -261,7 +261,8 @@ Vier inhoudelijke secties.
     Daarmee ligt de hoogte van het portret dicht bij die van de korte tekst ernaast.
     Gemeten op de gebouwde Nederlandse pagina: op 1440x900 portret 250px en lijst 254px, op
     1024x768 portret 250px en lijst 254px. Op 768x1024 is de tekstkolom smaller en is de
-    lijst 363px hoog; het portret blijft 250px.
+    lijst 363px hoog; het portret blijft 250px. Op de Engelse pagina is de lijst op 1440x900
+    282px hoog.
   - Beide uitsneden zijn eenmalig met sharp uit het origineel gesneden en staan als
     JPEG-master (kwaliteit 90) in `src/assets/about/`: `portrait-3x2.jpg` (links 398, boven
     0, 2100x1400, verkleind naar 1440x960, 143 KB) en `portrait-4x5.jpg` (links 808, boven
@@ -274,7 +275,8 @@ Vier inhoudelijke secties.
   die het professionele kader ondermijnen.
 - R-S3.5: Geen ervaringsclaims ("wat ik vaak zie", "uit ervaring") tenzij expliciet
   bevestigd.
-- R-S3.6: Maximaal circa 150 woorden per taalversie. De Nederlandse versie telt 76 woorden.
+- R-S3.6: Maximaal circa 150 woorden per taalversie. De Nederlandse versie telt 76 woorden,
+  de Engelse 74.
 - R-S3.7: **Op de Nederlandse pagina is de tekst een opsomming van vijf korte punten**, door
   Simon zelf geschreven en zonder correcties overgenomen (R-C7). Kopje *Over mij*, kop
   *Simon van Meegdenburg*. De vijf punten:
@@ -291,9 +293,20 @@ Vier inhoudelijke secties.
   (`sales/outreach/content-record/output/website-home-over-mij.md`).
   De lijst is opgemaakt als de voorbeeldenlijst in de visie:
   markers in moss, 16px tussen de punten, via de gedeelde klasse `.bullet-list` in
-  `site.css`. `copy.ts` laat per taal proza (`paragraphs`) of een lijst (`points`) toe, en de
-  sectie toont wat er staat. De Engelse pagina heeft nog de eerste versie in drie alinea's en
-  wordt later herschreven.
+  `site.css`.
+- R-S3.8: **Op de Engelse pagina is de tekst ook een opsomming van vijf punten**, als eigen
+  tekst en geen vertaling, in Brits Engels, door Simon goedgekeurd. Kopje *About me*, kop
+  *Simon van Meegdenburg*. De vijf punten:
+  1. *I’ve been building data systems since 2018, first as a BI consultant and later as a
+     data engineer.*
+  2. *In my spare time I learned to build websites and apps, and realised I enjoy that even
+     more.*
+  3. *With AI, I can turn an idea into a first prototype in about a day.*
+  4. *Experimenting taught me what it takes to build a system ready for everyday use.*
+  5. *I’m happiest building for organisations I feel connected to.*
+
+  Beide talen gebruiken dezelfde structuur: `points` in `copy.ts`, weergegeven als
+  `.bullet-list`. Het veld voor proza (`paragraphs`) is uit de sectie verwijderd.
 
 **S4, Contact**
 
@@ -444,9 +457,9 @@ ook: één template per type, niet per taal.
   Omdat de scan hier niet voorkomt, is dit vooral een waarschuwing voor toekomstige
   uitbreiding.
 - R-L9a: **De Engelse versie is consequent Brits Engels**, passend bij `en_GB`:
-  *organisations*, *recognise*, *modernised*. De hero, de visie met de voorbeelden, en de
-  titel en meta-description zijn zo vastgesteld; de secties die nog concept zijn volgen bij
-  het herschrijven.
+  *organisations*, *recognise*, *modernised*. De hero, de visie met de voorbeelden, over mij,
+  en de titel en meta-description zijn zo vastgesteld; de secties die nog concept zijn
+  volgen bij het herschrijven.
 - R-L10: Het designsysteem merkt Nederlandse typografische regels aan als open. In de
   praktijk zetten beide talen identiek. Als Nederlandse copy een andere maat of afbreking
   nodig heeft, is dat een bevinding voor het designsysteem, niet iets dat hier lokaal
@@ -719,14 +732,14 @@ behandeld.
     build.
   - Description (NL): *Heb je een idee voor een app, website, tool of agent waar de wereld
     iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.* (144 tekens).
-  - Description (EN): *Have an idea for an app, website, tool or agent that does some good
-    in the world? With AI it’s now within reach, and I’d be glad to build it for you.*
-    (149 tekens).
+  - Description (EN): *Have an idea for an app, website, tool or agent that makes a
+    difference? With AI it’s now within reach, and I’d be glad to build it for you.*
+    (140 tekens).
   - Per taal staat dezelfde tekst in `og:description` en als `description` van de
     organisatie in de JSON-LD.
   - De oude positionering (*AI, data en automatisering*, *workflow-automatisering*,
     *rapportage*) staat nergens meer in Nederlandse tekst. In het Engels is ze uit de hero, de
-    visie en de meta weg; de secties die nog concept zijn hebben haar nog.
+    visie, over mij en de meta weg; de secties die nog concept zijn hebben haar nog.
     `llms.txt` beschrijft het werk als apps, websites en tools en noemt agents nog niet. De
     JSON-LD heeft nog twee Engelse, voor beide talen gedeelde waarden uit de oude
     positionering: `jobTitle` *AI, data and automation engineer* en in `knowsAbout` onder
@@ -857,7 +870,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | S0 header met taalwissel, doorzichtig boven de herofoto en dicht na scrollen, zonder JavaScript | Klaar |
 | S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; tekst in beide talen vastgesteld; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
 | S2 visie met de reflectie in Newsreader en zeven voorbeelden ter inspiratie | Klaar; tekst in beide talen vastgesteld |
-| S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; Nederlandse tekst door Simon geschreven en goedgekeurd, Engels is concept |
+| S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; tekst in beide talen vastgesteld, de Nederlandse door Simon zelf geschreven |
 | S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar, tekst door Simon vastgesteld |
 | S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, privacylink en copyrightregel | Klaar |
 | S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen vanaf de contactknoppen | Klaar |
@@ -878,7 +891,7 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
-| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, en de titel en meta-description vastgesteld; over mij, contact, footer en de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
+| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, over mij, en de titel en meta-description vastgesteld; contact, footer en de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
@@ -947,6 +960,10 @@ Gesloten sinds versie 4:
   beide talen**: nieuwe Engelse visie met zeven voorbeelden, de afsluitende notitie onder de
   voorbeelden weg (veld `examplesNote`, de weergave en de CSS), twee Nederlandse voorbeelden
   herschreven, en titel en description noemen nu ook agents. R-S2.2a, R-S2.3, R-L9a en R-S.1.
+- **Engelse Over mij en meta-description vastgesteld**: vijf punten als opsomming, zoals op
+  de Nederlandse pagina, in plaats van drie alinea's; het veld `paragraphs` en de weergave
+  daarvan zijn weg, en de description zegt *that makes a difference*. R-S3.6, R-S3.8, R-L9a
+  en R-S.1.
 
 ### Versie 6 ten opzichte van versie 5
 
