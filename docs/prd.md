@@ -535,7 +535,35 @@ in `tokens/` en `guidelines/`.
 
 - R-V1: Alle waarden via de tokens: `colors`, `typography`, `spacing`, `layout`, `motion`,
   `semantic`, `fonts` en `base`, gebundeld via `styles.css`. Geen hardgecodeerde
-  hex-waarden of pixelmaten buiten de tokens om.
+  hex-waarden, en geen pixelmaten buiten de tokens om **behalve de hieronder genoemde
+  lijst**. Kleur, radius en duur kennen geen enkele uitzondering; maat kent deze, en alleen
+  deze. De kop van `site.css` draagt dezelfde lijst, zodat wie het bestand opent hem daar
+  ook vindt. Een regel met ongenoemde uitzonderingen is geen regel, dus een nieuwe waarde
+  komt hier eerst bij te staan of hij komt er niet.
+  - Knoppadding 6/12px, 10/18px en 14/26px, rechtstreeks uit `Button.jsx`, dat ze in
+    pixels zet. Afronden op de 4px-schaal zou de knop veranderen, dus de vertaling houdt
+    ze (R-T4).
+  - Het lockup in de header: glyph 30px, wordmark 15px en 14px ertussen, zoals
+    `Chrome.TopBar` het tekent (R-S0.1), plus `--site-header-height` van 76px (R-S0.4).
+  - Optische halve stappen, waar de 4px-schaal geen stap heeft die goed leest: 3px onder
+    een taallink, 14px onder een kopje en onder een footerkolomtitel, 18px boven de
+    copyrightregel, 22px onder de hero-eyebrow, 44px boven de footer-baseline en 56px
+    footerpadding.
+  - 48px minimale hoogte voor de contactknoppen onder 640px: een touch target, en
+    tegelijk de waarde van `--aiw-space-12` (R-S4.3).
+  - De art direction van de hero: de 520px in de hoogte van het staande kader en de
+    verloopstops op 56, 110, 170 en 240px. Die volgen de foto en geen schaal (R-V4a en
+    R-V4b).
+  - 200px voor de portretkolom vanaf 768px, zo gekozen dat de hoogte van het portret dicht
+    bij die van de lijst ernaast ligt (R-S3.1).
+  - Leesmaten in `ch`, die de typeschaal niet dekt: 26ch voor een sectiekop, 34ch voor de
+    footerregel onder het logo, en 46ch voor de hero-lead, de benoemde uitzondering uit
+    R-V9a.
+  - Breekpunten op 640, 768, 1024 en 1200px, waarbij de max-width-vormen 0,02px lager
+    staan zodat ze de min-width-vormen niet overlappen. De layout-tokens kennen geen
+    breekpunten.
+  - De 1px-uitsnede van `.visually-hidden` en `.contact__action-label`, het gebruikelijke
+    idioom.
 - R-V2: **Near-black surface.** De hele site staat op `#0B0D0C`. Het designsysteem heeft
   een volwaardige lichte surface, maar wijst die expliciet toe aan documenten: geen enkele
   pagina in de site-set staat op warm light. De `moss-deep` en `blue-deep` varianten zijn
@@ -591,6 +619,17 @@ in `tokens/` en `guidelines/`.
   het wordmark. Geen Title Case.
 - R-V9: Body 17px op 1.6, maximaal 68ch. Leads 19px op 52ch. Content 1200px, artikelkolom
   760px, paginamarges 24 / 48 / 80px, sectiegaten 96 tot 128px.
+- R-V9a: **Eén benoemde uitzondering op de leesmaat van 52ch: de hero-lead staat op 46ch.**
+  Hij is de enige lead op de site die over een foto staat. De leesbaarheidslaag loopt naar
+  rechts uit (R-V4b), dus een langere regel komt in een lichter deel ervan terecht. Gemeten
+  op de gebouwde Nederlandse pagina, tekst tegen de lichtste pixel eronder: op 46ch haalt de
+  lead 5,93:1 op 1440x900 en 5,80:1 op 1100x800, op 52ch lopen dezelfde drie regels ongeveer
+  48px verder naar rechts en zakt hij naar 5,09:1 en 4,66:1. Allebei nog boven de 4,5:1 die
+  R-A1 eist, maar 4,66:1 houdt vrijwel niets over, dus de smallere maat blijft. Staande
+  layouts maken het niet uit: hun laag heeft geen zijwaartse uitloop, en onder 640px is de
+  kolom smaller dan beide maten. De waarden in R-A1a zijn met de lead op 46ch gemeten. Alle
+  andere leads, op de privacypagina's en de 404-pagina, volgen gewoon
+  `--aiw-measure-narrow`.
 - R-V10: Logo en glyph uitsluitend uit `assets/logo/`. Het wordmark wordt nooit opnieuw als
   levende tekst gezet; de SVG's zijn outlines zonder fontafhankelijkheid. De tagline is geen
   onderdeel van het wordmark: in de footer staat hij als tekst onder het logo (R-S5.1).
@@ -1145,6 +1184,18 @@ Gesloten sinds versie 4:
   review. `design-system-import.md` zegt nu welke twee afwijkingen bij een herimport terug
   moeten en welke afwijkingen van de site zelf zijn, en telt `Card` niet langer bij wat is
   weggelaten. R-T1, R-T4, R-T12, R-L9a, R-S.1 en O-3.
+- **De tokenregel klopt weer met het bestand.** R-V1 en de kop van `site.css` zeiden allebei
+  dat er geen pixelmaten buiten de tokens om bestaan, terwijl het bestand er een stuk of
+  twintig heeft. Beide dragen nu dezelfde volledige lijst met herkomst: de knoppaddings uit
+  `Button.jsx`, het lockup uit `Chrome.TopBar`, de optische halve stappen, het touch target
+  van 48px, de art direction van de hero, de portretkolom, de leesmaten in `ch`, de
+  breekpunten en het visually-hidden-idioom. Geen enkele weergegeven waarde is veranderd,
+  ook de 46ch van de hero-lead niet. Die stond nergens als keuze genoteerd, maar meten wees
+  uit dat het er een is: de hero-lead is de enige die over een foto staat, en op de 52ch uit
+  de token lopen de regels zo ver naar rechts dat het contrast op 1440x900 van 5,93 naar
+  5,09 zakt en op 1100x800 van 5,80 naar 4,66, vlak boven de 4,5 die R-A1 eist. De 46ch
+  blijft dus staan en is nu een benoemde uitzondering, R-V9a, in plaats van een stille
+  afwijking. R-V1, R-V9, R-V9a en R-A1a.
 
 ### Versie 6 ten opzichte van versie 5
 

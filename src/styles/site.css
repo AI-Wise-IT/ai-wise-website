@@ -1,9 +1,37 @@
-/* Website-specific styles. Everything here is built from design-system tokens;
-   no colour, size, radius or duration is introduced that the tokens do not carry.
+/* Website-specific styles. Every colour, radius and duration comes from the
+   design-system tokens, and so does almost every size. R-V1 in docs/prd.md states
+   the rule as "tokens, except this named list", because a rule with unlisted
+   exceptions is not a rule. This is that list, in full:
 
-   The button rules below are a faithful CSS translation of components/core/Button.jsx.
-   The JSX tracks hover and press in React state; here :hover and :active do the same
-   work with the same colour-mix values, which removes the need for a JS runtime. */
+   - Button padding: 6/12px (sm), 10/18px (md) and 14/26px (lg). These come straight
+     from components/core/Button.jsx, which sets them in pixels. Rounding them onto
+     the 4px spacing scale would change the button, so the translation keeps them.
+   - The header lockup: glyph 30px, wordmark 15px and 14px between them, the way
+     Chrome.TopBar draws it (R-S0.1), plus --site-header-height at 76px (R-S0.4),
+     a site value because the hero has to slide up underneath it.
+   - Optical half-steps, where the 4px scale has no step that reads right: 3px under
+     a language link, 14px under an eyebrow and under a footer column title, 18px
+     above the copyright line, 22px under the hero eyebrow, 44px above the footer
+     baseline, and 56px of footer padding.
+   - 48px minimum height on the contact buttons below 640px: a touch target, and the
+     same value as --aiw-space-12 (R-S4.3).
+   - The hero art direction: the 520px in the portrait frame's height and the gradient
+     stops at 56, 110, 170 and 240px. They follow the photograph rather than a scale;
+     measured and settled in R-V4a and R-V4b.
+   - 200px for the portrait column from 768px, chosen so the portrait's height lands
+     near the height of the list beside it (R-S3.1).
+   - Measures in ch, which the type scale does not cover: 26ch for a section heading,
+     34ch for the footer blurb, and 46ch for the hero lead, which is a named
+     exception to the 52ch lead measure and carries its reason at .hero__lead (R-V9).
+   - Breakpoints at 640, 768, 1024 and 1200px; the max-width forms are written 0.02px
+     lower so they cannot overlap the min-width ones. The layout tokens define no
+     breakpoints.
+   - The 1px clip of .visually-hidden and .contact__action-label, the standard idiom.
+
+   The button rules below are a faithful CSS translation of components/core/Button.jsx,
+   and .card is the same for components/core/Card.jsx. The JSX tracks hover and press
+   in React state; here :hover and :active do the same work with the same colour-mix
+   values, which removes the need for a JS runtime. */
 
 /* ---- accessibility helpers --------------------------------------------- */
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
@@ -200,7 +228,19 @@
 /* Each line of the heading is its own block, so it breaks where a sentence
    ends. Within a line, the balanced wrap from base.css still applies on narrow
    screens. The heading may run wider than the lead; the lead keeps its own
-   measure. */
+   measure.
+
+   That measure is 46ch rather than the 52ch --aiw-measure-narrow gives .aiw-lead,
+   and it is the only lead on the site that departs from the token. It is also the
+   only one set over a photograph. The legibility layer fades towards the right, so
+   a longer line reaches into a lighter part of it. Measured on the built Dutch
+   page, the text against the lightest pixel under it: at 46ch the lead holds
+   5.93:1 on 1440x900 and 5.80:1 on 1100x800; at 52ch the same three lines run
+   about 48px further right and fall to 5.09:1 and 4.66:1. Both still clear the
+   4.5:1 of R-A1, but 4.66:1 leaves almost nothing, so the narrower measure stays.
+   Portrait layouts are unaffected either way: their layer has no sideways fade,
+   and below 640px the column is narrower than both measures. R-V9 names the
+   exception, and the values in R-A1a were measured with the lead at 46ch. */
 .hero__title{margin-bottom:var(--aiw-space-6);font-size:var(--aiw-text-4xl)}
 .hero__title-line{display:block}
 .hero__lead{margin-bottom:var(--aiw-space-8);max-width:46ch;font-size:var(--aiw-text-md)}
