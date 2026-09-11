@@ -1,38 +1,41 @@
 # AI Wise
 
-> AI Wise is the one-person AI, data and automation practice of Simon van
-> Meegdenburg, based in Amsterdam, the Netherlands. It builds practical internal
-> tools, workflow automation, dashboards and reporting flows for small
-> organizations, roughly up to twenty-five people, doing work that serves life,
-> health, care, learning, regeneration or human development. Tagline: Automation
-> in Service of Life.
+> AI Wise is the one-person practice of Simon van Meegdenburg. Using AI, he
+> builds apps, websites and tools that take recurring work off people's hands,
+> preferably for small practices and organizations doing meaningful work.
+> Tagline: Automation in Service of Life.
 
-The website is a single page in Dutch and English. It describes what AI Wise
-stands for and how to make contact. It deliberately carries no service
-catalogue, no pricing and no productised offer: the practice is young and is
-currently working out where AI opportunities lie in real organizations.
+The website is a single page in Dutch and English. It describes what has become
+possible, gives examples, introduces Simon and explains how to get in touch. It
+deliberately carries no service catalogue, no pricing and no productised offer.
 
-## What AI Wise does
+## What has changed
 
-- Workflow automation for recurring manual work, such as data re-entered by hand
-  between systems, reports rebuilt from the same exports every month, or notes
-  written out a second time.
-- Small internal tools that fit an existing way of working rather than a platform
-  to migrate onto.
-- Dashboards, reporting flows and data groundwork, so records an organization
-  already holds become something it can query and report on.
-- Build-first delivery with handover: documentation and enough explanation that
-  the client can keep using and running the result without AI Wise.
+Having a website, an app or a tool built has become considerably more
+accessible. With AI, the path from a clear idea to something that works is much
+shorter, and what used to be a large project is now manageable. That makes it
+feasible for small practices and organizations too. AI is the method here, not
+the subject.
 
-The website gives these as illustrations of what is possible, not as a service
-catalogue. They are examples to think with, and the site says so.
+## Examples
 
-## What AI Wise does not do
+The website gives these as examples of what is possible, to think with. They
+are not a service catalogue.
 
-- No pricing, packages or scope are published on the website.
-- No case studies, client names or testimonials are published, because none are
-  confirmed for public use.
-- No claims are made about time saved, safety or privacy outcomes.
+- A renewed website.
+- A webshop alongside a practice.
+- An online learning environment alongside in-person classes.
+- Registrations that land directly in the administration.
+- Participants who manage their own registrations or membership.
+- Meeting notes that write themselves up.
+- A tool for the one recurring task that takes too much time.
+
+## What the website does not include
+
+- No pricing, packages or scope.
+- No case studies, client names or testimonials, because none are confirmed for
+  public use.
+- No claims about time saved, safety or privacy outcomes.
 
 ## Facts
 
@@ -40,15 +43,15 @@ catalogue. They are examples to think with, and the site says so.
 - Owner: Simon van Meegdenburg
 - Chamber of Commerce (KvK): 93385498
 - VAT identification number: NL005019332B52
-- Place of business: Amsterdam, the Netherlands
+- Works remotely; not tied to a location
 - Languages: Dutch, English
 - Email: simon@aiwise.it.com
 - Telephone: +31 6 13926494
 
 ## Pages
 
-- [Home, Dutch](https://aiwise.it.com/): vision, about Simon, contact
-- [Home, English](https://aiwise.it.com/en/): the same page in English
+- [Home, Dutch](https://aiwise.it.com/): what is possible, examples, about Simon, contact
+- [Home, English](https://aiwise.it.com/en): the same page in English
 - [Privacy statement, Dutch](https://aiwise.it.com/privacy)
 - [Privacy statement, English](https://aiwise.it.com/en/privacy)
 

@@ -56,9 +56,13 @@
    surface at the same 5.2% strand ratio. One master, one placement, no repeat. */
 .hero{position:relative;display:flex;flex-direction:column;border-bottom:var(--aiw-border-width) solid var(--aiw-border-subtle)}
 .hero__inner{position:relative;z-index:1;order:1;padding-block:var(--aiw-space-20)}
-.hero__col{max-width:44ch}
 .hero__eyebrow{margin-bottom:22px}
-.hero__title{margin-bottom:var(--aiw-space-6);max-width:16ch;font-size:var(--aiw-text-4xl)}
+/* Each line of the heading is its own block, so it breaks where a sentence
+   ends. Within a line, the balanced wrap from base.css still applies on narrow
+   screens. The heading may run wider than the lead; the lead keeps its own
+   measure. */
+.hero__title{margin-bottom:var(--aiw-space-6);font-size:var(--aiw-text-4xl)}
+.hero__title-line{display:block}
 .hero__lead{margin-bottom:var(--aiw-space-8);max-width:46ch;font-size:var(--aiw-text-md)}
 .hero__actions{display:flex;flex-wrap:wrap;gap:var(--aiw-space-4);align-items:center}
 
@@ -71,15 +75,22 @@
 @media (min-width:1024px){
   .hero{display:block}
   .hero__inner{min-height:620px;display:flex;flex-direction:column;justify-content:center;padding-block:var(--aiw-space-24)}
-  .hero__title{font-size:var(--aiw-text-5xl)}
   /* the text column stops clear of the cord, with the reading gutter respected */
-  .hero__col{max-width:min(44ch,calc(62% - var(--aiw-weave-clear)))}
+  .hero__col{max-width:calc(62% - var(--aiw-weave-clear))}
   .hero__weave{position:absolute;inset:0;z-index:0;height:auto;margin-top:0}
   .hero__weave .aiw-weave{--aiw-weave-x:82%}
 }
 
+/* The display size only where the column is wide enough to keep the first
+   sentence of the heading on one line; between 1024 and 1200 the column is
+   narrower than that at 54px. */
+@media (min-width:1200px){
+  .hero__title{font-size:var(--aiw-text-5xl)}
+}
+
 /* ---- vision ------------------------------------------------------------- */
-.vision__reflection{margin-block:var(--aiw-space-10);padding-left:var(--aiw-space-6);border-left:var(--aiw-border-width-strong) solid var(--aiw-moss-green)}
+/* The reflection closes the vision, so it takes space above and none below. */
+.vision__reflection{margin-top:var(--aiw-space-10);padding-left:var(--aiw-space-6);border-left:var(--aiw-border-width-strong) solid var(--aiw-moss-green)}
 
 /* The stance and the examples. Stacked below 1024px, side by side above it. */
 .vision__layout{display:grid;gap:var(--aiw-space-12)}

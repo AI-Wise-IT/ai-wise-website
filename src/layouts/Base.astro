@@ -45,12 +45,8 @@ const jsonLd = {
       telephone: COMPANY.phoneIntl,
       description: pageDescription,
       founder: { "@id": `${site.origin}/#simon` },
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: COMPANY.city,
-        addressCountry: "NL",
-      },
-      areaServed: { "@type": "Country", name: "Netherlands" },
+      // No address or service area: AI Wise works remotely and is not tied to a
+      // place. The KvK identifier below points to the registration.
       knowsLanguage: ["nl", "en"],
       vatID: COMPANY.vat,
       identifier: {
@@ -73,11 +69,6 @@ const jsonLd = {
       jobTitle: "AI, data and automation engineer",
       email: COMPANY.email,
       worksFor: { "@id": `${site.origin}/#organization` },
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: COMPANY.city,
-        addressCountry: "NL",
-      },
     },
     {
       "@type": "WebSite",

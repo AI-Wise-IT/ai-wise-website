@@ -1,8 +1,13 @@
 ---
 /**
- * S1. The tagline carries the heading, in sentence case, exactly as the design
- * system's own Home screen sets it. It stays English on the Dutch page, so it is
- * marked lang="en" for screen readers.
+ * S1. The heading says what Simon does, in the page's own language. The tagline
+ * moves up into the eyebrow: it stays English on every page, so on the Dutch
+ * page it carries lang="en" for screen readers. This departs from the design
+ * system's Home screen, where the tagline is the heading, because an English
+ * heading told a Dutch visitor nothing about the work.
+ *
+ * The heading is set line by line so it breaks where a sentence ends. The space
+ * between the lines keeps the accessible name reading as two sentences.
  *
  * This section holds the page's only weave and its only signal button.
  */
@@ -25,8 +30,12 @@ const t = COPY[lang];
 
   <div class="aiw-container hero__inner">
     <div class="hero__col">
-      <p class="aiw-eyebrow hero__eyebrow">{t.hero.eyebrow}</p>
-      <h1 class="aiw-display hero__title" lang="en">{t.hero.title}</h1>
+      <p class="aiw-eyebrow hero__eyebrow" lang={t.hero.eyebrowLang}>{t.hero.eyebrow}</p>
+      <h1 class="aiw-display hero__title">
+        {t.hero.title.map((line, i) => (
+          <>{i > 0 && " "}<span class="hero__title-line">{line}</span></>
+        ))}
+      </h1>
       <p class="aiw-lead hero__lead">{t.hero.lead}</p>
       <div class="hero__actions">
         <a class="btn btn--lg btn--signal" href="#contact">

@@ -1,8 +1,12 @@
 ---
 /**
- * S2. Carries the research phase implicitly: this describes a way of looking at
- * the work, and makes no offer. The one Reflection on the page sits here, which
- * is also the only place Newsreader appears.
+ * S2. The vision describes the shift: what used to be a large project is now
+ * within reach, also for small practices doing meaningful work. It stays
+ * general; the examples beside it do the concrete work. AI appears as the reason
+ * this is possible, not as the subject. It makes no offer.
+ *
+ * The one Reflection on the page closes the vision, as a question the reader
+ * leaves with. It is also the only place Newsreader appears.
  */
 import { COPY, type Lang } from "../content/copy";
 
@@ -19,17 +23,15 @@ const t = COPY[lang];
     <p class="aiw-eyebrow section__eyebrow">{t.vision.eyebrow}</p>
     <h2 class="section__heading" id="vision-heading">{t.vision.heading}</h2>
 
-    {/* Two blocks side by side from 1024px up: the stance on the left, what it
-        can look like in practice on the right. Below that they stack, stance
+    {/* Two blocks side by side from 1024px up: the vision on the left, what it
+        can look like in practice on the right. Below that they stack, vision
         first. Each column lands at roughly 58 characters, inside the 68 the
         design system sets as the reading measure. */}
     <div class="vision__layout">
       <div class="section__body">
-        <p class="aiw-body">{t.vision.paragraphs[0]}</p>
+        {t.vision.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}
 
         <p class="aiw-reflective vision__reflection">{t.vision.reflection}</p>
-
-        {t.vision.paragraphs.slice(1).map((p) => <p class="aiw-body">{p}</p>)}
       </div>
 
       {/* Possibilities, to give the reader something concrete to react to. A
@@ -40,7 +42,7 @@ const t = COPY[lang];
         <ul class="vision__examples-list">
           {t.vision.examples.map((e) => <li>{e}</li>)}
         </ul>
-        <p class="aiw-body vision__examples-note">{t.vision.examplesNote}</p>
+        {t.vision.examplesNote && <p class="aiw-body vision__examples-note">{t.vision.examplesNote}</p>}
       </div>
     </div>
   </div>

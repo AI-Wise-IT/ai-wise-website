@@ -2,13 +2,17 @@
  * All user-facing copy, per language. Kept out of the components on purpose:
  * a text change should not be a code change.
  *
- * STATUS: draft, awaiting Simon's approval (docs/prd.md, R-C1).
+ * STATUS, Dutch: hero, vision and examples reviewed with Simon and settled.
+ * About, contact, footer and meta text are still the first draft and get
+ * rewritten section by section. English is the first draft throughout and is
+ * written afresh once the Dutch is settled, as its own text rather than a
+ * translation.
  *
- * Written to the voice rules in the design system's readme.md, "Content
- * fundamentals": first person singular, sentence case, concrete before clever,
- * value through recognizable work situations, claims only with a qualification.
+ * Voice: the design system's readme.md, "Content fundamentals", plus Simon's
+ * preferences in the AI Wise folder at
+ * sales/outreach/content-record/working/personal-preference-profile.md.
  * No hype vocabulary, no experience claims, no time-saving or safety claims,
- * no emoji, no em-dashes.
+ * no emoji, no em-dashes, and no location: AI Wise is not tied to a place.
  *
  * The tagline stays English and untranslated in both languages.
  */
@@ -45,21 +49,28 @@ export interface Copy {
   nav: { skipToContent: string; home: string; language: string };
   hero: {
     eyebrow: string;
-    /** The tagline, set as the page heading in sentence case, per the design
-     *  system's own Home screen. It stays English in both languages. */
-    title: string;
+    /** Set when the eyebrow is in another language than the page, so screen
+     *  readers pronounce it correctly. The Dutch page carries the English
+     *  tagline here. */
+    eyebrowLang?: string;
+    /** One entry per line. The heading breaks where a sentence ends, which a
+     *  balanced line wrap cannot be trusted to do on its own. */
+    title: string[];
     lead: string;
     cta: string;
   };
   vision: {
     eyebrow: string;
     heading: string;
+    /** General: the shift in what is possible, and who it is for. Concrete
+     *  situations belong in the examples. */
     paragraphs: string[];
+    /** The one Newsreader moment on the page: a question the reader leaves with. */
     reflection: string;
     /** Concrete possibilities, to give the reader something to react to. */
     examplesIntro: string;
     examples: string[];
-    examplesNote: string;
+    examplesNote?: string;
   };
   about: {
     eyebrow: string;
@@ -103,7 +114,7 @@ const nl: Copy = {
   meta: {
     title: "AI Wise · AI, data en automatisering voor kleine organisaties",
     description:
-      "AI Wise is de praktijk van Simon van Meegdenburg in Amsterdam. Ik bouw praktische tools, workflow-automatisering en rapportage voor kleine organisaties met betekenisvol werk.",
+      "AI Wise is de praktijk van Simon van Meegdenburg. Ik bouw praktische tools, workflow-automatisering en rapportage voor kleine organisaties met betekenisvol werk.",
     ogAlt: "AI Wise, Automation in Service of Life",
   },
   nav: {
@@ -112,37 +123,37 @@ const nl: Copy = {
     language: "Taal",
   },
   hero: {
-    eyebrow: "AI, data en automatisering · Amsterdam",
-    title: "Automation in service of life",
-    lead: "Met AI Wise bouw ik tools op maat die terugkerend werk verlichten en ruimte maken voor het werk dat er echt toe doet.",
+    eyebrow: COMPANY.tagline,
+    eyebrowLang: "en",
+    title: ["Jij ziet het voor je.", "Ik bouw het."],
+    lead: "Met AI maak ik apps, websites en tools die terugkerend werk uit handen nemen. Het liefst voor organisaties die werk doen waar de wereld iets aan heeft.",
     cta: "Neem contact op",
   },
   vision: {
-    eyebrow: "Waar ik voor sta",
-    heading: "Automatisering hoort dienstbaar te zijn aan waardevol werk",
+    eyebrow: "Wat er nu kan",
+    heading: "Wat je voor ogen hebt, is nu binnen bereik",
     paragraphs: [
-      "In veel organisaties gaat een flink deel van de week op aan werk dat niemand zo heeft bedacht. Gegevens uit een formulier die met de hand in een tweede systeem terechtkomen. Een maandrapportage die elke keer opnieuw uit drie exports wordt opgebouwd. Aantekeningen uit een gesprek die 's avonds nog een keer worden uitgeschreven.",
-      "Een deel daarvan kan een machine overnemen. Niet alles, en niet alles zou dat moeten. De aandacht die iemand geeft aan een deelnemer, een klant of een collega is precies het werk waar het om draait.",
-      "Waar ik naar zoek is de grens tussen die twee: wat kan worden weggenomen, zodat er meer week overblijft voor wat mensen doen. Dat bouw ik vervolgens ook, met genoeg documentatie en overdracht dat je er zonder mij mee verder kunt.",
+      "Een website, een app of een tool laten bouwen is een stuk toegankelijker geworden. Met AI is de weg van een helder idee naar iets dat echt werkt veel korter. Wat vroeger een groot project was, is nu goed te overzien.",
+      "Daarmee wordt het ook haalbaar voor kleine praktijken en organisaties die betekenisvol werk doen. Een goed idee kan klein beginnen en toch echt werken.",
     ],
-    reflection: "Je ziet AI aankomen. Wat je nog niet ziet, is waar het hier werkelijk zou helpen.",
-    examplesIntro: "Een paar dingen die mogelijk zijn, om een idee te geven van waar dit over kan gaan:",
+    reflection: "Welk idee ligt er bij jou nog op de plank?",
+    examplesIntro: "Misschien zie je zoiets voor je:",
     examples: [
-      "Een aanmeldformulier dat zichzelf omzet in een dossier, een bevestigingsmail en een regel in de planning.",
-      "Een maandrapportage die zichzelf samenstelt uit de systemen waar de cijfers toch al in staan.",
-      "Gespreksverslagen die uit een opname komen rollen, in jullie eigen vorm en met jullie eigen woorden.",
-      "Een overzicht waarin je ziet wat het werk oplevert, in plaats van dat elk kwartaal opnieuw bij elkaar te zoeken.",
-      "Aanmeldingen, deelnemers en communicatie die op één plek samenkomen in plaats van in vier.",
-      "Een klein intern hulpmiddel dat precies één stap uit jullie proces overneemt, en verder niets.",
+      "Een vernieuwing van je website.",
+      "Een webshop naast je praktijk.",
+      "Een online lesomgeving naast je fysieke aanbod.",
+      "Aanmeldingen die rechtstreeks in je administratie terechtkomen.",
+      "Deelnemers die hun aanmeldingen of lidmaatschap kunnen beheren.",
+      "Gespreksverslagen die zichzelf uitschrijven.",
+      "Een tool voor dat ene klusje dat te veel tijd kost.",
     ],
-    examplesNote: "Wat hiervan zinvol is, hangt af van hoe het werk nu loopt. Daar begint het gesprek.",
   },
   about: {
     eyebrow: "Over mij",
     heading: "Simon van Meegdenburg",
     paragraphs: [
       "Mijn achtergrond ligt in IT en data-engineering. Waar ik naartoe beweeg is het bouwen zelf: werkende tools, kleine systemen, dingen die je maandagochtend kunt gebruiken.",
-      "AI Wise is mijn eenmanszaak, gevestigd in Amsterdam. Ik werk het liefst met kleine organisaties die werk doen waar iemand echt iets aan heeft, en die dicht genoeg op de uitvoering zitten om te weten waar het schuurt.",
+      "AI Wise is mijn eenmanszaak. Ik werk het liefst met kleine organisaties die werk doen waar iemand echt iets aan heeft, en die dicht genoeg op de uitvoering zitten om te weten waar het schuurt.",
       "Wat dit vak voor mij de moeite waard maakt is de zorgvuldigheid. De context begrijpen, de scope klein houden, testen, opschrijven wat er gebouwd is, en het netjes overdragen. AI maakt het bouwen snel. De zorgvuldigheid moet je er zelf in houden.",
     ],
     portraitAlt: "Portret van Simon van Meegdenburg",
@@ -164,7 +175,7 @@ const nl: Copy = {
     note: "Een kort bericht is genoeg. Er zit geen verplichting aan vast.",
   },
   footer: {
-    blurb: "AI, data en automatisering voor kleine organisaties met betekenisvol werk. Amsterdam.",
+    blurb: "AI, data en automatisering voor kleine organisaties met betekenisvol werk.",
     directTitle: "Direct",
     legalTitle: "Zakelijk",
     kvkLabel: "KvK",
@@ -214,7 +225,6 @@ const nl: Copy = {
         heading: "Verwerkingsverantwoordelijke",
         list: [
           "AI Wise, eenmanszaak van Simon van Meegdenburg",
-          "Amsterdam, Nederland",
           "KvK 93385498",
           "simon@aiwise.it.com",
         ],
@@ -230,7 +240,7 @@ const en: Copy = {
   meta: {
     title: "AI Wise · AI, data and automation for small organizations",
     description:
-      "AI Wise is the practice of Simon van Meegdenburg in Amsterdam. I build practical internal tools, workflow automation and reporting for small organizations doing work that matters.",
+      "AI Wise is the practice of Simon van Meegdenburg. I build practical internal tools, workflow automation and reporting for small organizations doing work that matters.",
     ogAlt: "AI Wise, Automation in Service of Life",
   },
   nav: {
@@ -239,8 +249,8 @@ const en: Copy = {
     language: "Language",
   },
   hero: {
-    eyebrow: "AI, data and automation · Amsterdam",
-    title: "Automation in service of life",
+    eyebrow: "AI, data and automation",
+    title: ["Automation in service of life"],
     lead: "With AI Wise I build tools that lighten recurring work and make space for the work that truly matters.",
     cta: "Get in touch",
   },
@@ -269,7 +279,7 @@ const en: Copy = {
     heading: "Simon van Meegdenburg",
     paragraphs: [
       "My background is in IT and data engineering. What I have moved toward is the building itself: working tools, small systems, things you can use on Monday morning.",
-      "AI Wise is my one-person practice, based in Amsterdam. I like working with small organizations doing work that matters to someone, close enough to the day-to-day to know where it chafes.",
+      "AI Wise is my one-person practice. I like working with small organizations doing work that matters to someone, close enough to the day-to-day to know where it chafes.",
       "What makes this craft worth it to me is the care. Understanding the context, keeping scope small, testing, writing down what got built, handing it over properly. AI makes building fast. Keeping it careful is still on you.",
     ],
     portraitAlt: "Portrait of Simon van Meegdenburg",
@@ -291,7 +301,7 @@ const en: Copy = {
     note: "A short message is enough. Nothing follows from it that you do not ask for.",
   },
   footer: {
-    blurb: "AI, data and automation for small organizations doing work that matters. Amsterdam.",
+    blurb: "AI, data and automation for small organizations doing work that matters.",
     directTitle: "Direct",
     legalTitle: "Company",
     kvkLabel: "Chamber of Commerce",
@@ -341,7 +351,6 @@ const en: Copy = {
         heading: "Controller",
         list: [
           "AI Wise, sole proprietorship of Simon van Meegdenburg",
-          "Amsterdam, the Netherlands",
           "Chamber of Commerce 93385498",
           "simon@aiwise.it.com",
         ],

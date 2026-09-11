@@ -150,16 +150,20 @@ Vier inhoudelijke secties.
 
 **S1, Hero**
 
-- R-S1.1: Eyebrow, `h1` met de tagline als display-regel, lead-paragraaf, één knop.
-  Structuur volgt `Home.Hero`.
-- R-S1.2: De `h1` draagt de tagline. Het designsysteem zet die in sentence case als
-  display-kop, zoals `Home.jsx` het doet, en houdt de regel in beide talen Engels. De
-  `h1` krijgt daarom `lang="en"`, zodat een schermlezer hem goed uitspreekt op de
-  Nederlandse pagina. In de footer staat de tagline wél met hoofdletters, als merkelement.
-- R-S1.3: Lead-paragraaf: één tot twee zinnen die in gewone taal zeggen wat Simon doet.
-  Richting (NL): *"Met AI Wise bouw ik tools op maat die terugkerend werk verlichten en
-  ruimte maken voor het werk dat er echt toe doet."* Deze zin is al goedgekeurd voor
-  outreach.
+- R-S1.1: Eyebrow, `h1`, lead-paragraaf, één knop. Structuur volgt `Home.Hero`.
+- R-S1.2: **De eyebrow draagt de tagline**, in het Engels op beide taalversies, met
+  `lang="en"` op de Nederlandse pagina. De `h1` zegt in de taal van de pagina wat Simon
+  doet. Dit wijkt af van `Home.jsx` in het designsysteem, waar de tagline de `h1` is: een
+  Engelse kop vertelde een Nederlandse bezoeker niets over het werk. Vastgesteld (NL):
+  *"Jij ziet het voor je. Ik bouw het."*
+- R-S1.2a: De kop breekt op de zinsgrens. Elke zin is een eigen regel in de markup, want
+  een gebalanceerde regelafbreking splitst anders de eerste zin. De display-maat van 54px
+  geldt vanaf 1200px; daaronder is het 45px, zodat de eerste zin ook tussen 1024 en 1200px
+  op één regel past. Op mobiel mag de eerste zin zelf over twee regels lopen.
+- R-S1.3: Lead-paragraaf: in gewone taal wat Simon maakt en voor wie. Vastgesteld (NL):
+  *"Met AI maak ik apps, websites en tools die terugkerend werk uit handen nemen. Het
+  liefst voor organisaties die werk doen waar de wereld iets aan heeft."* Apps en websites
+  zijn de vorm; het uit handen nemen van terugkerend werk is wat een tool doet.
 - R-S1.4: Eén knop, `signal`, die naar `#contact` ankert. Zie R-V6.
 - R-S1.5: De hero draagt de enige weave-plaatsing van de pagina. Zie R-V4.
 - R-S1.6: Minimaal circa 620px hoog op desktop, verticaal gecentreerd, met een hairline
@@ -167,25 +171,28 @@ Vier inhoudelijke secties.
 
 **S2, Visie**
 
-- R-S2.1: Werkt de kernstelling uit via een herkenbare werksituatie, niet via
-  capaciteiten. Het designsysteem is hier expliciet: schrijf "elke maand bouwt iemand
-  hetzelfde rapport opnieuw uit drie exports", niet "stroomlijn je rapportage".
-- R-S2.2: Draagt impliciet de onderzoeksfase: de sectie beschrijft een houding en een
-  manier van kijken. Er wordt nergens gezegd dat er nog geen aanbod is; er wordt eenvoudig
-  geen aanbod gedaan.
+- R-S2.1: **De visie is algemeen.** Ze beschrijft de verschuiving: een website, app of tool
+  laten bouwen is een stuk toegankelijker geworden, en daarmee haalbaar voor kleine
+  praktijken en organisaties die betekenisvol werk doen. Concrete situaties horen in de
+  voorbeelden, niet in de visie.
+- R-S2.2: **AI is de reden, niet het onderwerp.** De visie gaat over wat er nu mogelijk is.
+  Ze neemt geen deel aan de discussie of AI er zou moeten zijn, en formuleert positief. Het
+  doel is de lezer te inspireren over wat er nu kan. Er wordt geen aanbod gedaan.
+- R-S2.2a: Kopje *Wat er nu kan*, kop *Wat je voor ogen hebt, is nu binnen bereik*. De
+  reflectie sluit de visie af als vraag waarmee de lezer de pagina verlaat: *Welk idee ligt
+  er bij jou nog op de plank?*
 - R-S2.3: **Geen servicegrid, wel een opsomming ter inspiratie.** De vier `Card`-tegels uit
   `Home` ("Workflow automation", "Dashboards and reporting", "Internal tools", "Data
-  groundwork") worden niet overgenomen: vier tegels met dienstnamen lezen als een menu.
-  In plaats daarvan draagt de sectie zes concrete voorbeelden van wat mogelijk is, bedoeld
-  om de gedachten te prikkelen. Elk voorbeeld beschrijft een situatie, niet een dienst: "een
-  maandrapportage die zichzelf samenstelt uit de systemen waar de cijfers toch al in staan",
-  niet "rapportage-automatisering". Uitvoering als lijst, zonder kaders, iconen of kopjes,
-  met een afsluitende regel dat wat zinvol is afhangt van hoe het werk nu loopt.
-- R-S2.3b: **Twee kolommen vanaf 1024px.** De houding staat links, de voorbeelden rechts,
+  groundwork") worden niet overgenomen: tegels met dienstnamen lezen als een menu. In
+  plaats daarvan een lijst van zeven korte, volledige voorbeelden onder de intro *Misschien
+  zie je zoiets voor je:*, zonder kaders, iconen, kopjes of categorieën, en zonder
+  afsluitende regel. Elk voorbeeld is kort maar compleet en draagt nog steeds de waarde.
+  De lijst is door Simon zelf geschreven.
+- R-S2.3b: **Twee kolommen vanaf 1024px.** De visie staat links, de voorbeelden rechts,
   gescheiden door een hairline in `border-subtle`. Beide kolommen komen op 488px uit binnen
   de 1200px-container, wat neerkomt op 58 tekens: binnen de leesmaat van 68 die het
   designsysteem stelt. Op het breekpunt zelf is elke kolom 432px, ofwel 51 tekens, wat nog
-  comfortabel leest. Onder 1024px stapelen ze, houding eerst, en wordt de verticale hairline
+  comfortabel leest. Onder 1024px stapelen ze, visie eerst, en wordt de verticale hairline
   een horizontale scheiding boven de voorbeelden. De voorbeeldenlijst is altijd één kolom;
   twee kolommen binnen een kolom zouden de lijst terugbrengen tot losse fragmenten.
 - R-S2.3a: De voorbeelden zijn illustratie, geen aanbod. Ze noemen geen prijs, geen
@@ -193,11 +200,11 @@ Vier inhoudelijke secties.
   expliciet bij dat het voorbeelden zijn en geen dienstencatalogus, zodat een model er geen
   aanbod van maakt.
 - R-S2.4: De vier kernwaarden worden **niet** als genummerd blok opgevoerd zoals in de
-  kit. Ze zijn herkenbaar in de inhoud aanwezig. Waardentaal die ornamenteel wordt is een
-  merkrisico.
+  kit. Een eigen sectie over kernwaarden, met *passende technologie in plaats van zoveel
+  mogelijk* als vertrekpunt, is een kandidaat voor een latere uitbreiding van de site.
 - R-S2.5: Hier staat de enige reflectie op de pagina, in Newsreader. Het designsysteem
   staat er maximaal één per surface toe.
-- R-S2.6: Maximaal circa 180 woorden per taalversie, exclusief de reflectie.
+- R-S2.6: De visie is kort: rond de zeventig woorden, exclusief de reflectie.
 - R-S2.7: Geen kwantitatieve claim over tijdsbesparing, veiligheid of privacy.
 
 **S3, Over Simon**
@@ -548,6 +555,13 @@ behandeld.
 - R-C4: Elke claim heeft bewijs of een zichtbare kwalificatie. Nooit uitspraken over
   tijdsbesparing, veiligheid of privacy-uitkomsten.
 - R-C5: Alle copy staat in `src/content/copy.ts`.
+- R-C6: **Geen locatie.** AI Wise werkt op afstand en is niet aan een plaats gebonden. Geen
+  stad of land in koppen, lopende tekst, meta-beschrijvingen, structured data of
+  `llms.txt`. De enige uitzondering is de wettelijke bedrijfsidentificatie in de footer;
+  hoe die eruitziet is een geparkeerde vraag.
+- R-C7: Wat Simon vertelt is richting, geen tekst om over te nemen. Teksten die hij zelf
+  volledig uitschrijft, worden overgenomen met alleen spelling- en consistentiecorrecties,
+  en die worden benoemd.
 
 ---
 
