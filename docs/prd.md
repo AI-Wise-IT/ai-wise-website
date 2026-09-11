@@ -403,16 +403,19 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   leest. Het telefoonnummer staat in de kit-footer en blijft daar; in S4 zijn e-mail en
   WhatsApp de twee routes.
 - R-S5.3: Kolom *Zakelijk* (Engels *Business details*) met KvK-nummer `93385498` (Engels
-  *Chamber of Commerce*), btw-identificatienummer `NL005019332B52` (Engels *VAT no.*),
-  vestigingsplaats en de link naar de privacyverklaring. Die link staat in de linkkleur,
-  signal blue (5,11:1 op near-black), zodat hij tussen de gewone gegevens als link
+  *Chamber of Commerce*), btw-identificatienummer `NL005019332B52` (Engels *VAT no.*) en de
+  link naar de privacyverklaring; geen vestigingsplaats (R-S5.5). Die link staat in de
+  linkkleur, signal blue (5,11:1 op near-black), zodat hij tussen de gewone gegevens als link
   herkenbaar is. Bij hover wordt hij warm light met een onderstreping; de focusring komt uit
   `base.css`. Alle footerlinks delen die stijl via één klasse, `.site-footer__link`.
 - R-S5.4: Een rule, daaronder de copyrightregel `© 2026 AI Wise`, 12px in `text-muted`.
   Het jaar is het jaar van de build (`new Date().getFullYear()`), en de regel is in beide
   talen gelijk, dus hij staat niet in `copy.ts`. De tagline staat hier niet meer, want die
   staat al onder het logo.
-- R-S5.5: Vestigingsadres, zie O-2.
+- R-S5.5: Geen vestigingsplaats of vestigingsadres. AI Wise werkt op afstand en is niet aan
+  een plaats gebonden (R-C6). Voor de informatieplicht (R-J4) staan handelsnaam, KvK-nummer,
+  btw-identificatienummer en contactgegevens in de footer; de vestigingsplaats is bewust
+  weggelaten.
 
 **S6, WhatsApp-knop**
 
@@ -921,9 +924,9 @@ behandeld.
   een opdracht leidt is door Simon bevestigd: *Komt er wel een opdracht uit voort, dan bewaar
   ik ze zolang ze daarvoor nodig zijn.* en *If it does, I keep them for as long as the work
   needs them.*
-- R-J4: Informatieplicht (art. 3:15d BW): bedrijfsnaam, KvK-nummer,
-  btw-identificatienummer, contactgegevens en vestigingsadres eenvoudig vindbaar. Het adres
-  is een open punt, zie O-2.
+- R-J4: Informatieplicht (art. 3:15d BW): handelsnaam, KvK-nummer,
+  btw-identificatienummer en contactgegevens eenvoudig vindbaar, in de footer (R-S5.3). De
+  vestigingsplaats is bewust weggelaten, omdat AI Wise op afstand werkt (R-S5.5).
 - R-J5: Geen claims over veiligheid, privacy of resultaten zonder onderbouwing.
 - R-J6: De privacyverklaring beschrijft alleen wat er werkelijk gebeurt. Als er iets aan de
   verwerking verandert, wordt de tekst in dezelfde commit aangepast.
@@ -946,8 +949,8 @@ behandeld.
 - R-C5: Alle copy staat in `src/content/copy.ts`.
 - R-C6: **Geen locatie.** AI Wise werkt op afstand en is niet aan een plaats gebonden. Geen
   stad of land in koppen, lopende tekst, meta-beschrijvingen, structured data of
-  `llms.txt`. De enige uitzondering is de wettelijke bedrijfsidentificatie in de footer;
-  hoe die eruitziet is een geparkeerde vraag.
+  `llms.txt`. Ook de wettelijke bedrijfsidentificatie in de footer noemt geen plaats; zie
+  R-S5.5.
 - R-C7: Wat Simon vertelt is richting, geen tekst om over te nemen. Teksten die hij zelf
   volledig uitschrijft, worden overgenomen met alleen spelling- en consistentiecorrecties,
   en die worden benoemd.
@@ -989,7 +992,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | S2 visie met de reflectie in Newsreader en zeven voorbeelden ter inspiratie | Klaar; tekst in beide talen vastgesteld |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; tekst in beide talen vastgesteld, de Nederlandse door Simon zelf geschreven |
 | S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar; tekst in beide talen door Simon vastgesteld |
-| S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, blauwe privacylink en copyrightregel | Klaar; tekst in beide talen vastgesteld |
+| S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, blauwe privacylink en copyrightregel | Klaar; tekst in beide talen vastgesteld |
 | S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen vanaf de contactknoppen | Klaar |
 | Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
 | 404-pagina in beide talen, noindex, zonder canonical en buiten de sitemap | Klaar |
@@ -1025,7 +1028,8 @@ Gesloten sinds versie 4:
   `card-1700.png` als deelafbeelding. Zie R-S.2.
 
 - Concreetheid in de visie: er staan nu zeven voorbeelden in, ter inspiratie. Zie R-S2.3.
-- Vestigingsadres: alleen "Amsterdam" plus het KvK-nummer, zoals voorgesteld.
+- Vestigingsadres: geen plaats in de footer, alleen handelsnaam, KvK-nummer, btw-id en
+  contactgegevens. Zie R-S5.5.
 - Webstatistiek: Vercel Web Analytics, cookieloos. Zie R-J2.
 - Modeltraining: niet toegestaan. Zie R-S.13.
 - Em-dashes in het designsysteem: de regel is afgebakend tot publieke teksten, de
@@ -1119,6 +1123,10 @@ Gesloten sinds versie 4:
   gelijkmatige near-black laag van 86% met de lockup in het midden, gemaakt met
   `docs/share-image/generate.mjs`, en een nieuwe alt-tekst in beide talen. Simon heeft de zin
   over bewaren zolang een opdracht dat nodig heeft bevestigd. R-S.2, R-J3 en O-7.
+- **Amsterdam uit de footer**: AI Wise werkt op afstand, dus de kolom met zakelijke gegevens
+  noemt geen vestigingsplaats meer. Handelsnaam, KvK-nummer, btw-id en contactgegevens
+  blijven; het veld `city` is uit `COMPANY` in `copy.ts` verwijderd. R-S5.3, R-S5.5, R-J4 en
+  R-C6.
 
 ### Versie 6 ten opzichte van versie 5
 

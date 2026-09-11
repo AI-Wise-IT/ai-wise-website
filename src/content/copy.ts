@@ -27,7 +27,6 @@ export const LANGS: Lang[] = ["nl", "en"];
 export const COMPANY = {
   name: "AI Wise",
   owner: "Simon van Meegdenburg",
-  city: "Amsterdam",
   email: "simon@aiwise.it.com",
   phoneDisplay: "+31 6 13926494",
   phoneIntl: "+31613926494",
