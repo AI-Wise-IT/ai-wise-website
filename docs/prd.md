@@ -493,28 +493,39 @@ in `tokens/` en `guidelines/`.
 ### 9.1 Toegankelijkheid
 
 - R-A1: WCAG 2.1 AA. `guidelines/colour-contrast.html` is de referentie. Op near-black is
-  het palet al in orde: warm light 16,79:1, moss 5,29:1, signal blue 5,11:1.
+  het palet al in orde: warm light 16,79:1, moss 5,29:1, signal blue 5,11:1. De norm is en
+  blijft AA: 4,5:1 voor alle tekst op de site, met de 3:1 die AA toestaat voor grote tekst
+  en voor interface-onderdelen. Op het contrast is precies één uitzondering vastgelegd, R-A1b.
 - R-A1a: **Contrast boven de herofoto.** Gemeten in Chrome op de gebouwde pagina: een
   screenshot met alle tekst verborgen, zodat alleen foto en laag overblijven, en daarin de
   pixels onder elke tekstregel. Per element de waarde tegen de lichtste en de donkerste
-  pixel eronder, Nederlandse pagina, header in de doorzichtige toestand:
+  pixel eronder, Nederlandse pagina, header in de doorzichtige toestand, eyebrow op 15px:
 
   | Element (eis) | 1440x900 | 1100x800 | 768x1024 | 375x812 |
   | --- | --- | --- | --- | --- |
   | Kop, warm light (3:1) | 8,73 tot 14,14 | 10,80 tot 14,32 | 10,97 tot 11,46 | 10,97 tot 11,62 |
-  | Lead, `text-secondary` (4,5:1) | 5,75 tot 8,31 | 5,74 tot 8,37 | 5,62 tot 5,97 | 5,53 tot 6,94 |
-  | Eyebrow, moss (4,5:1) | **3,77** tot 4,30 | **3,82** tot 4,25 | **3,55** tot 3,66 | **3,50** tot 3,66 |
+  | Lead, `text-secondary` (4,5:1) | 5,75 tot 8,31 | 5,74 tot 8,37 | 5,62 tot 5,97 | 5,53 tot 6,96 |
+  | Eyebrow met de tagline, moss (3:1, R-A1b) | 3,56 tot 4,30 | 3,70 tot 4,25 | 3,55 tot 3,66 | 3,50 tot 3,66 |
   | Knoplabel, near-black op signal blue (3:1) | 5,11 | 5,11 | 5,11 | 5,11 |
-  | Knopvlak tegen de foto (3:1) | 4,22 tot 4,91 | 4,28 tot 4,94 | 3,10 tot 3,90 | 3,38 tot 4,65 |
-  | Taalwissel, actief, warm light (4,5:1) | 9,72 tot 10,30 | 9,75 tot 10,32 | 11,47 tot 11,75 | 11,47 tot 11,75 |
+  | Knopvlak tegen de foto (3:1) | 4,22 tot 4,91 | 4,19 tot 4,94 | 3,14 tot 3,90 | 3,40 tot 4,65 |
+  | Taalwissel, actief, warm light (4,5:1) | 9,72 tot 10,30 | 9,75 tot 10,32 | 11,47 tot 11,63 | 11,47 tot 11,75 |
   | Taalwissel, andere taal, `text-secondary` (4,5:1) | 5,14 tot 5,44 | 5,13 tot 5,45 | 6,06 tot 6,21 | 6,06 tot 6,21 |
   | Wordmark, warm light (3:1) | 15,79 tot 15,93 | 15,80 tot 16,06 | 11,63 tot 11,95 | 11,59 tot 11,80 |
   | Glyph, moss-streng (3:1) | 4,98 tot 5,06 | 4,98 tot 5,06 | 3,70 tot 3,77 | 3,65 tot 3,76 |
 
-  Alles haalt AA, **behalve de eyebrow in moss**. Moss haalt op puur near-black 5,29:1;
-  om boven de foto 4,5:1 te halen moet de laag achter de eyebrow rond 92% near-black zijn,
-  en dan is de linkerhelft van de foto vrijwel zwart. De kleur is niet eigenmachtig
-  aangepast. Zie O-6 voor de keuze.
+  Alles haalt AA, en de eyebrow haalt de 3:1 van zijn uitzondering. In moss haalt de
+  eyebrow boven de foto geen 4,5:1: dat zou een laag van rond 92% near-black achter de
+  eyebrow vragen, en dan is de linkerhelft van de foto vrijwel zwart.
+- R-A1b: **Uitzondering: de tagline in de hero.** De eyebrow boven de herofoto, met de
+  tagline "Automation in Service of Life", hoeft geen 4,5:1 te halen maar minimaal 3:1. De
+  reden: het is een herhaalde merkregel, die ook in de lockup in de footer staat, en geen
+  inhoud die een bezoeker nodig heeft om de pagina te begrijpen. Om de leesbaarheid te
+  helpen staat hij in de hero op 15px (`--aiw-text-sm`) in plaats van de 13px uit
+  `base.css`, via `.hero__eyebrow` in `site.css`. Kleur, gewicht, uppercase en spatiëring
+  blijven gelijk. Hij past op elke gecontroleerde breedte op één regel, ook op 375px (de
+  tekst is 256px breed), dus de 15px geldt zonder breakpoint. Gemeten minimum: 3,50:1 op
+  375x812, zie R-A1a. De uitzondering geldt alleen voor deze eyebrow; de andere eyebrows
+  staan op near-black, waar moss 5,29:1 haalt. Vastgesteld door Simon op 11 september 2026.
 - R-A2: Zichtbare focus op elk interactief element, volgens R-V14.
 - R-A3: Volledig met het toetsenbord te bedienen, inclusief taalwissel en WhatsApp-knop.
   Een skip-link staat vooraan de pagina.
@@ -675,7 +686,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | Designsysteem-import: acht tokenbestanden, logo, weave-masters, favicons | Klaar; de weave-masters staan er alleen nog omdat `base.css` ernaar verwijst |
 | Fonts gesubset en geconverteerd, samen 42 KB | Klaar |
 | S0 header met taalwissel, doorzichtig boven de herofoto en dicht na scrollen, zonder JavaScript | Klaar |
-| S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; eyebrow-contrast wacht op O-6 |
+| S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
 | S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
 | S3 over Simon, portret 4:5 gecropt bij de build | Klaar, copy is concept |
 | S4 contact met e-mail en WhatsApp | Klaar; LinkedIn is voorbereid en wacht op de URL (O-3) |
@@ -690,7 +701,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | `vercel.json` met cache- en securitykoppen | Klaar, nog niet gedeployed |
 | Em-dash-regel in het designsysteem, afgebakend tot publieke teksten | Klaar in `readme.md` en `SKILL.md` |
 
-Wat nog moet gebeuren staat in O-1 tot en met O-6, plus de deploy zelf.
+Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 ---
 
@@ -703,9 +714,12 @@ Wat nog moet gebeuren staat in O-1 tot en met O-6, plus de deploy zelf.
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
-| O-6 | **Eyebrow boven de herofoto haalt geen AA.** Moss haalt 3,50 tot 3,82:1 waar 4,5:1 nodig is (R-A1a). Drie mogelijkheden: (a) de eyebrow in de hero in `text-secondary` (#B0AFAA), dan minstens 5,8:1 bij de huidige laag, en dezelfde kleur als de lead; (b) in warm light, minstens 11:1, maar dan concurreert hij met de kop; (c) moss houden en de laag achter de eyebrow naar circa 92% near-black brengen, wat de linkerhelft van de foto vrijwel zwart maakt. Voorstel: (a). De moss-kleur blijft dan in de rest van de pagina de eyebrowkleur. | Simon: kiezen | Eén AA-fout op de pagina |
 
 Gesloten sinds versie 4:
+
+- O-6, eyebrow boven de herofoto: moss blijft, de laag blijft. De norm blijft 4,5:1 en de
+  tagline in de hero-eyebrow is een vastgelegde uitzondering met minimaal 3:1, op 15px.
+  Zie R-A1b.
 
 - Concreetheid in de visie: er staan nu zes voorbeelden in, ter inspiratie. Zie R-S2.3.
 - Vestigingsadres: alleen "Amsterdam" plus het KvK-nummer, zoals voorgesteld.
@@ -725,7 +739,7 @@ Gesloten sinds versie 4:
 
 | Stap | Inhoud | Afhankelijk van |
 | --- | --- | --- |
-| 1 | Site lokaal bekijken en de copy in beide talen reviewen, eyebrowkleur in de hero kiezen | Simon, O-2, O-3 en O-6 |
+| 1 | Site lokaal bekijken en de copy in beide talen reviewen | Simon, O-2 en O-3 |
 | 2 | Repo koppelen aan Vercel, preview-deploy | Simon: Vercel-toegang |
 | 3 | Web Analytics aanzetten in het dashboard, O-4 sluiten | Stap 2 |
 | 4 | Lighthouse meten op de preview, O-5 sluiten | Stap 2 |
@@ -749,8 +763,11 @@ Gesloten sinds versie 4:
   veilige terugval naar de dichte header. Glyph en wordmark staan daarvoor inline, zonder
   hun achtergrondvlak. R-S0.5 tot en met R-S0.7.
 - De regel "geen gradients" kent nu één uitzondering: de leesbaarheidslaag. R-V5.
-- Contrast boven de foto gemeten en vastgelegd; de eyebrow in moss haalt geen AA. R-A1a en
-  O-6.
+- Contrast boven de foto gemeten en vastgelegd. R-A1a.
+- **Contrastuitzondering voor de tagline in de hero.** De norm blijft 4,5:1; de eyebrow met
+  de tagline boven de foto moet minimaal 3:1 halen, omdat hij een herhaalde merkregel is.
+  Hij staat daar nu op 15px in plaats van 13px en haalt 3,50 tot 4,30:1. O-6 is gesloten.
+  R-A1, R-A1a en R-A1b.
 
 ### Versie 5 ten opzichte van versie 4
 

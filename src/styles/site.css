@@ -171,7 +171,11 @@
       transparent 88%)}
 }
 
-.hero__eyebrow{margin-bottom:22px}
+/* The eyebrow over the photograph is set a step larger than base.css (15px
+   instead of 13px). It is the English tagline, a repeated brand line, and is
+   held to 3:1 rather than 4.5:1 over the photograph; the larger size helps it
+   read. Decision and measured values: docs/prd.md, R-A1a and R-A1b. */
+.hero__eyebrow{margin-bottom:22px;font-size:var(--aiw-text-sm)}
 /* Each line of the heading is its own block, so it breaks where a sentence
    ends. Within a line, the balanced wrap from base.css still applies on narrow
    screens. The heading may run wider than the lead; the lead keeps its own
