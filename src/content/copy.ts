@@ -5,7 +5,7 @@
  * STATUS, Dutch: hero, vision, examples, about, contact, footer and meta text
  * reviewed with Simon and settled; the about text is his own.
  *
- * STATUS, English: the hero, vision, examples, about and meta text are settled. The
+ * STATUS, English: the hero, vision, examples, about, contact and meta text are settled. The
  * other sections are still the first draft and are being written afresh one at
  * a time, as their own text rather than a translation. English is British English, consistently (the page is
  * en_GB); the first-draft sections do not follow that yet.
@@ -297,17 +297,21 @@ const en: Copy = {
   },
   contact: {
     eyebrow: "Contact",
-    heading: "I would like to hear from you",
+    heading: "I’d love to hear from you",
     paragraphs: [
-      "Wondering what AI could mean for your organization, without knowing where you would start? I would be glad to talk it through. AI Wise is young and I am mostly working out where the opportunities actually lie in practice, so a conversation like that is worth as much to me as it is to you.",
-      "Building with AI yourself and want to compare notes on how you approach it? Equally welcome.",
+      "Is there an idea you’d like to see built, a website that’s overdue for an update, or work that keeps coming back? Tell me about it, even if it isn’t fully thought through yet. AI Wise is young and I’m still discovering where I can be most useful, so I’m curious what you’re picturing.",
+    ],
+    collaborationIntro: "I’m open to working together.",
+    collaboration: [
+      "Are you a developer too? AI moves so fast that we’ll get further together than on our own. I like comparing notes on how we work, so we can inspire one another and keep moving forward.",
+      "Are you a designer or content writer? I’m happy to leave design and writing to people who have made it their craft. That lets me focus on what I do best: building the functionality.",
     ],
     emailLabel: "Email",
     linkedinLabel: "LinkedIn",
     whatsappLabel: "WhatsApp",
-    whatsappPrefill: "Hi Simon, I came across the AI Wise site and have a question.",
+    whatsappPrefill: "Hi Simon, I found the AI Wise website and have a question.",
     whatsappFloatLabel: "WhatsApp",
-    note: "A short message is enough. Nothing follows from it that you do not ask for.",
+    note: "A short message will do.",
   },
   footer: {
     blurb: "AI, data and automation for small organizations doing work that matters.",

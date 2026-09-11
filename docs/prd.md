@@ -342,6 +342,24 @@ Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
 - R-S4.5: Geen contactformulier in deze ronde. De `components/forms/` groep wordt niet
   geïmporteerd.
 - R-S4.6: Geen tweede blauwe knop. Zie R-V6.
+- R-S4.7: **Op de Engelse pagina heeft Contact dezelfde opbouw**, als eigen tekst en geen
+  vertaling, in Brits Engels, door Simon goedgekeurd: één alinea, de overgangszin en twee
+  alinea's voor samenwerking. Kopje *Contact*, kop *I’d love to hear from you*.
+  - Alinea: *Is there an idea you’d like to see built, a website that’s overdue for an
+    update, or work that keeps coming back? Tell me about it, even if it isn’t fully thought
+    through yet. AI Wise is young and I’m still discovering where I can be most useful, so
+    I’m curious what you’re picturing.*
+  - Overgangszin: *I’m open to working together.*
+  - Ontwikkelaars: *Are you a developer too? AI moves so fast that we’ll get further
+    together than on our own. I like comparing notes on how we work, so we can inspire one
+    another and keep moving forward.*
+  - Ontwerpers en contentschrijvers: *Are you a designer or content writer? I’m happy to
+    leave design and writing to people who have made it their craft. That lets me focus on
+    what I do best: building the functionality.*
+  - Knoppen *Email*, *LinkedIn* en *WhatsApp*; afsluiter *A short message will do.*
+  - Het WhatsApp-bericht dat klaarstaat: *Hi Simon, I found the AI Wise website and have a
+    question.* Net als het Nederlandse gaat het via `encodeURIComponent` in de `wa.me`-link,
+    in de contactknop en in de zwevende knop.
 
 **S5, Footer**
 
@@ -458,7 +476,7 @@ ook: één template per type, niet per taal.
   uitbreiding.
 - R-L9a: **De Engelse versie is consequent Brits Engels**, passend bij `en_GB`:
   *organisations*, *recognise*, *modernised*. De hero, de visie met de voorbeelden, over mij,
-  en de titel en meta-description zijn zo vastgesteld; de secties die nog concept zijn
+  contact, en de titel en meta-description zijn zo vastgesteld; de secties die nog concept zijn
   volgen bij het herschrijven.
 - R-L10: Het designsysteem merkt Nederlandse typografische regels aan als open. In de
   praktijk zetten beide talen identiek. Als Nederlandse copy een andere maat of afbreking
@@ -739,7 +757,7 @@ behandeld.
     organisatie in de JSON-LD.
   - De oude positionering (*AI, data en automatisering*, *workflow-automatisering*,
     *rapportage*) staat nergens meer in Nederlandse tekst. In het Engels is ze uit de hero, de
-    visie, over mij en de meta weg; de secties die nog concept zijn hebben haar nog.
+    visie, over mij, contact en de meta weg; de secties die nog concept zijn hebben haar nog.
     `llms.txt` beschrijft het werk als apps, websites en tools en noemt agents nog niet. De
     JSON-LD heeft nog twee Engelse, voor beide talen gedeelde waarden uit de oude
     positionering: `jobTitle` *AI, data and automation engineer* en in `knowsAbout` onder
@@ -871,7 +889,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; tekst in beide talen vastgesteld; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
 | S2 visie met de reflectie in Newsreader en zeven voorbeelden ter inspiratie | Klaar; tekst in beide talen vastgesteld |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; tekst in beide talen vastgesteld, de Nederlandse door Simon zelf geschreven |
-| S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar, tekst door Simon vastgesteld |
+| S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar; tekst in beide talen door Simon vastgesteld |
 | S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, privacylink en copyrightregel | Klaar |
 | S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen vanaf de contactknoppen | Klaar |
 | Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
@@ -891,7 +909,7 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
-| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, over mij, en de titel en meta-description vastgesteld; contact, footer en de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
+| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, over mij, contact, en de titel en meta-description vastgesteld; footer en de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
@@ -964,6 +982,9 @@ Gesloten sinds versie 4:
   de Nederlandse pagina, in plaats van drie alinea's; het veld `paragraphs` en de weergave
   daarvan zijn weg, en de description zegt *that makes a difference*. R-S3.6, R-S3.8, R-L9a
   en R-S.1.
+- **Engelse contacttekst vastgesteld**, met dezelfde opbouw als de Nederlandse: één alinea,
+  de overgangszin *I’m open to working together.* met twee alinea's voor samenwerking, een
+  nieuw WhatsApp-bericht en de afsluiter *A short message will do.* R-S4.7, R-L9a en O-2.
 
 ### Versie 6 ten opzichte van versie 5
 
