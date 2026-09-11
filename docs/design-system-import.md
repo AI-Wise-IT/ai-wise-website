@@ -87,10 +87,18 @@ dependency or a third-party request the privacy statement would have to name.
 The system's rules still apply: outline only, stroke 1.5, `currentColor`, never
 larger than 32px, never replacing a word.
 
-**Portrait.** The original is a 3000x2001 landscape frame. The design system
-crops it 4:5. That crop is now done at build time, from the horizontal centre at
-full height, downscaled to 880x1100, rather than by `object-fit` in the browser.
-The original stays at `assets/profile-picture-professional.jpg`.
+**Portrait.** The original is a 3000x2001 landscape frame, kept at
+`assets/profile-picture-professional.jpg` and never sent to the browser. The
+design system crops it 4:5. The site uses two crops instead, by Simon's choice,
+because the upright portrait was out of proportion and on a phone he wants it
+landscape; the design system itself is unchanged. Both crops were cut once with
+sharp and saved as JPEG masters (quality 90) in `src/assets/about/`:
+`portrait-3x2.jpg` (left 398, top 0, 2100x1400, downscaled to 1440x960, 143 KB),
+shown below 768px where the section stacks, and `portrait-4x5.jpg` (left 808,
+top 0, 1280x1600, downscaled to 880x1100, 161 KB), shown from 768px in a 200px
+column beside the text. Both keep the face on the horizontal centre with the eyes
+near the upper third. `About.astro` builds the `<picture>` with `getImage()`, the
+same way `Hero.astro` does.
 
 ## Reproducing the font conversion
 

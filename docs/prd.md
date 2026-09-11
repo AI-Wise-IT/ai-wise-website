@@ -234,8 +234,23 @@ Vier inhoudelijke secties.
 
 **S3, Over Simon**
 
-- R-S3.1: Portret, 4:5 gecropt, 2px radius, ongefilterd en niet gegraded. Zo staat het in
-  het designsysteem en zo staat het in `Practice.jsx`.
+- R-S3.1: **Portret, 2px radius, ongefilterd en niet gegraded**, uit
+  `assets/profile-picture-professional.jpg` (3000x2001, liggend). Het designsysteem en
+  `Practice.jsx` croppen het portret 4:5. De site wijkt daar op smalle schermen van af, op
+  verzoek van Simon: het portret stond uit verhouding, en op een telefoon hoort het liggend.
+  Het designsysteem is daarvoor niet aangepast.
+  - Onder 768px, waar de sectie stapelt, staat het portret boven de lijst als liggende
+    3:2-uitsnede over de volle contentbreedte, het gezicht horizontaal in het midden en de
+    ogen rond het bovenste derde. Op 375x812 is dat 327x218px.
+  - Vanaf 768px staat de 4:5-uitsnede naast de lijst, in een kolom van 200px, dus 200x250px.
+    Daarmee ligt de hoogte van het portret dicht bij die van de korte tekst ernaast.
+    Gemeten op de gebouwde Nederlandse pagina: op 1440x900 portret 250px en lijst 254px, op
+    1024x768 portret 250px en lijst 254px. Op 768x1024 is de tekstkolom smaller en is de
+    lijst 363px hoog; het portret blijft 250px.
+  - Beide uitsneden zijn eenmalig met sharp uit het origineel gesneden en staan als
+    JPEG-master (kwaliteit 90) in `src/assets/about/`: `portrait-3x2.jpg` (links 398, boven
+    0, 2100x1400, verkleind naar 1440x960, 143 KB) en `portrait-4x5.jpg` (links 808, boven
+    0, 1280x1600, verkleind naar 880x1100, 161 KB). Het origineel gaat niet naar de browser.
 - R-S3.2: Eerste persoon enkelvoud. Nooit "wij", nooit als bureau. Het designsysteem is
   hier hard over: "I build internal tools", niet "AI Wise delivers solutions".
 - R-S3.3: Benoemt de achtergrond in IT en data-engineering en de beweging naar het bouwen
@@ -244,7 +259,14 @@ Vier inhoudelijke secties.
   die het professionele kader ondermijnen.
 - R-S3.5: Geen ervaringsclaims ("wat ik vaak zie", "uit ervaring") tenzij expliciet
   bevestigd.
-- R-S3.6: Maximaal circa 150 woorden per taalversie.
+- R-S3.6: Maximaal circa 150 woorden per taalversie. De Nederlandse versie telt 75 woorden.
+- R-S3.7: **Op de Nederlandse pagina is de tekst een opsomming van vijf korte punten**, door
+  Simon zelf geschreven en zonder correcties overgenomen (R-C7). Kopje *Over mij*, kop
+  *Simon van Meegdenburg*. De lijst is opgemaakt als de voorbeeldenlijst in de visie:
+  markers in moss, 16px tussen de punten, via de gedeelde klasse `.bullet-list` in
+  `site.css`. `copy.ts` laat per taal proza (`paragraphs`) of een lijst (`points`) toe, en de
+  sectie toont wat er staat. De Engelse pagina heeft nog de eerste versie in drie alinea's en
+  wordt later herschreven.
 
 **S4, Contact**
 
@@ -540,8 +562,11 @@ in `tokens/` en `guidelines/`.
 - R-P1: Lighthouse ten minste 95 voor Performance, Accessibility, Best Practices en SEO, op
   mobiel. Nog te meten, zie O-5.
 - R-P2: Largest Contentful Paint onder 2,0 seconden op 4G.
-- R-P3: Het portret wordt bij de build 4:5 gecropt en in avif, webp en jpg geleverd op vier
-  breedtes. Op de weergavemaat van 320px is dat circa 10 KB.
+- R-P3: Het portret is een `<picture>` gebouwd met `getImage()`, net als de herofoto, met
+  art direction op 768px (R-S3.1). Per uitsnede AVIF, WebP en JPEG: liggend op 480, 720, 960
+  en 1440px, staand op 200, 400 en 600px. Het laadt lazy. Op een telefoon van 375px met een
+  2x-scherm is dat de liggende AVIF van 720px, 18 KB; naast de lijst op een 2x-scherm de
+  staande AVIF van 400px, 19 KB.
 - R-P3a: De herofoto is het grootste element in beeld en dus de LCP-kandidaat. Hij laadt
   eager met `fetchpriority="high"`, nooit lazy. Een `<picture>` gebouwd met `getImage()`
   levert per uitsnede AVIF, WebP en JPEG op vijf breedtes (liggend 960 tot 2560, staand
@@ -688,7 +713,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | S0 header met taalwissel, doorzichtig boven de herofoto en dicht na scrollen, zonder JavaScript | Klaar |
 | S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
 | S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
-| S3 over Simon, portret 4:5 gecropt bij de build | Klaar, copy is concept |
+| S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; Nederlandse tekst door Simon geschreven en goedgekeurd, Engels is concept |
 | S4 contact met e-mail en WhatsApp | Klaar; LinkedIn is voorbereid en wacht op de URL (O-3) |
 | S5 footer met KvK, btw-id, vestigingsplaats en privacylink | Klaar |
 | S6 zwevende WhatsApp-knop, outline | Klaar |
@@ -768,6 +793,13 @@ Gesloten sinds versie 4:
   de tagline boven de foto moet minimaal 3:1 halen, omdat hij een herhaalde merkregel is.
   Hij staat daar nu op 15px in plaats van 13px en haalt 3,50 tot 4,30:1. O-6 is gesloten.
   R-A1, R-A1a en R-A1b.
+- **Nieuwe Over mij-sectie.** De Nederlandse tekst is een opsomming van vijf punten, door
+  Simon geschreven, 75 woorden. De lijst deelt de opmaak van de voorbeeldenlijst in de visie
+  via `.bullet-list`; de visie ziet er ongewijzigd uit. Het portret staat op smalle schermen
+  liggend (3:2) en vanaf 768px staand (4:5) in een kolom van 200px, zodat het niet meer
+  boven de korte tekst uittorent. Het oude `src/assets/portrait.jpg` is vervangen door twee
+  uitsneden in `src/assets/about/`. De afwijking van de 4:5 uit het designsysteem is Simons
+  keuze; het designsysteem is niet aangepast. R-S3.1, R-S3.6, R-S3.7 en R-P3.
 
 ### Versie 5 ten opzichte van versie 4
 

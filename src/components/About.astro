@@ -1,13 +1,28 @@
 ---
 /**
- * S3. The portrait is the only photograph on the site. Cropped 4:5 at 2px
- * radius, unfiltered and ungraded, as the design system requires.
+ * S3. Who is behind AI Wise, beside the only photograph of a person on the site.
+ * The portrait is unfiltered and ungraded, at 2px radius.
+ *
+ * The text is either a short bulleted list or prose, whichever the language
+ * sets in copy.ts. The Dutch page has the list, in Simon's own words.
+ *
+ * The portrait is art-directed rather than merely resized. Where the layout
+ * stacks, below 768px, it is a 3:2 landscape frame across the full content
+ * width, so it does not fill a phone screen on its own. From 768px it stands
+ * beside the text as a 4:5 frame, in a column sized so its height stays close
+ * to the height of the list. Measured values: docs/prd.md, R-S3.1.
+ *
+ * Both frames are cropped from assets/profile-picture-professional.jpg, the
+ * original 3000x2001 landscape photograph, and saved as JPEG masters (quality 90)
+ * with sharp. The browser never downloads the original or pixels it would throw
+ * away with object-fit.
+ *   portrait-3x2.jpg: extract left 398, top 0, 2100x1400, resized to 1440x960.
+ *   portrait-4x5.jpg: extract left 808, top 0, 1280x1600, resized to 880x1100.
+ * Both keep the face on the horizontal centre with the eyes near the upper third.
  */
-import { Picture } from "astro:assets";
-// Pre-cropped to 4:5 from assets/profile-picture-professional.jpg, which is the
-// original 3000x2001 landscape frame. Cropping at build rather than with
-// object-fit keeps the browser from downloading pixels it throws away.
-import portrait from "../assets/portrait.jpg";
+import { getImage } from "astro:assets";
+import landscape from "../assets/about/portrait-3x2.jpg";
+import upright from "../assets/about/portrait-4x5.jpg";
 import { COPY, type Lang } from "../content/copy";
 
 interface Props {
@@ -16,6 +31,30 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = COPY[lang];
+
+/* The media query that picks the upright frame. site.css switches the layout
+   to two columns at the same width, so the two cannot drift apart. */
+const UPRIGHT_MEDIA = "(min-width: 768px)";
+
+/* Rendered widths, matching the grid columns in site.css. Below 768px the frame
+   spans the container, which has 24px page margins on either side. */
+const LANDSCAPE_SIZES = "calc(100vw - 48px)";
+const UPRIGHT_SIZES = "200px";
+
+const LANDSCAPE_WIDTHS = [480, 720, 960, 1440];
+const UPRIGHT_WIDTHS = [200, 400, 600];
+
+async function set(src: typeof landscape, widths: number[]) {
+  const [avif, webp, jpg] = await Promise.all([
+    getImage({ src, widths, format: "avif", quality: 60 }),
+    getImage({ src, widths, format: "webp", quality: 76 }),
+    getImage({ src, widths, format: "jpg", quality: 80 }),
+  ]);
+  return { avif, webp, jpg };
+}
+
+const land = await set(landscape, LANDSCAPE_WIDTHS);
+const up = await set(upright, UPRIGHT_WIDTHS);
 ---
 
 <section class="section" id="over" aria-labelledby="about-heading">
@@ -24,18 +63,32 @@ const t = COPY[lang];
     <h2 class="section__heading" id="about-heading">{t.about.heading}</h2>
 
     <div class="about__layout">
-      <Picture
-        class="about__portrait"
-        src={portrait}
-        alt={t.about.portraitAlt}
-        widths={[320, 520, 640, 880]}
-        sizes="(min-width: 1024px) 320px, (min-width: 768px) 260px, min(100vw - 48px, 400px)"
-        formats={["avif", "webp"]}
-        loading="lazy"
-      />
+      <picture class="about__media">
+        <source media={UPRIGHT_MEDIA} type="image/avif" srcset={up.avif.srcSet.attribute} sizes={UPRIGHT_SIZES} width={upright.width} height={upright.height} />
+        <source media={UPRIGHT_MEDIA} type="image/webp" srcset={up.webp.srcSet.attribute} sizes={UPRIGHT_SIZES} width={upright.width} height={upright.height} />
+        <source media={UPRIGHT_MEDIA} type="image/jpeg" srcset={up.jpg.srcSet.attribute} sizes={UPRIGHT_SIZES} width={upright.width} height={upright.height} />
+        <source type="image/avif" srcset={land.avif.srcSet.attribute} sizes={LANDSCAPE_SIZES} />
+        <source type="image/webp" srcset={land.webp.srcSet.attribute} sizes={LANDSCAPE_SIZES} />
+        <img
+          class="about__portrait"
+          src={land.jpg.src}
+          srcset={land.jpg.srcSet.attribute}
+          sizes={LANDSCAPE_SIZES}
+          alt={t.about.portraitAlt}
+          width={landscape.width}
+          height={landscape.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
 
       <div class="section__body">
-        {t.about.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}
+        {t.about.points && (
+          <ul class="bullet-list">
+            {t.about.points.map((point) => <li>{point}</li>)}
+          </ul>
+        )}
+        {t.about.paragraphs?.map((p) => <p class="aiw-body">{p}</p>)}
       </div>
     </div>
   </div>

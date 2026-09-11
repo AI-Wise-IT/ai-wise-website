@@ -85,8 +85,8 @@ public/            static files served as-is
   llms.txt         orientation file for language models
   robots.txt       crawler policy
 src/
-  assets/          images that go through Astro's image pipeline: the portrait,
-                   and in hero/ the two eagle photographs behind the hero
+  assets/          images that go through Astro's image pipeline: in about/ the
+                   two portrait crops, in hero/ the two eagle photographs
   components/      the page sections and the small shared pieces
   content/copy.ts  all user-facing copy, both languages
   layouts/Base.astro  document shell, metadata, structured data

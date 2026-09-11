@@ -2,11 +2,11 @@
  * All user-facing copy, per language. Kept out of the components on purpose:
  * a text change should not be a code change.
  *
- * STATUS, Dutch: hero, vision and examples reviewed with Simon and settled.
- * About, contact, footer and meta text are still the first draft and get
- * rewritten section by section. English is the first draft throughout and is
- * written afresh once the Dutch is settled, as its own text rather than a
- * translation.
+ * STATUS, Dutch: hero, vision, examples and about reviewed with Simon and
+ * settled; the about text is his own. Contact, footer and meta text are still
+ * the first draft and get rewritten section by section. English is the first
+ * draft throughout and is written afresh once the Dutch is settled, as its own
+ * text rather than a translation.
  *
  * Voice: the design system's readme.md, "Content fundamentals", plus Simon's
  * preferences in the AI Wise folder at
@@ -75,7 +75,11 @@ export interface Copy {
   about: {
     eyebrow: string;
     heading: string;
-    paragraphs: string[];
+    /** The text as prose. A language sets either paragraphs or points; the
+     *  section renders whichever is present. */
+    paragraphs?: string[];
+    /** The text as a bulleted list, one short line per point. */
+    points?: string[];
     portraitAlt: string;
   };
   contact: {
@@ -151,10 +155,12 @@ const nl: Copy = {
   about: {
     eyebrow: "Over mij",
     heading: "Simon van Meegdenburg",
-    paragraphs: [
-      "Mijn achtergrond ligt in IT en data-engineering. Waar ik naartoe beweeg is het bouwen zelf: werkende tools, kleine systemen, dingen die je maandagochtend kunt gebruiken.",
-      "AI Wise is mijn eenmanszaak. Ik werk het liefst met kleine organisaties die werk doen waar iemand echt iets aan heeft, en die dicht genoeg op de uitvoering zitten om te weten waar het schuurt.",
-      "Wat dit vak voor mij de moeite waard maakt is de zorgvuldigheid. De context begrijpen, de scope klein houden, testen, opschrijven wat er gebouwd is, en het netjes overdragen. AI maakt het bouwen snel. De zorgvuldigheid moet je er zelf in houden.",
+    points: [
+      "Sinds 2018 bouw ik systemen met data, als BI-consultant en als data engineer.",
+      "Naast mijn werk leerde ik websites en apps bouwen, en daar heb ik nog meer plezier in.",
+      "Met AI werk ik een idee in ongeveer een dag uit tot een eerste prototype.",
+      "Al experimenterend leerde ik wat er nodig is om een werkend systeem te maken dat mensen dagelijks gebruiken.",
+      "Als techneut bouw ik graag voor organisaties waarmee ik me verbonden voel.",
     ],
     portraitAlt: "Portret van Simon van Meegdenburg",
   },

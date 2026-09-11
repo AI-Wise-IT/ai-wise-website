@@ -79,6 +79,13 @@
 .section__heading{max-width:26ch;margin-bottom:var(--aiw-space-8)}
 .section__body{max-width:var(--aiw-measure)}
 
+/* A plain bulleted list in body text: moss-green markers and one even gap
+   between the points instead of the default spacing between list items. Used
+   for the examples in the vision and the points in the about section. */
+.bullet-list{padding-left:1.1em;display:grid;gap:var(--aiw-space-4)}
+.bullet-list li{margin-top:0;line-height:var(--aiw-leading-body)}
+.bullet-list li::marker{color:var(--aiw-moss-green)}
+
 /* ---- hero --------------------------------------------------------------- */
 /* A full-bleed photograph behind the hero text, art-directed in Hero.astro:
    the 16:9 frame on landscape-shaped viewports, the 4:5 frame on portrait ones.
@@ -215,9 +222,7 @@
    no offer on this page. */
 .vision__examples{max-width:var(--aiw-measure)}
 .vision__examples-intro{color:var(--aiw-text-secondary)}
-.vision__examples-list{margin-top:var(--aiw-space-6);padding-left:1.1em;display:grid;gap:var(--aiw-space-4)}
-.vision__examples-list li{margin-top:0;line-height:var(--aiw-leading-body)}
-.vision__examples-list li::marker{color:var(--aiw-moss-green)}
+.vision__examples-list{margin-top:var(--aiw-space-6)}
 .vision__examples-note{margin-top:var(--aiw-space-8);color:var(--aiw-text-secondary)}
 
 @media (min-width:1024px){
@@ -233,10 +238,21 @@
 @media (min-width:768px){.card{padding:var(--aiw-space-8)}}
 
 /* ---- about -------------------------------------------------------------- */
+/* Stacked below 768px, portrait first, as a 3:2 landscape frame across the full
+   content width. From 768px the portrait stands beside the text as a 4:5 frame.
+   The column widths are chosen so the portrait's height stays close to the
+   height of the list beside it; see About.astro for the frames and
+   docs/prd.md, R-S3.1, for the measured heights. The widths are repeated in the
+   sizes attribute in About.astro.
+   height:auto matters: without it the height attribute on the image wins over
+   aspect-ratio and the frame is drawn at the master's full pixel height. */
 .about__layout{display:grid;gap:var(--aiw-space-10);align-items:start}
-@media (min-width:768px){.about__layout{grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:var(--aiw-space-12)}}
-@media (min-width:1024px){.about__layout{grid-template-columns:minmax(0,320px) minmax(0,1fr)}}
-.about__portrait{width:100%;max-width:320px;aspect-ratio:4/5;object-fit:cover;border-radius:var(--aiw-radius-sm)}
+.about__media{display:block}
+.about__portrait{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:var(--aiw-radius-sm)}
+@media (min-width:768px){
+  .about__layout{grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:var(--aiw-space-12)}
+  .about__portrait{aspect-ratio:4/5}
+}
 
 /* ---- contact ------------------------------------------------------------ */
 .contact__routes{display:flex;flex-wrap:wrap;gap:var(--aiw-space-6) var(--aiw-space-10);margin-top:var(--aiw-space-8)}
