@@ -5,7 +5,7 @@
  * STATUS, Dutch: hero, vision, examples, about, contact, footer and meta text
  * reviewed with Simon and settled; the about text is his own.
  *
- * STATUS, English: the hero, vision, examples, about, contact and meta text are settled. The
+ * STATUS, English: the hero, vision, examples, about, contact, footer and meta text are settled. The
  * other sections are still the first draft and are being written afresh one at
  * a time, as their own text rather than a translation. English is British English, consistently (the page is
  * en_GB); the first-draft sections do not follow that yet.
@@ -85,7 +85,8 @@ export interface Copy {
     /** The invitation to anyone with something they want built. */
     paragraphs: string[];
     /** A short line that turns from clients to collaborators, followed by one
-     *  paragraph per kind of collaborator. Optional per language. */
+     *  paragraph per kind of collaborator. Both languages use them; the section
+     *  renders without them when they are left out. */
     collaborationIntro?: string;
     collaboration?: string[];
     /** Names on the contact buttons; on narrow screens they are the buttons'
@@ -314,11 +315,11 @@ const en: Copy = {
     note: "A short message will do.",
   },
   footer: {
-    blurb: "AI, data and automation for small organizations doing work that matters.",
-    directTitle: "Direct",
-    legalTitle: "Company",
+    blurb: "Apps, websites and tools, built with AI. For work that matters.",
+    directTitle: "Contact",
+    legalTitle: "Business details",
     kvkLabel: "Chamber of Commerce",
-    vatLabel: "VAT",
+    vatLabel: "VAT no.",
     privacy: "Privacy statement",
   },
   privacy: {

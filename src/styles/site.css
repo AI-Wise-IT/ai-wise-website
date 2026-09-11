@@ -314,6 +314,11 @@
 .site-footer__list a{color:var(--aiw-text-secondary);text-decoration:none}
 .site-footer__list a:hover{color:var(--aiw-text-primary);text-decoration:underline}
 .site-footer__legal{color:var(--aiw-text-muted)}
+/* The privacy link among the plain business details, in the link colour so it
+   reads as a link: signal blue on near-black, 5.11:1. Hover turns it warm light
+   with an underline; focus keeps the ring from base.css. */
+.site-footer__list a.site-footer__privacy{color:var(--aiw-link)}
+.site-footer__list a.site-footer__privacy:hover{color:var(--aiw-link-hover)}
 .site-footer__baseline{margin-top:44px}
 .site-footer__copyright{margin-top:18px;font-size:var(--aiw-text-2xs);color:var(--aiw-text-muted)}
 

@@ -389,12 +389,17 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
     tekst.
   - Op 375px is het blok 263px breed en past het ruim in de kolom van 327px.
   - Daaronder één regel: *Apps, websites en tools, gebouwd met AI. Voor werk waar de wereld
-    iets aan heeft.*
-- R-S5.2: Kolom *Direct*: e-mailadres en telefoonnummer, beide als link. Het
-  telefoonnummer staat in de kit-footer en blijft daar; in S4 zijn e-mail en WhatsApp de
-  twee routes.
-- R-S5.3: Kolom met KvK-nummer `93385498`, btw-identificatienummer `NL005019332B52`,
-  vestigingsplaats en de link naar de privacyverklaring.
+    iets aan heeft.* In het Engels: *Apps, websites and tools, built with AI. For work that
+    matters.*
+- R-S5.2: Kolom *Direct* (Engels *Contact*): e-mailadres en telefoonnummer, beide als link,
+  in de gewone footerkleur (`text-secondary`). Het telefoonnummer staat in de kit-footer en
+  blijft daar; in S4 zijn e-mail en WhatsApp de twee routes.
+- R-S5.3: Kolom *Zakelijk* (Engels *Business details*) met KvK-nummer `93385498` (Engels
+  *Chamber of Commerce*), btw-identificatienummer `NL005019332B52` (Engels *VAT no.*),
+  vestigingsplaats en de link naar de privacyverklaring. Die link staat in de linkkleur,
+  signal blue (5,11:1 op near-black), zodat hij tussen de gewone gegevens als link
+  herkenbaar is. Bij hover wordt hij warm light met een onderstreping; de focusring komt uit
+  `base.css`.
 - R-S5.4: Een rule, daaronder de copyrightregel `© 2026 AI Wise`, 12px in `text-muted`.
   Het jaar is het jaar van de build (`new Date().getFullYear()`), en de regel is in beide
   talen gelijk, dus hij staat niet in `copy.ts`. De tagline staat hier niet meer, want die
@@ -890,7 +895,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | S2 visie met de reflectie in Newsreader en zeven voorbeelden ter inspiratie | Klaar; tekst in beide talen vastgesteld |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; tekst in beide talen vastgesteld, de Nederlandse door Simon zelf geschreven |
 | S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar; tekst in beide talen door Simon vastgesteld |
-| S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, privacylink en copyrightregel | Klaar |
+| S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, blauwe privacylink en copyrightregel | Klaar; tekst in beide talen vastgesteld |
 | S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen vanaf de contactknoppen | Klaar |
 | Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
 | i18n-routering, hreflang, canonical, sitemap | Klaar |
@@ -909,7 +914,7 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
-| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, over mij, contact, en de titel en meta-description vastgesteld; footer en de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
+| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, over mij, contact, de footer, en de titel en meta-description vastgesteld; de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
@@ -985,6 +990,10 @@ Gesloten sinds versie 4:
 - **Engelse contacttekst vastgesteld**, met dezelfde opbouw als de Nederlandse: één alinea,
   de overgangszin *I’m open to working together.* met twee alinea's voor samenwerking, een
   nieuw WhatsApp-bericht en de afsluiter *A short message will do.* R-S4.7, R-L9a en O-2.
+- **Engelse footer vastgesteld en de privacylink blauw**: nieuwe regel onder het logo, de
+  kolommen *Contact* en *Business details*, en *VAT no.*; de privacylink staat in signal
+  blue (5,11:1) zodat hij als link herkenbaar is. E-mail en telefoon houden de gewone
+  footerkleur. R-S5.1 tot en met R-S5.3 en O-2.
 
 ### Versie 6 ten opzichte van versie 5
 
