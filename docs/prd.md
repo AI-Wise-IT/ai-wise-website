@@ -816,17 +816,27 @@ behandeld.
 ## 10. Privacy en juridisch
 
 - R-J1: Geen cookies, dus geen cookiebanner.
-- R-J2: Bezoekersstatistiek via Vercel Web Analytics. Cookieloos: in plaats van een
-  bezoeker te markeren wordt uit het binnenkomende verzoek een hash afgeleid die na 24 uur
-  vervalt en niet wordt bewaard. Wat zichtbaar is, is geaggregeerd: paginaweergaven,
-  verwijzende sites, land, apparaattype. Geen profielen, geen tracking over sites heen. Het
-  script wordt vanaf het eigen domein geserveerd, dus er komt geen derde partij bij.
-  Vercel verwerkt deze gegevens buiten de EU; omdat er geen persoonsgegevens in zitten is
-  dat voor deze verwerking geen bezwaar. De privacyverklaring beschrijft dit in beide talen.
+- R-J2: Bezoekersstatistiek via Vercel Web Analytics. Cookieloos, en niets in de browser
+  opgeslagen: `@vercel/analytics` 2.0.1 en het script van Vercel gebruiken geen cookies,
+  `localStorage` of `sessionStorage`. Alleen een expliciete aanroep `va('enableCookie')`
+  zou dat veranderen, en die doet de site niet. In plaats van een bezoeker te markeren wordt
+  uit het binnenkomende verzoek een hash afgeleid die na 24 uur wordt verwijderd. Per
+  paginaweergave slaat Vercel tijdstip, pagina, verwijzer, globale locatie en apparaat-,
+  besturingssysteem- en browsertype op; wat zichtbaar is, is geaggregeerd. Geen profielen,
+  geen tracking over sites heen. Script en intake draaien op het eigen domein
+  (`/_vercel/insights`), dus er komt geen extern domein bij. Omdat de hash is afgeleid van
+  een verzoek met een IP-adres, behandelt de privacyverklaring dit voorzichtigheidshalve als
+  persoonsgegevens, met gerechtvaardigd belang als grondslag. Vercel verwerkt buiten de
+  EER, met standaardcontractbepalingen in de verwerkersovereenkomst en een beroep op het
+  EU-US Data Privacy Framework.
 - R-J3: Privacyverklaring op `/privacy` en `/en/privacy`, met een link in de footer. Zonder
-  formulier is de inhoud kort: de site verwerkt zelf geen persoonsgegevens, de
-  hostingprovider verwerkt technische logbestanden, en contact via e-mail of WhatsApp
-  verloopt buiten de site om, met vermelding van wat er met die berichten gebeurt.
+  formulier is de inhoud kort, en dekt ze wat artikel 13 AVG vraagt: de
+  verwerkingsverantwoordelijke, doel en grondslag per verwerking, de ontvangers (Vercel voor
+  hosting en statistiek, Google Workspace voor e-mail, WhatsApp), doorgifte buiten de EER
+  met de waarborg, bewaartermijnen of de criteria daarvoor, alle rechten, de klacht bij de
+  Autoriteit Persoonsgegevens, dat niemand gegevens hoeft te geven, en dat er geen
+  geautomatiseerde besluitvorming of profilering is. Eén zin zegt dat na doorklikken naar
+  LinkedIn of WhatsApp hun eigen voorwaarden gelden.
 - R-J4: Informatieplicht (art. 3:15d BW): bedrijfsnaam, KvK-nummer,
   btw-identificatienummer, contactgegevens en vestigingsadres eenvoudig vindbaar. Het adres
   is een open punt, zie O-2.
@@ -994,6 +1004,12 @@ Gesloten sinds versie 4:
   kolommen *Contact* en *Business details*, en *VAT no.*; de privacylink staat in signal
   blue (5,11:1) zodat hij als link herkenbaar is. E-mail en telefoon houden de gewone
   footerkleur. R-S5.1 tot en met R-S5.3 en O-2.
+- **Privacyverklaring in beide talen nagelopen op juistheid en volledigheid**: de
+  statistiek wordt niet meer als vrij van persoonsgegevens gepresenteerd, doorgifte naar de
+  VS noemt standaardcontractbepalingen en het DPF, Google Workspace staat erbij als
+  e-mailverwerker, en grondslagen, bewaartermijnen, alle rechten, de geen-verplichting en
+  geen geautomatiseerde besluitvorming zijn toegevoegd, met een zin over doorklikken naar
+  LinkedIn en WhatsApp. *Een extern domein* gecorrigeerd. R-J2 en R-J3.
 
 ### Versie 6 ten opzichte van versie 5
 

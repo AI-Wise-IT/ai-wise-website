@@ -196,40 +196,44 @@ const nl: Copy = {
   privacy: {
     title: "Privacyverklaring",
     lead: "Deze website plaatst geen cookies en vraagt je nergens om gegevens. Hieronder staat wat er wel gebeurt: bij het bezoeken van de site, en zodra je contact opneemt.",
-    updated: "Laatst bijgewerkt op 9 september 2026.",
+    updated: "Laatst bijgewerkt op 11 september 2026.",
     sections: [
       {
         heading: "Wat deze website doet",
         paragraphs: [
-          "De site bestaat uit statische pagina's. Er staan geen formulieren op, geen advertentienetwerken en geen ingesloten inhoud van derden. Lettertypen en afbeeldingen worden vanaf deze site zelf geladen, niet vanaf een externe dienst.",
-          "Er worden geen cookies geplaatst, voor geen enkel doel. De site slaat niets op in je browser.",
+          "De site bestaat uit statische pagina's. Er staan geen formulieren op, geen advertentienetwerken en geen ingesloten inhoud van derden. Lettertypen, afbeeldingen en scripts worden vanaf deze site zelf geladen, niet vanaf een externe dienst.",
+          "Er worden geen cookies geplaatst, voor geen enkel doel. De site slaat geen gegevens over jou op in je browser.",
+          "Klik je door naar LinkedIn of WhatsApp, dan gelden vanaf dat moment de privacyvoorwaarden van dat bedrijf.",
         ],
       },
       {
         heading: "Hosting en logbestanden",
         paragraphs: [
-          "De website wordt gehost door Vercel Inc. Om de site te kunnen leveren en te beschermen tegen misbruik verwerkt Vercel technische gegevens zoals je IP-adres, het opgevraagde adres, tijdstip en browsertype. Dat gebeurt op grond van gerechtvaardigd belang. Ik gebruik deze logbestanden niet om bezoekers te herkennen of te volgen.",
+          "De website wordt gehost door Vercel Inc., dat daarbij als mijn verwerker optreedt. Om de site te kunnen leveren en te beschermen tegen misbruik verwerkt Vercel technische gegevens zoals je IP-adres, het opgevraagde adres, tijdstip en browsertype. Dat gebeurt op grond van gerechtvaardigd belang: een site die werkt en beveiligd is. Ik gebruik deze logbestanden niet om bezoekers te herkennen of te volgen, en Vercel bewaart ze volgens eigen opgave niet langer dan nodig.",
+          "Vercel verwerkt gegevens vooral in de Verenigde Staten, en mogelijk ook elders buiten de Europese Economische Ruimte. Voor die doorgifte gebruikt Vercel de standaardcontractbepalingen van de Europese Commissie, en daarnaast beroept het zich op het EU-US Data Privacy Framework.",
         ],
       },
       {
         heading: "Bezoekersstatistiek",
         paragraphs: [
-          "Ik gebruik Vercel Web Analytics om te zien hoeveel mensen de site bezoeken en welke pagina's ze bekijken. Dat gebeurt zonder cookies. In plaats van een bezoeker te markeren, berekent Vercel uit het binnenkomende verzoek een versleutelde waarde om herhaalbezoeken binnen een dag te kunnen tellen; die waarde vervalt na 24 uur en wordt niet bewaard.",
-          "Wat ik zie is geaggregeerd: aantallen paginaweergaven, verwijzende websites, land, en soort apparaat of browser. Er wordt geen profiel opgebouwd, niets gekoppeld aan een persoon, en niets gevolgd over andere websites heen. Het script komt van deze site zelf, niet van een externe domein.",
-          "Vercel verwerkt deze gegevens buiten de Europese Unie. Omdat er geen persoonsgegevens in zitten, is dat voor deze verwerking geen bezwaar. De grondslag is gerechtvaardigd belang: ik wil weten of de site gelezen wordt.",
+          "Ik gebruik Vercel Web Analytics om te zien hoeveel mensen de site bezoeken en welke pagina's ze bekijken. Dat gebeurt zonder cookies. In plaats van een bezoeker te markeren, berekent Vercel uit het binnenkomende verzoek, waar ook je IP-adres bij hoort, een hash: een afgeleide code waarmee herhaalbezoeken binnen een dag geteld kunnen worden. Die code wordt na 24 uur verwijderd.",
+          "Per paginaweergave legt Vercel vast: het tijdstip, de pagina, de verwijzende website, een globale locatie afgeleid van je IP-adres, en het soort apparaat, besturingssysteem en browser. Wat ik zie is geaggregeerd. Er wordt geen profiel opgebouwd, niets gekoppeld aan een persoon, en niets gevolgd over andere websites heen. Het script komt van deze site zelf, niet van een extern domein.",
+          "Ik kan deze gegevens niet tot jou herleiden, maar omdat de code is afgeleid van je verzoek, behandel ik ze voor de zekerheid als persoonsgegevens. De grondslag is gerechtvaardigd belang: ik wil weten of de site gelezen wordt. Vercel verwerkt ook deze gegevens buiten de Europese Economische Ruimte, met dezelfde waarborgen als bij de hosting. Hoe lang Vercel de statistieken bewaart, hangt af van mijn abonnement.",
         ],
       },
       {
         heading: "Contact per e-mail of WhatsApp",
         paragraphs: [
-          "Als je mij mailt of via WhatsApp een bericht stuurt, verwerk ik de gegevens die je daarin zelf deelt: je naam, je contactgegevens en de inhoud van je bericht. Ik gebruik die uitsluitend om je vraag te beantwoorden en om een eventueel vervolg af te stemmen.",
-          "Ik bewaar dat contact zolang het relevant is voor het gesprek en een opdracht die daaruit voortkomt, en voor de administratie zolang de wet dat vraagt. WhatsApp-berichten lopen via WhatsApp Ireland Limited, waarop hun eigen privacyvoorwaarden van toepassing zijn.",
+          "Als je mij mailt of via WhatsApp een bericht stuurt, verwerk ik de gegevens die je daarin zelf deelt: je naam, je contactgegevens en de inhoud van je bericht. Ik gebruik die uitsluitend om je vraag te beantwoorden en om een eventueel vervolg af te stemmen. De grondslag is gerechtvaardigd belang, of het voorbereiden en uitvoeren van een opdracht als je daarom vraagt.",
+          "Ik bewaar dat contact zolang het relevant is voor het gesprek en een opdracht die daaruit voortkomt. Wat tot de administratie hoort, zoals facturen, bewaar ik zeven jaar, omdat de fiscale bewaarplicht dat vraagt.",
+          "Mijn e-mail loopt via Google Workspace, waarbij Google als mijn verwerker optreedt. Google kan gegevens ook buiten de Europese Economische Ruimte verwerken en beroept zich daarvoor op het EU-US Data Privacy Framework en op standaardcontractbepalingen. WhatsApp-berichten lopen via WhatsApp Ireland Limited, waarop hun eigen privacyvoorwaarden van toepassing zijn.",
         ],
       },
       {
         heading: "Jouw rechten",
         paragraphs: [
-          "Je mag opvragen welke gegevens ik van je heb, ze laten corrigeren of laten verwijderen, en bezwaar maken tegen de verwerking. Een bericht naar het adres hieronder is genoeg. Je kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens.",
+          "Binnen de grenzen van de AVG mag je opvragen welke gegevens ik van je heb, ze laten corrigeren of verwijderen, de verwerking laten beperken, bezwaar maken tegen de verwerking, en gegevens die je mij zelf hebt gegeven in een gangbaar bestandsformaat ontvangen. Een bericht naar het adres hieronder is genoeg. De statistieken kan ik niet aan jou koppelen, dus daarin kan ik niets voor je opzoeken. Je kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens.",
+          "Je bent niet verplicht mij gegevens te geven; wat je in een bericht deelt, bepaal je zelf. Er is geen geautomatiseerde besluitvorming en geen profilering.",
         ],
       },
       {
@@ -325,40 +329,44 @@ const en: Copy = {
   privacy: {
     title: "Privacy statement",
     lead: "This website sets no cookies and asks you for nothing. Below is what does happen: when you visit, and once you get in touch.",
-    updated: "Last updated 9 September 2026.",
+    updated: "Last updated 11 September 2026.",
     sections: [
       {
         heading: "What this website does",
         paragraphs: [
-          "The site is a set of static pages. There are no forms, no ad networks and no embedded third-party content. Fonts and images are served from this site rather than from an external service.",
-          "No cookies are set, for any purpose. The site stores nothing in your browser.",
+          "The site is a set of static pages. There are no forms, no ad networks and no embedded third-party content. Fonts, images and scripts are served from this site rather than from an external service.",
+          "No cookies are set, for any purpose. The site stores no data about you in your browser.",
+          "If you follow a link to LinkedIn or WhatsApp, that company’s own privacy terms apply from then on.",
         ],
       },
       {
         heading: "Hosting and log files",
         paragraphs: [
-          "The site is hosted by Vercel Inc. To deliver the site and protect it from abuse, Vercel processes technical data such as your IP address, the address requested, the time and your browser type, on the basis of legitimate interest. I do not use those logs to recognise or follow visitors.",
+          "The site is hosted by Vercel Inc., acting as my processor. To deliver the site and protect it from abuse, Vercel processes technical data such as your IP address, the address requested, the time and your browser type, on the basis of legitimate interest: a site that works and stays secure. I do not use those logs to recognise or follow visitors, and Vercel states that it keeps them no longer than necessary.",
+          "Vercel processes data mainly in the United States, and possibly elsewhere outside the European Economic Area. For those transfers Vercel uses the European Commission’s Standard Contractual Clauses, and it also relies on the EU-US Data Privacy Framework.",
         ],
       },
       {
         heading: "Visitor statistics",
         paragraphs: [
-          "I use Vercel Web Analytics to see how many people visit the site and which pages they read. It works without cookies. Rather than marking a visitor, Vercel derives a hashed value from the incoming request so that repeat visits within a day can be counted; that value expires after 24 hours and is not retained.",
-          "What I see is aggregated: page view counts, referring sites, country, and device or browser type. No profile is built, nothing is tied to a person, and nothing is followed across other websites. The script is served from this site itself, not from an external domain.",
-          "Vercel processes this data outside the European Union. Since it contains no personal data, that is not an obstacle for this processing. The basis is legitimate interest: I want to know whether the site is being read.",
+          "I use Vercel Web Analytics to see how many people visit the site and which pages they read. It works without cookies. Rather than marking a visitor, Vercel derives a hash, a one-way code, from the incoming request, which includes your IP address, so that repeat visits within a day can be counted. That code is discarded after 24 hours.",
+          "For each page view, Vercel records the time, the page, the referring site, an approximate location derived from your IP address, and your type of device, operating system and browser. What I see is aggregated. No profile is built, nothing is tied to a person, and nothing is followed across other websites. The script is served from this site itself, not from an external domain.",
+          "I cannot trace this data back to you, but because the code is derived from your request, I treat it as personal data to be safe. The basis is legitimate interest: I want to know whether the site is being read. Vercel processes this data outside the European Economic Area too, with the same safeguards as for hosting. How long Vercel keeps the statistics depends on my plan.",
         ],
       },
       {
         heading: "Contact by email or WhatsApp",
         paragraphs: [
-          "If you email me or send a WhatsApp message, I process what you share in it: your name, your contact details and the content of your message. I use that only to answer your question and to agree on any next step.",
-          "I keep that correspondence for as long as it is relevant to the conversation and to any work that follows from it, and for as long as the law requires for my records. WhatsApp messages run through WhatsApp Ireland Limited, whose own privacy terms apply.",
+          "If you email me or send a WhatsApp message, I process what you share in it: your name, your contact details and the content of your message. I use that only to answer your question and to agree on any next step. The basis is legitimate interest, or preparing and carrying out work you ask me to do.",
+          "I keep that correspondence for as long as it is relevant to the conversation and to any work that follows from it. Records such as invoices I keep for seven years, as Dutch tax law requires.",
+          "My email runs through Google Workspace, with Google acting as my processor. Google may process data outside the European Economic Area and relies on the EU-US Data Privacy Framework and Standard Contractual Clauses to do so. WhatsApp messages run through WhatsApp Ireland Limited, whose own privacy terms apply.",
         ],
       },
       {
         heading: "Your rights",
         paragraphs: [
-          "You can ask what data I hold about you, have it corrected or deleted, and object to the processing. A message to the address below is enough. You can also lodge a complaint with the Dutch Data Protection Authority.",
+          "Within the limits of the GDPR, you can ask what data I hold about you, have it corrected or deleted, restrict its processing, object to the processing, and receive data you gave me in a common file format. A message to the address below is enough. I cannot link the visitor statistics to you, so I cannot look anything up there. You can also lodge a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).",
+          "You are not required to give me any data; what you share in a message is up to you. There is no automated decision-making and no profiling.",
         ],
       },
       {
