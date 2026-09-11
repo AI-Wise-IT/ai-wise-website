@@ -81,11 +81,17 @@ press values, with `:hover` and `:active` doing what React state does in the JSX
 That removes the need for a JavaScript runtime on a page that has no interaction.
 
 **Icons.** The design system loads Lucide from a CDN and flags the whole icon
-choice as a substitution awaiting Simon's decision. This site uses two icons, so
-the paths are inlined in `src/components/Icon.astro` rather than adding a
-dependency or a third-party request the privacy statement would have to name.
-The system's rules still apply: outline only, stroke 1.5, `currentColor`, never
-larger than 32px, never replacing a word.
+choice as a substitution awaiting Simon's decision. This site uses a handful of
+icons, so the paths are inlined in `src/components/Icon.astro` rather than adding
+a dependency or a third-party request the privacy statement would have to name.
+Two come from Lucide (arrow-right, message-circle). The three contact buttons use
+Tabler Icons 3.46.0 (MIT): mail, brand-linkedin and brand-whatsapp, because Lucide
+has no WhatsApp logo and the three should read as one family. All of them are
+drawn as outlines at stroke 1.5 in `currentColor`, no larger than 32px. One
+deliberate departure from the design system's "an icon never replaces a word":
+on narrow screens the contact buttons show only their icons, by Simon's choice.
+The logos are unmistakable there, and each button keeps its name as its
+accessible name.
 
 **Portrait.** The original is a 3000x2001 landscape frame, kept at
 `assets/profile-picture-professional.jpg` and never sent to the browser. The

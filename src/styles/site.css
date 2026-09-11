@@ -258,10 +258,18 @@
 /* The line that turns from clients to collaborators: a little more space above
    and the primary text weight, so the section reads as two parts. */
 .contact__turn{margin-top:var(--aiw-space-8);font-weight:var(--aiw-weight-semibold);color:var(--aiw-text-primary)}
-.contact__routes{display:flex;flex-wrap:wrap;gap:var(--aiw-space-6) var(--aiw-space-10);margin-top:var(--aiw-space-8)}
-.contact__route{display:flex;flex-direction:column;gap:var(--aiw-space-1)}
-.contact__route-label{font-size:var(--aiw-text-xs);font-weight:var(--aiw-weight-semibold);letter-spacing:var(--aiw-tracking-label);text-transform:uppercase;color:var(--aiw-text-muted)}
-.contact__route-value{font-size:var(--aiw-text-md);font-weight:var(--aiw-weight-semibold)}
+/* The contact routes: outline buttons with an icon and a name, side by side. */
+.contact__actions{display:flex;flex-wrap:wrap;gap:var(--aiw-space-4);margin-top:var(--aiw-space-8)}
+
+/* Narrow screens: icons only. The buttons share the column in equal parts and are
+   at least 48px tall, so they stay easy to tap. The name is hidden visually but
+   kept in the markup as each button's accessible name. */
+@media (max-width:639.98px){
+  .contact__actions{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:var(--aiw-space-3)}
+  .contact__action{min-height:48px;padding:var(--aiw-space-3)}
+  .contact__action-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+}
+
 .contact__note{margin-top:var(--aiw-space-8);color:var(--aiw-text-secondary)}
 
 /* ---- footer ------------------------------------------------------------- */

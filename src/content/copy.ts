@@ -90,11 +90,11 @@ export interface Copy {
      *  paragraph per kind of collaborator. Optional per language. */
     collaborationIntro?: string;
     collaboration?: string[];
+    /** Names on the contact buttons; on narrow screens they are the buttons'
+     *  accessible names behind the icons. */
     emailLabel: string;
     linkedinLabel: string;
-    linkedinValue: string;
     whatsappLabel: string;
-    whatsappValue: string;
     whatsappPrefill: string;
     whatsappFloatLabel: string;
     note: string;
@@ -181,9 +181,7 @@ const nl: Copy = {
     ],
     emailLabel: "E-mail",
     linkedinLabel: "LinkedIn",
-    linkedinValue: "Simon van Meegdenburg",
     whatsappLabel: "WhatsApp",
-    whatsappValue: "Stuur een bericht",
     whatsappPrefill: "Hoi Simon, ik kwam op de site van AI Wise terecht en heb een vraag.",
     whatsappFloatLabel: "WhatsApp",
     note: "Een kort bericht is genoeg.",
@@ -307,9 +305,7 @@ const en: Copy = {
     ],
     emailLabel: "Email",
     linkedinLabel: "LinkedIn",
-    linkedinValue: "Simon van Meegdenburg",
     whatsappLabel: "WhatsApp",
-    whatsappValue: "Send a message",
     whatsappPrefill: "Hi Simon, I came across the AI Wise site and have a question.",
     whatsappFloatLabel: "WhatsApp",
     note: "A short message is enough. Nothing follows from it that you do not ask for.",

@@ -5,9 +5,14 @@
  * developers and for designers and content writers. This is also where the site
  * says, positively, that AI Wise is young.
  *
- * Routes as text links: e-mail, LinkedIn (while set in COMPANY) and WhatsApp.
- * No second signal fill on the page.
+ * The routes are three buttons: e-mail, LinkedIn (while set in COMPANY) and
+ * WhatsApp. They use the outline variant, because the design system allows one
+ * signal fill per view and that is the hero's call to action. On wide screens
+ * each button shows an icon and its name, side by side. On narrow screens the
+ * names are hidden visually and the icons carry the buttons; the names stay in
+ * the markup, so every button keeps its accessible name.
  */
+import Icon from "./Icon.astro";
 import { COMPANY, COPY, type Lang } from "../content/copy";
 
 interface Props {
@@ -32,31 +37,31 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
       )}
       {t.contact.collaboration?.map((p) => <p class="aiw-body">{p}</p>)}
 
-      <div class="contact__routes">
-        <span class="contact__route">
-          <span class="contact__route-label">{t.contact.emailLabel}</span>
-          <a class="contact__route-value" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-        </span>
+      <div class="contact__actions">
+        <a class="btn btn--md btn--outline contact__action" href={`mailto:${COMPANY.email}`}>
+          <Icon name="mail" size={22} />
+          <span class="contact__action-label">{t.contact.emailLabel}</span>
+        </a>
         {COMPANY.linkedin && (
-          <span class="contact__route">
-            <span class="contact__route-label">{t.contact.linkedinLabel}</span>
-            <a
-              class="contact__route-value"
-              href={COMPANY.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >{t.contact.linkedinValue}</a>
-          </span>
-        )}
-        <span class="contact__route">
-          <span class="contact__route-label">{t.contact.whatsappLabel}</span>
           <a
-            class="contact__route-value"
-            href={waHref}
+            class="btn btn--md btn--outline contact__action"
+            href={COMPANY.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-          >{t.contact.whatsappValue}</a>
-        </span>
+          >
+            <Icon name="linkedin" size={22} />
+            <span class="contact__action-label">{t.contact.linkedinLabel}</span>
+          </a>
+        )}
+        <a
+          class="btn btn--md btn--outline contact__action"
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="whatsapp" size={22} />
+          <span class="contact__action-label">{t.contact.whatsappLabel}</span>
+        </a>
       </div>
 
       <p class="contact__note">{t.contact.note}</p>

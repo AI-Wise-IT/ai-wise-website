@@ -292,9 +292,13 @@ Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
   extra ruimte erboven, zodat de sectie als twee delen leest.
 - R-S4.2: Geen fit-criteria, geen uitsluitingen, geen "ik werk alleen met...". De rode
   lijnen uit het klantprofiel zijn intern materiaal.
-- R-S4.3: Contactroutes als tekstlinks, even prominent: e-mail, LinkedIn
-  (`https://www.linkedin.com/in/simon-v-13833a131/`) en WhatsApp. LinkedIn staat ook in
-  `llms.txt` en als `sameAs` in de gestructureerde data van de persoon.
+- R-S4.3: Contactroutes als drie knoppen, even prominent: E-mail, LinkedIn
+  (`https://www.linkedin.com/in/simon-v-13833a131/`) en WhatsApp. Omlijnde variant, omdat
+  de hero-knop de enige gevulde blauwe knop op de pagina is. Vanaf 640px staan ze naast
+  elkaar met icoon en naam. Daaronder tonen ze alleen het icoon, verdelen ze de kolom in
+  gelijke delen en zijn ze minimaal 48px hoog; de naam blijft als toegankelijke naam in de
+  markup. De iconen komen uit Tabler Icons (MIT), omdat Lucide geen WhatsApp-logo heeft.
+  LinkedIn staat ook in `llms.txt` en als `sameAs` in de gestructureerde data van de persoon.
 - R-S4.4: De sectie sluit af met *Een kort bericht is genoeg.* De lage drempel staat daarmee
   positief geformuleerd, zonder ontkenning.
 - R-S4.4a: De tekst is door Simon geschreven. Eén correctie: *ik inspireer en help elkaar*
