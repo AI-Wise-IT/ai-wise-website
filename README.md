@@ -33,6 +33,20 @@ needed. Two consequences worth knowing before you edit a component:
 After changing anything in the head or adding a script, load a page from
 `npm run preview` and check the console for CSP violations.
 
+### The hero and the header
+
+The hero sits on a photograph, art-directed in `Hero.astro`: a 16:9 crop on
+landscape-shaped screens and a 4:5 crop on portrait ones, with a near-black
+layer in `site.css` that keeps the text readable over the light sky. The weave
+is no longer used on the website.
+
+On the home page the header is transparent over the photograph at the top and
+turns solid once the page scrolls. That is a CSS scroll-driven animation, not
+JavaScript, and the solid header is the default: a browser without
+`animation-timeline` support simply keeps it. The minifier folds
+`animation-timeline` into the `animation` shorthand if they share a rule, and
+Chromium then drops the declaration, so keep them in separate rules.
+
 ## Running it
 
 ```bash
@@ -65,12 +79,14 @@ npm run check
 ```
 public/            static files served as-is
   assets/logo/     wordmark, glyph, lockups, favicons
-  assets/weave/    the four weave masters
+  assets/weave/    the four weave masters, unused by the site but referenced
+                   by the imported base.css, so they stay
   fonts/           subset WOFF2 fonts
   llms.txt         orientation file for language models
   robots.txt       crawler policy
 src/
-  assets/          images that go through Astro's image pipeline
+  assets/          images that go through Astro's image pipeline: the portrait,
+                   and in hero/ the two eagle photographs behind the hero
   components/      the page sections and the small shared pieces
   content/copy.ts  all user-facing copy, both languages
   layouts/Base.astro  document shell, metadata, structured data

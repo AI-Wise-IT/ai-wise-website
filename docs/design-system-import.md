@@ -21,7 +21,7 @@ Imported on 8 September 2026.
 | `styles.css` | `src/styles/styles.css`, plus one import of `site.css` |
 | `assets/logo/*.svg` | `public/assets/logo/` |
 | `assets/logo/png/*` | `public/assets/logo/png/` |
-| `assets/weave/masters/*.svg` | `public/assets/weave/masters/` |
+| `assets/weave/masters/*.svg` | `public/assets/weave/masters/`, kept only for `base.css`, see below |
 | `assets/fonts/*.ttf` | converted, see below |
 | `assets/profile-picture-professional.jpg` | cropped, see below |
 
@@ -34,6 +34,34 @@ so at the top of the file.
 `../assets/weave/masters/...` to `/assets/weave/masters/...`. The stylesheet is
 bundled by Astro and the masters are served from `public/`, so the relative path
 no longer resolves. Nothing else in the file changed.
+
+**The weave is no longer on the website.** Since 11 September 2026 the hero uses a
+photograph instead (see below). `Weave.astro` and the weave CSS in `site.css` are
+gone, and nothing on the site uses the `.aiw-weave` classes. `base.css` still
+carries them, because it stays a verbatim copy of the design system, and its
+`background-image` URLs still point at `/assets/weave/masters/`. Those four SVGs
+therefore stay in `public/`: without them Vite warns at build time that the URLs
+do not resolve. They cost nothing at runtime, since no element ever gets the
+classes that load them.
+
+**Hero photograph.** A generated nature photograph, a golden eagle gliding over a
+green forest canopy, following the photography direction in the design system's
+`readme.md`. Two crops: 16:9 for landscape-shaped screens and 4:5 for portrait
+ones. The sources are Simon's selection in the AI Wise folder,
+`input/selected-eagle-images/desktop/landscape-09.png` (2560x1440) and
+`mobile/portrait-09.png` (1440x1800), both upscaled; the smaller originals are
+not used. They were converted once to JPEG masters with sharp (quality 93,
+mozjpeg, 4:4:4 chroma, alpha removed) and live in `src/assets/hero/`, not in
+`public/`, so Astro's image pipeline produces AVIF, WebP and JPEG at several
+widths. The masters are 672 KB and 456 KB. Web versions of the same two frames,
+with the direction and the generation prompt, belong in the design system under
+`assets/photography/` and the "Photography" section of its `readme.md`.
+
+**Logo in the header.** `glyph.svg` and `wordmark.svg` both paint a near-black
+backing rectangle. On the near-black page it is invisible; over the hero
+photograph it shows as a dark box. `Header.astro` therefore reads the two files at
+build time and inlines them without that rectangle and without their fixed pixel
+size. The files in `public/assets/logo/` are unchanged.
 
 **`tokens/fonts.css`.** Rewritten. The design system links the three variable
 TTFs directly, which is right for a prototype and costs 1.5 MB in production.

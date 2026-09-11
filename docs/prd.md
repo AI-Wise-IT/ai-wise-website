@@ -1,7 +1,7 @@
 # PRD, AI Wise website
 
-Status: versie 5, gebouwd en klaar voor visuele review
-Datum: 9 september 2026
+Status: versie 6, gebouwd en klaar voor visuele review
+Datum: 11 september 2026
 Eigenaar: Simon van Meegdenburg
 Vervangt: de tijdelijke coming-soon pagina op https://aiwise.it.com
 
@@ -49,7 +49,7 @@ hier buiten scope valt, wordt het weggelaten, niet omgebouwd.
 
 | Domein | Bron van waarheid |
 | --- | --- |
-| Kleur, typografie, spacing, layout, radius, elevatie, motion, componenten, logo, weave, iconografie | Claude Design-project `0a1bab69-70cf-421d-abe9-7124374b18af` |
+| Kleur, typografie, spacing, layout, radius, elevatie, motion, componenten, logo, weave, fotografie, iconografie | Claude Design-project `0a1bab69-70cf-421d-abe9-7124374b18af` |
 | Toon, schrijfregels, verboden woorden, offertaal, casing | Idem, hoofdstuk *Content fundamentals* in `readme.md` |
 | Doelgroep en positionering | Idem, plus `strategy/customer-profile/outputs/customer-profile.md` in de AI Wise-map |
 | Schrijfvoorkeuren per taal, Nederlandse voorkeurszinnen | `sales/outreach/content-record/working/personal-preference-profile.md` in de AI Wise-map |
@@ -147,6 +147,23 @@ Vier inhoudelijke secties.
   pagina's die hier niet bestaan. De `Book a scan`-knop uit de kit vervalt.
 - R-S0.4: Sticky, hoogte 76px, met een hairline onderrand. Het designsysteem staat sticky
   uitsluitend toe voor de site-header, dus dit is de enige sticky component op de pagina.
+- R-S0.5: **Transparant boven de herofoto.** Op de homepagina ligt de header bovenaan de
+  pagina doorzichtig op de foto. Zodra de pagina scrolt, wordt hij binnen de eerste 76px
+  scroll de gewone near-black header met zijn hairline. De hero loopt door achter de
+  header, dus er staat geen zwarte strook boven de foto. De hairline houdt in beide
+  toestanden zijn breedte en wisselt alleen van kleur, zodat er niets verspringt. Op de
+  privacypagina is er geen foto en blijft de header altijd dicht.
+- R-S0.6: De wissel is **CSS zonder JavaScript**: een scroll-driven animation op de
+  scrollpositie van de pagina, achter `@supports (animation-timeline: scroll())`. De dichte
+  header is de standaard. Een browser zonder ondersteuning, of een pagina die niet kan
+  scrollen, toont dus altijd de dichte header en nooit een onleesbare doorzichtige. Onder
+  `prefers-reduced-motion` is het een harde wissel bij de eerste pixel scroll in plaats
+  van een overgang. De skip-link blijft bovenop alles liggen en werkt ongewijzigd.
+- R-S0.7: Het glyph en het wordmark staan als inline SVG in de header in plaats van als
+  `<img>`. Beide bestanden in `assets/logo/` hebben een near-black achtergrondvlak, dat op
+  de near-black pagina onzichtbaar is maar boven de foto als donker blokje zichtbaar
+  wordt. Dat vlak wordt bij de build weggelaten; de paden zelf zijn onveranderd en de
+  bestanden in `public/assets/logo/` blijven verbatim kopieën.
 
 **S1, Hero**
 
@@ -165,9 +182,12 @@ Vier inhoudelijke secties.
   liefst voor organisaties die werk doen waar de wereld iets aan heeft."* Apps en websites
   zijn de vorm; het uit handen nemen van terugkerend werk is wat een tool doet.
 - R-S1.4: Eén knop, `signal`, die naar `#contact` ankert. Zie R-V6.
-- R-S1.5: De hero draagt de enige weave-plaatsing van de pagina. Zie R-V4.
-- R-S1.6: Minimaal circa 620px hoog op desktop, verticaal gecentreerd, met een hairline
-  onderrand.
+- R-S1.5: De hero staat op een foto: een steenarend die boven een groen bladerdak glijdt,
+  met een donkere laag die de tekst leesbaar houdt. Zie R-V4 en R-V4a. De weave staat niet
+  meer op de website.
+- R-S1.6: Minstens de volle schermhoogte, met een hairline onderrand. Op liggende schermen
+  staat de tekst links en verticaal gecentreerd onder de header; op staande schermen staat
+  de tekst bovenaan en houdt de hero onder de knop een band vrij voor de arend.
 
 **S2, Visie**
 
@@ -312,21 +332,37 @@ in `tokens/` en `guidelines/`.
   pagina in de site-set staat op warm light. De `moss-deep` en `blue-deep` varianten zijn
   hier dus niet van toepassing.
 - R-V3: **Vier kleuren, en dat is het.** Geen vijfde kleur, geen gradient, geen tint of
-  opacity-fade op merkgrafiek, geen accent als groot achtergrondvlak.
-- R-V4: **Eén weave op de pagina.** De kit gebruikt `held-right` (master O9) op de
-  homepagina, op 82% van de breedte, langs de rechterrand van de hero. Dat wordt hier
-  overgenomen. Nooit een tweede plaatsing, nooit `background-size: cover`, nooit
-  uitrekken: schaal de master zodat zijn korte zijde de korte zijde van het vlak raakt, dan
-  croppen. De tekstkolom blijft er ruim vandaan; de weave gaat nooit achter tekst en wordt
-  nooit in opacity teruggebracht.
-- R-V4a: Onder 1024px is er geen ruimte voor tekst en cord naast elkaar. De cord verhuist
-  dan naar een eigen band van 280px onder de herotekst, waar hij nog steeds langs de korte
-  zijde van zijn vlak loopt op dezelfde 5,2% strandbreedte. Eén master, één plaatsing, geen
-  herhaling. De alternatieve oplossing, de weave op mobiel verbergen, is verworpen: dan
-  verdwijnt het enige merkgrafische element op het formaat waar de meeste bezoekers komen.
+  opacity-fade op merkgrafiek, geen accent als groot achtergrondvlak. Het groen van de
+  herofoto is beeld, geen paletkleur, en de leesbaarheidslaag is near-black (R-V4b).
+- R-V4: **Een foto in de hero, geen weave.** De hero staat op een fotorealistische,
+  gegenereerde natuurfoto: een steenarend die met gespreide vleugels boven een dicht groen
+  bladerdak glijdt, met mistige dalen en een lichtgrijze lucht. De arend staat voor
+  overzicht: zien hoe een geheel in elkaar grijpt. De richting komt uit het designsysteem
+  (*Photography* in `readme.md`). De foto is decoratief (`alt=""`), full-bleed, en loopt
+  door achter de header. De weave staat niet meer op de website; hij blijft in het
+  designsysteem een middel voor documenten en decks.
+- R-V4a: **Art direction per schermvorm.** Liggende schermen
+  (`min-aspect-ratio: 1/1`) krijgen de 16:9-uitsnede met de arend in het rechterderde;
+  staande schermen de 4:5-uitsnede met de arend in de onderste helft. `object-fit: cover`,
+  met `object-position: 72% 60%` liggend en `70% 0%` staand. Op staande schermen wordt de
+  4:5-uitsnede iets hoger getekend dan de hero en bovenaan verankerd, zodat de arend in de
+  vrije band onder de knop valt in plaats van achter de tekst. Gecontroleerd op 1440x900,
+  1100x800, 768x1024 en 375x812, en daarnaast op 1920x1080, 900x700, 812x375, 1024x1366,
+  390x844 en 375x667: de arend staat overal volledig in beeld.
+- R-V4b: **Leesbaarheidslaag.** De lucht is licht en de tekst is warm light, dus er ligt
+  een laag near-black tussen, zoals het designsysteem onder *Text over images* toestaat.
+  Alleen near-black in stappen van dekking, geen nieuwe kleur, en niet zwaarder dan de
+  contrasteis vraagt. Liggend: donker naar links achter de tekstkolom (86% aan de rand,
+  74% op 40% van de breedte, weg op 78%) plus een band langs de bovenrand voor de header
+  (80% bovenaan, weg op 240px). Onder 1024px breed loopt het donkere deel verder door.
+  Staand: vanaf de bovenrand over het hele tekstblok (84% naar 78%) en daarna in 192px
+  uitlopend; de laag hangt aan het tekstblok en volgt dus de teksthoogte op elke breedte.
+  Metingen staan in R-A1a.
 - R-V5: **Geen schaduwen, glows, gradients of blur.** Elevatie is een stap op de neutrale
   ramp plus een 1px hairline. Radius is 2px voor knoppen, kaarten en beeldcrops, 0 voor
-  banden en rules.
+  banden en rules. De enige uitzondering is de leesbaarheidslaag over de herofoto uit
+  R-V4b: een verloop van near-black naar transparant, uitsluitend om tekst leesbaar te
+  houden, nooit op merkgrafiek.
 - R-V6: **Eén `signal`-knop op de hele pagina.** Blauw betekent "dit is wat je moet doen".
   Dat is hier de hero-CTA naar `#contact`. De contactsectie gebruikt tekstlinks, en de
   zwevende WhatsApp-knop krijgt de `outline`-behandeling uit R-S6.4. Op een single pager is
@@ -339,7 +375,10 @@ in `tokens/` en `guidelines/`.
   760px, paginamarges 24 / 48 / 80px, sectiegaten 96 tot 128px.
 - R-V10: Logo en glyph uitsluitend uit `assets/logo/`. Het wordmark wordt nooit opnieuw als
   levende tekst gezet; de SVG's zijn outlines zonder fontafhankelijkheid.
-- R-V11: Portret is het enige fotografische beeld. Geen generieke AI-beeldtaal.
+- R-V11: Twee foto's op de pagina: de herofoto (R-V4) en het portret (R-S3.1). De herofoto
+  is gegenereerd, maar volgt de richting uit het designsysteem: natuur en veel groen in
+  plaats van technologie en blauw. Geen generieke AI-beeldtaal, zoals het designsysteem die
+  uitsluit. Het palet verandert er niet door; signal blue blijft de interfacekleur.
 - R-V12: **Geen emoji en geen em-streepjes.** Nergens, in geen van beide talen, niet in
   koppen, niet in bodytekst, niet in de privacyverklaring. Waar een zin naar een em-streepje
   grijpt, doen een komma, een dubbele punt, een punt of haakjes het werk. En-streepjes
@@ -352,8 +391,9 @@ in `tokens/` en `guidelines/`.
   er ook aan, en de geïmporteerde tokenbestanden zijn de enige uitzondering in deze repo,
   omdat ze verbatim moeten blijven.
 - R-V13: Motion volgt `motion.css`: 80/140/200/320/520ms, geen spring, geen bounce, geen
-  scale-up. De weave animeert nooit. Alles valt terug naar 0ms onder
-  `prefers-reduced-motion`.
+  scale-up. Alles valt terug naar 0ms onder `prefers-reduced-motion`. De overgang van de
+  header van doorzichtig naar dicht is gekoppeld aan de scrollpositie, niet aan tijd, en
+  wordt onder `prefers-reduced-motion` een harde wissel. Zie R-S0.6.
 - R-V14: Focus is een 2px signal-blue outline op 2px offset en wordt nooit verwijderd.
 - R-V15: Waar het designsysteem en deze PRD elkaar tegenspreken, wint het designsysteem en
   wordt de PRD bijgewerkt.
@@ -385,7 +425,8 @@ in `tokens/` en `guidelines/`.
   `window.AIWiseDesignSystem_0a1bab` uitgaat, een prototypepatroon. Ze zijn niet
   geïmporteerd. `base.css` draagt de weave, de container, de eyebrow, de display- en
   lead-stijlen en de reflectieve stijl al als gewone CSS, en de Astro-componenten gebruiken
-  die klassen. Alleen `Button` had eigen styling en is vertaald naar CSS met dezelfde
+  die klassen, behalve de weave-klassen: die staan nog in `base.css` maar de site gebruikt
+  ze niet meer. Alleen `Button` had eigen styling en is vertaald naar CSS met dezelfde
   maten, varianten en `color-mix`-waarden, waarbij `:hover` en `:active` doen wat React
   state in de JSX doet.
 - R-T5: Geen CSS-framework met een eigen ontwerpmening. `styles.css` uit het designsysteem
@@ -406,6 +447,11 @@ in `tokens/` en `guidelines/`.
 - R-T10: Binaire bestanden komen niet door de sync-API. De TTF's, PNG's en het portret zijn
   van de lokale schijf gekopieerd; het designsysteem vermeldt dat het ze daarvandaan heeft
   overgenomen.
+- R-T10a: De herofoto's komen uit Simons selectie (`input/selected-eagle-images/` in de AI
+  Wise-map, de opgeschaalde versies: liggend 2560x1440, staand 1440x1800). Ze staan als
+  JPEG-master van hoge kwaliteit in `src/assets/hero/` (672 KB en 456 KB), niet in
+  `public/`, zodat Astro er bij de build AVIF, WebP en JPEG op meerdere breedtes van maakt.
+  De originele PNG's blijven buiten de repo.
 - R-T11: Fonts zelf gehost, gesubset op Latin en geconverteerd naar woff2. Source Sans 3
   blijft variabel op 23 KB. Newsreader wordt gepind op de enige instantie die het systeem
   gebruikt, opsz 18 en wght 400, op 19 KB in plaats van 125 KB. De conversie is
@@ -448,11 +494,34 @@ in `tokens/` en `guidelines/`.
 
 - R-A1: WCAG 2.1 AA. `guidelines/colour-contrast.html` is de referentie. Op near-black is
   het palet al in orde: warm light 16,79:1, moss 5,29:1, signal blue 5,11:1.
+- R-A1a: **Contrast boven de herofoto.** Gemeten in Chrome op de gebouwde pagina: een
+  screenshot met alle tekst verborgen, zodat alleen foto en laag overblijven, en daarin de
+  pixels onder elke tekstregel. Per element de waarde tegen de lichtste en de donkerste
+  pixel eronder, Nederlandse pagina, header in de doorzichtige toestand:
+
+  | Element (eis) | 1440x900 | 1100x800 | 768x1024 | 375x812 |
+  | --- | --- | --- | --- | --- |
+  | Kop, warm light (3:1) | 8,73 tot 14,14 | 10,80 tot 14,32 | 10,97 tot 11,46 | 10,97 tot 11,62 |
+  | Lead, `text-secondary` (4,5:1) | 5,75 tot 8,31 | 5,74 tot 8,37 | 5,62 tot 5,97 | 5,53 tot 6,94 |
+  | Eyebrow, moss (4,5:1) | **3,77** tot 4,30 | **3,82** tot 4,25 | **3,55** tot 3,66 | **3,50** tot 3,66 |
+  | Knoplabel, near-black op signal blue (3:1) | 5,11 | 5,11 | 5,11 | 5,11 |
+  | Knopvlak tegen de foto (3:1) | 4,22 tot 4,91 | 4,28 tot 4,94 | 3,10 tot 3,90 | 3,38 tot 4,65 |
+  | Taalwissel, actief, warm light (4,5:1) | 9,72 tot 10,30 | 9,75 tot 10,32 | 11,47 tot 11,75 | 11,47 tot 11,75 |
+  | Taalwissel, andere taal, `text-secondary` (4,5:1) | 5,14 tot 5,44 | 5,13 tot 5,45 | 6,06 tot 6,21 | 6,06 tot 6,21 |
+  | Wordmark, warm light (3:1) | 15,79 tot 15,93 | 15,80 tot 16,06 | 11,63 tot 11,95 | 11,59 tot 11,80 |
+  | Glyph, moss-streng (3:1) | 4,98 tot 5,06 | 4,98 tot 5,06 | 3,70 tot 3,77 | 3,65 tot 3,76 |
+
+  Alles haalt AA, **behalve de eyebrow in moss**. Moss haalt op puur near-black 5,29:1;
+  om boven de foto 4,5:1 te halen moet de laag achter de eyebrow rond 92% near-black zijn,
+  en dan is de linkerhelft van de foto vrijwel zwart. De kleur is niet eigenmachtig
+  aangepast. Zie O-6 voor de keuze.
 - R-A2: Zichtbare focus op elk interactief element, volgens R-V14.
 - R-A3: Volledig met het toetsenbord te bedienen, inclusief taalwissel en WhatsApp-knop.
   Een skip-link staat vooraan de pagina.
 - R-A4: Semantische koppenstructuur, één `h1`, elke sectie met een eigen gelabelde kop.
-- R-A5: Alt-tekst op het portret. De weave is decoratief en krijgt `aria-hidden`.
+- R-A5: Alt-tekst op het portret. De herofoto is decoratief en krijgt `alt=""`; de
+  leesbaarheidslaag en de inline logo-SVG's krijgen `aria-hidden`, en de link om het logo
+  draagt de toegankelijke naam.
 - R-A6: `prefers-reduced-motion` wordt gerespecteerd.
 
 ### 9.2 Performance
@@ -462,6 +531,11 @@ in `tokens/` en `guidelines/`.
 - R-P2: Largest Contentful Paint onder 2,0 seconden op 4G.
 - R-P3: Het portret wordt bij de build 4:5 gecropt en in avif, webp en jpg geleverd op vier
   breedtes. Op de weergavemaat van 320px is dat circa 10 KB.
+- R-P3a: De herofoto is het grootste element in beeld en dus de LCP-kandidaat. Hij laadt
+  eager met `fetchpriority="high"`, nooit lazy. Een `<picture>` gebouwd met `getImage()`
+  levert per uitsnede AVIF, WebP en JPEG op vijf breedtes (liggend 960 tot 2560, staand
+  480 tot 1440). `sizes` rekent met de crop van `object-fit: cover`, zodat de browser geen
+  te kleine variant kiest. In AVIF is liggend 1920px 107 KB en staand 1440px 101 KB.
 - R-P4: Geen externe scripts, trackers of embeds van derden. Zie R-T12.
 - R-P5: De stylesheet wordt inline in de pagina gezet, zodat er geen render-blokkerende
   request overblijft.
@@ -598,10 +672,10 @@ Alles wat niet op een open punt wachtte, staat er.
 | Onderdeel | Status |
 | --- | --- |
 | Astro 7, statische build, TypeScript 6 strict | Klaar, `astro check` schoon |
-| Designsysteem-import: acht tokenbestanden, logo, weave-masters, favicons | Klaar |
+| Designsysteem-import: acht tokenbestanden, logo, weave-masters, favicons | Klaar; de weave-masters staan er alleen nog omdat `base.css` ernaar verwijst |
 | Fonts gesubset en geconverteerd, samen 42 KB | Klaar |
-| S0 header met taalwissel | Klaar |
-| S1 hero met de enige weave-plaatsing en de enige signal-knop | Klaar |
+| S0 header met taalwissel, doorzichtig boven de herofoto en dicht na scrollen, zonder JavaScript | Klaar |
+| S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; eyebrow-contrast wacht op O-6 |
 | S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
 | S3 over Simon, portret 4:5 gecropt bij de build | Klaar, copy is concept |
 | S4 contact met e-mail en WhatsApp | Klaar; LinkedIn is voorbereid en wacht op de URL (O-3) |
@@ -616,7 +690,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | `vercel.json` met cache- en securitykoppen | Klaar, nog niet gedeployed |
 | Em-dash-regel in het designsysteem, afgebakend tot publieke teksten | Klaar in `readme.md` en `SKILL.md` |
 
-Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
+Wat nog moet gebeuren staat in O-1 tot en met O-6, plus de deploy zelf.
 
 ---
 
@@ -629,6 +703,7 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
+| O-6 | **Eyebrow boven de herofoto haalt geen AA.** Moss haalt 3,50 tot 3,82:1 waar 4,5:1 nodig is (R-A1a). Drie mogelijkheden: (a) de eyebrow in de hero in `text-secondary` (#B0AFAA), dan minstens 5,8:1 bij de huidige laag, en dezelfde kleur als de lead; (b) in warm light, minstens 11:1, maar dan concurreert hij met de kop; (c) moss houden en de laag achter de eyebrow naar circa 92% near-black brengen, wat de linkerhelft van de foto vrijwel zwart maakt. Voorstel: (a). De moss-kleur blijft dan in de rest van de pagina de eyebrowkleur. | Simon: kiezen | Eén AA-fout op de pagina |
 
 Gesloten sinds versie 4:
 
@@ -650,7 +725,7 @@ Gesloten sinds versie 4:
 
 | Stap | Inhoud | Afhankelijk van |
 | --- | --- | --- |
-| 1 | Site lokaal bekijken en de copy in beide talen reviewen | Simon, O-2 en O-3 |
+| 1 | Site lokaal bekijken en de copy in beide talen reviewen, eyebrowkleur in de hero kiezen | Simon, O-2, O-3 en O-6 |
 | 2 | Repo koppelen aan Vercel, preview-deploy | Simon: Vercel-toegang |
 | 3 | Web Analytics aanzetten in het dashboard, O-4 sluiten | Stap 2 |
 | 4 | Lighthouse meten op de preview, O-5 sluiten | Stap 2 |
@@ -660,7 +735,24 @@ Gesloten sinds versie 4:
 
 ---
 
-## 16. Wijzigingen ten opzichte van versie 4
+## 16. Wijzigingen
+
+### Versie 6 ten opzichte van versie 5
+
+- **Herofoto in plaats van de weave.** De hero staat op een gegenereerde natuurfoto van een
+  steenarend boven een groen bladerdak, met art direction per schermvorm en een
+  leesbaarheidslaag van near-black. De weave is van de website verdwenen:
+  `Weave.astro` en de weave-CSS in `site.css` zijn weg. De weave-masters in
+  `public/assets/weave/masters/` blijven staan, omdat het verbatim geïmporteerde `base.css`
+  ernaar verwijst. R-S1.5, R-S1.6, R-V4, R-V4a, R-V4b, R-V11, R-T10a, R-P3a.
+- **Doorzichtige header boven de foto**, dicht na de eerste 76px scroll, in CSS met een
+  veilige terugval naar de dichte header. Glyph en wordmark staan daarvoor inline, zonder
+  hun achtergrondvlak. R-S0.5 tot en met R-S0.7.
+- De regel "geen gradients" kent nu één uitzondering: de leesbaarheidslaag. R-V5.
+- Contrast boven de foto gemeten en vastgelegd; de eyebrow in moss haalt geen AA. R-A1a en
+  O-6.
+
+### Versie 5 ten opzichte van versie 4
 
 - **Astro 5 naar Astro 7.3.2**, met alle afhankelijkheden op de nieuwste stabiele versie.
   Eén uitzondering: TypeScript blijft op 6, omdat `@astrojs/check` nog geen 7 accepteert.
