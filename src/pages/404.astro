@@ -1,0 +1,44 @@
+---
+/**
+ * Page not found. The URL carries no reliable language, so the page is in both
+ * at once: Dutch first, then English, each with its own heading and a link to
+ * its own home page. The English block carries lang="en".
+ *
+ * The texts are fixed and bilingual, so they live here rather than in copy.ts,
+ * which is organised per language.
+ *
+ * Base gets page="404": noindex, no canonical and no hreflang alternates, and a
+ * language switch that points to the two home pages. The page is Dutch at the
+ * document level, so the skip link, footer and floating button are Dutch.
+ * @astrojs/sitemap leaves 404 pages out of the sitemap on its own.
+ */
+import Base from "../layouts/Base.astro";
+
+const nl = {
+  heading: "Deze pagina bestaat niet",
+  text: "Misschien is de link verouderd of zit er een typfout in het adres.",
+  link: "Naar de startpagina",
+};
+
+const en = {
+  heading: "This page doesn’t exist",
+  text: "The link may be out of date, or there may be a typo in the address.",
+  link: "Go to the home page",
+};
+---
+
+<Base lang="nl" page="404" title="Pagina niet gevonden · AI Wise" description={nl.text}>
+  <div class="aiw-container page-head not-found">
+    <section class="not-found__block" aria-labelledby="not-found-nl">
+      <h1 class="not-found__title" id="not-found-nl">{nl.heading}</h1>
+      <p class="aiw-lead">{nl.text}</p>
+      <p class="not-found__link"><a href="/">{nl.link}</a></p>
+    </section>
+
+    <section class="not-found__block" lang="en" aria-labelledby="not-found-en">
+      <h2 class="not-found__title" id="not-found-en">{en.heading}</h2>
+      <p class="aiw-lead">{en.text}</p>
+      <p class="not-found__link"><a href="/en" hreflang="en">{en.link}</a></p>
+    </section>
+  </div>
+</Base>

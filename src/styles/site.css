@@ -365,6 +365,15 @@
 .page-head{padding-top:var(--aiw-space-16)}
 .page-head__title{margin-bottom:var(--aiw-space-4)}
 
+/* ---- 404 ---------------------------------------------------------------- */
+/* The same message twice, Dutch then English. Both headings take the h1 size,
+   because neither language is the lesser one; the English heading is an h2 so
+   the page keeps one h1. A hairline separates the two blocks. */
+.not-found__block{max-width:var(--aiw-measure)}
+.not-found__block+.not-found__block{margin-top:var(--aiw-space-12);padding-top:var(--aiw-space-12);border-top:var(--aiw-border-width) solid var(--aiw-border-subtle)}
+.not-found__title{margin-bottom:var(--aiw-space-4);font-size:var(--aiw-text-3xl);overflow-wrap:anywhere}
+.not-found__link{margin-top:var(--aiw-space-6)}
+
 /* ---- icons -------------------------------------------------------------- */
 /* Sizing comes from the width and height attributes; this only stops an icon
    from being squeezed by a flex parent. Kept in CSS rather than a style

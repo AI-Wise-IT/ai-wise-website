@@ -21,13 +21,16 @@
  * voice-control user can still say "click NL" (WCAG 2.5.3, label in name).
  * The names are the same on every page, so they are constants here rather than
  * copy per language.
+ *
+ * On the 404 page, which is in both languages at once, the links go to the two
+ * home pages and neither is marked as the current language.
  */
 import LogoSvg from "./LogoSvg.astro";
 import { COPY, path, type Lang } from "../content/copy";
 
 interface Props {
   lang: Lang;
-  page: "home" | "privacy";
+  page: "home" | "privacy" | "404";
 }
 
 const { lang, page } = Astro.props;
@@ -35,6 +38,10 @@ const t = COPY[lang];
 
 /* Only the home page has a hero photograph to lie over. */
 const overHero = page === "home";
+
+/* The 404 page has no counterpart in the other language. */
+const switchPage = page === "privacy" ? "privacy" : "home";
+const current = (l: Lang) => (page !== "404" && lang === l ? "true" : undefined);
 
 const LANGUAGE_NAMES: Record<Lang, string> = { nl: "Nederlands", en: "English" };
 ---
@@ -47,9 +54,9 @@ const LANGUAGE_NAMES: Record<Lang, string> = { nl: "Nederlands", en: "English" }
     </a>
 
     <nav class="lang-switch" aria-label={t.nav.language}>
-      <a href={path("nl", page)} hreflang="nl" lang="nl" aria-current={lang === "nl" ? "true" : undefined}>NL<span class="visually-hidden">, {LANGUAGE_NAMES.nl}</span></a>
+      <a href={path("nl", switchPage)} hreflang="nl" lang="nl" aria-current={current("nl")}>NL<span class="visually-hidden">, {LANGUAGE_NAMES.nl}</span></a>
       <span class="lang-switch__sep" aria-hidden="true">/</span>
-      <a href={path("en", page)} hreflang="en" lang="en" aria-current={lang === "en" ? "true" : undefined}>EN<span class="visually-hidden">, {LANGUAGE_NAMES.en}</span></a>
+      <a href={path("en", switchPage)} hreflang="en" lang="en" aria-current={current("en")}>EN<span class="visually-hidden">, {LANGUAGE_NAMES.en}</span></a>
     </nav>
   </div>
 </header>

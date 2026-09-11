@@ -90,7 +90,8 @@ src/
   components/      the page sections and the small shared pieces
   content/copy.ts  all user-facing copy, both languages
   layouts/Base.astro  document shell, metadata, structured data
-  pages/           / and /privacy in Dutch, /en and /en/privacy in English
+  pages/           / and /privacy in Dutch, /en and /en/privacy in English,
+                   and 404.astro in both languages at once
   styles/tokens/   imported from the design system, not edited here
   styles/site.css  what this site adds on top
 docs/              PRD and the design system import record

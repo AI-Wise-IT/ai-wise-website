@@ -467,6 +467,29 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   `prefers-reduced-motion: reduce` zijn de motion-tokens 0ms en wisselt de knop zonder
   fade.
 
+**S7, 404-pagina**
+
+- R-S7.1: `src/pages/404.astro`, gebouwd als `dist/404.html`. De URL zegt niets betrouwbaars
+  over de taal, dus de pagina is in beide talen tegelijk: eerst Nederlands, dan Engels, elk
+  met een eigen kop, een zin en een link. Het Engelse blok heeft `lang="en"`; het document
+  zelf is Nederlands, dus skip-link, footer en zwevende knop zijn Nederlands.
+  - NL: kop *Deze pagina bestaat niet*, tekst *Misschien is de link verouderd of zit er een
+    typfout in het adres.*, link *Naar de startpagina* naar `/`.
+  - EN: kop *This page doesn’t exist*, tekst *The link may be out of date, or there may be a
+    typo in the address.*, link *Go to the home page* naar `/en`.
+- R-S7.2: De Nederlandse kop is de `h1`, de Engelse een `h2` (R-A4), maar beide staan op de
+  maat van de `h1`, omdat geen van de twee talen de mindere is. Een hairline scheidt de
+  blokken. De teksten staan in de pagina zelf en niet in `copy.ts`, omdat ze vast en
+  tweetalig zijn.
+- R-S7.3: `<title>` *Pagina niet gevonden · AI Wise*, `<meta name="robots"
+  content="noindex">`, geen canonical, geen `og:url` en geen hreflang-alternates. `Base.astro`
+  kent daarvoor `page: "404"`.
+- R-S7.4: De taalwissel in de header wijst op de 404-pagina naar de twee startpagina's en
+  markeert geen van beide als huidige taal. Header, footer en zwevende knop werken zoals op
+  de andere pagina's.
+- R-S7.5: De pagina staat niet in de sitemap. `@astrojs/sitemap` laat 404- en 500-pagina's
+  zelf weg, dus er is geen filter nodig; gecontroleerd in de build.
+
 ---
 
 ## 6. Meertaligheid
@@ -925,6 +948,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, blauwe privacylink en copyrightregel | Klaar; tekst in beide talen vastgesteld |
 | S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen vanaf de contactknoppen | Klaar |
 | Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
+| 404-pagina in beide talen, noindex, zonder canonical en buiten de sitemap | Klaar |
 | i18n-routering, hreflang, canonical, sitemap | Klaar |
 | JSON-LD, Open Graph, favicons | Klaar |
 | `robots.txt` met modeltraining op disallow, en `llms.txt` | Klaar |
@@ -1031,6 +1055,9 @@ Gesloten sinds versie 4:
   heet *AI Wise, startpagina*, de taallinks lezen *Nederlands* en *English* voor, de zwevende
   knop *Stuur een bericht via WhatsApp*, en elke link naar een nieuw tabblad zegt dat. R-S0.2,
   R-S4.3, R-S6.3, R-A3, R-A5 en R-A7.
+- **404-pagina toegevoegd**, in beide talen op één pagina, met noindex en zonder canonical of
+  hreflang; `Base.astro` kent daarvoor `page: "404"` en de taalwissel wijst dan naar de twee
+  startpagina's. R-S7.1 tot en met R-S7.5.
 
 ### Versie 6 ten opzichte van versie 5
 
