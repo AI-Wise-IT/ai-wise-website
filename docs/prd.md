@@ -179,15 +179,18 @@ Vier inhoudelijke secties.
   `lang="en"` op de Nederlandse pagina. De `h1` zegt in de taal van de pagina wat Simon
   doet. Dit wijkt af van `Home.jsx` in het designsysteem, waar de tagline de `h1` is: een
   Engelse kop vertelde een Nederlandse bezoeker niets over het werk. Vastgesteld (NL):
-  *"Jij ziet het voor je. Ik bouw het."*
+  *"Jij ziet het voor je. Ik bouw het."* Vastgesteld (EN): *"You picture it. I’ll build
+  it."* De Engelse pagina heeft geen `lang` op de eyebrow nodig.
 - R-S1.2a: De kop breekt op de zinsgrens. Elke zin is een eigen regel in de markup, want
   een gebalanceerde regelafbreking splitst anders de eerste zin. De display-maat van 54px
   geldt vanaf 1200px; daaronder is het 45px, zodat de eerste zin ook tussen 1024 en 1200px
   op één regel past. Op mobiel mag de eerste zin zelf over twee regels lopen.
 - R-S1.3: Lead-paragraaf: in gewone taal wat Simon maakt en voor wie. Vastgesteld (NL):
   *"Met AI maak ik apps, websites en tools die terugkerend werk uit handen nemen. Het
-  liefst voor organisaties die werk doen waar de wereld iets aan heeft."* Apps en websites
-  zijn de vorm; het uit handen nemen van terugkerend werk is wat een tool doet.
+  liefst voor organisaties die werk doen waar de wereld iets aan heeft."* Vastgesteld (EN):
+  *"I use AI to build apps, websites and tools that take repetitive work off your plate.
+  Ideally for organisations doing work that matters."* Apps en websites zijn de vorm; het
+  uit handen nemen van terugkerend werk is wat een tool doet.
 - R-S1.4: Eén knop, `signal`, die naar `#contact` ankert. Zie R-V6.
 - R-S1.5: De hero staat op een foto: een steenarend die boven een groen bladerdak glijdt,
   met een donkere laag die de tekst leesbaar houdt. Zie R-V4 en R-V4a. De weave staat niet
@@ -435,6 +438,9 @@ ook: één template per type, niet per taal.
 - R-L9: Nederlandse en Engelse aanbodtermen worden nooit gemengd binnen één taalversie.
   Omdat de scan hier niet voorkomt, is dit vooral een waarschuwing voor toekomstige
   uitbreiding.
+- R-L9a: **De Engelse versie is consequent Brits Engels**, passend bij `en_GB`:
+  *organisations*, *recognise*. De hero is zo vastgesteld; de secties die nog concept zijn
+  volgen bij het herschrijven.
 - R-L10: Het designsysteem merkt Nederlandse typografische regels aan als open. In de
   praktijk zetten beide talen identiek. Als Nederlandse copy een andere maat of afbreking
   nodig heeft, is dat een bevinding voor het designsysteem, niet iets dat hier lokaal
@@ -834,7 +840,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | Designsysteem-import: acht tokenbestanden, logo, weave-masters, favicons | Klaar; de weave-masters staan er alleen nog omdat `base.css` ernaar verwijst |
 | Fonts gesubset en geconverteerd, samen 42 KB | Klaar |
 | S0 header met taalwissel, doorzichtig boven de herofoto en dicht na scrollen, zonder JavaScript | Klaar |
-| S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
+| S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; tekst in beide talen vastgesteld; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
 | S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; Nederlandse tekst door Simon geschreven en goedgekeurd, Engels is concept |
 | S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar, tekst door Simon vastgesteld |
@@ -919,6 +925,9 @@ Gesloten sinds versie 4:
   breken als het niet op een regel past (`overflow-wrap: anywhere`). De andere koppen lopen
   in beide talen precies zoals eerst; `hyphens: auto` is bewust weggelaten, omdat dat ook
   woorden afbreekt die gewoon naar de volgende regel hadden gekund.
+- **Engelse hero vastgesteld**, als eerste Engelse sectie: de tagline in de eyebrow zoals op
+  de Nederlandse pagina, de kop *You picture it. I’ll build it.* in twee regels, en een
+  nieuwe lead. Het Engels is consequent Brits. R-S1.2, R-S1.3 en R-L9a.
 
 ### Versie 6 ten opzichte van versie 5
 

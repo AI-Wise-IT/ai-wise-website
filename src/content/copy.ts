@@ -3,9 +3,12 @@
  * a text change should not be a code change.
  *
  * STATUS, Dutch: hero, vision, examples, about, contact, footer and meta text
- * reviewed with Simon and settled; the about text is his own. English is the
- * first draft throughout and is written afresh once the Dutch is settled, as its
- * own text rather than a translation.
+ * reviewed with Simon and settled; the about text is his own.
+ *
+ * STATUS, English: the hero is settled. The other sections are still the first
+ * draft and are being written afresh one at a time, as their own text rather
+ * than a translation. English is British English, consistently (the page is
+ * en_GB); the first-draft sections do not follow that yet.
  *
  * Voice: the design system's readme.md, "Content fundamentals", plus Simon's
  * preferences in the AI Wise folder at
@@ -260,9 +263,9 @@ const en: Copy = {
     language: "Language",
   },
   hero: {
-    eyebrow: "AI, data and automation",
-    title: ["Automation in service of life"],
-    lead: "With AI Wise I build tools that lighten recurring work and make space for the work that truly matters.",
+    eyebrow: COMPANY.tagline,
+    title: ["You picture it.", "I’ll build it."],
+    lead: "I use AI to build apps, websites and tools that take repetitive work off your plate. Ideally for organisations doing work that matters.",
     cta: "Get in touch",
   },
   vision: {
