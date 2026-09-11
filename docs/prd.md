@@ -1,6 +1,7 @@
 # PRD, AI Wise website
 
-Status: versie 7, gebouwd; de Nederlandse versie is af, de Engelse wordt herschreven
+Status: versie 7, gebouwd; beide taalversies zijn geschreven, alleen de Engelse
+privacyverklaring wacht nog op Simons review
 Datum: 11 september 2026
 Eigenaar: Simon van Meegdenburg
 Vervangt: de tijdelijke coming-soon pagina op https://aiwise.it.com
@@ -517,8 +518,9 @@ ook: één template per type, niet per taal.
   uitbreiding.
 - R-L9a: **De Engelse versie is consequent Brits Engels**, passend bij `en_GB`:
   *organisations*, *recognise*, *modernised*. De hero, de visie met de voorbeelden, over mij,
-  contact, en de titel en meta-description zijn zo vastgesteld; de secties die nog concept zijn
-  volgen bij het herschrijven.
+  contact, de footer, de kleine interfaceteksten, de titel en meta-description en de
+  privacyverklaring zijn zo geschreven. Er staat geen Engelse sectie meer in concept; alleen
+  de privacyverklaring wacht nog op Simons review (O-2).
 - R-L10: Het designsysteem merkt Nederlandse typografische regels aan als open. In de
   praktijk zetten beide talen identiek. Als Nederlandse copy een andere maat of afbreking
   nodig heeft, is dat een bevinding voor het designsysteem, niet iets dat hier lokaal
@@ -621,8 +623,11 @@ in `tokens/` en `guidelines/`.
 
 ### 8.1 Stack
 
-- R-T1: **Astro 7**, statische output. Ingebouwde i18n-routering en geen client-side
-  JavaScript behalve het analytics-script.
+- R-T1: **Astro 7**, statische output, met de ingebouwde i18n-routering. Geen framework in
+  de browser en geen scripts van derden. Er draait één klein eigen script, door Astro
+  gebundeld en inline gezet: het verbergen van de zwevende WhatsApp-knop (R-S6.5 en
+  R-S6.7). Daarnaast staat het analytics-script van Vercel op de pagina, vanaf het eigen
+  domein (R-J2). Zonder JavaScript blijft de hele pagina leesbaar en bruikbaar (R-T6).
 - R-T1a: Alle afhankelijkheden staan op de meest recente stabiele versie, met één bewuste
   uitzondering: **TypeScript 6, niet 7**. `@astrojs/check` accepteert `^5 || ^6`, dus TS 7
   zou de typecontrole breken. Zodra `@astrojs/check` TS 7 ondersteunt, kan dat mee omhoog.
@@ -643,9 +648,10 @@ in `tokens/` en `guidelines/`.
   geïmporteerd. `base.css` draagt de weave, de container, de eyebrow, de display- en
   lead-stijlen en de reflectieve stijl al als gewone CSS, en de Astro-componenten gebruiken
   die klassen, behalve de weave-klassen: die staan nog in `base.css` maar de site gebruikt
-  ze niet meer. Alleen `Button` had eigen styling en is vertaald naar CSS met dezelfde
-  maten, varianten en `color-mix`-waarden, waarbij `:hover` en `:active` doen wat React
-  state in de JSX doet.
+  ze niet meer. `Button` en `Card` hadden eigen styling en zijn vertaald naar CSS met
+  dezelfde maten, varianten en `color-mix`-waarden, waarbij `:hover` en `:active` doen wat
+  React state in de JSX doet. Van `Card` gebruikt de site alleen de standaardvariant, als
+  het ene kader om de voorbeelden in de visie (R-S2.3c).
 - R-T5: Geen CSS-framework met een eigen ontwerpmening. `styles.css` uit het designsysteem
   is de basis, `site.css` is wat deze site toevoegt.
 - R-T6: Geen JavaScript nodig om de inhoud te lezen. Taalwissel en WhatsApp-knop zijn
@@ -673,11 +679,15 @@ in `tokens/` en `guidelines/`.
   blijft variabel op 23 KB. Newsreader wordt gepind op de enige instantie die het systeem
   gebruikt, opsz 18 en wght 400, op 19 KB in plaats van 125 KB. De conversie is
   reproduceerbaar beschreven.
-- R-T12: **Lucide niet via CDN.** Het designsysteem laadt Lucide van `unpkg.com`, een
+- R-T12: **Iconen niet via CDN.** Het designsysteem laadt Lucide van `unpkg.com`, een
   prototypekeuze die een externe partij aan de privacyverklaring zou toevoegen. Deze site
-  gebruikt twee iconen, dus de paden staan inline in `Icon.astro`, met bronvermelding. Dat
+  gebruikt vier iconen, dus de paden staan inline in `Icon.astro`, met bronvermelding. Dat
   is precies wat het designsysteem zelf voorschrijft ("icons are inline SVG at render
   time"). Stroke 1.5px, `currentColor`, outline only.
+  - `arrow-right` komt uit Lucide (ISC), in de hero-knop.
+  - `mail`, `brand-linkedin` en `brand-whatsapp` komen uit Tabler Icons 3.46.0 (MIT),
+    omdat Lucide geen WhatsApp-logo heeft en de drie contactroutes als één familie horen
+    te lezen (R-S4.3). De zwevende knop gebruikt hetzelfde WhatsApp-icoon.
 
 ### 8.3 Repository
 
@@ -807,8 +817,7 @@ behandeld.
     elke pagina, ook op de privacypagina's, die zelf hun eigen lead als meta-description
     hebben.
   - De oude positionering (*AI, data en automatisering*, *workflow-automatisering*,
-    *rapportage*) staat nergens meer in Nederlandse tekst. In het Engels is ze uit de hero, de
-    visie, over mij, contact en de meta weg; de secties die nog concept zijn hebben haar nog.
+    *rapportage*) staat nergens meer, in geen van beide talen.
     `llms.txt` en de JSON-LD volgen de nieuwe positionering, zie R-S.7 en R-S.9.
 - R-S.2: Open Graph en Twitter card (`summary_large_image`), met `/assets/og/share.jpg` als
   deelafbeelding en `og:image:width` 1200, `og:image:height` 630 en `og:image:type`
@@ -1013,7 +1022,7 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
 | O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, over mij, contact, de footer, en de titel en meta-description vastgesteld; de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
-| O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
+| O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. De pagina is inmiddels in de browser nagelopen op de gangbare formaten, en die metingen staan vast (R-V4a, R-S3.1, R-S6.7); jouw eigen oordeel staat nog open. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
 
@@ -1037,8 +1046,9 @@ Gesloten sinds versie 4:
   Alleen de voorbeeldcopy in `ui_kits/` en `slides/` is nog een keer nalopen waard, en dat
   staat als zodanig genoteerd onder "Still open" in het designsysteem.
 - PROPOSED-tokens: het designsysteem krijgt een update op het moment dat de site live gaat.
-- Iconenrichting: geen open punt voor deze site. Er staan twee iconen op de pagina en
-  `Icon.astro` vervangen raakt verder niets. De keuze blijft open in het designsysteem.
+- Iconenrichting: geen open punt voor deze site. Er staan vier iconen op de pagina, uit
+  twee sets (R-T12), en `Icon.astro` vervangen raakt verder niets. De keuze blijft open in
+  het designsysteem.
 
 ---
 
@@ -1127,6 +1137,14 @@ Gesloten sinds versie 4:
   noemt geen vestigingsplaats meer. Handelsnaam, KvK-nummer, btw-id en contactgegevens
   blijven; het veld `city` is uit `COMPANY` in `copy.ts` verwijderd. R-S5.3, R-S5.5, R-J4 en
   R-C6.
+- **Verouderde eisen rechtgezet.** R-T12 telt nu vier iconen uit twee sets in plaats van
+  twee; R-T1 zegt wat er werkelijk draait, namelijk geen framework en geen scripts van
+  derden, met één klein gebundeld script voor de zwevende knop naast het analytics-script
+  van Vercel; R-T4 noemt naast `Button` ook de vertaalde `Card`; en het Engels staat
+  nergens meer als concept genoteerd, want alleen de privacyverklaring wacht nog op
+  review. `design-system-import.md` zegt nu welke twee afwijkingen bij een herimport terug
+  moeten en welke afwijkingen van de site zelf zijn, en telt `Card` niet langer bij wat is
+  weggelaten. R-T1, R-T4, R-T12, R-L9a, R-S.1 en O-3.
 
 ### Versie 6 ten opzichte van versie 5
 

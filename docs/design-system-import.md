@@ -92,11 +92,12 @@ Italic is not shipped because nothing on this site uses it.
 `window.AIWiseDesignSystem_0a1bab`, which is a prototype pattern, and this site
 needs five of the nineteen. `base.css` already carries the weave, the container,
 the eyebrow, the display and lead type and the reflective style as plain CSS, so
-the Astro components in `src/components/` use those classes directly. The one
-component with real styling of its own, `Button`, was translated to CSS in
-`src/styles/site.css`: same sizes, same variants, same `color-mix` hover and
-press values, with `:hover` and `:active` doing what React state does in the JSX.
-That removes the need for a JavaScript runtime. The site adds one variant of its
+the Astro components in `src/components/` use those classes directly. The two
+components with real styling of their own, `Button` and `Card`, were translated
+to CSS in `src/styles/site.css`: same sizes, same variants, same `color-mix`
+hover and press values, with `:hover` and `:active` doing what React state does
+in the JSX. That removes the need for a JavaScript runtime. Of `Card` the site
+uses only the default tone, as the one frame around the examples in the vision. The site adds one variant of its
 own, `.btn--outline-signal`: the outline button with its border and icon in
 signal blue and the label in the primary text colour, used for the contact
 buttons and the floating WhatsApp button. Its hover and press states use the
@@ -188,14 +189,33 @@ python -m fontTools.subset news-static.ttf --unicodes="$SUBSET" --layout-feature
 ## Re-importing
 
 Imported files are not edited locally. A change belongs in the design system and
-comes back through a new import. When re-importing, re-apply the two deviations
-above and check this file still describes what is true. If the logo files change,
-check that `wordmark.svg` still has a 66-unit margin around its letters, because
-`LogoSvg.astro` crops by that amount.
+comes back through a new import.
+
+Only two of the deviations above are edits to an imported file, and those are the
+ones to re-apply on every re-import: the weave `background-image` URLs in
+`tokens/base.css`, and the rewritten `tokens/fonts.css`. Both say so at the top of
+the file; the other six token files are byte-for-byte copies.
+
+Everything else recorded above is a site-level departure, not an edit to an
+imported file: the hero photograph in place of the weave, the logo inlined without
+its backing rectangle, the footer lockup with a live tagline, the round floating
+button, the translated `Button` and `Card` with the added `.btn--outline-signal`
+variant, the inlined icons, and the two portrait crops. They live in this repo's
+own components and CSS, so a re-import does not overwrite them and there is
+nothing to re-apply. What a re-import does ask is whether the design system has
+meanwhile answered any of them, and whether this file still describes what is
+true.
+
+If the logo files change, check that `wordmark.svg` still has a 66-unit margin
+around its letters, because `LogoSvg.astro` crops by that amount.
 
 ## What was deliberately left out
 
 `components/forms/`, `ui_kits/documents/`, `slides/`, the `Practice` and `Scan`
-screens, and the `Band`, `Card`, `Badge`, `Callout` and `StatBlock` components.
-None of them are needed by a four-section page with no form. The design system
-keeps them; this repo does not carry copies it does not use.
+screens, and the `Band`, `Badge`, `Callout` and `StatBlock` components. None of
+them are needed by a four-section page with no form. The design system keeps
+them; this repo does not carry copies it does not use.
+
+`Card` is not on that list. The vision needs its default tone for the frame
+around the examples, so it is translated to CSS in `site.css` along with
+`Button`, rather than imported as JSX.
