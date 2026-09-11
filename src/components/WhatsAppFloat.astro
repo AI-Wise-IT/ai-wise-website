@@ -2,10 +2,18 @@
 /**
  * S6. Persistent contact route, bottom right.
  *
- * Outline rather than a fill: the design system allows one signal button per
- * view and that is the hero call to action. No WhatsApp green either, because
- * the palette is four colours and green is not one of them. The icon does not
- * replace the word, so the label reads "WhatsApp" in text.
+ * The blue outline variant rather than a fill: the design system allows one
+ * signal button per view and that is the hero call to action. No WhatsApp green
+ * either, because the palette is four colours and green is not one of them.
+ * Icon only, with the same Tabler WhatsApp logo as the contact button; the name
+ * "WhatsApp" stays in the markup as visually hidden text, so it is the link's
+ * accessible name.
+ *
+ * The script below gets the button out of the way in two situations: while the
+ * page is being scrolled, and while the contact section is in view, because that
+ * section has its own WhatsApp button. It only toggles a class; the fades and
+ * the non-interactive hidden state live in site.css (.wa-float--hidden).
+ * Without JavaScript the button simply stays visible.
  */
 import Icon from "./Icon.astro";
 import { COMPANY, COPY, type Lang } from "../content/copy";
@@ -20,11 +28,78 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
 ---
 
 <a
-  class="btn btn--md btn--outline wa-float"
+  class="btn btn--outline-signal wa-float"
   href={waHref}
   target="_blank"
   rel="noopener noreferrer"
 >
-  <Icon name="message-circle" size={18} />
-  {t.contact.whatsappFloatLabel}
+  <Icon name="whatsapp" size={22} />
+  <span class="visually-hidden">{t.contact.whatsappFloatLabel}</span>
 </a>
+
+<script>
+  const HIDDEN_CLASS = "wa-float--hidden";
+  // How long the page must be still before the button fades back in.
+  const SCROLL_IDLE_MS = 600;
+  // Moving focus with Tab can scroll the page. Those scrolls are not the reader
+  // scrolling, and hiding on them would drop the button out of the tab order
+  // just as a keyboard user is about to reach it.
+  const TAB_SCROLL_GRACE_MS = 250;
+
+  const button = document.querySelector<HTMLAnchorElement>(".wa-float");
+
+  if (button) {
+    let contactInView = false;
+    let scrolling = false;
+    let idleTimer: number | undefined;
+    let lastTabAt = Number.NEGATIVE_INFINITY;
+
+    // Keyboard focus only: a mouse click also focuses the link, and that should
+    // not pin the button in place for the rest of the visit.
+    const hasKeyboardFocus = (): boolean => {
+      try {
+        return button.matches(":focus-visible");
+      } catch {
+        return document.activeElement === button;
+      }
+    };
+
+    const update = (): void => {
+      const hide = (contactInView || scrolling) && !hasKeyboardFocus();
+      button.classList.toggle(HIDDEN_CLASS, hide);
+    };
+
+    // Only the home pages have a contact section; the privacy pages do not.
+    const contact = document.getElementById("contact");
+    if (contact && "IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        for (const entry of entries) contactInView = entry.isIntersecting;
+        update();
+      }).observe(contact);
+    }
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") lastTabAt = performance.now();
+    });
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (performance.now() - lastTabAt < TAB_SCROLL_GRACE_MS) return;
+        scrolling = true;
+        update();
+        window.clearTimeout(idleTimer);
+        idleTimer = window.setTimeout(() => {
+          scrolling = false;
+          update();
+        }, SCROLL_IDLE_MS);
+      },
+      { passive: true },
+    );
+
+    // Re-evaluate when focus arrives or leaves, so a focused button is shown and
+    // a button that loses focus while it should be hidden fades out.
+    button.addEventListener("focus", update);
+    button.addEventListener("blur", update);
+  }
+</script>

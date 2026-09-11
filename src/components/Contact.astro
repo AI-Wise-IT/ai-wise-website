@@ -6,11 +6,12 @@
  * says, positively, that AI Wise is young.
  *
  * The routes are three buttons: e-mail, LinkedIn (while set in COMPANY) and
- * WhatsApp. They use the outline variant, because the design system allows one
- * signal fill per view and that is the hero's call to action. On wide screens
- * each button shows an icon and its name, side by side. On narrow screens the
- * names are hidden visually and the icons carry the buttons; the names stay in
- * the markup, so every button keeps its accessible name.
+ * WhatsApp. They use the blue outline variant (border and icon in signal blue,
+ * label in the primary text colour), not a fill, because the design system
+ * allows one signal fill per view and that is the hero's call to action. On wide
+ * screens each button shows an icon and its name, side by side. On narrow
+ * screens the names are hidden visually and the icons carry the buttons; the
+ * names stay in the markup, so every button keeps its accessible name.
  */
 import Icon from "./Icon.astro";
 import { COMPANY, COPY, type Lang } from "../content/copy";
@@ -38,13 +39,13 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
       {t.contact.collaboration?.map((p) => <p class="aiw-body">{p}</p>)}
 
       <div class="contact__actions">
-        <a class="btn btn--md btn--outline contact__action" href={`mailto:${COMPANY.email}`}>
+        <a class="btn btn--md btn--outline-signal contact__action" href={`mailto:${COMPANY.email}`}>
           <Icon name="mail" size={22} />
           <span class="contact__action-label">{t.contact.emailLabel}</span>
         </a>
         {COMPANY.linkedin && (
           <a
-            class="btn btn--md btn--outline contact__action"
+            class="btn btn--md btn--outline-signal contact__action"
             href={COMPANY.linkedin}
             target="_blank"
             rel="noopener noreferrer"
@@ -54,7 +55,7 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
           </a>
         )}
         <a
-          class="btn btn--md btn--outline contact__action"
+          class="btn btn--md btn--outline-signal contact__action"
           href={waHref}
           target="_blank"
           rel="noopener noreferrer"

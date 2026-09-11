@@ -3,12 +3,12 @@
  * Inline SVG icons.
  *
  * Sources:
- * - arrow-right, message-circle: Lucide (https://lucide.dev), ISC licence.
+ * - arrow-right: Lucide (https://lucide.dev), ISC licence.
  * - mail, linkedin, whatsapp: Tabler Icons 3.46.0, outline set
  *   (https://tabler.io/icons), MIT licence, Copyright (c) 2020-2026 Pawel Kuna.
  *   Lucide has no WhatsApp logo, and the three contact buttons should read as one
- *   family, so all three come from Tabler. Its invisible 24x24 bounding path is
- *   left out.
+ *   family, so all three come from Tabler. The floating WhatsApp button uses the
+ *   same whatsapp icon. Tabler's invisible 24x24 bounding path is left out.
  *
  * The design system substitutes Lucide for an icon set the brand record leaves
  * undecided, and loads it from a CDN. A CDN is fine for a prototype and wrong
@@ -18,7 +18,7 @@
  * whichever set it comes from, so the two sources look alike.
  */
 interface Props {
-  name: "arrow-right" | "message-circle" | "mail" | "linkedin" | "whatsapp";
+  name: "arrow-right" | "mail" | "linkedin" | "whatsapp";
   size?: number;
   class?: string;
 }
@@ -27,7 +27,6 @@ const { name, size = 18, class: className } = Astro.props;
 
 const PATHS: Record<Props["name"], string[]> = {
   "arrow-right": ["M5 12h14", "m12 5 7 7-7 7"],
-  "message-circle": ["M7.9 20A9 9 0 1 0 4 16.1L2 22Z"],
   mail: [
     "M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10",
     "M3 7l9 6l9 -6",

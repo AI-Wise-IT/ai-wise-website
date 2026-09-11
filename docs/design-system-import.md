@@ -78,20 +78,26 @@ the Astro components in `src/components/` use those classes directly. The one
 component with real styling of its own, `Button`, was translated to CSS in
 `src/styles/site.css`: same sizes, same variants, same `color-mix` hover and
 press values, with `:hover` and `:active` doing what React state does in the JSX.
-That removes the need for a JavaScript runtime on a page that has no interaction.
+That removes the need for a JavaScript runtime. The site adds one variant of its
+own, `.btn--outline-signal`: the outline button with its border and icon in
+signal blue and the label in the primary text colour, used for the contact
+buttons and the floating WhatsApp button. Its hover and press states use the
+same `color-mix` steps as the signal fill, so it introduces no new colour. The
+design system itself is unchanged.
 
 **Icons.** The design system loads Lucide from a CDN and flags the whole icon
 choice as a substitution awaiting Simon's decision. This site uses a handful of
 icons, so the paths are inlined in `src/components/Icon.astro` rather than adding
 a dependency or a third-party request the privacy statement would have to name.
-Two come from Lucide (arrow-right, message-circle). The three contact buttons use
-Tabler Icons 3.46.0 (MIT): mail, brand-linkedin and brand-whatsapp, because Lucide
-has no WhatsApp logo and the three should read as one family. All of them are
-drawn as outlines at stroke 1.5 in `currentColor`, no larger than 32px. One
-deliberate departure from the design system's "an icon never replaces a word":
-on narrow screens the contact buttons show only their icons, by Simon's choice.
-The logos are unmistakable there, and each button keeps its name as its
-accessible name.
+One comes from Lucide (arrow-right). The three contact buttons use Tabler Icons
+3.46.0 (MIT): mail, brand-linkedin and brand-whatsapp, because Lucide has no
+WhatsApp logo and the three should read as one family. The floating WhatsApp
+button uses the same brand-whatsapp icon. All of them are drawn as outlines at
+stroke 1.5 in `currentColor`, no larger than 32px. One deliberate departure from
+the design system's "an icon never replaces a word", by Simon's choice: on narrow
+screens the contact buttons show only their icons, and the floating WhatsApp
+button shows only its icon on every screen. The logos are unmistakable, and each
+button keeps its name as its accessible name.
 
 **Portrait.** The original is a 3000x2001 landscape frame, kept at
 `assets/profile-picture-professional.jpg` and never sent to the browser. The

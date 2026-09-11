@@ -293,9 +293,10 @@ Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
 - R-S4.2: Geen fit-criteria, geen uitsluitingen, geen "ik werk alleen met...". De rode
   lijnen uit het klantprofiel zijn intern materiaal.
 - R-S4.3: Contactroutes als drie knoppen, even prominent: E-mail, LinkedIn
-  (`https://www.linkedin.com/in/simon-v-13833a131/`) en WhatsApp. Omlijnde variant, omdat
-  de hero-knop de enige gevulde blauwe knop op de pagina is. Vanaf 640px staan ze naast
-  elkaar met icoon en naam. Daaronder tonen ze alleen het icoon, verdelen ze de kolom in
+  (`https://www.linkedin.com/in/simon-v-13833a131/`) en WhatsApp. Blauw omlijnde variant
+  (`.btn--outline-signal`): rand en icoon in signal blue, de naam in warm light, zodat ze
+  duidelijk als knop lezen zonder een tweede gevulde blauwe knop te zijn (R-V6). Vanaf 640px
+  staan ze naast elkaar met icoon en naam. Daaronder tonen ze alleen het icoon, verdelen ze de kolom in
   gelijke delen en zijn ze minimaal 48px hoog; de naam blijft als toegankelijke naam in de
   markup. De iconen komen uit Tabler Icons (MIT), omdat Lucide geen WhatsApp-logo heeft.
   LinkedIn staat ook in `llms.txt` en als `sameAs` in de gestructureerde data van de persoon.
@@ -323,15 +324,38 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
 
 **S6, WhatsApp-knop**
 
-- R-S6.1: Zwevend rechtsonder, zichtbaar op alle schermformaten.
+- R-S6.1: Zwevend rechtsonder, op alle schermformaten. In rust zichtbaar; wanneer hij
+  verborgen wordt staat in R-S6.7.
 - R-S6.2: Linkt naar `https://wa.me/31613926494`, met een voorgevulde openingszin per
   taalversie.
-- R-S6.3: Toegankelijke naam, bereikbaar via toetsenbord, zichtbare focus-outline.
+- R-S6.3: Toegankelijke naam "WhatsApp" als visueel verborgen tekst, bereikbaar via
+  toetsenbord, zichtbare focus-outline.
 - R-S6.4: **Geen gevulde blauwe knop**, want dat zou een tweede `signal` op de pagina zijn.
-  Uitvoering als `outline`: near-black vlak, 1px hairline, 2px radius, warm light tekst,
-  icoon op 18px. Geen WhatsApp-groen.
+  Uitvoering als blauw omlijnde knop (`.btn--outline-signal`, zie R-V6): alleen het icoon,
+  geen tekst. Hetzelfde WhatsApp-icoon uit Tabler als in de contactknop, op 22px, in signal
+  blue. Een vierkant van 48 bij 48px, zodat hij goed te raken is, met 1px rand in signal
+  blue, 2px radius en een vlak in `surface-card`, omdat hij over tekst en de herofoto
+  zweeft. Geen WhatsApp-groen.
 - R-S6.5: Geen widget of script van derden. Die laden externe code en breken de identiteit.
+  Het kleine eigen script uit R-S6.7 wordt door Astro gebundeld, staat inline en valt onder
+  de CSP-hashes uit R-T3a.
 - R-S6.6: Overlapt op mobiel geen tekst of links.
+- R-S6.7: **Verborgen tijdens scrollen en bij de contactsectie.** Zolang de pagina scrolt,
+  vervaagt de knop in 200ms (`duration-base`); zodra er 600ms niet gescrold is, komt hij in
+  320ms (`duration-slow`) terug, beide met `ease-standard`. Zolang de contactsectie in beeld
+  is, ook maar gedeeltelijk, blijft hij verborgen, want die sectie heeft een eigen
+  WhatsApp-knop. Een IntersectionObserver op `#contact` regelt dat alleen op de
+  homepagina's; de privacypagina's hebben geen contactsectie en kennen alleen het verbergen
+  tijdens scrollen. Het script zet alleen een klasse (`.wa-float--hidden`), geen inline
+  stijlen.
+- R-S6.8: Verborgen betekent: dekking 0, niet klikbaar (`pointer-events: none`) en na de
+  fade `visibility: hidden`, zodat de knop uit de tabvolgorde en de toegankelijkheidsboom
+  is. Bij het tonen gaat `visibility` direct aan en volgt de fade. Een knop met
+  toetsenbordfocus (`:focus-visible`) wordt nooit verborgen, en scrollen dat binnen 250ms
+  na een Tab-toets gebeurt telt niet als scrollen, zodat een toetsenbordgebruiker de knop
+  kan bereiken. Zonder JavaScript blijft de knop gewoon zichtbaar. Bij
+  `prefers-reduced-motion: reduce` zijn de motion-tokens 0ms en wisselt de knop zonder
+  fade.
 
 ---
 
@@ -406,9 +430,17 @@ in `tokens/` en `guidelines/`.
   R-V4b: een verloop van near-black naar transparant, uitsluitend om tekst leesbaar te
   houden, nooit op merkgrafiek.
 - R-V6: **Eén `signal`-knop op de hele pagina.** Blauw betekent "dit is wat je moet doen".
-  Dat is hier de hero-CTA naar `#contact`. De contactsectie gebruikt tekstlinks, en de
-  zwevende WhatsApp-knop krijgt de `outline`-behandeling uit R-S6.4. Op een single pager is
-  de hele pagina één view, dus de regel geldt over de volle lengte.
+  Dat is hier de hero-CTA naar `#contact`. Op een single pager is de hele pagina één view,
+  dus de regel geldt over de volle lengte. De regel gaat over het gevulde vlak: omlijnde
+  knoppen hoeven niet grijs te zijn en mogen signal blue gebruiken voor rand en icoon. Dat
+  is de variant `.btn--outline-signal` in `site.css`, een aanvulling van de site op de
+  `Button` uit het designsysteem, gebruikt voor de drie contactknoppen (R-S4.3) en de
+  zwevende WhatsApp-knop (R-S6.4). De naam blijft warm light. Hover en indrukken verschuiven
+  het blauw zoals bij de `signal`-knop (90% met warm light, 86% met near-black, via
+  `color-mix` in oklab) en zetten het vlak een stap op de neutrale ramp, zonder nieuwe
+  kleuren. Gemeten contrast van de rand: 5,11:1 op de pagina en 4,63:1 op het vlak van de
+  zwevende knop in rust, 5,31:1 bij hover (4,94:1 op de zwevende knop) en 3,71:1 bij
+  indrukken, alles boven de 3:1 voor interface-onderdelen.
 - R-V7: Typografie: Source Sans 3 dominant, gewichten 400 en 600, geen 700 en geen light.
   Newsreader uitsluitend voor de reflectie, maximaal één keer op de pagina.
 - R-V8: Sentence case voor koppen en knoppen. Uppercase alleen voor eyebrows, badges en
@@ -820,6 +852,12 @@ Gesloten sinds versie 4:
   boven de korte tekst uittorent. Het oude `src/assets/portrait.jpg` is vervangen door twee
   uitsneden in `src/assets/about/`. De afwijking van de 4:5 uit het designsysteem is Simons
   keuze; het designsysteem is niet aangepast. R-S3.1, R-S3.6, R-S3.7 en R-P3.
+- **Zwevende WhatsApp-knop en blauw omlijnde knoppen.** De zwevende knop toont alleen nog
+  het WhatsApp-icoon in een vierkant van 48px, vervaagt tijdens het scrollen en blijft weg
+  zolang de contactsectie in beeld is. De contactknoppen en de zwevende knop hebben een rand
+  en icoon in signal blue; de hero-knop blijft de enige gevulde blauwe knop. Het
+  Lucide-icoon `message-circle` is uit `Icon.astro` verwijderd, omdat niets het nog
+  gebruikt. R-S4.3, R-S6.1 tot en met R-S6.8 en R-V6.
 
 ### Versie 5 ten opzichte van versie 4
 

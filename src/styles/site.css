@@ -25,6 +25,20 @@
 .btn--outline{background:transparent;color:var(--aiw-text-primary);border-color:var(--aiw-border-default)}
 .btn--outline:hover{background:var(--aiw-surface-card);border-color:var(--aiw-border-strong);color:var(--aiw-text-primary)}
 
+/* A site-level variant, not in the design system's Button: an outline whose
+   border and icon are signal blue, so a route reads as a button without being a
+   second blue fill. The label keeps the primary text colour. Hover and press
+   move the blue the same way the signal fill does (towards warm light on hover,
+   towards near-black on press), and the ground takes a step on the neutral ramp:
+   up to card on hover, down to raised on press. Signal blue on near-black is
+   5.11:1, above the 3:1 an interface part needs. */
+.btn--outline-signal{background:transparent;color:var(--aiw-text-primary);border-color:var(--aiw-interactive)}
+.btn--outline-signal .icon{color:var(--aiw-interactive);transition:var(--aiw-transition-colour)}
+.btn--outline-signal:hover{background:var(--aiw-surface-card);border-color:color-mix(in oklab,var(--aiw-interactive) 90%,var(--aiw-warm-light));color:var(--aiw-text-primary)}
+.btn--outline-signal:hover .icon{color:color-mix(in oklab,var(--aiw-interactive) 90%,var(--aiw-warm-light))}
+.btn--outline-signal:active{background:var(--aiw-surface-raised);border-color:color-mix(in oklab,var(--aiw-interactive) 86%,var(--aiw-near-black))}
+.btn--outline-signal:active .icon{color:color-mix(in oklab,var(--aiw-interactive) 86%,var(--aiw-near-black))}
+
 /* ---- header ------------------------------------------------------------- */
 /* The only sticky element on the site; the design system permits no other.
    Its height is a site value, not a token, and the hero needs it to slide up
@@ -287,11 +301,24 @@
 .site-footer__tagline{margin-top:18px;font-size:var(--aiw-text-2xs);color:var(--aiw-text-muted)}
 
 /* ---- floating WhatsApp button ------------------------------------------- */
-/* Outline, not a fill. The design system allows one signal button per view and
-   that is the hero call to action; a second blue fill would break the rule.
-   No WhatsApp green either: the palette is four colours and this is not one. */
-.wa-float{position:fixed;right:var(--aiw-space-6);bottom:var(--aiw-space-6);z-index:30;background:var(--aiw-surface-card);border-color:var(--aiw-border-strong)}
-.wa-float:hover{background:var(--aiw-surface-inset);border-color:var(--aiw-text-muted)}
+/* The blue outline variant, not a fill: the design system allows one signal
+   button per view and that is the hero call to action. No WhatsApp green either:
+   the palette is four colours and this is not one. Icon only, in a 48px square
+   so it is a comfortable touch target; the name is visually hidden text.
+   It sits on a card ground rather than transparent, because it floats over text
+   and photography.
+
+   WhatsAppFloat.astro hides it while the page scrolls and while the contact
+   section is in view, by toggling .wa-float--hidden. Hiding fades out over the
+   base duration and only then turns visibility off, so the fade is seen and the
+   hidden button is out of the tab order and the accessibility tree. Showing
+   turns visibility on at once and fades in over the slow duration. Under reduced
+   motion the durations are 0ms, so both are an instant switch. Without the
+   script the class is never set and the button stays visible. */
+.wa-float{position:fixed;right:var(--aiw-space-6);bottom:var(--aiw-space-6);z-index:30;width:var(--aiw-space-12);height:var(--aiw-space-12);padding:0;background:var(--aiw-surface-card);transition:var(--aiw-transition-colour),opacity var(--aiw-duration-slow) var(--aiw-ease-standard),visibility 0s linear 0s}
+.wa-float:hover{background:var(--aiw-surface-inset)}
+.wa-float:active{background:var(--aiw-surface-raised)}
+.wa-float--hidden{opacity:0;visibility:hidden;pointer-events:none;transition:var(--aiw-transition-colour),opacity var(--aiw-duration-base) var(--aiw-ease-standard),visibility 0s linear var(--aiw-duration-base)}
 @media (min-width:768px){.wa-float{right:var(--aiw-space-8);bottom:var(--aiw-space-8)}}
 
 /* ---- long-form pages (privacy) ------------------------------------------ */
