@@ -1,0 +1,42 @@
+---
+/**
+ * EXPERIMENT, branch experiment/koorden. The brand's two woven cords as quiet
+ * background accents. If the experiment is dropped, this component, its two
+ * uses in HomeBody.astro, the "cords" block in site.css and the two SVGs in
+ * public/assets/weave/ go together.
+ *
+ * Decorative only: aria-hidden, nothing focusable, and no layout of its own.
+ * Nothing here takes space, adds a margin or moves the page.
+ *
+ * variant="band": a marker of zero height between two sections. The cord hangs
+ * from it, absolutely positioned, across the width of the page, entering high
+ * on the left and running lower to the right.
+ *
+ * variant="ring": wraps a section (the slot) and sets the ring in the space its
+ * text column leaves free on the right. The wrapper has no box model of its own
+ * beyond the section it holds.
+ *
+ * Both sit under the content (z-index -1). Readability over the cords is kept
+ * in site.css; see the "cords" block there.
+ */
+interface Props {
+  variant: "band" | "ring";
+}
+
+const { variant } = Astro.props;
+---
+
+{
+  variant === "band" ? (
+    <div class="cord cord--band" aria-hidden="true">
+      <div class="cord__art" />
+    </div>
+  ) : (
+    <div class="cord-host">
+      <slot />
+      <div class="cord cord--ring" aria-hidden="true">
+        <div class="cord__art" />
+      </div>
+    </div>
+  )
+}

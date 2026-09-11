@@ -4,6 +4,7 @@ import Hero from "./Hero.astro";
 import Vision from "./Vision.astro";
 import About from "./About.astro";
 import Contact from "./Contact.astro";
+import Cord from "./Cord.astro";
 import type { Lang } from "../content/copy";
 
 interface Props {
@@ -15,5 +16,6 @@ const { lang } = Astro.props;
 
 <Hero lang={lang} />
 <Vision lang={lang} />
+<Cord variant="band" />
 <About lang={lang} />
-<Contact lang={lang} />
+<Cord variant="ring"><Contact lang={lang} /></Cord>
