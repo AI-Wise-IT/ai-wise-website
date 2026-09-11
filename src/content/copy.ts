@@ -2,10 +2,10 @@
  * All user-facing copy, per language. Kept out of the components on purpose:
  * a text change should not be a code change.
  *
- * STATUS, Dutch: hero, vision, examples, about, contact, footer and meta text
- * reviewed with Simon and settled; the about text is his own.
+ * STATUS, Dutch: hero, vision, examples, about, contact, footer, meta and nav
+ * text reviewed with Simon and settled; the about text is his own.
  *
- * STATUS, English: the hero, vision, examples, about, contact, footer and meta text are settled. The
+ * STATUS, English: the hero, vision, examples, about, contact, footer, meta and nav text are settled. The
  * other sections are still the first draft and are being written afresh one at
  * a time, as their own text rather than a translation. English is British English, consistently (the page is
  * en_GB); the first-draft sections do not follow that yet.
@@ -47,7 +47,14 @@ export interface Copy {
   htmlLang: string;
   localeTag: string;
   meta: { title: string; description: string; ogAlt: string };
-  nav: { skipToContent: string; home: string; language: string };
+  nav: {
+    skipToContent: string;
+    /** Accessible name of the logo link, which always goes to the home page. */
+    home: string;
+    language: string;
+    /** Visually hidden hint after every link that opens in a new tab. */
+    newTab: string;
+  };
   hero: {
     eyebrow: string;
     /** Set when the eyebrow is in another language than the page, so screen
@@ -125,9 +132,10 @@ const nl: Copy = {
     ogAlt: "AI Wise, Automation in Service of Life",
   },
   nav: {
-    skipToContent: "Naar de inhoud",
-    home: "AI Wise, naar de bovenkant van de pagina",
+    skipToContent: "Direct naar de inhoud",
+    home: "AI Wise, startpagina",
     language: "Taal",
+    newTab: "(opent in een nieuw tabblad)",
   },
   hero: {
     eyebrow: COMPANY.tagline,
@@ -182,7 +190,7 @@ const nl: Copy = {
     linkedinLabel: "LinkedIn",
     whatsappLabel: "WhatsApp",
     whatsappPrefill: "Hoi Simon, ik kwam op de site van AI Wise terecht en heb een vraag.",
-    whatsappFloatLabel: "WhatsApp",
+    whatsappFloatLabel: "Stuur een bericht via WhatsApp",
     note: "Een kort bericht is genoeg.",
   },
   footer: {
@@ -260,8 +268,9 @@ const en: Copy = {
   },
   nav: {
     skipToContent: "Skip to content",
-    home: "AI Wise, back to the top of the page",
+    home: "AI Wise, home page",
     language: "Language",
+    newTab: "(opens in a new tab)",
   },
   hero: {
     eyebrow: COMPANY.tagline,
@@ -315,7 +324,7 @@ const en: Copy = {
     linkedinLabel: "LinkedIn",
     whatsappLabel: "WhatsApp",
     whatsappPrefill: "Hi Simon, I found the AI Wise website and have a question.",
-    whatsappFloatLabel: "WhatsApp",
+    whatsappFloatLabel: "Message me on WhatsApp",
     note: "A short message will do.",
   },
   footer: {

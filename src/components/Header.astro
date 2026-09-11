@@ -13,6 +13,14 @@
  * as <img>, without the near-black backing rectangle both files paint, which
  * would show as a dark box over the photograph. See LogoSvg.astro. Both are
  * decorative here; the link around them carries the accessible name.
+ *
+ * The language links show NL and EN, which a screen reader spells out as
+ * letters. Each link therefore carries the name of its language, in that
+ * language, as visually hidden text after the visible code: "NL, Nederlands"
+ * and "EN, English". The accessible name starts with the visible text, so a
+ * voice-control user can still say "click NL" (WCAG 2.5.3, label in name).
+ * The names are the same on every page, so they are constants here rather than
+ * copy per language.
  */
 import LogoSvg from "./LogoSvg.astro";
 import { COPY, path, type Lang } from "../content/copy";
@@ -27,6 +35,8 @@ const t = COPY[lang];
 
 /* Only the home page has a hero photograph to lie over. */
 const overHero = page === "home";
+
+const LANGUAGE_NAMES: Record<Lang, string> = { nl: "Nederlands", en: "English" };
 ---
 
 <header class:list={["site-header", { "site-header--over-hero": overHero }]}>
@@ -37,9 +47,9 @@ const overHero = page === "home";
     </a>
 
     <nav class="lang-switch" aria-label={t.nav.language}>
-      <a href={path("nl", page)} hreflang="nl" lang="nl" aria-current={lang === "nl" ? "true" : undefined}>NL</a>
+      <a href={path("nl", page)} hreflang="nl" lang="nl" aria-current={lang === "nl" ? "true" : undefined}>NL<span class="visually-hidden">, {LANGUAGE_NAMES.nl}</span></a>
       <span class="lang-switch__sep" aria-hidden="true">/</span>
-      <a href={path("en", page)} hreflang="en" lang="en" aria-current={lang === "en" ? "true" : undefined}>EN</a>
+      <a href={path("en", page)} hreflang="en" lang="en" aria-current={lang === "en" ? "true" : undefined}>EN<span class="visually-hidden">, {LANGUAGE_NAMES.en}</span></a>
     </nav>
   </div>
 </header>

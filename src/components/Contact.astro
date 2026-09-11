@@ -12,6 +12,11 @@
  * screens each button shows an icon and its name, side by side. On narrow
  * screens the names are hidden visually and the icons carry the buttons; the
  * names stay in the markup, so every button keeps its accessible name.
+ *
+ * LinkedIn and WhatsApp open in a new tab. Both carry a visually hidden hint
+ * inside the label, so the accessible name reads "LinkedIn (opens in a new tab)"
+ * on every width. The hint sits inside the label span rather than beside it, so
+ * the space before it is ordinary inline text and never gets lost.
  */
 import Icon from "./Icon.astro";
 import { COMPANY, COPY, type Lang } from "../content/copy";
@@ -51,7 +56,7 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
             rel="noopener noreferrer"
           >
             <Icon name="linkedin" size={22} />
-            <span class="contact__action-label">{t.contact.linkedinLabel}</span>
+            <span class="contact__action-label">{t.contact.linkedinLabel} <span class="visually-hidden">{t.nav.newTab}</span></span>
           </a>
         )}
         <a
@@ -61,7 +66,7 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
           rel="noopener noreferrer"
         >
           <Icon name="whatsapp" size={22} />
-          <span class="contact__action-label">{t.contact.whatsappLabel}</span>
+          <span class="contact__action-label">{t.contact.whatsappLabel} <span class="visually-hidden">{t.nav.newTab}</span></span>
         </a>
       </div>
 

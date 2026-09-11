@@ -5,9 +5,10 @@
  * The blue outline variant rather than a fill: the design system allows one
  * signal button per view and that is the hero call to action. No WhatsApp green
  * either, because the palette is four colours and green is not one of them.
- * Icon only, with the same Tabler WhatsApp logo as the contact button; the name
- * "WhatsApp" stays in the markup as visually hidden text, so it is the link's
- * accessible name. Round, by Simon's choice; see site.css.
+ * Icon only, with the same Tabler WhatsApp logo as the contact button. What a
+ * screen reader hears is the visually hidden text: the label from the copy
+ * ("Message me on WhatsApp") and the hint that the link opens in a new tab.
+ * Round, by Simon's choice; see site.css.
  *
  * The script below gets the button out of the way in two situations: while the
  * page is being scrolled, and once the reader has reached the contact buttons,
@@ -39,7 +40,7 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
   rel="noopener noreferrer"
 >
   <Icon name="whatsapp" size={24} />
-  <span class="visually-hidden">{t.contact.whatsappFloatLabel}</span>
+  <span class="visually-hidden">{t.contact.whatsappFloatLabel} {t.nav.newTab}</span>
 </a>
 
 <script>

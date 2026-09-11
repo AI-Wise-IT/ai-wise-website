@@ -148,7 +148,12 @@ Vier inhoudelijke secties.
 
 - R-S0.1: `Glyph` (30px) plus wordmark (15px hoog), links, precies zoals `Chrome.TopBar`
   het doet.
-- R-S0.2: Taalwissel rechts, als `NL / EN`. Geen vlaggetjes.
+- R-S0.2: Taalwissel rechts, als `NL / EN`. Geen vlaggetjes. Een schermlezer spelt *NL* en
+  *EN* als letters, dus elke link draagt na de zichtbare code de naam van de taal als
+  visueel verborgen tekst, in die taal zelf: de toegankelijke namen zijn *NL, Nederlands* en
+  *EN, English*, met `lang` op de link. De naam begint met de zichtbare tekst, zodat wie met
+  spraak bedient nog steeds *klik NL* kan zeggen (WCAG 2.5.3, label in name). De namen zijn
+  op elke pagina gelijk en staan als constante in `Header.astro`, niet per taal in `copy.ts`.
 - R-S0.3: Geen navigatie. Vier secties hebben er geen nodig, en de kit-nav verwijst naar
   pagina's die hier niet bestaan. De `Book a scan`-knop uit de kit vervalt.
 - R-S0.4: Sticky, hoogte 76px, met een hairline onderrand. Het designsysteem staat sticky
@@ -332,7 +337,9 @@ Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
   duidelijk als knop lezen zonder een tweede gevulde blauwe knop te zijn (R-V6). Vanaf 640px
   staan ze naast elkaar met icoon en naam. Daaronder tonen ze alleen het icoon, verdelen ze de kolom in
   gelijke delen en zijn ze minimaal 48px hoog; de naam blijft als toegankelijke naam in de
-  markup. De iconen komen uit Tabler Icons (MIT), omdat Lucide geen WhatsApp-logo heeft.
+  markup. LinkedIn en WhatsApp openen in een nieuw tabblad en dragen de hint uit R-A7, binnen
+  het label, zodat de naam op elke breedte *LinkedIn (opent in een nieuw tabblad)* is. De
+  iconen komen uit Tabler Icons (MIT), omdat Lucide geen WhatsApp-logo heeft.
   LinkedIn staat ook in `llms.txt` en als `sameAs` in de gestructureerde data van de persoon.
 - R-S4.4: De sectie sluit af met *Een kort bericht is genoeg.* De lage drempel staat daarmee
   positief geformuleerd, zonder ontkenning.
@@ -412,8 +419,10 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   verborgen wordt staat in R-S6.7.
 - R-S6.2: Linkt naar `https://wa.me/31613926494`, met een voorgevulde openingszin per
   taalversie.
-- R-S6.3: Toegankelijke naam "WhatsApp" als visueel verborgen tekst, bereikbaar via
-  toetsenbord, zichtbare focus-outline.
+- R-S6.3: De knop heeft alleen een icoon, dus de visueel verborgen tekst is alles wat een
+  schermlezer hoort: *Stuur een bericht via WhatsApp (opent in een nieuw tabblad)*, in het
+  Engels *Message me on WhatsApp (opens in a new tab)*. Bereikbaar via toetsenbord,
+  zichtbare focus-outline.
 - R-S6.4: **Geen gevulde blauwe knop**, want dat zou een tweede `signal` op de pagina zijn.
   Uitvoering als blauw omlijnde knop (`.btn--outline-signal`, zie R-V6): alleen het icoon,
   geen tekst. Hetzelfde WhatsApp-icoon uit Tabler als in de contactknop, op 24px, in signal
@@ -709,13 +718,21 @@ in `tokens/` en `guidelines/`.
   staan op near-black, waar moss 5,29:1 haalt. Vastgesteld door Simon op 11 september 2026.
 - R-A2: Zichtbare focus op elk interactief element, volgens R-V14.
 - R-A3: Volledig met het toetsenbord te bedienen, inclusief taalwissel en WhatsApp-knop.
-  Een skip-link staat vooraan de pagina.
+  Een skip-link staat vooraan de pagina: *Direct naar de inhoud*, in het Engels *Skip to
+  content*.
 - R-A4: Semantische koppenstructuur, één `h1`, elke sectie met een eigen gelabelde kop.
 - R-A5: Alt-tekst op het portret. De herofoto is decoratief en krijgt `alt=""`; de
   leesbaarheidslaag en de inline logo-SVG's in de header krijgen `aria-hidden`, en de link
-  om het logo draagt de toegankelijke naam. In de footer, waar het logo geen link is, draagt
-  het glyph de naam "AI Wise" (`role="img"`) en is het wordmark `aria-hidden` (R-S5.1).
+  om het logo draagt de toegankelijke naam *AI Wise, startpagina* (Engels *AI Wise, home
+  page*). Die link gaat altijd naar de startpagina, ook op de privacypagina's; de oude naam
+  *naar de bovenkant van de pagina* klopte daar niet. In de footer, waar het logo geen link
+  is, draagt het glyph de naam "AI Wise" (`role="img"`) en is het wordmark `aria-hidden`
+  (R-S5.1).
 - R-A6: `prefers-reduced-motion` wordt gerespecteerd.
+- R-A7: Elke link met `target="_blank"` draagt de visueel verborgen hint *(opent in een
+  nieuw tabblad)*, in het Engels *(opens in a new tab)*, uit `nav.newTab` in `copy.ts`, via
+  de klasse `.visually-hidden`. Dat zijn nu de contactknoppen voor LinkedIn en WhatsApp en de
+  zwevende WhatsApp-knop (R-S4.3 en R-S6.3).
 
 ### 9.2 Performance
 
@@ -1010,6 +1027,10 @@ Gesloten sinds versie 4:
   e-mailverwerker, en grondslagen, bewaartermijnen, alle rechten, de geen-verplichting en
   geen geautomatiseerde besluitvorming zijn toegevoegd, met een zin over doorklikken naar
   LinkedIn en WhatsApp. *Een extern domein* gecorrigeerd. R-J2 en R-J3.
+- **Kleine interfaceteksten vastgesteld**: skip-link *Direct naar de inhoud*, de logolink
+  heet *AI Wise, startpagina*, de taallinks lezen *Nederlands* en *English* voor, de zwevende
+  knop *Stuur een bericht via WhatsApp*, en elke link naar een nieuw tabblad zegt dat. R-S0.2,
+  R-S4.3, R-S6.3, R-A3, R-A5 en R-A7.
 
 ### Versie 6 ten opzichte van versie 5
 
