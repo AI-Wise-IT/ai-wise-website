@@ -20,14 +20,16 @@ const t = COPY[lang];
 
 <section class="section" id="visie" aria-labelledby="vision-heading">
   <div class="aiw-container">
+    <p class="aiw-eyebrow section__eyebrow">{t.vision.eyebrow}</p>
+
     {/* Two blocks side by side from 1024px up: the vision on the left, what it
-        can look like in practice on the right. The label and heading belong to
-        the left block, so the frame on the right starts level with the label.
-        Below 1024px they stack, vision first. Each column lands at roughly 58
-        characters, inside the 68 the design system sets as the reading measure. */}
+        can look like in practice on the right. The label spans both; the heading
+        belongs to the left block, so the frame on the right starts level with
+        the heading, just under the label. Below 1024px they stack, vision first.
+        Each column lands at roughly 58 characters, inside the 68 the design
+        system sets as the reading measure. */}
     <div class="vision__layout">
       <div class="section__body">
-        <p class="aiw-eyebrow section__eyebrow">{t.vision.eyebrow}</p>
         <h2 class="section__heading" id="vision-heading">{t.vision.heading}</h2>
 
         {t.vision.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}

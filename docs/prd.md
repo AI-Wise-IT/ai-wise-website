@@ -192,9 +192,10 @@ Vier inhoudelijke secties.
   standaardvariant van `Card` uit het designsysteem, dus `surface-card` met een 1px rand in
   `border-default`, 2px hoeken, 24px binnenruimte op mobiel en 32px vanaf 768px. Eén kader
   om de hele lijst, geen kader per voorbeeld.
-- R-S2.3b: **Twee kolommen vanaf 1024px.** De visie staat links, inclusief het label en de
-  kop van de sectie, de voorbeelden in hun kader rechts. Het kader begint daardoor op
-  dezelfde hoogte als het label. Beide kolommen komen op 488px uit binnen
+- R-S2.3b: **Twee kolommen vanaf 1024px.** Het label *Wat er nu kan* staat boven beide
+  kolommen. Daaronder staat links de visie, inclusief de kop, en rechts de voorbeelden in
+  hun kader. Het kader begint daardoor op dezelfde hoogte als de kop. Beide kolommen komen
+  op 488px uit binnen
   de 1200px-container, wat neerkomt op 58 tekens: binnen de leesmaat van 68 die het
   designsysteem stelt. Op het breekpunt zelf is elke kolom 432px, ofwel 51 tekens, wat nog
   comfortabel leest. Onder 1024px stapelen ze, visie eerst. De voorbeeldenlijst is altijd één kolom;
