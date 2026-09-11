@@ -1,10 +1,12 @@
 ---
 /**
- * S4. Also carries the "who this is for", implicitly: the copy addresses an
- * organization orienting itself and a fellow developer wanting to compare notes,
- * without labelling either as a category.
+ * S4. Also carries the "who this is for": first anyone with something they want
+ * built, then, after a short turning line, collaborators, one paragraph each for
+ * developers and for designers and content writers. This is also where the site
+ * says, positively, that AI Wise is young.
  *
- * Two routes, both as text links. No second signal fill on the page.
+ * Routes as text links: e-mail, LinkedIn (while set in COMPANY) and WhatsApp.
+ * No second signal fill on the page.
  */
 import { COMPANY, COPY, type Lang } from "../content/copy";
 
@@ -24,6 +26,11 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
 
     <div class="section__body">
       {t.contact.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}
+
+      {t.contact.collaborationIntro && (
+        <p class="aiw-body contact__turn">{t.contact.collaborationIntro}</p>
+      )}
+      {t.contact.collaboration?.map((p) => <p class="aiw-body">{p}</p>)}
 
       <div class="contact__routes">
         <span class="contact__route">

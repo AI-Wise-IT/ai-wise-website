@@ -47,6 +47,7 @@ are not a service catalogue.
 - Languages: Dutch, English
 - Email: simon@aiwise.it.com
 - Telephone: +31 6 13926494
+- LinkedIn: https://www.linkedin.com/in/simon-v-13833a131/
 
 ## Pages
 
@@ -57,10 +58,16 @@ are not a service catalogue.
 
 ## Contact
 
-The site invites two kinds of message, and treats both as equally welcome: an
-organization orienting itself on what AI could mean for its work, and a fellow
-developer building with AI who wants to compare notes. Contact runs by email at
-simon@aiwise.it.com or by WhatsApp on +31 6 13926494. There is no contact form.
+The site invites anyone with an idea they want built, a website that needs
+renewing, or recurring work, even when the idea is not fully worked out yet. AI
+Wise is young and still discovering where it can contribute most.
+
+It also invites collaborators: fellow developers, to exchange ways of working in
+a field that moves fast, and designers and content writers, who take on design
+and copy so Simon can focus on building functionality.
+
+Contact runs by email at simon@aiwise.it.com, through LinkedIn, or by WhatsApp on
++31 6 13926494. There is no contact form.
 
 ## Crawling
 

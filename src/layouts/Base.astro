@@ -69,6 +69,7 @@ const jsonLd = {
       jobTitle: "AI, data and automation engineer",
       email: COMPANY.email,
       worksFor: { "@id": `${site.origin}/#organization` },
+      ...(COMPANY.linkedin ? { sameAs: [COMPANY.linkedin] } : {}),
     },
     {
       "@type": "WebSite",

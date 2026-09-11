@@ -35,11 +35,10 @@ export const COMPANY = {
   site: "https://aiwise.it.com",
   tagline: "Automation in Service of Life",
   /**
-   * Simon's LinkedIn profile. Null until the profile itself has been updated for
-   * AI Wise; the contact section and llms.txt leave the route out while it is
-   * null, so nothing points at a page that does not say the right thing yet.
+   * Simon's LinkedIn profile. The contact section shows the route and the
+   * structured data links to it while this is set; set it to null to hide both.
    */
-  linkedin: null as string | null,
+  linkedin: "https://www.linkedin.com/in/simon-v-13833a131/" as string | null,
 } as const;
 
 export interface Copy {
@@ -85,7 +84,12 @@ export interface Copy {
   contact: {
     eyebrow: string;
     heading: string;
+    /** The invitation to anyone with something they want built. */
     paragraphs: string[];
+    /** A short line that turns from clients to collaborators, followed by one
+     *  paragraph per kind of collaborator. Optional per language. */
+    collaborationIntro?: string;
+    collaboration?: string[];
     emailLabel: string;
     linkedinLabel: string;
     linkedinValue: string;
@@ -168,8 +172,12 @@ const nl: Copy = {
     eyebrow: "Contact",
     heading: "Ik hoor graag van je",
     paragraphs: [
-      "Denk je na over wat AI voor jouw organisatie zou kunnen betekenen, en weet je nog niet waar je zou beginnen? Daar ga ik graag een keer over in gesprek. AI Wise is jong en ik ben op dit moment vooral aan het uitzoeken waar de kansen in de praktijk liggen, dus zo'n gesprek levert mij net zo veel op als jou.",
-      "Bouw je zelf met AI en wil je een keer sparren over hoe je het aanpakt? Ook daar ben ik voor in.",
+      "Heb je een idee dat gebouwd wil worden, een website die aan vernieuwing toe is, of werk dat steeds weer terugkomt? Laat het me weten, ook als het nog niet helemaal uitgedacht is. AI Wise is jong en ik ontdek nog volop waar ik het meeste kan betekenen, dus ik ben benieuwd wat jij voor je ziet.",
+    ],
+    collaborationIntro: "Ik sta open voor samenwerking.",
+    collaboration: [
+      "Ben je zelf ontwikkelaar? AI ontwikkelt zich zo snel dat je samen verder komt dan alleen. Ik wissel graag werkwijzen uit, zodat we elkaar kunnen inspireren en verder helpen.",
+      "Ben je ontwerper of contentschrijver? Vormgeving en teksten laat ik graag over aan mensen die daar hun vak van hebben gemaakt. Zo kan ik me richten op waar ik goed in ben: de functionaliteit bouwen.",
     ],
     emailLabel: "E-mail",
     linkedinLabel: "LinkedIn",
@@ -178,7 +186,7 @@ const nl: Copy = {
     whatsappValue: "Stuur een bericht",
     whatsappPrefill: "Hoi Simon, ik kwam op de site van AI Wise terecht en heb een vraag.",
     whatsappFloatLabel: "WhatsApp",
-    note: "Een kort bericht is genoeg. Er zit geen verplichting aan vast.",
+    note: "Een kort bericht is genoeg.",
   },
   footer: {
     blurb: "AI, data en automatisering voor kleine organisaties met betekenisvol werk.",

@@ -255,6 +255,9 @@
 }
 
 /* ---- contact ------------------------------------------------------------ */
+/* The line that turns from clients to collaborators: a little more space above
+   and the primary text weight, so the section reads as two parts. */
+.contact__turn{margin-top:var(--aiw-space-8);font-weight:var(--aiw-weight-semibold);color:var(--aiw-text-primary)}
 .contact__routes{display:flex;flex-wrap:wrap;gap:var(--aiw-space-6) var(--aiw-space-10);margin-top:var(--aiw-space-8)}
 .contact__route{display:flex;flex-direction:column;gap:var(--aiw-space-1)}
 .contact__route-label{font-size:var(--aiw-text-xs);font-weight:var(--aiw-weight-semibold);letter-spacing:var(--aiw-tracking-label);text-transform:uppercase;color:var(--aiw-text-muted)}

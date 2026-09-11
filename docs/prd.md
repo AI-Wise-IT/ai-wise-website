@@ -28,7 +28,8 @@ Hij hoeft niet te verkopen. Hij moet vertrouwen wekken en een gesprek uitlokken.
 Er staat geen concreet aanbod op, geen prijzen, geen dienstenpakket, en voor nu ook geen
 AI-Kansenscan of AI opportunity scan.
 
-De onderzoeksfase waarin AI Wise zit wordt **niet als sectie benoemd**. Hij blijkt uit het
+De onderzoeksfase waarin AI Wise zit krijgt **geen eigen sectie**. Contact benoemt hem in één
+positieve zin (zie R-S4.1a). Voor de rest blijkt hij uit het
 ontbreken van een aanbod en uit de aard van de visie. Dat is een bewuste keuze: een sectie
 die uitlegt dat je nog aan het oriënteren bent, leest als voorbehoud. Het weglaten van een
 aanbod, met een heldere visie ernaast, leest als richting.
@@ -98,6 +99,11 @@ weten nog niet welke. Ze zoeken geen leverancier, ze zoeken een gesprek.
 Vakgenoten die op dezelfde manier werken: bouwen met AI-agents, praktisch, met zorg voor
 overdracht en craft. Voor uitwisseling en samenwerking, niet als klant. Vermoedelijk vaker
 Engelstalig, wat een van de redenen is dat de site tweetalig is.
+
+### 3.2a Samenwerkingspartners: ontwerpers en contentschrijvers
+
+Vakmensen die vormgeving en tekst voor hun rekening nemen, zodat Simon zich op de
+functionaliteit kan richten. Ze worden in Contact apart aangesproken, na ontwikkelaars.
 
 ### 3.3 Terzijde: de warme lead die de site checkt
 
@@ -270,20 +276,30 @@ Vier inhoudelijke secties.
 
 **S4, Contact**
 
-Deze sectie draagt ook het "voor wie", impliciet.
+Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
 
-- R-S4.1: De uitnodigende tekst spreekt beide doelgroepen aan zonder ze als categorieën te
-  benoemen. Geen kopjes "Voor organisaties" en "Voor developers". De formulering maakt
-  duidelijk dat zowel een organisatie die zich oriënteert als een vakgenoot die wil
-  uitwisselen hier welkom is.
+- R-S4.1: Kop *Ik hoor graag van je*. De eerste alinea nodigt iedereen uit met een idee dat
+  gebouwd wil worden, een website die aan vernieuwing toe is, of terugkerend werk, ook als het
+  nog niet uitgedacht is.
+- R-S4.1a: **De onderzoeksfase wordt hier benoemd, positief.** *AI Wise is jong en ik ontdek
+  nog volop waar ik het meeste kan betekenen.* Eerder was de afspraak dat de onderzoeksfase
+  impliciet uit de visie zou blijken, maar sinds de visie over wat er nu kan gaat, doet die
+  dat niet meer. De zin staat daarom in Contact, als nieuwsgierigheid en niet als voorbehoud.
+- R-S4.1b: Na een korte overgangszin, *Ik sta open voor samenwerking.*, volgen twee alinea's:
+  een voor ontwikkelaars (werkwijzen uitwisselen, elkaar inspireren in een vak dat snel
+  beweegt) en een voor ontwerpers en contentschrijvers (vormgeving en tekst in handen van
+  vakmensen, zodat Simon zich op de functionaliteit richt). De overgangszin is semibold met
+  extra ruimte erboven, zodat de sectie als twee delen leest.
 - R-S4.2: Geen fit-criteria, geen uitsluitingen, geen "ik werk alleen met...". De rode
   lijnen uit het klantprofiel zijn intern materiaal.
-- R-S4.3: Contactroutes als tekstlinks, even prominent: e-mail, LinkedIn en WhatsApp. De
-  LinkedIn-route verschijnt pas zodra het profiel-URL bekend is; tot die tijd staat het veld
-  op `null` en laten zowel de contactsectie als `llms.txt` de route weg. Zie O-3.
-- R-S4.4: Eén regel die zegt dat een kort bericht volstaat en dat er geen verplichting aan
-  vastzit. Het designsysteem schrijft "boundaries are stated, not implied"; die regel is de
-  toepassing daarvan.
+- R-S4.3: Contactroutes als tekstlinks, even prominent: e-mail, LinkedIn
+  (`https://www.linkedin.com/in/simon-v-13833a131/`) en WhatsApp. LinkedIn staat ook in
+  `llms.txt` en als `sameAs` in de gestructureerde data van de persoon.
+- R-S4.4: De sectie sluit af met *Een kort bericht is genoeg.* De lage drempel staat daarmee
+  positief geformuleerd, zonder ontkenning.
+- R-S4.4a: De tekst is door Simon geschreven. Eén correctie: *ik inspireer en help elkaar*
+  werd *zodat we elkaar kunnen inspireren en verder helpen*, omdat *elkaar* een meervoud
+  vraagt.
 - R-S4.5: Geen contactformulier in deze ronde. De `components/forms/` groep wordt niet
   geïmporteerd.
 - R-S4.6: Geen tweede blauwe knop. Zie R-V6.
@@ -684,8 +700,8 @@ behandeld.
 
 1. Een bezoeker kan binnen tien seconden zeggen wat AI Wise doet en voor wie.
 2. Beide doelgroepen voelen zich aangesproken zonder als categorie benoemd te zijn.
-3. Er staat nergens een aanbod, prijs of scan, en de onderzoeksfase hoeft nergens uitgelegd
-   te worden.
+3. Er staat nergens een aanbod, prijs of scan. De onderzoeksfase is alleen in Contact
+   benoemd, in één positieve zin.
 4. NL en EN zijn inhoudelijk gelijkwaardig.
 5. Alle contactroutes werken aantoonbaar op desktop en mobiel.
 6. De Lighthouse-drempels uit R-P1 worden gehaald.
@@ -714,7 +730,7 @@ Alles wat niet op een open punt wachtte, staat er.
 | S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
 | S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; Nederlandse tekst door Simon geschreven en goedgekeurd, Engels is concept |
-| S4 contact met e-mail en WhatsApp | Klaar; LinkedIn is voorbereid en wacht op de URL (O-3) |
+| S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar, tekst door Simon vastgesteld |
 | S5 footer met KvK, btw-id, vestigingsplaats en privacylink | Klaar |
 | S6 zwevende WhatsApp-knop, outline | Klaar |
 | Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
@@ -734,7 +750,6 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
-| O-1 | **LinkedIn-profiel-URL.** De route is gebouwd en staat uit zolang `COMPANY.linkedin` `null` is, zodat de site niet naar een profiel wijst dat nog het oude verhaal vertelt. Zodra het profiel is bijgewerkt: één regel in `copy.ts` en de route verschijnt in de contactsectie en in `llms.txt`. | Simon: URL | Gemiste route voor de secundaire doelgroep |
 | O-2 | **Copy reviewen.** Beide talen, vier secties plus de privacyverklaring. De voorbeelden in de visie zijn nieuw en het meest gebaat bij een blik: zijn dit de dingen die je wilt oproepen? | Simon: lezen | De site kan niet live |
 | O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. Screenshots lukten in deze omgeving niet betrouwbaar, dus dit is nog nergens visueel gecontroleerd behalve op gemeten waarden. | Simon: bekijken | Onbekende visuele fouten |
 | O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
@@ -742,6 +757,8 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 Gesloten sinds versie 4:
 
+- O-1, LinkedIn-profiel-URL: staat erin, als route in Contact, in `llms.txt` en als `sameAs`
+  in de gestructureerde data. Zie R-S4.3.
 - O-6, eyebrow boven de herofoto: moss blijft, de laag blijft. De norm blijft 4,5:1 en de
   tagline in de hero-eyebrow is een vastgelegde uitzondering met minimaal 3:1, op 15px.
   Zie R-A1b.
@@ -768,9 +785,8 @@ Gesloten sinds versie 4:
 | 2 | Repo koppelen aan Vercel, preview-deploy | Simon: Vercel-toegang |
 | 3 | Web Analytics aanzetten in het dashboard, O-4 sluiten | Stap 2 |
 | 4 | Lighthouse meten op de preview, O-5 sluiten | Stap 2 |
-| 5 | LinkedIn-URL toevoegen zodra het profiel is bijgewerkt, O-1 sluiten | Simon |
-| 6 | DNS omzetten van GitHub Pages naar Vercel | Goedkeuring Simon |
-| 7 | Designsysteem bijwerken bij livegang: PROPOSED-tokens bevestigen, repo-verwijzing in `github.md` corrigeren, voorbeeldcopy in `ui_kits/` en `slides/` nalopen op em-dashes | Bij livegang |
+| 5 | DNS omzetten van GitHub Pages naar Vercel | Goedkeuring Simon |
+| 6 | Designsysteem bijwerken bij livegang: PROPOSED-tokens bevestigen, repo-verwijzing in `github.md` corrigeren, voorbeeldcopy in `ui_kits/` en `slides/` nalopen op em-dashes | Bij livegang |
 
 ---
 
@@ -815,7 +831,9 @@ Gesloten sinds versie 4:
 - Zes voorbeelden toegevoegd aan de visie, ter inspiratie. R-S2.3 en R-S2.3a.
 - Vercel Web Analytics toegevoegd, met een eigen paragraaf in de privacyverklaring. R-J2.
 - Modeltrainingcrawlers uitgesloten in `robots.txt`. R-S.13.
-- LinkedIn-route gebouwd maar uitgeschakeld tot de URL bekend is. R-S4.3.
+- LinkedIn-route gebouwd, en inmiddels ingeschakeld met Simons profiel. R-S4.3.
+- Contact herschreven met Simon: de onderzoeksfase in één positieve zin, en samenwerking met
+  ontwikkelaars en met ontwerpers en contentschrijvers apart. R-S4.1 tot en met R-S4.4a.
 - De em-dash-regel is afgebakend tot publieke teksten; de handleidingen van het
   designsysteem zijn uitgezonderd. R-V12.
 - Het oude open punt over iconenrichting is geschrapt voor deze site.
