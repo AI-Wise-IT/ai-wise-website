@@ -311,14 +311,13 @@
 .site-footer__blurb{margin-top:var(--aiw-space-6);font-size:var(--aiw-text-sm);color:var(--aiw-text-muted);max-width:34ch}
 .site-footer__col-title{margin-bottom:14px}
 .site-footer__list{display:flex;flex-direction:column;gap:var(--aiw-space-2);font-size:var(--aiw-text-sm)}
-.site-footer__list a{color:var(--aiw-text-secondary);text-decoration:none}
-.site-footer__list a:hover{color:var(--aiw-text-primary);text-decoration:underline}
 .site-footer__legal{color:var(--aiw-text-muted)}
-/* The privacy link among the plain business details, in the link colour so it
-   reads as a link: signal blue on near-black, 5.11:1. Hover turns it warm light
-   with an underline; focus keeps the ring from base.css. */
-.site-footer__list a.site-footer__privacy{color:var(--aiw-link)}
-.site-footer__list a.site-footer__privacy:hover{color:var(--aiw-link-hover)}
+/* Every link in the footer columns (email, phone, privacy statement) is in the
+   link colour, so it reads as a link among the plain business details: signal
+   blue on near-black, 5.11:1. Hover turns it warm light with an underline; focus
+   keeps the ring from base.css. */
+.site-footer__list a.site-footer__link{color:var(--aiw-link);text-decoration:none}
+.site-footer__list a.site-footer__link:hover{color:var(--aiw-link-hover);text-decoration:underline}
 .site-footer__baseline{margin-top:44px}
 .site-footer__copyright{margin-top:18px;font-size:var(--aiw-text-2xs);color:var(--aiw-text-muted)}
 

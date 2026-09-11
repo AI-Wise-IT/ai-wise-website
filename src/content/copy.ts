@@ -219,7 +219,7 @@ const nl: Copy = {
         heading: "Hosting en logbestanden",
         paragraphs: [
           "De website wordt gehost door Vercel Inc., dat daarbij als mijn verwerker optreedt. Om de site te kunnen leveren en te beschermen tegen misbruik verwerkt Vercel technische gegevens zoals je IP-adres, het opgevraagde adres, tijdstip en browsertype. Dat gebeurt op grond van gerechtvaardigd belang: een site die werkt en beveiligd is. Ik gebruik deze logbestanden niet om bezoekers te herkennen of te volgen, en Vercel bewaart ze volgens eigen opgave niet langer dan nodig.",
-          "Vercel verwerkt gegevens vooral in de Verenigde Staten, en mogelijk ook elders buiten de Europese Economische Ruimte. Voor die doorgifte gebruikt Vercel de standaardcontractbepalingen van de Europese Commissie, en daarnaast beroept het zich op het EU-US Data Privacy Framework.",
+          "Vercel verwerkt gegevens vooral in de Verenigde Staten, en mogelijk ook elders buiten de Europese Economische Ruimte. Voor die doorgifte gebruikt Vercel de standaardcontractbepalingen van de Europese Commissie.",
         ],
       },
       {
@@ -227,14 +227,14 @@ const nl: Copy = {
         paragraphs: [
           "Ik gebruik Vercel Web Analytics om te zien hoeveel mensen de site bezoeken en welke pagina's ze bekijken. Dat gebeurt zonder cookies. In plaats van een bezoeker te markeren, berekent Vercel uit het binnenkomende verzoek, waar ook je IP-adres bij hoort, een hash: een afgeleide code waarmee herhaalbezoeken binnen een dag geteld kunnen worden. Die code wordt na 24 uur verwijderd.",
           "Per paginaweergave legt Vercel vast: het tijdstip, de pagina, de verwijzende website, een globale locatie afgeleid van je IP-adres, en het soort apparaat, besturingssysteem en browser. Wat ik zie is geaggregeerd. Er wordt geen profiel opgebouwd, niets gekoppeld aan een persoon, en niets gevolgd over andere websites heen. Het script komt van deze site zelf, niet van een extern domein.",
-          "Ik kan deze gegevens niet tot jou herleiden, maar omdat de code is afgeleid van je verzoek, behandel ik ze voor de zekerheid als persoonsgegevens. De grondslag is gerechtvaardigd belang: ik wil weten of de site gelezen wordt. Vercel verwerkt ook deze gegevens buiten de Europese Economische Ruimte, met dezelfde waarborgen als bij de hosting. Hoe lang Vercel de statistieken bewaart, hangt af van mijn abonnement.",
+          "Ik kan deze gegevens niet tot jou herleiden, maar omdat de code is afgeleid van je verzoek, behandel ik ze voor de zekerheid als persoonsgegevens. De grondslag is gerechtvaardigd belang: ik wil weten of de site gelezen wordt. Vercel verwerkt ook deze gegevens buiten de Europese Economische Ruimte, met dezelfde waarborgen als bij de hosting. Vercel bewaart de statistieken 12 maanden.",
         ],
       },
       {
         heading: "Contact per e-mail of WhatsApp",
         paragraphs: [
           "Als je mij mailt of via WhatsApp een bericht stuurt, verwerk ik de gegevens die je daarin zelf deelt: je naam, je contactgegevens en de inhoud van je bericht. Ik gebruik die uitsluitend om je vraag te beantwoorden en om een eventueel vervolg af te stemmen. De grondslag is gerechtvaardigd belang, of het voorbereiden en uitvoeren van een opdracht als je daarom vraagt.",
-          "Ik bewaar dat contact zolang het relevant is voor het gesprek en een opdracht die daaruit voortkomt. Wat tot de administratie hoort, zoals facturen, bewaar ik zeven jaar, omdat de fiscale bewaarplicht dat vraagt.",
+          "Leidt het contact niet tot een opdracht, dan bewaar ik je berichten uiterlijk een jaar na ons laatste contact. Komt er wel een opdracht uit voort, dan bewaar ik ze zolang ze daarvoor nodig zijn. Wat tot de administratie hoort, zoals facturen, bewaar ik zeven jaar, omdat de fiscale bewaarplicht dat vraagt.",
           "Mijn e-mail loopt via Google Workspace, waarbij Google als mijn verwerker optreedt. Google kan gegevens ook buiten de Europese Economische Ruimte verwerken en beroept zich daarvoor op het EU-US Data Privacy Framework en op standaardcontractbepalingen. WhatsApp-berichten lopen via WhatsApp Ireland Limited, waarop hun eigen privacyvoorwaarden van toepassing zijn.",
         ],
       },
@@ -354,7 +354,7 @@ const en: Copy = {
         heading: "Hosting and log files",
         paragraphs: [
           "The site is hosted by Vercel Inc., acting as my processor. To deliver the site and protect it from abuse, Vercel processes technical data such as your IP address, the address requested, the time and your browser type, on the basis of legitimate interest: a site that works and stays secure. I do not use those logs to recognise or follow visitors, and Vercel states that it keeps them no longer than necessary.",
-          "Vercel processes data mainly in the United States, and possibly elsewhere outside the European Economic Area. For those transfers Vercel uses the European Commission’s Standard Contractual Clauses, and it also relies on the EU-US Data Privacy Framework.",
+          "Vercel processes data mainly in the United States, and possibly elsewhere outside the European Economic Area. For those transfers Vercel uses the European Commission’s Standard Contractual Clauses.",
         ],
       },
       {
@@ -362,14 +362,14 @@ const en: Copy = {
         paragraphs: [
           "I use Vercel Web Analytics to see how many people visit the site and which pages they read. It works without cookies. Rather than marking a visitor, Vercel derives a hash, a one-way code, from the incoming request, which includes your IP address, so that repeat visits within a day can be counted. That code is discarded after 24 hours.",
           "For each page view, Vercel records the time, the page, the referring site, an approximate location derived from your IP address, and your type of device, operating system and browser. What I see is aggregated. No profile is built, nothing is tied to a person, and nothing is followed across other websites. The script is served from this site itself, not from an external domain.",
-          "I cannot trace this data back to you, but because the code is derived from your request, I treat it as personal data to be safe. The basis is legitimate interest: I want to know whether the site is being read. Vercel processes this data outside the European Economic Area too, with the same safeguards as for hosting. How long Vercel keeps the statistics depends on my plan.",
+          "I cannot trace this data back to you, but because the code is derived from your request, I treat it as personal data to be safe. The basis is legitimate interest: I want to know whether the site is being read. Vercel processes this data outside the European Economic Area too, with the same safeguards as for hosting. Vercel keeps the statistics for 12 months.",
         ],
       },
       {
         heading: "Contact by email or WhatsApp",
         paragraphs: [
           "If you email me or send a WhatsApp message, I process what you share in it: your name, your contact details and the content of your message. I use that only to answer your question and to agree on any next step. The basis is legitimate interest, or preparing and carrying out work you ask me to do.",
-          "I keep that correspondence for as long as it is relevant to the conversation and to any work that follows from it. Records such as invoices I keep for seven years, as Dutch tax law requires.",
+          "If our contact does not lead to any work, I keep your messages for no longer than one year after our last contact. If it does, I keep them for as long as the work needs them. Records such as invoices I keep for seven years, as Dutch tax law requires.",
           "My email runs through Google Workspace, with Google acting as my processor. Google may process data outside the European Economic Area and relies on the EU-US Data Privacy Framework and Standard Contractual Clauses to do so. WhatsApp messages run through WhatsApp Ireland Limited, whose own privacy terms apply.",
         ],
       },

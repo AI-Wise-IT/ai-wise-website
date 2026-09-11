@@ -399,14 +399,15 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
     iets aan heeft.* In het Engels: *Apps, websites and tools, built with AI. For work that
     matters.*
 - R-S5.2: Kolom *Direct* (Engels *Contact*): e-mailadres en telefoonnummer, beide als link,
-  in de gewone footerkleur (`text-secondary`). Het telefoonnummer staat in de kit-footer en
-  blijft daar; in S4 zijn e-mail en WhatsApp de twee routes.
+  in dezelfde linkstijl als de privacylink uit R-S5.3, zodat elke link in de footer als link
+  leest. Het telefoonnummer staat in de kit-footer en blijft daar; in S4 zijn e-mail en
+  WhatsApp de twee routes.
 - R-S5.3: Kolom *Zakelijk* (Engels *Business details*) met KvK-nummer `93385498` (Engels
   *Chamber of Commerce*), btw-identificatienummer `NL005019332B52` (Engels *VAT no.*),
   vestigingsplaats en de link naar de privacyverklaring. Die link staat in de linkkleur,
   signal blue (5,11:1 op near-black), zodat hij tussen de gewone gegevens als link
   herkenbaar is. Bij hover wordt hij warm light met een onderstreping; de focusring komt uit
-  `base.css`.
+  `base.css`. Alle footerlinks delen die stijl via één klasse, `.site-footer__link`.
 - R-S5.4: Een rule, daaronder de copyrightregel `© 2026 AI Wise`, 12px in `text-muted`.
   Het jaar is het jaar van de build (`new Date().getFullYear()`), en de regel is in beide
   talen gelijk, dus hij staat niet in `copy.ts`. De tagline staat hier niet meer, want die
@@ -889,13 +890,17 @@ behandeld.
   (`/_vercel/insights`), dus er komt geen extern domein bij. Omdat de hash is afgeleid van
   een verzoek met een IP-adres, behandelt de privacyverklaring dit voorzichtigheidshalve als
   persoonsgegevens, met gerechtvaardigd belang als grondslag. Vercel verwerkt buiten de
-  EER, met standaardcontractbepalingen in de verwerkersovereenkomst en een beroep op het
-  EU-US Data Privacy Framework.
+  EER, met standaardcontractbepalingen in de verwerkersovereenkomst als waarborg. De
+  verklaring noemt voor Vercel alleen die standaardcontractbepalingen, omdat die in de
+  verwerkersovereenkomst zijn nagegaan; het EU-US Data Privacy Framework staat alleen nog
+  bij Google. Vercel bewaart de statistieken 12 maanden, de termijn die de limietenpagina van
+  Vercel noemt voor het Pro-abonnement waarop de site draait.
 - R-J3: Privacyverklaring op `/privacy` en `/en/privacy`, met een link in de footer. Zonder
   formulier is de inhoud kort, en dekt ze wat artikel 13 AVG vraagt: de
   verwerkingsverantwoordelijke, doel en grondslag per verwerking, de ontvangers (Vercel voor
   hosting en statistiek, Google Workspace voor e-mail, WhatsApp), doorgifte buiten de EER
-  met de waarborg, bewaartermijnen of de criteria daarvoor, alle rechten, de klacht bij de
+  met de waarborg, bewaartermijnen (statistiek 12 maanden, contact dat niet tot een opdracht leidt uiterlijk een
+  jaar na het laatste contact, administratie zeven jaar), alle rechten, de klacht bij de
   Autoriteit Persoonsgegevens, dat niemand gegevens hoeft te geven, en dat er geen
   geautomatiseerde besluitvorming of profilering is. Eén zin zegt dat na doorklikken naar
   LinkedIn of WhatsApp hun eigen voorwaarden gelden.
@@ -1087,6 +1092,10 @@ Gesloten sinds versie 4:
   tekst; een alt-tekst die zegt wat er op het deelplaatje staat; `robots.txt` zonder
   verwijzing naar een klantproject en met alle zeven trainingscrawlers in het overzicht.
   R-S.1, R-S.2, R-S.7, R-S.9a, R-S.11 en O-7.
+- **Footerlinks blauw en bewaartermijnen concreet**: e-mail en telefoon in de footer delen de
+  linkstijl van de privacylink; bij Vercel noemt de privacyverklaring alleen nog de
+  standaardcontractbepalingen; de statistiek wordt 12 maanden bewaard, en contact dat niet tot
+  een opdracht leidt uiterlijk een jaar na het laatste contact. R-S5.2, R-S5.3, R-J2 en R-J3.
 
 ### Versie 6 ten opzichte van versie 5
 
