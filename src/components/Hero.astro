@@ -9,10 +9,24 @@
  * The heading is set line by line so it breaks where a sentence ends. The space
  * between the lines keeps the accessible name reading as two sentences.
  *
- * This section holds the page's only weave and its only signal button.
+ * The hero sits on a photograph: a golden eagle gliding over a forest canopy,
+ * generated, following the photography direction in the design system's
+ * readme.md. The eagle stands for overview. The image is art-directed rather than merely
+ * resized. Landscape-shaped viewports get the 16:9 frame with the eagle in the
+ * right third; portrait-shaped viewports get the 4:5 frame with the eagle in the
+ * lower half. The switch is on aspect ratio, not width, because what matters is
+ * where the calm part of the frame lands behind the text.
+ *
+ * The photograph is decorative (alt="") and is the page's largest paint, so it
+ * loads eagerly with high fetch priority. A near-black layer in site.css keeps
+ * the text readable over the light sky; see .hero__shade.
+ *
+ * This section holds the page's only signal button.
  */
+import { getImage } from "astro:assets";
 import Icon from "./Icon.astro";
-import Weave from "./Weave.astro";
+import landscape from "../assets/hero/eagle-forest-landscape.jpg";
+import portrait from "../assets/hero/eagle-forest-portrait.jpg";
 import { COPY, type Lang } from "../content/copy";
 
 interface Props {
@@ -21,12 +35,58 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = COPY[lang];
+
+/* The media query that picks the landscape frame. Kept in one place so the
+   <source> elements and site.css cannot drift apart: site.css uses the same
+   (min-aspect-ratio: 1/1) boundary for the object-position and the layer. */
+const LANDSCAPE_MEDIA = "(min-aspect-ratio: 1/1)";
+
+/* object-fit: cover crops the frame, so the rendered image is often wider than
+   the viewport: the hero is close to full height, and a 16:9 frame on a 16:10
+   screen is scaled from its height. sizes says so, which keeps the browser from
+   picking a candidate that is too small and then upscaling it.
+   Landscape: 16:9 scaled to the viewport height is 178vh wide.
+   Portrait: site.css draws the 4:5 frame (hero height + 520px) / 1.4 tall, so
+   with a hero of one screen it is 0.8 of that wide, about 57vh + 300px. */
+const LANDSCAPE_SIZES = "max(100vw, 178vh)";
+const PORTRAIT_SIZES = "max(100vw, calc(57vh + 300px))";
+
+const LANDSCAPE_WIDTHS = [960, 1280, 1600, 1920, 2560];
+const PORTRAIT_WIDTHS = [480, 720, 960, 1200, 1440];
+
+async function set(src: typeof landscape, widths: number[]) {
+  const [avif, webp, jpg] = await Promise.all([
+    getImage({ src, widths, format: "avif", quality: 60 }),
+    getImage({ src, widths, format: "webp", quality: 76 }),
+    getImage({ src, widths, format: "jpg", quality: 80 }),
+  ]);
+  return { avif, webp, jpg };
+}
+
+const land = await set(landscape, LANDSCAPE_WIDTHS);
+const port = await set(portrait, PORTRAIT_WIDTHS);
 ---
 
 <section class="hero">
-  <div class="hero__weave">
-    <Weave shape="held-right" />
-  </div>
+  <picture class="hero__media">
+    <source media={LANDSCAPE_MEDIA} type="image/avif" srcset={land.avif.srcSet.attribute} sizes={LANDSCAPE_SIZES} />
+    <source media={LANDSCAPE_MEDIA} type="image/webp" srcset={land.webp.srcSet.attribute} sizes={LANDSCAPE_SIZES} />
+    <source media={LANDSCAPE_MEDIA} type="image/jpeg" srcset={land.jpg.srcSet.attribute} sizes={LANDSCAPE_SIZES} />
+    <source type="image/avif" srcset={port.avif.srcSet.attribute} sizes={PORTRAIT_SIZES} />
+    <source type="image/webp" srcset={port.webp.srcSet.attribute} sizes={PORTRAIT_SIZES} />
+    <img
+      class="hero__photo"
+      src={port.jpg.src}
+      srcset={port.jpg.srcSet.attribute}
+      sizes={PORTRAIT_SIZES}
+      alt=""
+      width={portrait.width}
+      height={portrait.height}
+      loading="eager"
+      fetchpriority="high"
+    />
+  </picture>
+  <div class="hero__shade" aria-hidden="true"></div>
 
   <div class="aiw-container hero__inner">
     <div class="hero__col">

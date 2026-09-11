@@ -26,13 +26,45 @@
 .btn--outline:hover{background:var(--aiw-surface-card);border-color:var(--aiw-border-strong);color:var(--aiw-text-primary)}
 
 /* ---- header ------------------------------------------------------------- */
-/* The only sticky element on the site; the design system permits no other. */
+/* The only sticky element on the site; the design system permits no other.
+   Its height is a site value, not a token, and the hero needs it to slide up
+   underneath, so it lives in one custom property. */
+:root{--site-header-height:76px}
 .site-header{position:sticky;top:0;z-index:20;background:var(--aiw-near-black);border-bottom:var(--aiw-border-width) solid var(--aiw-border-subtle)}
-.site-header__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--aiw-space-4);height:76px}
+.site-header__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--aiw-space-4);height:var(--site-header-height)}
 .site-header__brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-.site-header__brand img{display:block;width:auto}
+.site-header__brand svg{display:block;width:auto}
 .site-header__glyph{height:30px}
 .site-header__wordmark{height:15px}
+
+/* Over the hero photograph. The solid header above is the default and stays the
+   default: only a browser that supports scroll-driven animations gets the
+   transparent state, so a browser without support can never show an unreadable
+   header. The animation runs on the root scroll position, not on time. At the
+   top of the page it holds the transparent keyframe; over the first header
+   height of scrolling it settles into the solid header and stays there. The
+   hero text is still well below the header when that range ends, so nothing
+   passes underneath a see-through header. If the page cannot scroll at all the
+   timeline is inactive and the solid header applies.
+   The hairline keeps its width in both states and only changes colour, so the
+   switch shifts no layout. */
+@supports (animation-timeline:scroll()){
+  .site-header--over-hero{animation-name:site-header-settle;animation-timing-function:linear;animation-fill-mode:both}
+  /* The timeline sits in its own rule on purpose. The CSS minifier otherwise
+     folds it into the animation shorthand, where Chromium rejects it and drops
+     the whole declaration. The doubled class keeps it after the shorthand in
+     the cascade whatever the minifier does with rule order. */
+  .site-header.site-header--over-hero{animation-timeline:scroll(root block);animation-range:0 var(--site-header-height)}
+}
+@keyframes site-header-settle{
+  from{background-color:transparent;border-bottom-color:transparent}
+  to{background-color:var(--aiw-near-black);border-bottom-color:var(--aiw-border-subtle)}
+}
+/* With reduced motion the change is a switch at the first pixel of scroll
+   rather than a fade across the first 76px. */
+@media (prefers-reduced-motion:reduce){
+  .site-header.site-header--over-hero{animation-range:0 1px}
+}
 
 .lang-switch{display:flex;align-items:center;gap:var(--aiw-space-2);font-size:var(--aiw-text-sm);font-weight:var(--aiw-weight-semibold)}
 .lang-switch__sep{color:var(--aiw-text-muted)}
@@ -48,14 +80,97 @@
 .section__body{max-width:var(--aiw-measure)}
 
 /* ---- hero --------------------------------------------------------------- */
-/* The one weave placement on the page. On wide viewports the cord runs down the
-   right edge of the hero and the text column stops well clear of it. Below
-   1024px there is no room for both, and the rule is absolute: the weave never
-   crosses the reading area and is never faded down. So the cord moves to its own
-   band under the hero text, where it still runs along the short edge of its
-   surface at the same 5.2% strand ratio. One master, one placement, no repeat. */
-.hero{position:relative;display:flex;flex-direction:column;border-bottom:var(--aiw-border-width) solid var(--aiw-border-subtle)}
-.hero__inner{position:relative;z-index:1;order:1;padding-block:var(--aiw-space-20)}
+/* A full-bleed photograph behind the hero text, art-directed in Hero.astro:
+   the 16:9 frame on landscape-shaped viewports, the 4:5 frame on portrait ones.
+
+   The hero slides up underneath the sticky header by exactly the header's
+   height plus its hairline, so the photograph starts at the top edge of the
+   window and no near-black strip sits above it. The header stays in the flow,
+   which is what keeps the page from shifting when it turns solid. */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;margin-top:calc(-1 * (var(--site-header-height) + var(--aiw-border-width)));background:var(--aiw-near-black);border-bottom:var(--aiw-border-width) solid var(--aiw-border-subtle)}
+.hero__media{position:absolute;inset:0;z-index:-2}
+.hero__photo{width:100%;height:100%;object-fit:cover}
+
+.hero__inner{position:relative;padding-top:calc(var(--site-header-height) + var(--aiw-space-12));padding-bottom:var(--aiw-space-12)}
+
+/* The legibility layer. The sky in both frames is light and the hero text is
+   warm light, so a near-black layer sits between them, as the design system's
+   "Text over images" allows. It is near-black at stepped opacity and nothing
+   else, no new colour, and it is only as heavy as the contrast needs, so the
+   forest and the eagle keep their colour. Measured values: docs/prd.md, R-A1a.
+   The many stops are there to ease the fades, so no edge shows in the sky. */
+
+/* Portrait-shaped screens (the default). The text sits at the top of the hero
+   over the sky, which is evenly light, so the layer covers the text block from
+   the top edge (including the header) and fades out below it, over the forest
+   line. It hangs off .hero__inner so it follows the height of the text, which
+   changes with every width, instead of guessing at it. */
+.hero__inner::before{content:"";position:absolute;z-index:-1;top:0;bottom:calc(-1 * var(--aiw-space-48));left:calc(50% - 50vw);width:100vw;background:linear-gradient(to bottom,
+  color-mix(in srgb,var(--aiw-near-black) 84%,transparent) 0,
+  color-mix(in srgb,var(--aiw-near-black) 78%,transparent) calc(100% - var(--aiw-space-48)),
+  color-mix(in srgb,var(--aiw-near-black) 56%,transparent) calc(100% - var(--aiw-space-32)),
+  color-mix(in srgb,var(--aiw-near-black) 26%,transparent) calc(100% - var(--aiw-space-16)),
+  color-mix(in srgb,var(--aiw-near-black) 8%,transparent) calc(100% - var(--aiw-space-6)),
+  transparent 100%)}
+.hero__shade{display:none}
+
+/* Portrait-shaped screens: the eagle needs a band of its own under the text.
+   The hero reserves it as bottom padding and is at least the height of the
+   screen. The 4:5 frame is then drawn taller than the hero, anchored to the
+   top, by just enough to bring the eagle (about 70% down the frame) into that
+   band: on a phone the text block ends roughly 520px down, so the frame is
+   scaled until 70% of its height lands halfway between there and the bottom.
+   On a tablet the hero is tall enough that the frame barely needs scaling. */
+.hero{min-height:100svh;padding-bottom:calc(var(--aiw-space-48) + var(--aiw-space-12))}
+.hero__media{bottom:auto;height:max(100%,calc((100% + 520px) / 1.4))}
+.hero__photo{object-position:70% 0%}
+
+@media (min-aspect-ratio:1/1){
+  .hero{justify-content:center;padding-bottom:0}
+  .hero__media{bottom:0;height:auto}
+  /* The eagle sits about 75% across and 65% down the 16:9 frame. Anchoring
+     right of centre keeps it in frame when a narrower screen crops the sides. */
+  .hero__photo{object-position:72% 60%}
+  /* Landscape: text on the left over the sky and the misty valley, eagle on
+     the right. The layer darkens toward the left edge behind the text column
+     and has faded out before the eagle. A second layer runs along the top, so
+     the header reads over the sky on the right as well. */
+  .hero__inner::before{content:none}
+  .hero__shade{display:block;position:absolute;inset:0;z-index:-1;background:
+    linear-gradient(to bottom,
+      color-mix(in srgb,var(--aiw-near-black) 80%,transparent) 0,
+      color-mix(in srgb,var(--aiw-near-black) 76%,transparent) 56px,
+      color-mix(in srgb,var(--aiw-near-black) 50%,transparent) 110px,
+      color-mix(in srgb,var(--aiw-near-black) 22%,transparent) 170px,
+      transparent 240px),
+    linear-gradient(to right,
+      color-mix(in srgb,var(--aiw-near-black) 86%,transparent) 0,
+      color-mix(in srgb,var(--aiw-near-black) 82%,transparent) 30%,
+      color-mix(in srgb,var(--aiw-near-black) 74%,transparent) 40%,
+      color-mix(in srgb,var(--aiw-near-black) 52%,transparent) 50%,
+      color-mix(in srgb,var(--aiw-near-black) 28%,transparent) 60%,
+      color-mix(in srgb,var(--aiw-near-black) 10%,transparent) 70%,
+      transparent 78%)}
+}
+/* Landscape but narrow, such as a phone on its side: the text column runs
+   wider than half the screen, so the dark part of the layer reaches further. */
+@media (min-aspect-ratio:1/1) and (max-width:1023px){
+  .hero__shade{background:
+    linear-gradient(to bottom,
+      color-mix(in srgb,var(--aiw-near-black) 80%,transparent) 0,
+      color-mix(in srgb,var(--aiw-near-black) 76%,transparent) 56px,
+      color-mix(in srgb,var(--aiw-near-black) 50%,transparent) 110px,
+      color-mix(in srgb,var(--aiw-near-black) 22%,transparent) 170px,
+      transparent 240px),
+    linear-gradient(to right,
+      color-mix(in srgb,var(--aiw-near-black) 86%,transparent) 0,
+      color-mix(in srgb,var(--aiw-near-black) 80%,transparent) 50%,
+      color-mix(in srgb,var(--aiw-near-black) 72%,transparent) 60%,
+      color-mix(in srgb,var(--aiw-near-black) 40%,transparent) 70%,
+      color-mix(in srgb,var(--aiw-near-black) 12%,transparent) 80%,
+      transparent 88%)}
+}
+
 .hero__eyebrow{margin-bottom:22px}
 /* Each line of the heading is its own block, so it breaks where a sentence
    ends. Within a line, the balanced wrap from base.css still applies on narrow
@@ -66,19 +181,14 @@
 .hero__lead{margin-bottom:var(--aiw-space-8);max-width:46ch;font-size:var(--aiw-text-md)}
 .hero__actions{display:flex;flex-wrap:wrap;gap:var(--aiw-space-4);align-items:center}
 
-/* mobile and tablet: the cord gets its own band beneath the text.
-   The band is 280px tall and full width, so its short edge is the height and the
-   cord runs along it vertically, cropped left and right. No text over it. */
-.hero__weave{position:relative;order:2;height:280px;margin-top:var(--aiw-space-12)}
-.hero__weave .aiw-weave{--aiw-weave-x:50%}
-
-@media (min-width:1024px){
-  .hero{display:block}
-  .hero__inner{min-height:620px;display:flex;flex-direction:column;justify-content:center;padding-block:var(--aiw-space-24)}
-  /* the text column stops clear of the cord, with the reading gutter respected */
-  .hero__col{max-width:calc(62% - var(--aiw-weave-clear))}
-  .hero__weave{position:absolute;inset:0;z-index:0;height:auto;margin-top:0}
-  .hero__weave .aiw-weave{--aiw-weave-x:82%}
+/* Landscape-shaped screens: the text column is vertically centred in the part
+   of the hero below the header and stops short of the eagle on the right. */
+@media (min-aspect-ratio:1/1){
+  .hero__inner{padding-bottom:var(--aiw-space-16)}
+}
+@media (min-aspect-ratio:1/1) and (min-width:1024px){
+  .hero__inner{padding-top:calc(var(--site-header-height) + var(--aiw-space-20));padding-bottom:var(--aiw-space-20)}
+  .hero__col{max-width:58%}
 }
 
 /* The display size only where the column is wide enough to keep the first
