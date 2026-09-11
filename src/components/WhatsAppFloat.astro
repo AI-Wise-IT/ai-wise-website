@@ -7,12 +7,17 @@
  * either, because the palette is four colours and green is not one of them.
  * Icon only, with the same Tabler WhatsApp logo as the contact button; the name
  * "WhatsApp" stays in the markup as visually hidden text, so it is the link's
- * accessible name.
+ * accessible name. Round, by Simon's choice; see site.css.
  *
  * The script below gets the button out of the way in two situations: while the
- * page is being scrolled, and while the contact section is in view, because that
- * section has its own WhatsApp button. It only toggles a class; the fades and
- * the non-interactive hidden state live in site.css (.wa-float--hidden).
+ * page is being scrolled, and once the reader has reached the contact buttons,
+ * because those include a WhatsApp button of their own. "Reached" means the top
+ * of the buttons is above the bottom edge of the window: they are in view, or
+ * the page is scrolled past them towards the footer. Scrolling back up above
+ * them brings the floating button back. The heading and the text of the contact
+ * section come before the buttons, so the floating button is still there while
+ * someone reads them. The script only toggles a class; the fades and the
+ * non-interactive hidden state live in site.css (.wa-float--hidden).
  * Without JavaScript the button simply stays visible.
  */
 import Icon from "./Icon.astro";
@@ -33,7 +38,7 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
   target="_blank"
   rel="noopener noreferrer"
 >
-  <Icon name="whatsapp" size={22} />
+  <Icon name="whatsapp" size={24} />
   <span class="visually-hidden">{t.contact.whatsappFloatLabel}</span>
 </a>
 
@@ -49,7 +54,9 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
   const button = document.querySelector<HTMLAnchorElement>(".wa-float");
 
   if (button) {
-    let contactInView = false;
+    // Only the home pages have contact buttons; the privacy pages do not, and
+    // there the button only steps aside while the page scrolls.
+    const contactActions = document.querySelector<HTMLElement>(".contact__actions");
     let scrolling = false;
     let idleTimer: number | undefined;
     let lastTabAt = Number.NEGATIVE_INFINITY;
@@ -64,18 +71,26 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
       }
     };
 
+    // True while the contact buttons are in view and for everything below them,
+    // down to the footer. Measured rather than remembered from the observer: a
+    // jump straight from above the buttons to below them (the End key, a
+    // restored scroll position) never makes them intersect, so the observer
+    // alone would miss it.
+    const reachedContactActions = (): boolean =>
+      contactActions !== null && contactActions.getBoundingClientRect().top < window.innerHeight;
+
     const update = (): void => {
-      const hide = (contactInView || scrolling) && !hasKeyboardFocus();
+      // While scrolling the button is hidden anyway, so the position is only
+      // measured once the page is still.
+      const hide = (scrolling || reachedContactActions()) && !hasKeyboardFocus();
       button.classList.toggle(HIDDEN_CLASS, hide);
     };
 
-    // Only the home pages have a contact section; the privacy pages do not.
-    const contact = document.getElementById("contact");
-    if (contact && "IntersectionObserver" in window) {
-      new IntersectionObserver((entries) => {
-        for (const entry of entries) contactInView = entry.isIntersecting;
-        update();
-      }).observe(contact);
+    // The observer catches the buttons coming into or leaving view without a
+    // scroll the handler below counts, such as a scroll caused by moving focus
+    // with Tab. Its first callback also sets the state on page load.
+    if (contactActions && "IntersectionObserver" in window) {
+      new IntersectionObserver(update).observe(contactActions);
     }
 
     window.addEventListener("keydown", (event) => {
@@ -96,6 +111,8 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
       },
       { passive: true },
     );
+
+    window.addEventListener("resize", update, { passive: true });
 
     // Re-evaluate when focus arrives or leaves, so a focused button is shown and
     // a button that loses focus while it should be hidden fades out.

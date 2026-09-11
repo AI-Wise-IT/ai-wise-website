@@ -10,13 +10,11 @@
  * written so that a browser without support keeps the solid header.
  *
  * The glyph and wordmark are inlined from assets/logo/ rather than referenced
- * as <img>. Both SVGs paint a near-black backing rectangle, which is invisible
- * on the near-black page but shows as a dark box over the photograph. The
- * rectangle is dropped at build time; the paths themselves are untouched, and
- * the files in public/assets/logo/ stay verbatim copies of the design system.
+ * as <img>, without the near-black backing rectangle both files paint, which
+ * would show as a dark box over the photograph. See LogoSvg.astro. Both are
+ * decorative here; the link around them carries the accessible name.
  */
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import LogoSvg from "./LogoSvg.astro";
 import { COPY, path, type Lang } from "../content/copy";
 
 interface Props {
@@ -27,20 +25,6 @@ interface Props {
 const { lang, page } = Astro.props;
 const t = COPY[lang];
 
-/** Read a logo SVG, drop its backing rectangle and its fixed pixel size, and
- *  mark it decorative. The link around it carries the accessible name. */
-function logo(file: string, className: string): string {
-  const svg = readFileSync(join(process.cwd(), "public/assets/logo", file), "utf8");
-  return svg
-    .replace(/<rect\b[^>]*\/>/, "")
-    .replace(/<svg\b([^>]*?)\swidth="[^"]*"\sheight="[^"]*"/, "<svg$1")
-    .replace(/<svg\b/, `<svg class="${className}" aria-hidden="true" focusable="false"`)
-    .trim();
-}
-
-const glyph = logo("glyph.svg", "site-header__glyph");
-const wordmark = logo("wordmark.svg", "site-header__wordmark");
-
 /* Only the home page has a hero photograph to lie over. */
 const overHero = page === "home";
 ---
@@ -48,8 +32,8 @@ const overHero = page === "home";
 <header class:list={["site-header", { "site-header--over-hero": overHero }]}>
   <div class="aiw-container site-header__inner">
     <a class="site-header__brand" href={path(lang, "home")} aria-label={t.nav.home}>
-      <Fragment set:html={glyph} />
-      <Fragment set:html={wordmark} />
+      <LogoSvg file="glyph.svg" class="site-header__glyph" />
+      <LogoSvg file="wordmark.svg" class="site-header__wordmark" />
     </a>
 
     <nav class="lang-switch" aria-label={t.nav.language}>

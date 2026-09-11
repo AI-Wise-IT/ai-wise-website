@@ -1,6 +1,6 @@
 # PRD, AI Wise website
 
-Status: versie 6, gebouwd en klaar voor visuele review
+Status: versie 7, gebouwd; de Nederlandse versie is af, de Engelse wordt herschreven
 Datum: 11 september 2026
 Eigenaar: Simon van Meegdenburg
 Vervangt: de tijdelijke coming-soon pagina op https://aiwise.it.com
@@ -169,7 +169,8 @@ Vier inhoudelijke secties.
   `<img>`. Beide bestanden in `assets/logo/` hebben een near-black achtergrondvlak, dat op
   de near-black pagina onzichtbaar is maar boven de foto als donker blokje zichtbaar
   wordt. Dat vlak wordt bij de build weggelaten; de paden zelf zijn onveranderd en de
-  bestanden in `public/assets/logo/` blijven verbatim kopieën.
+  bestanden in `public/assets/logo/` blijven verbatim kopieën. Header en footer gebruiken
+  daarvoor dezelfde component, `LogoSvg.astro`.
 
 **S1, Hero**
 
@@ -265,10 +266,22 @@ Vier inhoudelijke secties.
   die het professionele kader ondermijnen.
 - R-S3.5: Geen ervaringsclaims ("wat ik vaak zie", "uit ervaring") tenzij expliciet
   bevestigd.
-- R-S3.6: Maximaal circa 150 woorden per taalversie. De Nederlandse versie telt 75 woorden.
+- R-S3.6: Maximaal circa 150 woorden per taalversie. De Nederlandse versie telt 76 woorden.
 - R-S3.7: **Op de Nederlandse pagina is de tekst een opsomming van vijf korte punten**, door
   Simon zelf geschreven en zonder correcties overgenomen (R-C7). Kopje *Over mij*, kop
-  *Simon van Meegdenburg*. De lijst is opgemaakt als de voorbeeldenlijst in de visie:
+  *Simon van Meegdenburg*. De vijf punten:
+  1. *Sinds 2018 bouw ik systemen met data, als BI-consultant en als data engineer.*
+  2. *Naast mijn werk leerde ik websites en apps bouwen, en daar heb ik nog meer plezier in.*
+  3. *Met AI werk ik een idee in ongeveer een dag uit tot een eerste prototype.*
+  4. *Door te experimenteren leerde ik wat er nodig is om een werkend systeem te maken dat
+     mensen dagelijks gebruiken.*
+  5. *Als techneut bouw ik graag voor organisaties waarmee ik me verbonden voel.*
+
+  Het vierde punt begon eerst met *Al experimenterend*. In Source Sans 3 lijken de kleine l
+  en de hoofdletter I op elkaar, dus *Al* las als *AI*. Simon heeft de nieuwe zin
+  goedgekeurd; hij staat ook zo in de goedgekeurde tekst in de AI Wise-map
+  (`sales/outreach/content-record/output/website-home-over-mij.md`).
+  De lijst is opgemaakt als de voorbeeldenlijst in de visie:
   markers in moss, 16px tussen de punten, via de gedeelde klasse `.bullet-list` in
   `site.css`. `copy.ts` laat per taal proza (`paragraphs`) of een lijst (`points`) toe, en de
   sectie toont wat er staat. De Engelse pagina heeft nog de eerste versie in drie alinea's en
@@ -313,13 +326,40 @@ Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
 
 Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke gegevens.
 
-- R-S5.1: Lockup zonder glyph, met daaronder één regel over wat AI Wise is en waar.
+- R-S5.1: **Het volledige logo met de tagline als tekst.** Opgebouwd zoals `lockup-en.svg`
+  het doet: links het glyph, rechts het wordmark met de tagline eronder. Glyph en wordmark
+  zijn de inline SVG's uit `assets/logo/` (via `LogoSvg.astro`, zonder achtergrondvlak); de
+  lockup-afbeelding zelf staat er niet meer, want daarin was de tagline op 44px hoogte
+  nauwelijks leesbaar.
+  - Het wordmark is bijgesneden tot de letters en 32px hoog (`space-8`), dus 32px
+    kapitaalhoogte en 196px breed. Voorheen was dat 14px.
+  - De tagline *Automation in Service of Life* is echte tekst met `lang="en"`, 17px
+    (`text-base`), Source Sans 3 regular, in moss (`text-accent-ground`). Gemeten contrast
+    op near-black: 5,29:1, dus AA voor normale tekst. De uitzondering uit R-A1b geldt hier
+    niet. Hij is 203px breed, ongeveer zo breed als het wordmark, zoals in de lockup. De
+    lockup zet de tagline in Newsreader italic; de site levert geen Newsreader italic en
+    houdt Newsreader voor de ene reflectie (R-V7), dus hier is het Source Sans 3.
+  - Tussenruimtes volgen de verhoudingen van de lockup, afgerond op spacing-stappen: 24px
+    (`space-6`) van glyph naar wordmark, 20px (`space-5`) van wordmark naar tagline.
+  - Het glyph loopt van de bovenkant van het wordmark tot de basislijn van de tagline:
+    32 + 20px plus één kapitaalhoogte van de tagline, samen 63px hoog en 36px breed.
+    `text-box: trim-both cap alphabetic` maakt de regel van de tagline precies zo hoog.
+    Een browser zonder `text-box` laat het glyph ongeveer 2px boven de basislijn eindigen.
+  - Toegankelijke naam: het glyph is `role="img"` met `aria-label="AI Wise"`, het wordmark
+    is `aria-hidden`. De naam wordt dus één keer voorgelezen en de tagline één keer, als
+    tekst.
+  - Op 375px is het blok 263px breed en past het ruim in de kolom van 327px.
+  - Daaronder één regel: *Apps, websites en tools, gebouwd met AI. Voor werk waar de wereld
+    iets aan heeft.*
 - R-S5.2: Kolom *Direct*: e-mailadres en telefoonnummer, beide als link. Het
   telefoonnummer staat in de kit-footer en blijft daar; in S4 zijn e-mail en WhatsApp de
   twee routes.
 - R-S5.3: Kolom met KvK-nummer `93385498`, btw-identificatienummer `NL005019332B52`,
   vestigingsplaats en de link naar de privacyverklaring.
-- R-S5.4: Een rule, daaronder `Automation in Service of Life · Simon van Meegdenburg`.
+- R-S5.4: Een rule, daaronder de copyrightregel `© 2026 AI Wise`, 12px in `text-muted`.
+  Het jaar is het jaar van de build (`new Date().getFullYear()`), en de regel is in beide
+  talen gelijk, dus hij staat niet in `copy.ts`. De tagline staat hier niet meer, want die
+  staat al onder het logo.
 - R-S5.5: Vestigingsadres, zie O-2.
 
 **S6, WhatsApp-knop**
@@ -332,22 +372,39 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   toetsenbord, zichtbare focus-outline.
 - R-S6.4: **Geen gevulde blauwe knop**, want dat zou een tweede `signal` op de pagina zijn.
   Uitvoering als blauw omlijnde knop (`.btn--outline-signal`, zie R-V6): alleen het icoon,
-  geen tekst. Hetzelfde WhatsApp-icoon uit Tabler als in de contactknop, op 22px, in signal
-  blue. Een vierkant van 48 bij 48px, zodat hij goed te raken is, met 1px rand in signal
-  blue, 2px radius en een vlak in `surface-card`, omdat hij over tekst en de herofoto
-  zweeft. Geen WhatsApp-groen.
+  geen tekst. Hetzelfde WhatsApp-icoon uit Tabler als in de contactknop, op 24px, in signal
+  blue. **Rond**, 56 bij 56px (`space-12` plus `space-2`), de gebruikelijke maat voor een
+  zwevende actieknop en goed te raken, met 1px rand in signal blue en een vlak in
+  `surface-card`, omdat hij over tekst en de herofoto zweeft. De focus-outline volgt de
+  cirkel. Rond is Simons keuze en een bewuste uitzondering op de 2px radius voor knoppen
+  (R-V5). Geen WhatsApp-groen.
 - R-S6.5: Geen widget of script van derden. Die laden externe code en breken de identiteit.
   Het kleine eigen script uit R-S6.7 wordt door Astro gebundeld, staat inline en valt onder
   de CSP-hashes uit R-T3a.
 - R-S6.6: Overlapt op mobiel geen tekst of links.
-- R-S6.7: **Verborgen tijdens scrollen en bij de contactsectie.** Zolang de pagina scrolt,
-  vervaagt de knop in 200ms (`duration-base`); zodra er 600ms niet gescrold is, komt hij in
-  320ms (`duration-slow`) terug, beide met `ease-standard`. Zolang de contactsectie in beeld
-  is, ook maar gedeeltelijk, blijft hij verborgen, want die sectie heeft een eigen
-  WhatsApp-knop. Een IntersectionObserver op `#contact` regelt dat alleen op de
-  homepagina's; de privacypagina's hebben geen contactsectie en kennen alleen het verbergen
-  tijdens scrollen. Het script zet alleen een klasse (`.wa-float--hidden`), geen inline
-  stijlen.
+- R-S6.7: **Verborgen tijdens scrollen en vanaf de contactknoppen.** Zolang de pagina
+  scrolt, vervaagt de knop in 200ms (`duration-base`); zodra er 600ms niet gescrold is, komt
+  hij in 320ms (`duration-slow`) terug, beide met `ease-standard`.
+  - Hij blijft verborgen zodra de contactknoppen (`.contact__actions`) in beeld komen, en
+    zolang de pagina voorbij die knoppen gescrold is, tot en met de footer. De regel is: de
+    bovenkant van de knoppen ligt boven de onderrand van het venster. Wie terugscrolt tot
+    boven de knoppen, krijgt de zwevende knop terug.
+  - Zo staat hij er nog terwijl de kop en de tekst van de contactsectie in beeld zijn, en
+    verdwijnt hij pas als de eigen WhatsApp-knop van die sectie zichtbaar wordt. Eerder
+    verdween hij al zodra de bovenmarge van `#contact` in beeld kwam, nog voor het woord
+    *Contact* te zien was.
+  - Een IntersectionObserver op `.contact__actions` meldt het moment dat de knoppen in of
+    uit beeld gaan, ook bij scrollen door Tab. De positie zelf wordt bij elke evaluatie
+    gemeten, zodra de pagina stilstaat. Een sprong in één keer van boven de knoppen naar
+    eronder (End-toets, herstelde scrollpositie na herladen) laat de knoppen nooit snijden
+    en zou de observer alleen missen.
+  - Gecontroleerd op de gebouwde Nederlandse pagina, op 1440x900 en 375x812: zichtbaar
+    bovenaan, zichtbaar met de kop van Contact in beeld en de knoppen net onder de vouw,
+    verborgen zodra de knoppen 20px in beeld zijn, verborgen bij de footer, na een sprong
+    naar onderen en na herladen onderaan, en weer zichtbaar na terugscrollen.
+  - Alleen de homepagina's hebben contactknoppen; de privacypagina's kennen alleen het
+    verbergen tijdens scrollen. Het script zet alleen een klasse (`.wa-float--hidden`), geen
+    inline stijlen.
 - R-S6.8: Verborgen betekent: dekking 0, niet klikbaar (`pointer-events: none`) en na de
   fade `visibility: hidden`, zodat de knop uit de tabvolgorde en de toegankelijkheidsboom
   is. Bij het tonen gaat `visibility` direct aan en volgt de fade. Een knop met
@@ -428,7 +485,8 @@ in `tokens/` en `guidelines/`.
   ramp plus een 1px hairline. Radius is 2px voor knoppen, kaarten en beeldcrops, 0 voor
   banden en rules. De enige uitzondering is de leesbaarheidslaag over de herofoto uit
   R-V4b: een verloop van near-black naar transparant, uitsluitend om tekst leesbaar te
-  houden, nooit op merkgrafiek.
+  houden, nooit op merkgrafiek. Voor de radius is er ook één uitzondering: de zwevende
+  WhatsApp-knop is rond, op verzoek van Simon (R-S6.4).
 - R-V6: **Eén `signal`-knop op de hele pagina.** Blauw betekent "dit is wat je moet doen".
   Dat is hier de hero-CTA naar `#contact`. Op een single pager is de hele pagina één view,
   dus de regel geldt over de volle lengte. De regel gaat over het gevulde vlak: omlijnde
@@ -448,7 +506,8 @@ in `tokens/` en `guidelines/`.
 - R-V9: Body 17px op 1.6, maximaal 68ch. Leads 19px op 52ch. Content 1200px, artikelkolom
   760px, paginamarges 24 / 48 / 80px, sectiegaten 96 tot 128px.
 - R-V10: Logo en glyph uitsluitend uit `assets/logo/`. Het wordmark wordt nooit opnieuw als
-  levende tekst gezet; de SVG's zijn outlines zonder fontafhankelijkheid.
+  levende tekst gezet; de SVG's zijn outlines zonder fontafhankelijkheid. De tagline is geen
+  onderdeel van het wordmark: in de footer staat hij als tekst onder het logo (R-S5.1).
 - R-V11: Twee foto's op de pagina: de herofoto (R-V4) en het portret (R-S3.1). De herofoto
   is gegenereerd, maar volgt de richting uit het designsysteem: natuur en veel groen in
   plaats van technologie en blauw. Geen generieke AI-beeldtaal, zoals het designsysteem die
@@ -592,7 +651,7 @@ in `tokens/` en `guidelines/`.
   eyebrow vragen, en dan is de linkerhelft van de foto vrijwel zwart.
 - R-A1b: **Uitzondering: de tagline in de hero.** De eyebrow boven de herofoto, met de
   tagline "Automation in Service of Life", hoeft geen 4,5:1 te halen maar minimaal 3:1. De
-  reden: het is een herhaalde merkregel, die ook in de lockup in de footer staat, en geen
+  reden: het is een herhaalde merkregel, die ook onder het logo in de footer staat, en geen
   inhoud die een bezoeker nodig heeft om de pagina te begrijpen. Om de leesbaarheid te
   helpen staat hij in de hero op 15px (`--aiw-text-sm`) in plaats van de 13px uit
   `base.css`, via `.hero__eyebrow` in `site.css`. Kleur, gewicht, uppercase en spatiëring
@@ -605,8 +664,9 @@ in `tokens/` en `guidelines/`.
   Een skip-link staat vooraan de pagina.
 - R-A4: Semantische koppenstructuur, één `h1`, elke sectie met een eigen gelabelde kop.
 - R-A5: Alt-tekst op het portret. De herofoto is decoratief en krijgt `alt=""`; de
-  leesbaarheidslaag en de inline logo-SVG's krijgen `aria-hidden`, en de link om het logo
-  draagt de toegankelijke naam.
+  leesbaarheidslaag en de inline logo-SVG's in de header krijgen `aria-hidden`, en de link
+  om het logo draagt de toegankelijke naam. In de footer, waar het logo geen link is, draagt
+  het glyph de naam "AI Wise" (`role="img"`) en is het wordmark `aria-hidden` (R-S5.1).
 - R-A6: `prefers-reduced-motion` wordt gerespecteerd.
 
 ### 9.2 Performance
@@ -639,7 +699,18 @@ behandeld.
 
 **Basis**
 
-- R-S.1: Titel en meta-description per taalversie, handgeschreven.
+- R-S.1: Titel en meta-description per taalversie, handgeschreven. Vastgesteld (NL):
+  - Titel: *AI Wise · Apps, websites & tools laten bouwen met AI*. In de HTML staat de `&`
+    als `&amp;`, in `<title>` en in `og:title`; gecontroleerd in de build.
+  - Description: *Heb je een idee voor een app, website of tool waar de wereld iets aan
+    heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.* (137 tekens). Dezelfde
+    tekst staat in `og:description` en als `description` van de organisatie in de JSON-LD.
+  - De oude positionering (*AI, data en automatisering*, *workflow-automatisering*,
+    *rapportage*) staat nergens meer in Nederlandse tekst. `llms.txt` beschreef het werk al
+    als apps, websites en tools en is ongewijzigd. De JSON-LD heeft nog twee Engelse, voor
+    beide talen gedeelde waarden uit de oude positionering: `jobTitle` *AI, data and
+    automation engineer* en in `knowsAbout` onder meer *workflow automation* en *dashboards
+    and reporting*. Die zijn niet onjuist en gaan mee in de herziening van de Engelse tekst.
 - R-S.2: Open Graph en Twitter card, met `card-1700.png` als deelafbeelding.
 - R-S.3: Favicon uit `glyph-square.svg` en `glyph-square-32.png`, zoals het designsysteem
   voorschrijft. De oude `favicon.svg` is vervangen.
@@ -767,8 +838,8 @@ Alles wat niet op een open punt wachtte, staat er.
 | S2 visie met de reflectie in Newsreader en zes voorbeelden ter inspiratie | Klaar, copy is concept |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; Nederlandse tekst door Simon geschreven en goedgekeurd, Engels is concept |
 | S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar, tekst door Simon vastgesteld |
-| S5 footer met KvK, btw-id, vestigingsplaats en privacylink | Klaar |
-| S6 zwevende WhatsApp-knop, outline | Klaar |
+| S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, vestigingsplaats, privacylink en copyrightregel | Klaar |
+| S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen vanaf de contactknoppen | Klaar |
 | Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
 | i18n-routering, hreflang, canonical, sitemap | Klaar |
 | JSON-LD, Open Graph, favicons | Klaar |
@@ -827,6 +898,27 @@ Gesloten sinds versie 4:
 ---
 
 ## 16. Wijzigingen
+
+### Versie 7 ten opzichte van versie 6
+
+- **Nederlandse titel, meta-description en footerregel herschreven** naar de nieuwe
+  positionering: apps, websites en tools, gebouwd met AI. R-S.1 en R-S5.1.
+- **Footer met het volledige logo.** Glyph plus wordmark, opgebouwd als `lockup-en.svg`, met
+  het wordmark op 32px kapitaalhoogte in plaats van 14px, en de tagline als tekst van 17px in
+  moss (5,29:1). De lockup-afbeelding is weg; header en footer delen `LogoSvg.astro`.
+  R-S0.7, R-S5.1, R-V10 en R-A5.
+- **Copyrightregel** `© 2026 AI Wise` onder de rule, in beide talen, in plaats van de
+  tagline met Simons naam. R-S5.4.
+- **Zwevende WhatsApp-knop rond en 56px**, en langer zichtbaar: hij verdwijnt pas zodra de
+  contactknoppen in beeld komen en blijft weg tot en met de footer, in plaats van al bij de
+  bovenmarge van de contactsectie. R-S6.4, R-S6.7 en R-V5.
+- **Vierde punt van Over mij**: *Door te experimenteren* in plaats van *Al experimenterend*,
+  omdat *Al* in Source Sans 3 als *AI* las. Nu 76 woorden. R-S3.6 en R-S3.7.
+- **Privacypagina schoof op 375px 58px opzij**, door het ene woord
+  *Verwerkingsverantwoordelijke* in de kop. De koppen in de privacytekst mogen een woord nu
+  breken als het niet op een regel past (`overflow-wrap: anywhere`). De andere koppen lopen
+  in beide talen precies zoals eerst; `hyphens: auto` is bewust weggelaten, omdat dat ook
+  woorden afbreekt die gewoon naar de volgende regel hadden gekund.
 
 ### Versie 6 ten opzichte van versie 5
 

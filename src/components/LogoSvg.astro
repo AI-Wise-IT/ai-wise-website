@@ -1,0 +1,60 @@
+---
+/**
+ * One logo file from public/assets/logo/, inlined as SVG at build time. Used by
+ * the header and the footer.
+ *
+ * Both glyph.svg and wordmark.svg paint a near-black backing rectangle, which is
+ * invisible on the near-black page but shows as a dark box over the hero
+ * photograph. The rectangle is dropped here, together with the file's fixed
+ * pixel size, so CSS sizes the logo. The paths are untouched, and the files in
+ * public/assets/logo/ stay verbatim copies of the design system.
+ *
+ * wordmark.svg carries a 66-unit margin around the letters on every side, the
+ * same clear space the lockups have; glyph.svg has none. With trimMargin the
+ * viewBox is cropped to the letters, so a CSS height is the height of the
+ * capitals and the logo lines up with text beside it. The overshoot of the
+ * round letters sits a fraction of a unit outside that box, so a trimmed logo
+ * needs overflow: visible in CSS.
+ */
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+type LogoFile = "glyph.svg" | "wordmark.svg";
+
+interface Props {
+  file: LogoFile;
+  class: string;
+  /** Accessible name. Without one the SVG is decorative (aria-hidden) and an
+   *  element around it carries the name. */
+  label?: string;
+  trimMargin?: boolean;
+}
+
+/** Clear space around the drawing, in viewBox units, per file. */
+const MARGIN: Record<LogoFile, number> = {
+  "glyph.svg": 0,
+  "wordmark.svg": 66,
+};
+
+const { file, class: className, label, trimMargin = false } = Astro.props;
+
+const a11y = label
+  ? `role="img" aria-label="${label.replace(/[&"<>]/g, (c) => `&#${c.charCodeAt(0)};`)}"`
+  : `aria-hidden="true"`;
+
+let svg = readFileSync(join(process.cwd(), "public/assets/logo", file), "utf8")
+  .replace(/<rect\b[^>]*\/>/, "")
+  .replace(/<svg\b([^>]*?)\swidth="[^"]*"\sheight="[^"]*"/, "<svg$1")
+  .replace(/<svg\b/, `<svg class="${className}" ${a11y} focusable="false"`)
+  .trim();
+
+if (trimMargin && MARGIN[file] > 0) {
+  const m = MARGIN[file];
+  svg = svg.replace(/viewBox="0 0 ([\d.]+) ([\d.]+)"/, (_, w: string, h: string) => {
+    const round = (n: number) => Number(n.toFixed(1));
+    return `viewBox="${m} ${m} ${round(Number(w) - 2 * m)} ${round(Number(h) - 2 * m)}"`;
+  });
+}
+---
+
+<Fragment set:html={svg} />

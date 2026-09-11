@@ -4,7 +4,18 @@
  * replaced by the company details the Dutch information duty asks for
  * (art. 3:15d BW): trade name, Chamber of Commerce number, VAT identification
  * number, contact details and place of business.
+ *
+ * The logo is composed the way lockup-en.svg composes it: the glyph on the left,
+ * as tall as the block beside it, and the wordmark with the tagline underneath.
+ * The glyph and wordmark are the inlined logo files (LogoSvg.astro); the tagline
+ * is live text, so it stays readable at a size a whole lockup image cannot give
+ * it. The glyph carries the accessible name "AI Wise" and the wordmark is
+ * decorative, so the name is read once and the tagline once, as the text it is.
+ *
+ * The line under the rule is a copyright notice. The year is the build year, and
+ * the line is the same in both languages.
  */
+import LogoSvg from "./LogoSvg.astro";
 import { COMPANY, COPY, path, type Lang } from "../content/copy";
 
 interface Props {
@@ -13,17 +24,17 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = COPY[lang];
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="aiw-container site-footer__grid">
     <div>
-      <img
-        class="site-footer__lockup"
-        src="/assets/logo/lockup-en-plain.svg"
-        alt={`${COMPANY.name}, ${COMPANY.tagline}`}
-        height="44"
-      />
+      <div class="site-footer__lockup">
+        <LogoSvg file="glyph.svg" class="site-footer__glyph" label={COMPANY.name} />
+        <LogoSvg file="wordmark.svg" class="site-footer__wordmark" trimMargin />
+        <p class="site-footer__tagline" lang="en">{COMPANY.tagline}</p>
+      </div>
       <p class="site-footer__blurb">{t.footer.blurb}</p>
     </div>
 
@@ -48,8 +59,6 @@ const t = COPY[lang];
 
   <div class="aiw-container site-footer__baseline">
     <hr />
-    <p class="site-footer__tagline">
-      <span lang="en">{COMPANY.tagline}</span> &nbsp;·&nbsp; {COMPANY.owner}
-    </p>
+    <p class="site-footer__copyright">© {year} {COMPANY.name}</p>
   </div>
 </footer>

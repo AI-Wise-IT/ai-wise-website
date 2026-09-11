@@ -2,11 +2,10 @@
  * All user-facing copy, per language. Kept out of the components on purpose:
  * a text change should not be a code change.
  *
- * STATUS, Dutch: hero, vision, examples and about reviewed with Simon and
- * settled; the about text is his own. Contact, footer and meta text are still
- * the first draft and get rewritten section by section. English is the first
- * draft throughout and is written afresh once the Dutch is settled, as its own
- * text rather than a translation.
+ * STATUS, Dutch: hero, vision, examples, about, contact, footer and meta text
+ * reviewed with Simon and settled; the about text is his own. English is the
+ * first draft throughout and is written afresh once the Dutch is settled, as its
+ * own text rather than a translation.
  *
  * Voice: the design system's readme.md, "Content fundamentals", plus Simon's
  * preferences in the AI Wise folder at
@@ -120,9 +119,9 @@ const nl: Copy = {
   htmlLang: "nl",
   localeTag: "nl_NL",
   meta: {
-    title: "AI Wise · AI, data en automatisering voor kleine organisaties",
+    title: "AI Wise · Apps, websites & tools laten bouwen met AI",
     description:
-      "AI Wise is de praktijk van Simon van Meegdenburg. Ik bouw praktische tools, workflow-automatisering en rapportage voor kleine organisaties met betekenisvol werk.",
+      "Heb je een idee voor een app, website of tool waar de wereld iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.",
     ogAlt: "AI Wise, Automation in Service of Life",
   },
   nav: {
@@ -163,7 +162,7 @@ const nl: Copy = {
       "Sinds 2018 bouw ik systemen met data, als BI-consultant en als data engineer.",
       "Naast mijn werk leerde ik websites en apps bouwen, en daar heb ik nog meer plezier in.",
       "Met AI werk ik een idee in ongeveer een dag uit tot een eerste prototype.",
-      "Al experimenterend leerde ik wat er nodig is om een werkend systeem te maken dat mensen dagelijks gebruiken.",
+      "Door te experimenteren leerde ik wat er nodig is om een werkend systeem te maken dat mensen dagelijks gebruiken.",
       "Als techneut bouw ik graag voor organisaties waarmee ik me verbonden voel.",
     ],
     portraitAlt: "Portret van Simon van Meegdenburg",
@@ -187,7 +186,7 @@ const nl: Copy = {
     note: "Een kort bericht is genoeg.",
   },
   footer: {
-    blurb: "AI, data en automatisering voor kleine organisaties met betekenisvol werk.",
+    blurb: "Apps, websites en tools, gebouwd met AI. Voor werk waar de wereld iets aan heeft.",
     directTitle: "Direct",
     legalTitle: "Zakelijk",
     kvkLabel: "KvK",

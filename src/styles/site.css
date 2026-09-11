@@ -290,32 +290,55 @@
 .site-footer{border-top:var(--aiw-border-width) solid var(--aiw-border-subtle);margin-top:var(--aiw-section-gap-lg);padding-block:56px}
 .site-footer__grid{display:grid;gap:var(--aiw-space-10)}
 @media (min-width:768px){.site-footer__grid{grid-template-columns:1.4fr 1fr 1fr}}
-.site-footer__lockup{height:44px;width:auto}
-.site-footer__blurb{margin-top:var(--aiw-space-5);font-size:var(--aiw-text-sm);color:var(--aiw-text-muted);max-width:34ch}
+/* The logo as lockup-en.svg composes it: the glyph on the left, the wordmark
+   with the tagline under it on the right. In the lockup the gap from glyph to
+   wordmark is three quarters of the wordmark's capital height and the space from
+   the wordmark down to the tagline about two thirds; 24px and 20px are the
+   nearest spacing steps for 32px capitals. The wordmark is trimmed to its letters
+   (LogoSvg.astro), so its 32px height is the capital height, and 32px capitals
+   make the wordmark about as wide as the tagline at 17px, as in the lockup.
+   The tagline is live text in moss on near-black, 5.29:1. The lockup sets it in
+   Newsreader italic outlines; this site ships no Newsreader italic and keeps
+   Newsreader for the one reflection, so it is set in Source Sans 3.
+   The glyph spans both rows and runs from the top of the wordmark to the
+   baseline of the tagline: wordmark height, row gap and one cap height of the
+   tagline, which the lockup sets as its font size. text-box trims the tagline's
+   line box to exactly that cap height. A browser without text-box support keeps
+   a line box of 1em and draws the glyph ending about 2px above the baseline. */
+.site-footer__lockup{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:start;column-gap:var(--aiw-space-6);row-gap:var(--aiw-space-5);font-size:var(--aiw-text-base)}
+.site-footer__glyph{grid-row:1 / span 2;width:auto;height:calc(var(--aiw-space-8) + var(--aiw-space-5) + 1cap)}
+.site-footer__wordmark{width:auto;height:var(--aiw-space-8);overflow:visible}
+.site-footer__tagline{grid-column:2;line-height:1;text-box:trim-both cap alphabetic;color:var(--aiw-text-accent-ground);white-space:nowrap}
+.site-footer__blurb{margin-top:var(--aiw-space-6);font-size:var(--aiw-text-sm);color:var(--aiw-text-muted);max-width:34ch}
 .site-footer__col-title{margin-bottom:14px}
 .site-footer__list{display:flex;flex-direction:column;gap:var(--aiw-space-2);font-size:var(--aiw-text-sm)}
 .site-footer__list a{color:var(--aiw-text-secondary);text-decoration:none}
 .site-footer__list a:hover{color:var(--aiw-text-primary);text-decoration:underline}
 .site-footer__legal{color:var(--aiw-text-muted)}
 .site-footer__baseline{margin-top:44px}
-.site-footer__tagline{margin-top:18px;font-size:var(--aiw-text-2xs);color:var(--aiw-text-muted)}
+.site-footer__copyright{margin-top:18px;font-size:var(--aiw-text-2xs);color:var(--aiw-text-muted)}
 
 /* ---- floating WhatsApp button ------------------------------------------- */
 /* The blue outline variant, not a fill: the design system allows one signal
    button per view and that is the hero call to action. No WhatsApp green either:
-   the palette is four colours and this is not one. Icon only, in a 48px square
-   so it is a comfortable touch target; the name is visually hidden text.
+   the palette is four colours and this is not one. Icon only; the name is
+   visually hidden text.
+   Round and 56px across (48px plus 8px), the usual size of a floating action
+   button and a comfortable touch target. Round is Simon's choice and a
+   deliberate exception to the design system's 2px radius for buttons. The focus
+   outline follows the circle.
    It sits on a card ground rather than transparent, because it floats over text
    and photography.
 
-   WhatsAppFloat.astro hides it while the page scrolls and while the contact
-   section is in view, by toggling .wa-float--hidden. Hiding fades out over the
+   WhatsAppFloat.astro hides it while the page scrolls, and from the moment the
+   contact buttons come into view down to the end of the page, by toggling
+   .wa-float--hidden. Hiding fades out over the
    base duration and only then turns visibility off, so the fade is seen and the
    hidden button is out of the tab order and the accessibility tree. Showing
    turns visibility on at once and fades in over the slow duration. Under reduced
    motion the durations are 0ms, so both are an instant switch. Without the
    script the class is never set and the button stays visible. */
-.wa-float{position:fixed;right:var(--aiw-space-6);bottom:var(--aiw-space-6);z-index:30;width:var(--aiw-space-12);height:var(--aiw-space-12);padding:0;background:var(--aiw-surface-card);transition:var(--aiw-transition-colour),opacity var(--aiw-duration-slow) var(--aiw-ease-standard),visibility 0s linear 0s}
+.wa-float{position:fixed;right:var(--aiw-space-6);bottom:var(--aiw-space-6);z-index:30;width:calc(var(--aiw-space-12) + var(--aiw-space-2));height:calc(var(--aiw-space-12) + var(--aiw-space-2));padding:0;border-radius:50%;background:var(--aiw-surface-card);transition:var(--aiw-transition-colour),opacity var(--aiw-duration-slow) var(--aiw-ease-standard),visibility 0s linear 0s}
 .wa-float:hover{background:var(--aiw-surface-inset)}
 .wa-float:active{background:var(--aiw-surface-raised)}
 .wa-float--hidden{opacity:0;visibility:hidden;pointer-events:none;transition:var(--aiw-transition-colour),opacity var(--aiw-duration-base) var(--aiw-ease-standard),visibility 0s linear var(--aiw-duration-base)}
@@ -323,7 +346,13 @@
 
 /* ---- long-form pages (privacy) ------------------------------------------ */
 .prose{max-width:var(--aiw-measure)}
-.prose h2{margin-top:var(--aiw-space-12);margin-bottom:var(--aiw-space-4)}
+/* A single long word may break anywhere, and only when it cannot fit on a line
+   by itself. Dutch compounds make such words: "Verwerkingsverantwoordelijke" at
+   31px is wider than a 375px screen and pushed the page 58px sideways. Every
+   other heading wraps exactly as before. hyphens: auto was left out on purpose:
+   where a Dutch dictionary is available it also hyphenates words that would
+   otherwise just move to the next line, and Chrome on Windows has none. */
+.prose h2{margin-top:var(--aiw-space-12);margin-bottom:var(--aiw-space-4);overflow-wrap:anywhere}
 .prose h2:first-of-type{margin-top:var(--aiw-space-10)}
 .prose p+p,.prose ul{margin-top:var(--aiw-space-4)}
 .prose li{color:var(--aiw-text-secondary)}

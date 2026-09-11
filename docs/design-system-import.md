@@ -57,11 +57,29 @@ widths. The masters are 672 KB and 456 KB. Web versions of the same two frames,
 with the direction and the generation prompt, belong in the design system under
 `assets/photography/` and the "Photography" section of its `readme.md`.
 
-**Logo in the header.** `glyph.svg` and `wordmark.svg` both paint a near-black
-backing rectangle. On the near-black page it is invisible; over the hero
-photograph it shows as a dark box. `Header.astro` therefore reads the two files at
+**Logo in the header and footer.** `glyph.svg` and `wordmark.svg` both paint a
+near-black backing rectangle. On the near-black page it is invisible; over the hero
+photograph it shows as a dark box. `LogoSvg.astro` therefore reads the files at
 build time and inlines them without that rectangle and without their fixed pixel
-size. The files in `public/assets/logo/` are unchanged.
+size; the header and the footer both use it. The files in `public/assets/logo/`
+are unchanged.
+
+**Footer logo with a live tagline.** The footer no longer shows
+`lockup-en-plain.svg`. At a height that suits a footer, the tagline inside the
+lockup was too small to read. The footer composes the logo the way
+`lockup-en.svg` does instead: the glyph on the left, as tall as the block beside
+it, and the wordmark with the tagline underneath, with gaps rounded to the
+nearest spacing steps. Glyph and wordmark are the logo files. The wordmark's
+viewBox is cropped by the 66-unit clear space the file has around its letters,
+so a CSS height is its capital height. The tagline is HTML text. The lockup
+draws it in Newsreader italic, but this site ships no Newsreader italic and
+keeps Newsreader for its one reflection, so the tagline is set in Source Sans 3
+regular, 17px, in moss. That is a departure worth a look in the design system:
+it has no rule yet for a lockup whose tagline is live text.
+
+**Round floating button.** The floating WhatsApp button is a 56px circle, by
+Simon's choice, where the design system gives buttons a 2px radius. The contact
+buttons keep the 2px radius. The design system itself is unchanged.
 
 **`tokens/fonts.css`.** Rewritten. The design system links the three variable
 TTFs directly, which is right for a prototype and costs 1.5 MB in production.
@@ -143,7 +161,9 @@ python -m fontTools.subset news-static.ttf --unicodes="$SUBSET" --layout-feature
 
 Imported files are not edited locally. A change belongs in the design system and
 comes back through a new import. When re-importing, re-apply the two deviations
-above and check this file still describes what is true.
+above and check this file still describes what is true. If the logo files change,
+check that `wordmark.svg` still has a 66-unit margin around its letters, because
+`LogoSvg.astro` crops by that amount.
 
 ## What was deliberately left out
 
