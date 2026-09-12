@@ -433,7 +433,14 @@
    above the seam, so its high left end runs past the bottom of the vision and
    its low right end towards the about heading. */
 .cord{pointer-events:none;user-select:none}
-.cord--band{position:relative;height:0;overflow-x:clip}
+/* The band carries the z-index, not only the art inside it. The art's own
+   z-index:-1 is enough to sit under the page as long as nothing in between
+   opens a stacking context, and the drift in the motion block does exactly
+   that: a transform on the band makes it one, and a negative z-index inside a
+   stacking context can only go behind that context, not behind the examples
+   card that was painted before it. Putting the band itself behind the content
+   settles it wherever the drift is running or not. */
+.cord--band{position:relative;z-index:-1;height:0;overflow-x:clip}
 .cord--band .cord__art{position:absolute;z-index:-1;left:0;right:0;top:0;aspect-ratio:3379/436;transform:translateY(-32%);background:url("/assets/weave/cord-o3-horizontal.svg") center / 100% 100% no-repeat}
 
 /* Between 1024 and 1199px the columns are narrow and the vision text can end
@@ -560,7 +567,10 @@
    the art's own transform carries the lift and changes at three breakpoints, and
    a keyframe would have to restate all three. Moving the marker moves the art
    with it and touches nothing else on the page, because the marker has no
-   height and holds nothing but the art. */
+   height and holds nothing but the art.
+   The transform does make the marker a stacking context, which is why the cord
+   block above puts the z-index on the marker as well; without that the cord
+   rides over the examples card instead of under it. */
 @supports (animation-timeline:view()){
   @media (prefers-reduced-motion:no-preference){
     .cord--band{animation-name:aiw-cord-drift;animation-timing-function:linear;animation-fill-mode:both}
