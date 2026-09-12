@@ -124,5 +124,7 @@ systems alike:
 
 ## Status
 
-The copy is a draft awaiting Simon's approval. Open decisions are listed at the
-end of [docs/prd.md](docs/prd.md).
+Live since 11 September 2026, deployed from `main` to Vercel and serving
+<https://aiwise.it.com> and <https://www.aiwise.it.com>. The copy is approved in
+both languages. Open decisions are listed at the end of
+[docs/prd.md](docs/prd.md).

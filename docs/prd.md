@@ -1,8 +1,9 @@
 # PRD, AI Wise website
 
-Status: versie 7, gebouwd; beide taalversies zijn geschreven, alleen de Engelse
-privacyverklaring wacht nog op Simons review
-Datum: 11 september 2026
+Status: versie 8, live. De site staat sinds 11 september 2026 in productie op Vercel en
+serveert https://aiwise.it.com en https://www.aiwise.it.com. Beide taalversies zijn
+geschreven en door Simon goedgekeurd.
+Datum: 12 september 2026
 Eigenaar: Simon van Meegdenburg
 Vervangt: de tijdelijke coming-soon pagina op https://aiwise.it.com
 
@@ -67,7 +68,8 @@ hier buiten scope valt, wordt het weggelaten, niet omgebouwd.
   antwoord op geeft, wordt het een open punt in plaats van een aanname.
 - R-B4: Het designsysteem markeert een deel van zijn beslissingen als **PROPOSED**:
   typeschaal, gewichten, regelafstand, spacing, grid, marges, radius. Door de site te
-  bouwen worden die in de praktijk vastgelegd. Zie O-8.
+  bouwen worden die in de praktijk vastgelegd. Het bevestigen van die tokens in het
+  designsysteem staat nog open; zie hoofdstuk 15.
 - R-B5: De Nederlandse copy blijft ook toetsen aan `personal-preference-profile.md`. Het
   designsysteem is in het Engels geschreven en bevat de Nederlandse voorkeurszinnen niet.
 
@@ -405,7 +407,7 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   WhatsApp de twee routes.
 - R-S5.3: Kolom *Zakelijk* (Engels *Business details*) met KvK-nummer `93385498` (Engels
   *Chamber of Commerce*), btw-identificatienummer `NL005019332B52` (Engels *VAT no.*) en de
-  link naar de privacyverklaring; geen vestigingsplaats (R-S5.5). Die link staat in de
+  link naar de privacyverklaring; op dit moment zonder vestigingsplaats (R-S5.5). Die link staat in de
   linkkleur, signal blue (5,11:1 op near-black), zodat hij tussen de gewone gegevens als link
   herkenbaar is. Bij hover wordt hij warm light met een onderstreping; de focusring komt uit
   `base.css`. Alle footerlinks delen die stijl via één klasse, `.site-footer__link`.
@@ -413,10 +415,12 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   Het jaar is het jaar van de build (`new Date().getFullYear()`), en de regel is in beide
   talen gelijk, dus hij staat niet in `copy.ts`. De tagline staat hier niet meer, want die
   staat al onder het logo.
-- R-S5.5: Geen vestigingsplaats of vestigingsadres. AI Wise werkt op afstand en is niet aan
-  een plaats gebonden (R-C6). Voor de informatieplicht (R-J4) staan handelsnaam, KvK-nummer,
-  btw-identificatienummer en contactgegevens in de footer; de vestigingsplaats is bewust
-  weggelaten.
+- R-S5.5: **Een vestigingsplaats is niet verplicht en wel toegestaan.** Simon heeft
+  vastgesteld dat het noemen van Amsterdam in een footer mag, waar het de lezer helpt. Het is
+  geen eis: AI Wise werkt op afstand en is niet aan een plaats gebonden (R-C6). De footer van
+  de site draagt op dit moment geen plaats. Voor de informatieplicht (R-J4) staan handelsnaam,
+  KvK-nummer, btw-identificatienummer en contactgegevens in de footer, en dat is voldoende.
+  Een vestigingsadres blijft achterwege.
 
 **S6, WhatsApp-knop**
 
@@ -519,8 +523,8 @@ ook: één template per type, niet per taal.
 - R-L9a: **De Engelse versie is consequent Brits Engels**, passend bij `en_GB`:
   *organisations*, *recognise*, *modernised*. De hero, de visie met de voorbeelden, over mij,
   contact, de footer, de kleine interfaceteksten, de titel en meta-description en de
-  privacyverklaring zijn zo geschreven. Er staat geen Engelse sectie meer in concept; alleen
-  de privacyverklaring wacht nog op Simons review (O-2).
+  privacyverklaring zijn zo geschreven. Er staat geen Engelse sectie meer in concept: Simon
+  heeft de volledige Engelse tekst, inclusief de privacyverklaring, goedgekeurd (O-2).
 - R-L10: Het designsysteem merkt Nederlandse typografische regels aan als open. In de
   praktijk zetten beide talen identiek. Als Nederlandse copy een andere maat of afbreking
   nodig heeft, is dat een bevinding voor het designsysteem, niet iets dat hier lokaal
@@ -595,7 +599,11 @@ in `tokens/` en `guidelines/`.
   Staand: vanaf de bovenrand over het hele tekstblok (84% naar 78%) en daarna in 192px
   uitlopend; de laag hangt aan het tekstblok en volgt dus de teksthoogte op elke breedte.
   Metingen staan in R-A1a.
-- R-V4c: **Eén koord als stil accent op de naad tussen visie en Over mij.**
+- R-V4c: **Eén koord als stil accent op de naad tussen visie en Over mij.** Het koord staat
+  live, maar **het koordsysteem als geheel blijft experimenteel**. Dat is Simons positie: de
+  ring is niet opgelost, en één werkend horizontaal koord bewijst niet dat het systeem
+  structureel werkt. Wat hieronder staat beschrijft dus wat er staat, niet een vastgestelde
+  visuele taal.
   - Het koord loopt hoog links en laag rechts over de volle breedte:
     `cord-o3-horizontal.svg`, afgeleid van O3. Het is een kwartslag gedraaid en 2,2 keer
     verlengd langs het koord, met ronde strengen van ongeveer 12px op 1440px.
@@ -762,12 +770,16 @@ in `tokens/` en `guidelines/`.
   cachekoppen voor fonts en gebundelde assets en de securitykoppen vast. De
   Content-Security-Policy zit niet in `vercel.json` maar wordt door Astro gegenereerd, zie
   R-T3a; twee policies naast elkaar zouden elkaar doorsnijden.
-- R-T17a: Web Analytics moet in het Vercel-dashboard worden aangezet. Tot dat gebeurt geeft
-  `/_vercel/insights/script.js` een 404 en logt de pagina één regel in de console. Lokaal is
-  die 404 er altijd, want dat pad bestaat alleen op Vercel.
+- R-T17a: Web Analytics staat aan in het Vercel-dashboard, aangezet door Simon bij de
+  livegang. `/_vercel/insights/script.js` wordt in productie vanaf het eigen domein
+  geserveerd; gecontroleerd na de deploy. Lokaal geeft dat pad altijd een 404, want het
+  bestaat alleen op Vercel.
 - R-T18: Productiedomein `aiwise.it.com`, één canonieke variant, geen trailing slash.
-- R-T19: DNS wordt omgezet van GitHub Pages naar Vercel, pas nadat de site op een
-  Vercel-preview-URL is goedgekeurd.
+  `www.aiwise.it.com` wordt ook geserveerd. Vercel heeft voor beide namen certificaten
+  uitgegeven.
+- R-T19: De DNS is omgezet van GitHub Pages naar Vercel: de A-records voor `@` en `www`
+  wijzen op `76.76.21.21`. GitHub Pages staat uit, en het `CNAME`-bestand en de
+  Pages-workflow staan niet meer op `main` (R-T14).
 - R-T20: Preview-deployments per branch, productie alleen vanaf `main`.
 
 ---
@@ -831,7 +843,7 @@ in `tokens/` en `guidelines/`.
 ### 9.2 Performance
 
 - R-P1: Lighthouse ten minste 95 voor Performance, Accessibility, Best Practices en SEO, op
-  mobiel. Nog te meten, zie O-5.
+  mobiel. Nog te meten, nu op de live site, zie O-5.
 - R-P2: Largest Contentful Paint onder 2,0 seconden op 4G.
 - R-P3: Het portret is een `<picture>` gebouwd met `getImage()`, net als de herofoto, met
   art direction op 768px (R-S3.1). Per uitsnede AVIF, WebP en JPEG: liggend op 480, 720, 960
@@ -995,8 +1007,9 @@ behandeld.
   ik ze zolang ze daarvoor nodig zijn.* en *If it does, I keep them for as long as the work
   needs them.*
 - R-J4: Informatieplicht (art. 3:15d BW): handelsnaam, KvK-nummer,
-  btw-identificatienummer en contactgegevens eenvoudig vindbaar, in de footer (R-S5.3). De
-  vestigingsplaats is bewust weggelaten, omdat AI Wise op afstand werkt (R-S5.5).
+  btw-identificatienummer en contactgegevens eenvoudig vindbaar, in de footer (R-S5.3). Een
+  vestigingsplaats is daarvoor niet nodig; noemen mag, en de site doet het op dit moment niet
+  (R-S5.5).
 - R-J5: Geen claims over veiligheid, privacy of resultaten zonder onderbouwing.
 - R-J6: De privacyverklaring beschrijft alleen wat er werkelijk gebeurt. Als er iets aan de
   verwerking verandert, wordt de tekst in dezelfde commit aangepast.
@@ -1005,8 +1018,8 @@ behandeld.
 
 ## 11. Contentproces
 
-- R-C1: De copy is een concept en wordt door Simon goedgekeurd voordat de site live gaat.
-  De PRD legt eisen vast, geen zinnen.
+- R-C1: De copy wordt door Simon goedgekeurd voordat ze live gaat. Voor de teksten die nu op
+  de site staan is dat gebeurd, in beide talen (O-2). De PRD legt eisen vast, geen zinnen.
 - R-C2: Copy wordt getoetst aan *Content fundamentals* in het designsysteem, en de
   Nederlandse copy daarnaast aan `personal-preference-profile.md`.
 - R-C3: Verboden woorden, uit het designsysteem: "AI revolution", "game-changer", "10x",
@@ -1017,10 +1030,13 @@ behandeld.
 - R-C4: Elke claim heeft bewijs of een zichtbare kwalificatie. Nooit uitspraken over
   tijdsbesparing, veiligheid of privacy-uitkomsten.
 - R-C5: Alle copy staat in `src/content/copy.ts`.
-- R-C6: **Geen locatie.** AI Wise werkt op afstand en is niet aan een plaats gebonden. Geen
-  stad of land in koppen, lopende tekst, meta-beschrijvingen, structured data of
-  `llms.txt`. Ook de wettelijke bedrijfsidentificatie in de footer noemt geen plaats; zie
-  R-S5.5.
+- R-C6: **Geen locatie vereist, een plaats noemen mag.** AI Wise werkt op afstand en is niet
+  aan een plaats gebonden, dus nergens is een stad of land verplicht: niet in koppen, lopende
+  tekst, meta-beschrijvingen, structured data of `llms.txt`. Simon heeft vastgesteld dat het
+  noemen van Amsterdam in een footer is toegestaan waar het helpt. De site draagt op dit
+  moment geen plaats, ook niet in de wettelijke bedrijfsidentificatie in de footer; zie
+  R-S5.5. De site presenteert zich niet als een zaak met een fysieke vestiging, en de
+  structured data blijft daarom zonder adres (R-S.7).
 - R-C7: Wat Simon vertelt is richting, geen tekst om over te nemen. Teksten die hij zelf
   volledig uitschrijft, worden overgenomen met alleen spelling- en consistentiecorrecties,
   en die worden benoemd.
@@ -1050,7 +1066,7 @@ Simon in zijn inbox.
 
 ## 13. Wat er gebouwd is
 
-Alles wat niet op een open punt wachtte, staat er.
+Alles staat er, en het staat live.
 
 | Onderdeel | Status |
 | --- | --- |
@@ -1069,12 +1085,19 @@ Alles wat niet op een open punt wachtte, staat er.
 | i18n-routering, hreflang, canonical, sitemap | Klaar |
 | JSON-LD, Open Graph, favicons | Klaar |
 | `robots.txt` met modeltraining op disallow, en `llms.txt` | Klaar |
-| Vercel Web Analytics, cookieloos, eigen domein | Klaar in code; aanzetten in het dashboard bij de deploy |
-| Content-Security-Policy met hashes, geen `unsafe-inline` | Klaar, geverifieerd in de browser |
-| `vercel.json` met cache- en securitykoppen | Klaar, nog niet gedeployed |
+| Vercel Web Analytics, cookieloos, eigen domein | Klaar; aangezet in het dashboard, script wordt in productie geserveerd |
+| Content-Security-Policy met hashes, geen `unsafe-inline` | Klaar, geverifieerd in de browser en op de live site |
+| `vercel.json` met cache- en securitykoppen | Klaar, gedeployed; de securitykoppen zijn op de live site gecontroleerd |
 | Em-dash-regel in het designsysteem, afgebakend tot publieke teksten | Klaar in `readme.md` en `SKILL.md` |
+| Deploy op Vercel vanaf `main`, `aiwise.it.com` en `www.aiwise.it.com` | Live sinds 11 september 2026 |
 
-Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
+Wat na de livegang is gecontroleerd: `/`, `/en`, `/privacy` en `/en/privacy` geven alle vier
+een 200, een onbekend pad geeft de eigen 404-pagina met noindex, en `robots.txt`, `llms.txt`,
+de sitemap en `/assets/og/share.jpg` worden geserveerd. De securitykoppen uit `vercel.json`
+staan er, de CSP-metatag staat in de HTML, en `/_vercel/insights/script.js` komt van het
+eigen domein.
+
+Wat nog moet gebeuren staat in hoofdstuk 15.
 
 ---
 
@@ -1082,15 +1105,18 @@ Wat nog moet gebeuren staat in O-1 tot en met O-5, plus de deploy zelf.
 
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
-| O-2 | **Copy reviewen.** Het Nederlands is af. In het Engels zijn de hero, de visie met de voorbeelden, over mij, contact, de footer, en de titel en meta-description vastgesteld; de privacyverklaring nog niet. | Simon: lezen | De site kan niet live |
-| O-3 | **Visuele beoordeling.** Je wilde eerst zelf kijken. De pagina is inmiddels in de browser nagelopen op de gangbare formaten, en die metingen staan vast (R-V4a, R-S3.1, R-S6.7); jouw eigen oordeel staat nog open. | Simon: bekijken | Onbekende visuele fouten |
-| O-4 | **Web Analytics aanzetten in het Vercel-dashboard.** De code staat er; zonder de knop in het dashboard geeft het script een 404 en komt er geen data binnen. | Simon: bij de deploy | Geen zicht op bezoek |
-| O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan zodra er een Vercel-preview staat. | Deploy | Onbewezen prestatie-eis |
+| O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan nu op de live site in plaats van op een preview. | Meten | Onbewezen prestatie-eis |
 
 Gesloten sinds versie 4:
 
 - O-1, LinkedIn-profiel-URL: staat erin, als route in Contact, in `llms.txt` en als `sameAs`
   in de gestructureerde data. Zie R-S4.3.
+- O-2, copy reviewen: gesloten. Simon heeft de Nederlandse en de Engelse copy goedgekeurd,
+  inclusief de Engelse privacyverklaring. Zie R-C1 en R-L9a.
+- O-3, visuele beoordeling: gesloten. Simon heeft de site zelf bekeken en vindt hem klaar om
+  te delen.
+- O-4, Web Analytics aanzetten: gesloten. Simon heeft het in het Vercel-dashboard aangezet en
+  het script wordt in productie geserveerd. Zie R-T17a en R-J2.
 - O-6, eyebrow boven de herofoto: moss blijft, de laag blijft. De norm blijft 4,5:1 en de
   tagline in de hero-eyebrow is een vastgelegde uitzondering met minimaal 3:1, op 15px.
   Zie R-A1b.
@@ -1098,15 +1124,20 @@ Gesloten sinds versie 4:
   `card-1700.png` als deelafbeelding. Zie R-S.2.
 
 - Concreetheid in de visie: er staan nu zeven voorbeelden in, ter inspiratie. Zie R-S2.3.
-- Vestigingsadres: geen plaats in de footer, alleen handelsnaam, KvK-nummer, btw-id en
-  contactgegevens. Zie R-S5.5.
+- Vestigingsadres: een plaats is niet verplicht en noemen mag; de footer draagt er nu geen,
+  alleen handelsnaam, KvK-nummer, btw-id en contactgegevens. Zie R-S5.5 en R-C6.
 - Webstatistiek: Vercel Web Analytics, cookieloos. Zie R-J2.
 - Modeltraining: niet toegestaan. Zie R-S.13.
 - Em-dashes in het designsysteem: de regel is afgebakend tot publieke teksten, de
-  handleidingen zijn expliciet uitgezonderd, en er hoeft dus geen sweep door de guides.
-  Alleen de voorbeeldcopy in `ui_kits/` en `slides/` is nog een keer nalopen waard, en dat
-  staat als zodanig genoteerd onder "Still open" in het designsysteem.
-- PROPOSED-tokens: het designsysteem krijgt een update op het moment dat de site live gaat.
+  handleidingen zijn expliciet uitgezonderd, en er hoeft dus geen sweep door de guides. De
+  voorbeeldcopy in `ui_kits/` en `slides/` wordt nu nagelopen; dat loopt in het designsysteem
+  zelf en niet in deze repo.
+- Designsysteem bijgewerkt op 11 september 2026: de readme en `SKILL.md` zijn herschreven naar
+  de nieuwe positionering, `github.md` wijst naar de AI-Wise-IT-repository, de knopvariant
+  `outline-signal` en de iconenrichting (Lucide plus Tabler, inline) staan in de
+  componentprompts en de bronnen, de README van de website-UI-kit verwijst naar de live site,
+  en de transparante logovarianten en het deelplaatje zijn als asset toegevoegd. Het
+  bevestigen van de PROPOSED-tokens staat nog open; zie hoofdstuk 15.
 - Iconenrichting: geen open punt voor deze site. Er staan vier iconen op de pagina, uit
   twee sets (R-T12), en `Icon.astro` vervangen raakt verder niets. De keuze blijft open in
   het designsysteem.
@@ -1115,18 +1146,48 @@ Gesloten sinds versie 4:
 
 ## 15. Wat er nog moet gebeuren
 
+De deploy is achter de rug. Wat overblijft:
+
 | Stap | Inhoud | Afhankelijk van |
 | --- | --- | --- |
-| 1 | Site lokaal bekijken en de copy in beide talen reviewen | Simon, O-2 en O-3 |
-| 2 | Repo koppelen aan Vercel, preview-deploy | Simon: Vercel-toegang |
-| 3 | Web Analytics aanzetten in het dashboard, O-4 sluiten | Stap 2 |
-| 4 | Lighthouse meten op de preview, O-5 sluiten | Stap 2 |
-| 5 | DNS omzetten van GitHub Pages naar Vercel | Goedkeuring Simon |
-| 6 | Designsysteem bijwerken bij livegang: PROPOSED-tokens bevestigen, repo-verwijzing in `github.md` corrigeren, voorbeeldcopy in `ui_kits/` en `slides/` nalopen op em-dashes | Bij livegang |
+| 1 | Lighthouse meten op de live site, O-5 sluiten | Meten |
+| 2 | Designsysteem: de PROPOSED-tokens bevestigen nu de site ze in de praktijk heeft vastgelegd | Designsysteem |
+| 3 | Designsysteem: de voorbeeldcopy in `ui_kits/` en `slides/` nalopen op em-dashes; dat loopt | Designsysteem |
 
 ---
 
 ## 16. Wijzigingen
+
+### Versie 8 ten opzichte van versie 7
+
+- **De site is live.** Op 11 september 2026 gedeployed op Vercel vanaf `main`, onder team AI
+  Wise en project `ai-wise-website`, met `aiwise.it.com` en `www.aiwise.it.com` als
+  domeinnamen en certificaten voor allebei. GitHub Pages staat uit, het `CNAME`-bestand en de
+  Pages-workflow zijn weg, en de A-records voor `@` en `www` wijzen op `76.76.21.21`. Na de
+  deploy gecontroleerd: de vier pagina's geven 200, een onbekend pad geeft de eigen
+  404-pagina met noindex, `robots.txt`, `llms.txt`, de sitemap en het deelplaatje worden
+  geserveerd, de securitykoppen en de CSP-metatag staan er, en het analytics-script komt van
+  het eigen domein. R-T14, R-T17a, R-T18, R-T19 en hoofdstuk 13.
+- **O-2, O-3 en O-4 gesloten.** Simon heeft de copy in beide talen goedgekeurd, inclusief de
+  Engelse privacyverklaring; hij heeft de site zelf beoordeeld en vindt hem klaar om te delen;
+  en Web Analytics staat aan in het Vercel-dashboard. R-C1, R-L9a en R-T17a.
+- **O-5 blijft open**, en verschuift van de preview naar de live site: Lighthouse is nog niet
+  gemeten, dus R-P1 is nog niet aangetoond. R-P1.
+- **De locatieregel is geen verbod meer.** Een vestigingsplaats is niet vereist, het noemen
+  van Amsterdam in een footer is toegestaan waar het helpt, en de site draagt er op dit moment
+  geen. De copy is niet gewijzigd. R-S5.3, R-S5.5, R-J4 en R-C6.
+- **Het koord is als experiment vastgelegd.** R-V4c beschrijft het koord dat live staat, met
+  Simons positie erbij: het koordsysteem als geheel is nog experimenteel, omdat de ring niet
+  is opgelost en omdat één werkend horizontaal koord niet bewijst dat het systeem structureel
+  werkt. R-V4c.
+- **Het designsysteem is op 11 september 2026 bijgewerkt**: readme en `SKILL.md` herschreven
+  naar de nieuwe positionering, `github.md` gecorrigeerd naar de AI-Wise-IT-repository, de
+  variant `outline-signal` en de iconenrichting vastgelegd, de README van de website-UI-kit
+  naar de live site, en transparante logovarianten plus het deelplaatje als asset. De
+  em-dash-sweep door `ui_kits/` en `slides/` loopt nog. Hoofdstuk 14 en 15.
+- **Hoofdstuk 15 ingedikt** tot wat er werkelijk overblijft: Lighthouse meten, en in het
+  designsysteem de PROPOSED-tokens bevestigen en de em-dash-sweep afmaken. De verwijzing naar
+  een niet-bestaand O-8 in R-B4 is vervangen door een verwijzing naar dat hoofdstuk.
 
 ### Versie 7 ten opzichte van versie 6
 
