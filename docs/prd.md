@@ -1136,8 +1136,10 @@ Gesloten sinds versie 4:
   de nieuwe positionering, `github.md` wijst naar de AI-Wise-IT-repository, de knopvariant
   `outline-signal` en de iconenrichting (Lucide plus Tabler, inline) staan in de
   componentprompts en de bronnen, de README van de website-UI-kit verwijst naar de live site,
-  en de transparante logovarianten en het deelplaatje zijn als asset toegevoegd. Het
-  bevestigen van de PROPOSED-tokens staat nog open; zie hoofdstuk 15.
+  en de transparante logovarianten en het deelplaatje zijn als asset toegevoegd. Simon heeft op 11 september 2026 ook de
+  PROPOSED-tokens goedgekeurd: typeschaal, spacing, grid en radius staan daar nu als
+  vastgesteld. De voorbeeldcopy in `ui_kits/` en `slides/` is op 12 september nagelopen op
+  em-dashes.
 - Iconenrichting: geen open punt voor deze site. Er staan vier iconen op de pagina, uit
   twee sets (R-T12), en `Icon.astro` vervangen raakt verder niets. De keuze blijft open in
   het designsysteem.
@@ -1151,8 +1153,6 @@ De deploy is achter de rug. Wat overblijft:
 | Stap | Inhoud | Afhankelijk van |
 | --- | --- | --- |
 | 1 | Lighthouse meten op de live site, O-5 sluiten | Meten |
-| 2 | Designsysteem: de PROPOSED-tokens bevestigen nu de site ze in de praktijk heeft vastgelegd | Designsysteem |
-| 3 | Designsysteem: de voorbeeldcopy in `ui_kits/` en `slides/` nalopen op em-dashes; dat loopt | Designsysteem |
 
 ---
 
@@ -1183,11 +1183,12 @@ De deploy is achter de rug. Wat overblijft:
 - **Het designsysteem is op 11 september 2026 bijgewerkt**: readme en `SKILL.md` herschreven
   naar de nieuwe positionering, `github.md` gecorrigeerd naar de AI-Wise-IT-repository, de
   variant `outline-signal` en de iconenrichting vastgelegd, de README van de website-UI-kit
-  naar de live site, en transparante logovarianten plus het deelplaatje als asset. De
-  em-dash-sweep door `ui_kits/` en `slides/` loopt nog. Hoofdstuk 14 en 15.
-- **Hoofdstuk 15 ingedikt** tot wat er werkelijk overblijft: Lighthouse meten, en in het
-  designsysteem de PROPOSED-tokens bevestigen en de em-dash-sweep afmaken. De verwijzing naar
-  een niet-bestaand O-8 in R-B4 is vervangen door een verwijzing naar dat hoofdstuk.
+  naar de live site, en transparante logovarianten plus het deelplaatje als asset. Op 12 september zijn daar de
+  PROPOSED-tokens bij bevestigd en is de em-dash-sweep door `ui_kits/` en `slides/` afgerond.
+  Hoofdstuk 14 en 15.
+- **Hoofdstuk 15 ingedikt** tot wat er werkelijk overblijft: alleen Lighthouse meten. De
+  verwijzing naar een niet-bestaand O-8 in R-B4 is vervangen door een verwijzing naar dat
+  hoofdstuk.
 
 ### Versie 7 ten opzichte van versie 6
 
