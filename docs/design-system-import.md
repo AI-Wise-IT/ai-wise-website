@@ -40,20 +40,26 @@ pulled back here, so `motion.css` stays a byte-for-byte copy and R-T8 still
 holds. It is recorded separately because the file is the only imported one whose
 *content* has changed since the import.
 
-Two things in the design system this work did **not** settle, both left for
-Simon:
+The design system's `readme.md` was updated the same day, in three places:
 
-- **The `readme.md` Motion section does not describe the new tokens** or the
-  scroll-driven reveals. It says entrances are "opacity plus a small translate,
-  never a scale-up", which the reveals follow exactly, but it has nothing on
-  driving an animation from scroll position rather than from a clock, and
-  nothing on the ambient drift, which *is* a scale.
-- **"The weave never animates"** stands in that same section, and the cord on the
-  site now drifts with the scroll. The cord is derived from weave master O3, so
-  the two are in tension. The readme also files the cord on a web page as an open
-  experiment with no rule of its own yet, which is the reading under which the
-  drift is allowed. This is a decision rather than a transcription, so nothing in
-  the readme was changed; it is O-8 in `prd.md`.
+- **The Motion section** now carries the two tokens, scroll position as a
+  timeline with the three conditions that come with it (the `@supports` guard,
+  the separate reduced-motion query because a scroll-driven animation has no
+  duration to collapse, and pixel ranges rather than percentages), and the
+  ambient drift over a hero photograph as the one place a scale is allowed.
+- **"The weave never animates" is gone.** It was not Simon's rule; he decided on
+  12 September 2026 that a weave may move to give a web page depth, bounded to
+  drift and parallax against the scroll, never a cord that draws itself on,
+  pulses or asks to be watched. Documents and slides do not scroll, so nothing
+  changes there. This was O-8 in `prd.md`.
+- **Two pointers**: *Backgrounds and the weave* and *Still open* now say that a
+  cord on a web page may drift, while its geometry stays unsettled.
+
+One thing to know about how that edit was made: `DesignSync` writes whole files,
+so `readme.md` was reproduced from the fetched copy with those passages changed
+rather than patched in place. The heading list and a set of landmark sentences
+were checked against the original before uploading, but a reading eye over the
+Motion section and its neighbours is still worth it.
 
 ## Deviations, and why
 

@@ -728,7 +728,9 @@ in `tokens/` en `guidelines/`.
   `.cord__art`, waarvan de transform de lift draagt en op drie breekpunten verschilt. Die
   markering draagt daarom zelf de `z-index`: een transform maakt er een stacking context van,
   en een negatieve z-index binnen zo'n context komt niet verder terug dan die context zelf,
-  waardoor het koord over de voorbeeldenkaart schoof in plaats van eronder. Zie ook O-8.
+  waardoor het koord over de voorbeeldenkaart schoof in plaats van eronder. Het designsysteem
+  staat deze beweging sinds 12 september 2026 toe, binnen de grens van drift en parallax. Zie
+  O-8.
 - R-V13f: **Het pijltje in de hero-knop leunt 2px mee** in de richting waarin het wijst, bij
   hover, en alleen het icoon beweegt, zodat het label niet onder de muis wegloopt. Het heeft
   geen eigen reduced-motion-query nodig: de duur is een token en die is onder `reduce` 0ms.
@@ -1169,7 +1171,6 @@ Wat nog moet gebeuren staat in hoofdstuk 15.
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan nu op de live site in plaats van op een preview. | Meten | Onbewezen prestatie-eis |
-| O-8 | **Mag het koord bewegen?** Het designsysteem zegt onder *Backgrounds and the weave* dat de weave nooit animeert, en het koord is afgeleid van weave-master O3. Tegelijk staat het koord op een webpagina daar als open experiment zonder eigen regel, dus het is de vraag of dat verbod hier reikt. R-V15 zegt dat het designsysteem wint bij tegenspraak, dus dit is een beslissing van Simon: de regel aanvullen met wat er nu staat, of de drift uit R-V13e eruit halen. | Beslissing | Koorddrift staat live zonder regel die hem dekt |
 
 Gesloten sinds versie 4:
 
@@ -1186,6 +1187,12 @@ Gesloten sinds versie 4:
   Zie R-A1b.
 - O-7, deelplaatje met de adelaarsfoto: opgelost, al voor livegang. `share.jpg` vervangt
   `card-1700.png` als deelafbeelding. Zie R-S.2.
+- O-8, mag het koord bewegen: gesloten op 12 september 2026. De regel "the weave never
+  animates" in het designsysteem was niet van Simon. Zijn beslissing: een weave mag bewegen om
+  diepte in de website te maken. De Motion-sectie van het designsysteem draagt die beslissing
+  nu, met de grens eromheen: drift en parallax tegen de scroll in, en nooit een koord dat
+  zichzelf tekent, pulseert of om aandacht vraagt. Op documenten en slides, die niet scrollen,
+  verandert er niets. Zie R-V13e.
 
 - Concreetheid in de visie: er staan nu zeven voorbeelden in, ter inspiratie. Zie R-S2.3.
 - Vestigingsadres: een plaats is niet verplicht en noemen mag; de footer draagt er nu geen,
@@ -1237,9 +1244,13 @@ De deploy is achter de rug. Wat overblijft:
 - **Twee maten bij in de uitzonderingslijst van R-V1**: de scrollafstanden van de reveals en
   de 2px van het pijltje. Beide meten geen layout, dus de spacingschaal dekt ze niet. R-V1,
   R-V13c en R-V13f.
-- **O-8 geopend: mag het koord bewegen?** Het designsysteem verbiedt animatie van de weave, en
-  het koord is daarvan afgeleid. De drift staat live; de regel die hem dekt bestaat nog niet.
-  Hoofdstuk 14 en R-V13e.
+- **O-8 geopend en dezelfde dag gesloten: het koord mag bewegen.** Het designsysteem verbood
+  animatie van de weave, en het koord is daarvan afgeleid, dus de drift stond live zonder regel
+  die hem dekte. Simon heeft op 12 september 2026 beslist dat die regel niet van hem was: een
+  weave mag bewegen om diepte in de website te maken. De Motion-sectie van het designsysteem is
+  bijgeschreven met de beslissing, de grens eromheen (drift en parallax, nooit een koord dat
+  zichzelf tekent of pulseert), de scroll-gestuurde animatie als techniek, en de ambient drift
+  over een herofoto. Hoofdstuk 14 en R-V13e.
 - **De hero-lead is herschreven**, in twee stappen. De oude zin liet "die terugkerend werk uit
   handen nemen" op apps, websites en tools samen slaan, terwijl een website dat niet doet. De
   lead noemt nu wat er gebouwd kan worden en laat de bijzin bij de tool landen. AI staat niet
