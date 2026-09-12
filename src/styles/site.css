@@ -458,3 +458,120 @@
    margins, and above the about eyebrow. A soft halo in the page colour behind
    the text was tried and dropped: Chromium draws text-shadow darker than its
    colour, so it showed as a smudge around every line on the plain page. */
+
+/* ---- motion -------------------------------------------------------------- */
+/* Everything on this site that moves is in this one block, so it can be read,
+   tuned or dropped as a unit. Three rules hold for all of it:
+
+   1. Nothing here is load-bearing. Every effect is an enhancement over the page
+      as it renders without it. The scroll-driven parts sit behind
+      @supports (animation-timeline:view()); a browser without support shows the
+      finished state and never a blank block waiting for an animation that will
+      not run.
+   2. Nothing moves for a visitor who asked for less. Every rule sits inside
+      prefers-reduced-motion:no-preference. The duration tokens already fall to
+      0ms under reduce (tokens/motion.css), which covers the time-based
+      animations on their own, but a scroll-driven animation has no duration to
+      zero, so the query does that work here.
+   3. Only transform and opacity, which the compositor handles. No rule in this
+      block can shift the layout of the page.
+
+   Distances follow the spacing scale: the rise is 16px, one --aiw-space-4.
+
+   The minifier gotcha from the header applies to every timeline below.
+   animation-timeline has to sit in a rule of its own, and that rule needs a
+   specificity the minifier cannot reorder around, or the declaration is folded
+   into the animation shorthand and Chromium drops it. See the comment at
+   .site-header--over-hero for the full story. */
+
+/* The hero photograph drifts closer over half a minute and then holds. One
+   direction, once. A loop that zooms in and out keeps pulling the eye back
+   while the visitor is reading, and keeps a phone compositing for as long as
+   the tab is open.
+   linear on purpose: a constant drift is the one nobody notices, where an eased
+   one arrives and then visibly stops.
+   The origin sits on the eagle in both frames, so the scale pulls towards it
+   and it stays where the hero block above art-directed it. In the landscape
+   frame that is the object-position, 72% across and 60% down. The portrait
+   frame is anchored to its top edge and runs on past the bottom of the hero, so
+   the eagle is not at the object-position there but about 70% down the frame,
+   the same figure the portrait comment above works from. Taking the top edge as
+   the origin instead was tried first, and slid the eagle a visible 45px down
+   the screen over the length of the drift. */
+@media (prefers-reduced-motion:no-preference){
+  .hero__photo{transform-origin:70% 70%;animation:aiw-hero-drift 32s linear both}
+}
+@media (prefers-reduced-motion:no-preference) and (min-aspect-ratio:1/1){
+  .hero__photo{transform-origin:72% 60%}
+}
+@keyframes aiw-hero-drift{from{transform:scale(1)}to{transform:scale(1.06)}}
+
+/* The hero text rises as the page opens, one line after another, 90ms apart,
+   which reads as a single movement rather than four.
+   Transform only, never opacity. The heading is a candidate for the Largest
+   Contentful Paint, and fading it up from nothing would push that moment out by
+   the whole length of the fade. Sliding it costs the metric nothing: the text is
+   painted at full strength in the first frame and only its position settles. */
+@media (prefers-reduced-motion:no-preference){
+  .hero__eyebrow,.hero__title,.hero__lead,.hero__actions{animation:aiw-hero-rise var(--aiw-duration-deliberate) var(--aiw-ease-out) both}
+  .hero__title{animation-delay:90ms}
+  .hero__lead{animation-delay:180ms}
+  .hero__actions{animation-delay:270ms}
+}
+@keyframes aiw-hero-rise{from{transform:translateY(10px)}to{transform:none}}
+
+/* Each block of a section rises into place as it comes into view: 16px up and
+   from nothing to full, driven by scroll position rather than by a clock, so it
+   can never lag behind a fast scroll or finish before the block is on screen.
+   The blocks are the ones that read as units, and they never nest: the vision
+   keeps its heading inside .section__body, so only a heading that is a direct
+   child of the container is taken separately.
+   The range is set in pixels, not percentages. A percentage of the entry phase
+   is a share of the element's own height, which would make the contact text,
+   several times the height of its eyebrow, take several times as long to
+   arrive. 300px of scrolling is the same movement everywhere. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .section__eyebrow,
+    .aiw-container>.section__heading,
+    .section__body,
+    .vision__examples,
+    .about__media{animation-name:aiw-rise;animation-timing-function:linear;animation-fill-mode:both}
+
+    .section .section__eyebrow,
+    .section .aiw-container>.section__heading,
+    .section .section__body,
+    .section .vision__examples,
+    .section .about__media{animation-timeline:view();animation-range:entry 40px entry 340px}
+
+    /* The two blocks that stand beside another one start a little later, so a
+       pair arrives one after the other instead of together. Stacked blocks need
+       no such offset: they are already apart on the page, and that distance is
+       the stagger. */
+    .section .vision__examples,
+    .section .about__media{animation-range:entry 100px entry 400px}
+  }
+}
+@keyframes aiw-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* The cord between the vision and the about section drifts against the scroll,
+   56px over one screenful, which reads as depth rather than as movement.
+   The drift sits on .cord--band, the zero-height marker, and not on .cord__art:
+   the art's own transform carries the lift and changes at three breakpoints, and
+   a keyframe would have to restate all three. Moving the marker moves the art
+   with it and touches nothing else on the page, because the marker has no
+   height and holds nothing but the art. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .cord--band{animation-name:aiw-cord-drift;animation-timing-function:linear;animation-fill-mode:both}
+    .cord.cord--band{animation-timeline:view();animation-range:cover 0% cover 100%}
+  }
+}
+@keyframes aiw-cord-drift{from{transform:translateY(-28px)}to{transform:translateY(28px)}}
+
+/* The arrow in the hero's call to action leans the way it points when the
+   button is hovered. Two pixels, on the icon alone, so the label does not move
+   under the pointer. It needs no reduced-motion query: the duration is a token,
+   and under reduce the token is 0ms and the shift is instant. */
+.hero__actions .btn .icon{transition:var(--aiw-transition-colour),transform var(--aiw-duration-fast) var(--aiw-ease-standard)}
+.hero__actions .btn:hover .icon{transform:translateX(2px)}
