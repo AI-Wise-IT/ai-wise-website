@@ -1,7 +1,7 @@
 ---
 /**
  * S3. Who is behind AI Wise, beside the only photograph of a person on the site.
- * The portrait is unfiltered and ungraded, at 2px radius.
+ * The portrait has a subtle moss / warm-neutral color edit, at 2px radius.
  *
  * The text is a short bulleted list in both languages, from copy.ts. The Dutch
  * list is in Simon's own words.
@@ -12,17 +12,17 @@
  * beside the text as a 4:5 frame, in a column sized so its height stays close
  * to the height of the list. Measured values: docs/prd.md, R-S3.1.
  *
- * Both frames are cropped from assets/profile-picture-professional.jpg, the
- * original 3000x2001 landscape photograph, and saved as JPEG masters (quality 90)
+ * Both frames use assets/profile-picture-professional-harmonized.png, a
+ * color-edited sibling of the preserved original, saved as JPEG masters (quality 90)
  * with sharp. The browser never downloads the original or pixels it would throw
  * away with object-fit.
- *   portrait-3x2.jpg: extract left 398, top 0, 2100x1400, resized to 1440x960.
- *   portrait-4x5.jpg: extract left 808, top 0, 1280x1600, resized to 880x1100.
+ *   portrait-3x2-harmonized.jpg: left 204, top 0, 1074x716, resized to 1440x960.
+ *   portrait-4x5-harmonized.jpg: left 413, top 0, 656x820, resized to 880x1100.
  * Both keep the face on the horizontal centre with the eyes near the upper third.
  */
 import { getImage } from "astro:assets";
-import landscape from "../assets/about/portrait-3x2.jpg";
-import upright from "../assets/about/portrait-4x5.jpg";
+import landscape from "../assets/about/portrait-3x2-harmonized.jpg";
+import upright from "../assets/about/portrait-4x5-harmonized.jpg";
 import { COPY, type Lang } from "../content/copy";
 
 interface Props {
