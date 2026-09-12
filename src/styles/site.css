@@ -483,7 +483,11 @@
    3. Only transform and opacity, which the compositor handles. No rule in this
       block can shift the layout of the page.
 
-   Distances follow the spacing scale: the rise is 16px, one --aiw-space-4.
+   Every duration and every distance here is a token. The durations are the
+   ambient drift and the stagger added to motion.css for this work; the
+   distances are steps on the spacing scale. The two values that are neither are
+   named in the PRD's R-V1 list: the scroll ranges, which measure scrolling and
+   not layout, and the two pixels the arrow leans.
 
    The minifier gotcha from the header applies to every timeline below.
    animation-timeline has to sit in a rule of its own, and that rule needs a
@@ -506,29 +510,29 @@
    the origin instead was tried first, and slid the eagle a visible 45px down
    the screen over the length of the drift. */
 @media (prefers-reduced-motion:no-preference){
-  .hero__photo{transform-origin:70% 70%;animation:aiw-hero-drift 32s linear both}
+  .hero__photo{transform-origin:70% 70%;animation:aiw-hero-drift var(--aiw-duration-ambient) linear both}
 }
 @media (prefers-reduced-motion:no-preference) and (min-aspect-ratio:1/1){
   .hero__photo{transform-origin:72% 60%}
 }
 @keyframes aiw-hero-drift{from{transform:scale(1)}to{transform:scale(1.06)}}
 
-/* The hero text rises as the page opens, one line after another, 90ms apart,
-   which reads as a single movement rather than four.
+/* The hero text rises as the page opens, one line after another, one
+   --aiw-stagger apart, which reads as a single movement rather than four.
    Transform only, never opacity. The heading is a candidate for the Largest
    Contentful Paint, and fading it up from nothing would push that moment out by
    the whole length of the fade. Sliding it costs the metric nothing: the text is
    painted at full strength in the first frame and only its position settles. */
 @media (prefers-reduced-motion:no-preference){
   .hero__eyebrow,.hero__title,.hero__lead,.hero__actions{animation:aiw-hero-rise var(--aiw-duration-deliberate) var(--aiw-ease-out) both}
-  .hero__title{animation-delay:90ms}
-  .hero__lead{animation-delay:180ms}
-  .hero__actions{animation-delay:270ms}
+  .hero__title{animation-delay:var(--aiw-stagger)}
+  .hero__lead{animation-delay:calc(var(--aiw-stagger) * 2)}
+  .hero__actions{animation-delay:calc(var(--aiw-stagger) * 3)}
 }
-@keyframes aiw-hero-rise{from{transform:translateY(10px)}to{transform:none}}
+@keyframes aiw-hero-rise{from{transform:translateY(var(--aiw-space-2))}to{transform:none}}
 
-/* Each block of a section rises into place as it comes into view: 16px up and
-   from nothing to full, driven by scroll position rather than by a clock, so it
+/* Each block of a section rises into place as it comes into view: one
+   --aiw-space-4 up and from nothing to full, driven by scroll position rather than by a clock, so it
    can never lag behind a fast scroll or finish before the block is on screen.
    The blocks are the ones that read as units, and they never nest: the vision
    keeps its heading inside .section__body, so only a heading that is a direct
@@ -559,10 +563,10 @@
     .section .about__media{animation-range:entry 100px entry 400px}
   }
 }
-@keyframes aiw-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes aiw-rise{from{opacity:0;transform:translateY(var(--aiw-space-4))}to{opacity:1;transform:none}}
 
 /* The cord between the vision and the about section drifts against the scroll,
-   56px over one screenful, which reads as depth rather than as movement.
+   one --aiw-space-6 either way over one screenful, which reads as depth rather than as movement.
    The drift sits on .cord--band, the zero-height marker, and not on .cord__art:
    the art's own transform carries the lift and changes at three breakpoints, and
    a keyframe would have to restate all three. Moving the marker moves the art
@@ -577,7 +581,7 @@
     .cord.cord--band{animation-timeline:view();animation-range:cover 0% cover 100%}
   }
 }
-@keyframes aiw-cord-drift{from{transform:translateY(-28px)}to{transform:translateY(28px)}}
+@keyframes aiw-cord-drift{from{transform:translateY(calc(-1 * var(--aiw-space-6)))}to{transform:translateY(var(--aiw-space-6))}}
 
 /* The arrow in the hero's call to action leans the way it points when the
    button is hovered. Two pixels, on the icon alone, so the label does not move

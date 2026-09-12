@@ -47,6 +47,42 @@ JavaScript, and the solid header is the default: a browser without
 `animation-timeline` into the `animation` shorthand if they share a rule, and
 Chromium then drops the declaration, so keep them in separate rules.
 
+### Motion
+
+Everything that moves is in one `---- motion ----` block at the end of
+`site.css`, so it reads, tunes and deletes as a unit: the hero photograph
+drifting closer, the hero text rising line by line, each block of a section
+coming up as it scrolls into view, the cord drifting against the scroll, and the
+arrow in the call to action leaning on hover. No JavaScript, no library.
+
+Three rules hold for every rule in that block, and a new effect has to keep
+them:
+
+- **Nothing is load-bearing.** The scroll-driven parts sit behind
+  `@supports (animation-timeline: view())`. A browser without support shows the
+  finished state, never a blank block waiting for an animation that will not run.
+- **Nothing moves under `prefers-reduced-motion: reduce`.** Every rule is inside
+  a `no-preference` query. The duration tokens already fall to 0ms under
+  `reduce`, which covers the timed animations, but a scroll-driven animation has
+  no duration to zero, so the query does that work.
+- **Only `transform` and `opacity`,** so the compositor does the work and no rule
+  there can shift the layout.
+
+Two things that are easy to get wrong, both found by building this:
+
+- A `transform` makes an element a stacking context, and a negative `z-index`
+  inside one cannot reach behind anything painted before it. That is why
+  `.cord--band` carries its own `z-index` and not just the art inside it.
+- `animation-range` in percentages is a share of the element's own height, so a
+  long block would take proportionally longer to arrive than a short label.
+  The reveals use pixels instead.
+
+Check motion on `npm run preview` rather than `npm run dev`: the minifier only
+runs in a build, and it is the minifier that drops `animation-timeline` from a
+shared rule.
+
+The requirements are R-V13 to R-V13g in [docs/prd.md](docs/prd.md).
+
 ## Running it
 
 ```bash

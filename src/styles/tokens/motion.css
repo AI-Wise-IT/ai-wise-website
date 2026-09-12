@@ -1,7 +1,9 @@
 /* AI Wise motion. Restrained: things settle, nothing bounces, nothing overshoots.
    Composed and precise — the same quality the weave is generated with.
    durations: instant, fast (hover/focus/colour), base (small position and opacity),
-   slow (panels, dialogs, disclosure), deliberate (first paint of a hero or slide). */
+   slow (panels, dialogs, disclosure), deliberate (first paint of a hero or slide),
+   ambient (a drift over a hero photograph that runs once and then holds).
+   stagger is the offset between the parts of one entrance, not a duration of its own. */
 
 :root{
   --aiw-duration-instant:80ms; /* @kind other */
@@ -9,6 +11,9 @@
   --aiw-duration-base:200ms; /* @kind other */
   --aiw-duration-slow:320ms; /* @kind other */
   --aiw-duration-deliberate:520ms; /* @kind other */
+  --aiw-duration-ambient:32s; /* @kind other */
+
+  --aiw-stagger:90ms; /* @kind other */
 
   --aiw-ease-standard:cubic-bezier(0.2,0,0.2,1); /* @kind other */
   --aiw-ease-out:cubic-bezier(0.16,1,0.3,1); /* @kind other */
@@ -19,5 +24,5 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  :root{--aiw-duration-instant:0ms; /* @kind other */ --aiw-duration-fast:0ms; /* @kind other */ --aiw-duration-base:0ms; /* @kind other */ --aiw-duration-slow:0ms; /* @kind other */ --aiw-duration-deliberate:0ms; /* @kind other */}
+  :root{--aiw-duration-instant:0ms; /* @kind other */ --aiw-duration-fast:0ms; /* @kind other */ --aiw-duration-base:0ms; /* @kind other */ --aiw-duration-slow:0ms; /* @kind other */ --aiw-duration-deliberate:0ms; /* @kind other */ --aiw-duration-ambient:0ms; /* @kind other */ --aiw-stagger:0ms; /* @kind other */}
 }

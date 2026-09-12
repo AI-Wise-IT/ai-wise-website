@@ -1,6 +1,6 @@
 # PRD, AI Wise website
 
-Status: versie 8, live. De site staat sinds 11 september 2026 in productie op Vercel en
+Status: versie 9, live. De site staat sinds 11 september 2026 in productie op Vercel en
 serveert https://aiwise.it.com en https://www.aiwise.it.com. Beide taalversies zijn
 geschreven en door Simon goedgekeurd.
 Datum: 12 september 2026
@@ -194,11 +194,14 @@ Vier inhoudelijke secties.
   geldt vanaf 1200px; daaronder is het 45px, zodat de eerste zin ook tussen 1024 en 1200px
   op één regel past. Op mobiel mag de eerste zin zelf over twee regels lopen.
 - R-S1.3: Lead-paragraaf: in gewone taal wat Simon maakt en voor wie. Vastgesteld (NL):
-  *"Met AI maak ik apps, websites en tools die terugkerend werk uit handen nemen. Het
-  liefst voor organisaties die werk doen waar de wereld iets aan heeft."* Vastgesteld (EN):
-  *"I use AI to build apps, websites and tools that take repetitive work off your plate.
-  Ideally for organisations doing work that matters."* Apps en websites zijn de vorm; het
-  uit handen nemen van terugkerend werk is wat een tool doet.
+  *"Een website, een app of een tool die terugkerend werk overneemt. Zodat organisaties zich
+  kunnen richten op werk dat ertoe doet."* Vastgesteld (EN): *"A website, an app or a tool
+  that takes repetitive work off your plate. So organisations can do the work that
+  matters."* De lead werkt de kop uit: de opsomming is wat "het" kan zijn. De bijzin hoort
+  bij de tool en niet bij de website, want een website neemt geen terugkerend werk over, en
+  de eerdere formulering liet hem op alle drie slaan. AI staat niet meer in de hero; de
+  visie werkt dat uit. De tweede zin noemt het gevolg in plaats van de doelgroep, want
+  "Voor organisaties die..." sloot werk buiten die grens impliciet uit.
 - R-S1.4: Eén knop, `signal`, die naar `#contact` ankert. Zie R-V6.
 - R-S1.5: De hero staat op een foto: een steenarend die boven een groen bladerdak glijdt,
   met een donkere laag die de tekst leesbaar houdt. Zie R-V4 en R-V4a. De weave staat niet
@@ -563,6 +566,10 @@ in `tokens/` en `guidelines/`.
   - Leesmaten in `ch`, die de typeschaal niet dekt: 26ch voor een sectiekop, 34ch voor de
     footerregel onder het logo, en 46ch voor de hero-lead, de benoemde uitzondering uit
     R-V9a.
+  - De scrollafstanden van de reveals: 40px voordat een blok begint te verschijnen, 300px om
+    het af te maken, en 60px later voor een blok dat naast een ander staat. Die maten meten
+    scrollen en geen layout, dus de spacingschaal zegt er niets over (R-V13c).
+  - De 2px die het pijltje in de hero-knop meeleunt bij hover (R-V13f).
   - Breekpunten op 640, 768, 1024 en 1200px, waarbij de max-width-vormen 0,02px lager
     staan zodat ze de min-width-vormen niet overlappen. De layout-tokens kennen geen
     breekpunten.
@@ -674,10 +681,62 @@ in `tokens/` en `guidelines/`.
   het designsysteem zelf zijn interne documentatie en mogen ze houden. Deze PRD houdt zich
   er ook aan, en de geïmporteerde tokenbestanden zijn de enige uitzondering in deze repo,
   omdat ze verbatim moeten blijven.
-- R-V13: Motion volgt `motion.css`: 80/140/200/320/520ms, geen spring, geen bounce, geen
-  scale-up. Alles valt terug naar 0ms onder `prefers-reduced-motion`. De overgang van de
+- R-V13: Motion volgt `motion.css`: 80/140/200/320/520ms, plus `--aiw-duration-ambient`
+  van 32s en `--aiw-stagger` van 90ms, die op 12 september 2026 aan het designsysteem zijn
+  toegevoegd voor het werk hieronder. Geen spring, geen bounce. Alles valt terug naar 0ms
+  onder `prefers-reduced-motion`. Daarmee blijft de eis uit R-V1 overeind dat duur geen
+  enkele uitzondering kent: er staat geen losse tijdwaarde in `site.css`. De overgang van de
   header van doorzichtig naar dicht is gekoppeld aan de scrollpositie, niet aan tijd, en
   wordt onder `prefers-reduced-motion` een harde wissel. Zie R-S0.6.
+- R-V13a: **Alle beweging staat in één blok** onderaan `site.css`, onder `---- motion ----`,
+  zodat ze als geheel te lezen, bij te stellen of te verwijderen is. Drie regels gelden voor
+  alles wat daar staat:
+  - Niets is dragend. Elk effect is een toevoeging op de pagina zoals die zonder dat effect al
+    werkt. Het scroll-gestuurde deel staat achter `@supports (animation-timeline: view())`;
+    een browser zonder ondersteuning ziet de eindtoestand, en nooit een blok dat onzichtbaar
+    blijft wachten op een animatie die niet komt.
+  - Niets beweegt voor wie om minder vraagt. Elke regel staat binnen
+    `prefers-reduced-motion: no-preference`. De duurtokens vallen onder `reduce` al naar 0ms,
+    wat de tijdgebonden animaties op zichzelf afdekt, maar een scroll-gestuurde animatie heeft
+    geen duur om op nul te zetten, dus die mediaquery doet dat werk.
+  - Alleen `transform` en `opacity`, zodat de compositor het werk doet. Geen enkele regel in
+    dat blok kan de layout verschuiven.
+- R-V13b: **De herofoto drijft.** Over `--aiw-duration-ambient` schaalt de foto van 1 naar
+  1,06 en houdt daar op. Eén richting, één keer, `linear`: een constante drift is degene die
+  niemand opmerkt, waar een vertraagde aankomt en dan zichtbaar stopt. Geen heen-en-weerlus,
+  want die blijft de aandacht wegtrekken tijdens het lezen en laat een telefoon compositen
+  zolang het tabblad openstaat. Het schaalpunt ligt op de arend in beide uitsnedes: `70% 70%`
+  staand en `72% 60%` liggend, zodat de art direction uit R-V4a overeind blijft. Met de
+  bovenrand als schaalpunt zakte de arend 45px over het scherm; gemeten op 390x844.
+- R-V13c: **Blokken komen op bij binnenrollen.** Eyebrow, kop, tekstblok, de voorbeeldenkaart
+  en het portret gaan van doorzichtig naar vol en van `--aiw-space-4` omhoog naar hun plaats,
+  gestuurd door `animation-timeline: view()` en dus door de scrollpositie in plaats van door
+  een klok. Het bereik staat in pixels en niet in procenten: een percentage van de entry-fase
+  is een deel van de eigen hoogte van het element, waardoor de contacttekst vele malen trager
+  zou arriveren dan het label erboven. Een blok dat naast een ander staat begint 60px later,
+  zodat een paar na elkaar arriveert; gestapelde blokken hebben die verschuiving niet nodig,
+  want hun onderlinge afstand op de pagina is de stagger. De blokken overlappen elkaar nooit:
+  de visie houdt zijn kop binnen `.section__body`, dus alleen een kop die direct kind van de
+  container is wordt apart genomen.
+- R-V13d: **De herotekst schuift omhoog bij het openen**, regel voor regel, `--aiw-stagger`
+  uit elkaar. Alleen `transform` en nadrukkelijk geen `opacity`: de kop is kandidaat voor de
+  Largest Contentful Paint, en hem van niets naar vol laten komen zou dat moment met de volle
+  duur van die fade opschuiven. Schuiven kost de meting niets, omdat de tekst in het eerste
+  frame op volle sterkte staat en alleen zijn positie nog zakt.
+- R-V13e: **Het koord drijft mee tegen de scroll in**, `--aiw-space-6` naar beide kanten over
+  één schermhoogte. De drift zit op de nulhoge markering `.cord--band` en niet op
+  `.cord__art`, waarvan de transform de lift draagt en op drie breekpunten verschilt. Die
+  markering draagt daarom zelf de `z-index`: een transform maakt er een stacking context van,
+  en een negatieve z-index binnen zo'n context komt niet verder terug dan die context zelf,
+  waardoor het koord over de voorbeeldenkaart schoof in plaats van eronder. Zie ook O-8.
+- R-V13f: **Het pijltje in de hero-knop leunt 2px mee** in de richting waarin het wijst, bij
+  hover, en alleen het icoon beweegt, zodat het label niet onder de muis wegloopt. Het heeft
+  geen eigen reduced-motion-query nodig: de duur is een token en die is onder `reduce` 0ms.
+- R-V13g: **De minifier-val uit R-S0.6 geldt voor elke timeline.** `animation-timeline` moet
+  in een eigen regel staan, met een specificiteit waar de minifier niet omheen kan herordenen,
+  anders vouwt hij de declaratie in de `animation`-shorthand en gooit Chromium hem weg. Dat
+  wordt op de gebouwde HTML gecontroleerd en niet op de bron, want in dev draait de minifier
+  niet.
 - R-V14: Focus is een 2px signal-blue outline op 2px offset en wordt nooit verwijderd.
 - R-V15: Waar het designsysteem en deze PRD elkaar tegenspreken, wint het designsysteem en
   wordt de PRD bijgewerkt.
@@ -728,7 +787,10 @@ in `tokens/` en `guidelines/`.
   importdatum in [`design-system-import.md`](design-system-import.md).
 - R-T8: Geïmporteerde bestanden worden niet lokaal aangepast. Zes van de acht tokenbestanden
   zijn byte-voor-byte kopieën. De twee die wél zijn gewijzigd, `base.css` en `fonts.css`,
-  zeggen dat bovenaan het bestand.
+  zeggen dat bovenaan het bestand. `motion.css` is op 12 september 2026 uitgebreid met
+  `--aiw-duration-ambient` en `--aiw-stagger`. Die uitbreiding is eerst in het designsysteem
+  gedaan en daarna hierheen gehaald, zodat het bestand een byte-voor-byte kopie blijft. Zie
+  R-V13.
 - R-T9: Alleen importeren wat de site nodig heeft. `components/forms/`,
   `ui_kits/documents/`, `slides/`, `Practice.jsx`, `Scan.jsx` en de ongebruikte componenten
   blijven buiten de repo.
@@ -1089,6 +1151,7 @@ Alles staat er, en het staat live.
 | Content-Security-Policy met hashes, geen `unsafe-inline` | Klaar, geverifieerd in de browser en op de live site |
 | `vercel.json` met cache- en securitykoppen | Klaar, gedeployed; de securitykoppen zijn op de live site gecontroleerd |
 | Em-dash-regel in het designsysteem, afgebakend tot publieke teksten | Klaar in `readme.md` en `SKILL.md` |
+| Beweging: hero-drift, herotekst, blokken die opkomen, koorddrift en het pijltje, alles in CSS en zonder extra JavaScript | Klaar; gemeten op de gebouwde site, zie R-V13a tot en met R-V13g |
 | Deploy op Vercel vanaf `main`, `aiwise.it.com` en `www.aiwise.it.com` | Live sinds 11 september 2026 |
 
 Wat na de livegang is gecontroleerd: `/`, `/en`, `/privacy` en `/en/privacy` geven alle vier
@@ -1106,6 +1169,7 @@ Wat nog moet gebeuren staat in hoofdstuk 15.
 | # | Punt | Nodig van | Impact |
 | --- | --- | --- | --- |
 | O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan nu op de live site in plaats van op een preview. | Meten | Onbewezen prestatie-eis |
+| O-8 | **Mag het koord bewegen?** Het designsysteem zegt onder *Backgrounds and the weave* dat de weave nooit animeert, en het koord is afgeleid van weave-master O3. Tegelijk staat het koord op een webpagina daar als open experiment zonder eigen regel, dus het is de vraag of dat verbod hier reikt. R-V15 zegt dat het designsysteem wint bij tegenspraak, dus dit is een beslissing van Simon: de regel aanvullen met wat er nu staat, of de drift uit R-V13e eruit halen. | Beslissing | Koorddrift staat live zonder regel die hem dekt |
 
 Gesloten sinds versie 4:
 
@@ -1157,6 +1221,29 @@ De deploy is achter de rug. Wat overblijft:
 ---
 
 ## 16. Wijzigingen
+
+### Versie 9 ten opzichte van versie 8
+
+- **De pagina beweegt.** Vijf effecten, alle in CSS en zonder een regel extra JavaScript: de
+  herofoto die langzaam indrijft, de herotekst die regel voor regel omhoogschuift, blokken die
+  opkomen bij binnenrollen, het koord dat meedrijft tegen de scroll in, en het pijltje in de
+  hero-knop. Alles achter `prefers-reduced-motion: no-preference`, het scroll-gestuurde deel
+  bovendien achter `@supports`, en alleen `transform` en `opacity`. R-V13 tot en met R-V13g,
+  en hoofdstuk 13.
+- **Twee motion-tokens bij in het designsysteem**: `--aiw-duration-ambient` (32s) en
+  `--aiw-stagger` (90ms), beide op 12 september 2026 toegevoegd en daarna hierheen
+  geïmporteerd. Daarmee staat er geen losse tijdwaarde in `site.css` en blijft de eis uit
+  R-V1 gelden dat duur geen uitzondering kent. R-V13 en R-T8.
+- **Twee maten bij in de uitzonderingslijst van R-V1**: de scrollafstanden van de reveals en
+  de 2px van het pijltje. Beide meten geen layout, dus de spacingschaal dekt ze niet. R-V1,
+  R-V13c en R-V13f.
+- **O-8 geopend: mag het koord bewegen?** Het designsysteem verbiedt animatie van de weave, en
+  het koord is daarvan afgeleid. De drift staat live; de regel die hem dekt bestaat nog niet.
+  Hoofdstuk 14 en R-V13e.
+- **De hero-lead is herschreven**, in twee stappen. De oude zin liet "die terugkerend werk uit
+  handen nemen" op apps, websites en tools samen slaan, terwijl een website dat niet doet. De
+  lead noemt nu wat er gebouwd kan worden en laat de bijzin bij de tool landen. AI staat niet
+  meer in de hero. De tweede zin noemt het gevolg in plaats van de doelgroep. R-S1.3.
 
 ### Versie 8 ten opzichte van versie 7
 

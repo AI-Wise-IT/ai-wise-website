@@ -28,6 +28,33 @@ Imported on 8 September 2026.
 Six of the eight token files are byte-for-byte copies. The two that changed say
 so at the top of the file.
 
+## `tokens/motion.css`, extended 12 September 2026
+
+Two tokens were added for the site's motion work: `--aiw-duration-ambient` (32s),
+the slow drift over the hero photograph, and `--aiw-stagger` (90ms), the offset
+between the parts of one entrance. Both fall to 0ms under
+`prefers-reduced-motion`, like the durations already in the file.
+
+This is not a local edit. The change was made in the design system first and
+pulled back here, so `motion.css` stays a byte-for-byte copy and R-T8 still
+holds. It is recorded separately because the file is the only imported one whose
+*content* has changed since the import.
+
+Two things in the design system this work did **not** settle, both left for
+Simon:
+
+- **The `readme.md` Motion section does not describe the new tokens** or the
+  scroll-driven reveals. It says entrances are "opacity plus a small translate,
+  never a scale-up", which the reveals follow exactly, but it has nothing on
+  driving an animation from scroll position rather than from a clock, and
+  nothing on the ambient drift, which *is* a scale.
+- **"The weave never animates"** stands in that same section, and the cord on the
+  site now drifts with the scroll. The cord is derived from weave master O3, so
+  the two are in tension. The readme also files the cord on a web page as an open
+  experiment with no rule of its own yet, which is the reading under which the
+  drift is allowed. This is a decision rather than a transcription, so nothing in
+  the readme was changed; it is O-8 in `prd.md`.
+
 ## Deviations, and why
 
 **`tokens/base.css`.** The four weave `background-image` URLs were changed from
