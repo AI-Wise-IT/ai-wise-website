@@ -894,8 +894,12 @@ behandeld.
     tagline Automation in Service of Life, op een donkere foto van beboste heuvels*. EN: *AI
     Wise logo with the tagline Automation in Service of Life, over a dark photograph of
     wooded hills*.
-- R-S.3: Favicon uit `glyph-square.svg` en `glyph-square-32.png`, zoals het designsysteem
-  voorschrijft. De oude `favicon.svg` is vervangen.
+- R-S.3: Favicon uit `glyph-square-transparent.svg` en `glyph-square-transparent-32.png`:
+  de glyph van het designsysteem zonder het bijna-zwarte achtergrondvlak, zodat de
+  tabbalk er in zijn eigen kleur doorheen komt. De sage en het signaalblauw houden het
+  op licht én op donker. De `apple-touch-icon` blijft `glyph-square-512.png` mét vlak,
+  want iOS vult transparantie op het beginscherm met een eigen kleur in. De oude
+  `favicon.svg` is vervangen.
 - R-S.4: Eén canonieke host en één schrijfwijze per URL: geen trailing slash, afgedwongen
   in zowel `astro.config.mjs` als `vercel.json`. Canonical tags, sitemap, interne links en
   gestructureerde data gebruiken allemaal diezelfde vorm.

@@ -115,8 +115,20 @@ const jsonLd = {
       )
     }
 
-    <link rel="icon" href="/assets/logo/glyph-square.svg" type="image/svg+xml" />
-    <link rel="icon" href="/assets/logo/png/glyph-square-32.png" sizes="32x32" />
+    {/* The favicon is the glyph without its near-black backing rectangle, so the
+        tab bar shows through in whatever colour the browser paints it. The
+        apple-touch-icon keeps the rectangle: iOS fills transparency on the home
+        screen itself, and does it with its own colour rather than ours. */}
+    <link
+      rel="icon"
+      href="/assets/logo/glyph-square-transparent.svg"
+      type="image/svg+xml"
+    />
+    <link
+      rel="icon"
+      href="/assets/logo/png/glyph-square-transparent-32.png"
+      sizes="32x32"
+    />
     <link rel="apple-touch-icon" href="/assets/logo/png/glyph-square-512.png" />
 
     <link

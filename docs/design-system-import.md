@@ -64,6 +64,19 @@ build time and inlines them without that rectangle and without their fixed pixel
 size; the header and the footer both use it. The files in `public/assets/logo/`
 are unchanged.
 
+**Favicon without the backing rectangle.** The same near-black rectangle sits in
+`glyph-square.svg`, where it makes the tab icon a dark tile in browsers that
+paint a light tab bar. Two derived files carry the glyph without it:
+`glyph-square-transparent.svg` and `png/glyph-square-transparent-32.png`, both
+made from `glyph-square.svg` by dropping the `<rect>`, with sharp rendering the
+PNG. They are the only files in `public/assets/logo/` that the design system does
+not ship; `glyph-square.svg` and `glyph-square-32.png` stay as imported. The
+glyph keeps its full height inside the square and sits centred, so nothing was
+cropped. The `apple-touch-icon` is still `png/glyph-square-512.png`, with the
+rectangle: iOS fills transparency on the home screen with a colour of its own
+choosing rather than ours. These two files belong in the design system as a
+favicon variant, next to `glyph-square.svg`.
+
 **Footer logo with a live tagline.** The footer no longer shows
 `lockup-en-plain.svg`. At a height that suits a footer, the tagline inside the
 lockup was too small to read. The footer composes the logo the way
