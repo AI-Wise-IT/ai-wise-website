@@ -907,7 +907,11 @@ in `tokens/` en `guidelines/`.
 ### 9.2 Performance
 
 - R-P1: Lighthouse ten minste 95 voor Performance, Accessibility, Best Practices en SEO, op
-  mobiel. Nog te meten, nu op de live site, zie O-5.
+  mobiel. Gehaald en gemeten op 12 september 2026 op de live site, met Lighthouse 12 in
+  headless Chrome, in beide talen en zowel mobiel als desktop. Performance 99 (nl) en 98 (en)
+  op mobiel en 100 op desktop; Accessibility, Best Practices en SEO overal 100. Geen enkele
+  controle zakte. Mobiel: LCP 1,8 s (nl) en 1,7 s (en), CLS 0, Total Blocking Time 90 ms (nl)
+  en 150 ms (en).
 - R-P2: Largest Contentful Paint onder 2,0 seconden op 4G.
 - R-P3: Het portret is een `<picture>` gebouwd met `getImage()`, net als de herofoto, met
   art direction op 768px (R-S3.1). Per uitsnede AVIF, WebP en JPEG: liggend op 480, 720, 960
@@ -1168,9 +1172,7 @@ Wat nog moet gebeuren staat in hoofdstuk 15.
 
 ## 14. Open punten
 
-| # | Punt | Nodig van | Impact |
-| --- | --- | --- | --- |
-| O-5 | **Lighthouse nog niet gemeten.** R-P1 is nog niet aangetoond. Meten kan nu op de live site in plaats van op een preview. | Meten | Onbewezen prestatie-eis |
+Er staan geen open punten meer.
 
 Gesloten sinds versie 4:
 
@@ -1182,6 +1184,9 @@ Gesloten sinds versie 4:
   te delen.
 - O-4, Web Analytics aanzetten: gesloten. Simon heeft het in het Vercel-dashboard aangezet en
   het script wordt in productie geserveerd. Zie R-T17a en R-J2.
+- O-5, Lighthouse meten: gesloten op 12 september 2026. Gemeten op de live site, in beide
+  talen en op mobiel en desktop. Alle vier de categorieen halen de drempel van 95 uit R-P1,
+  met 98 als laagste score. Zie R-P1.
 - O-6, eyebrow boven de herofoto: moss blijft, de laag blijft. De norm blijft 4,5:1 en de
   tagline in de hero-eyebrow is een vastgelegde uitzondering met minimaal 3:1, op 15px.
   Zie R-A1b.
@@ -1201,8 +1206,8 @@ Gesloten sinds versie 4:
 - Modeltraining: niet toegestaan. Zie R-S.13.
 - Em-dashes in het designsysteem: de regel is afgebakend tot publieke teksten, de
   handleidingen zijn expliciet uitgezonderd, en er hoeft dus geen sweep door de guides. De
-  voorbeeldcopy in `ui_kits/` en `slides/` wordt nu nagelopen; dat loopt in het designsysteem
-  zelf en niet in deze repo.
+  voorbeeldcopy in `ui_kits/` en `slides/` is op 12 september 2026 nagelopen, in het
+  designsysteem zelf en niet in deze repo.
 - Designsysteem bijgewerkt op 11 september 2026: de readme en `SKILL.md` zijn herschreven naar
   de nieuwe positionering, `github.md` wijst naar de AI-Wise-IT-repository, de knopvariant
   `outline-signal` en de iconenrichting (Lucide plus Tabler, inline) staan in de
@@ -1219,11 +1224,7 @@ Gesloten sinds versie 4:
 
 ## 15. Wat er nog moet gebeuren
 
-De deploy is achter de rug. Wat overblijft:
-
-| Stap | Inhoud | Afhankelijk van |
-| --- | --- | --- |
-| 1 | Lighthouse meten op de live site, O-5 sluiten | Meten |
+De deploy is achter de rug en Lighthouse is gemeten. Er staat niets meer open.
 
 ---
 
@@ -1269,8 +1270,9 @@ De deploy is achter de rug. Wat overblijft:
 - **O-2, O-3 en O-4 gesloten.** Simon heeft de copy in beide talen goedgekeurd, inclusief de
   Engelse privacyverklaring; hij heeft de site zelf beoordeeld en vindt hem klaar om te delen;
   en Web Analytics staat aan in het Vercel-dashboard. R-C1, R-L9a en R-T17a.
-- **O-5 blijft open**, en verschuift van de preview naar de live site: Lighthouse is nog niet
-  gemeten, dus R-P1 is nog niet aangetoond. R-P1.
+- **O-5 gesloten.** Lighthouse is op 12 september 2026 op de live site gemeten, in beide talen
+  en op mobiel en desktop. Alle vier de categorieen halen de drempel uit R-P1, met 98 als
+  laagste score. R-P1.
 - **De locatieregel is geen verbod meer.** Een vestigingsplaats is niet vereist, het noemen
   van Amsterdam in een footer is toegestaan waar het helpt, en de site draagt er op dit moment
   geen. De copy is niet gewijzigd. R-S5.3, R-S5.5, R-J4 en R-C6.
