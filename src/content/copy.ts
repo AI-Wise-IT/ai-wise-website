@@ -141,7 +141,7 @@ const nl: Copy = {
     eyebrow: COMPANY.tagline,
     eyebrowLang: "en",
     title: ["Jij ziet het voor je.", "Ik bouw het."],
-    lead: "Een website, een app of een tool die terugkerend werk overneemt. Voor organisaties die werk doen dat ertoe doet.",
+    lead: "Een website, een app of een tool die terugkerend werk overneemt. Zodat organisaties zich kunnen richten op werk dat ertoe doet.",
     cta: "Neem contact op",
   },
   vision: {
@@ -276,7 +276,7 @@ const en: Copy = {
   hero: {
     eyebrow: COMPANY.tagline,
     title: ["You picture it.", "I’ll build it."],
-    lead: "A website, an app or a tool that takes repetitive work off your plate. For organisations doing work that matters.",
+    lead: "A website, an app or a tool that takes repetitive work off your plate. So organisations can do the work that matters.",
     cta: "Get in touch",
   },
   vision: {
