@@ -220,10 +220,12 @@ Vier inhoudelijke secties.
   Ze neemt geen deel aan de discussie of AI er zou moeten zijn, en formuleert positief. Het
   doel is de lezer te inspireren over wat er nu kan. Er wordt geen aanbod gedaan.
 - R-S2.2a: Kopje *Wat er nu kan*, kop *Wat je voor ogen hebt, is nu binnen bereik*. De
-  reflectie sluit de visie af als vraag waarmee de lezer de pagina verlaat: *Welk idee ligt
-  er bij jou nog op de plank?* In het Engels, als eigen tekst en geen vertaling: kopje
-  *What’s possible now*, kop *Your idea is closer than you think*, reflectie *What’s the
-  idea you keep coming back to?*
+  laatste zin nodigt uit om eerder onhaalbare plannen opnieuw te bekijken: *Dat maakt het
+  de moeite waard om opnieuw te kijken naar plannen die eerder niet haalbaar leken.* De
+  reflectie sluit de visie af: *Welk idee zou jij alsnog tot leven willen brengen?*
+  In het Engels: kopje *What’s possible now*, kop *Your idea is closer than you think*,
+  laatste zin *It’s worth revisiting plans that once felt out of reach.*, reflectie
+  *What’s an idea you’d still love to bring to life?*
 - R-S2.3: **Geen servicegrid, wel een opsomming ter inspiratie.** De vier `Card`-tegels uit
   `Home` ("Workflow automation", "Dashboards and reporting", "Internal tools", "Data
   groundwork") worden niet overgenomen: tegels met dienstnamen lezen als een menu. In
@@ -611,15 +613,17 @@ in `tokens/` en `guidelines/`.
   ring is niet opgelost, en één werkend horizontaal koord bewijst niet dat het systeem
   structureel werkt. Wat hieronder staat beschrijft dus wat er staat, niet een vastgestelde
   visuele taal.
-  - Het koord loopt hoog links en laag rechts over de volle breedte:
+  - Het koord loopt op smalle schermen hoog links en laag rechts over de volle breedte.
+    Vanaf 1024px is het horizontaal gespiegeld: laag onder de reflectie links en hoog
+    achter het voorbeeldenkader rechts, zodat de langere Nederlandse slotvraag vrij blijft.
     `cord-o3-horizontal.svg`, afgeleid van O3. Het is een kwartslag gedraaid en 2,2 keer
     verlengd langs het koord, met ronde strengen van ongeveer 12px op 1440px.
   - Het staat in `Cord.astro`, als achtergrondafbeelding onder de inhoud, zonder eigen
     ruimte of marge.
   - Leesbaarheid komt uit de plaatsing: het koord ligt in de ruimte tussen de secties, onder
-    de onderrand van de voorbeeldenkaart en in de marges. Gemeten op 1440, 1280, 1024, 768 en
-    375px in beide talen ligt er geen tekst op het koord. Het laagste tekstcontrast binnen het
-    koordvlak is 15,19:1: de laatste voorbeeldregel, op de kaart.
+    de onderrand van de voorbeeldenkaart en in de marges. De gespiegelde plaatsing is met
+    de nieuwe Nederlandse slotvraag visueel gecontroleerd op 1440 en 1024px. De eerdere
+    contrastmeting van de voorbeeldregel op de ongewijzigde kaart was 15,19:1.
   - Een halo in de paginakleur achter de tekst is geprobeerd en afgevallen, omdat Chromium
     die donkerder tekent dan de pagina.
   - Het uitrekken wijkt bewust af van R-V3, R-V4 en R-V5 en van de aanwijzing bij de masters

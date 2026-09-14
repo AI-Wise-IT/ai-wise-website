@@ -149,9 +149,9 @@ const nl: Copy = {
     heading: "Wat je voor ogen hebt, is nu binnen bereik",
     paragraphs: [
       "Een website, een app of een tool laten bouwen is een stuk toegankelijker geworden. Met AI is de weg van een helder idee naar iets dat echt werkt veel korter. Wat vroeger een groot project was, is nu goed te overzien.",
-      "Daarmee wordt het ook haalbaar voor kleine praktijken en organisaties die betekenisvol werk doen. Een goed idee kan klein beginnen en toch echt werken.",
+      "Daarmee wordt het ook haalbaar voor kleine praktijken en organisaties die betekenisvol werk doen. Dat maakt het de moeite waard om opnieuw te kijken naar plannen die eerder niet haalbaar leken.",
     ],
-    reflection: "Welk idee ligt er bij jou nog op de plank?",
+    reflection: "Welk idee zou jij alsnog tot leven willen brengen?",
     examplesIntro: "Misschien zie je zoiets voor je:",
     examples: [
       "Een vernieuwing van je website.",
@@ -284,9 +284,9 @@ const en: Copy = {
     heading: "Your idea is closer than you think",
     paragraphs: [
       "Having a website, app or tool built has become far more attainable. AI shortens the path from a clear idea to a working system, and what used to be a major project is now manageable.",
-      "That opens the door for small practices and organisations doing meaningful work. A good idea can start small and still make a real difference.",
+      "That opens the door for small practices and organisations doing meaningful work. It’s worth revisiting plans that once felt out of reach.",
     ],
-    reflection: "What’s the idea you keep coming back to?",
+    reflection: "What’s an idea you’d still love to bring to life?",
     examplesIntro: "You may be picturing something like this:",
     examples: [
       "A modernised website.",

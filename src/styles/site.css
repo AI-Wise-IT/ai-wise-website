@@ -443,11 +443,14 @@
 .cord--band{position:relative;z-index:-1;height:0;overflow-x:clip}
 .cord--band .cord__art{position:absolute;z-index:-1;left:0;right:0;top:0;aspect-ratio:3379/436;transform:translateY(-32%);background:url("/assets/weave/cord-o3-horizontal.svg") center / 100% 100% no-repeat}
 
-/* Between 1024 and 1199px the columns are narrow and the vision text can end
-   lower than the examples card, just above the seam. The band is lifted less
-   there, so its high end stays clear of that text. */
+/* Keep the low end beneath the reflection in the left column; the high end
+   sits behind the opaque examples card on the right. */
+@media (min-width:1024px){
+  .cord--band .cord__art{transform:translateY(-32%) scaleX(-1)}
+}
+/* Narrow columns need a little more clearance below the longer vision. */
 @media (min-width:1024px) and (max-width:1199.98px){
-  .cord--band .cord__art{transform:translateY(-20%)}
+  .cord--band .cord__art{transform:translateY(-20%) scaleX(-1)}
 }
 
 /* Narrow screens: the band keeps the height of the gap between the sections
