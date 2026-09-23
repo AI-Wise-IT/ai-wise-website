@@ -211,8 +211,8 @@ Vier inhoudelijke secties.
   bij de tool en niet bij de website, want een website neemt geen terugkerend werk over, en
   de eerdere formulering liet hem op alle drie slaan. AI staat niet meer in de hero; de
   visie werkt dat uit.
-- R-S1.4: Eén knop, `signal`, die naar `#kansenscan` ankert: *Plan een gratis
-  AI-Kansenscan* (Engels: *Book a free AI Opportunity Scan*). Onder 640px zakt de knop naar
+- R-S1.4: Eén knop, `signal`, die naar `#kansenscan` ankert: *Plan de gratis
+  AI-Kansenscan* (Engels: *Book the free AI Opportunity Scan*). Onder 640px zakt de knop naar
   de bodymaat met 16px zijkant, zodat het Engelse label op 375px op één regel past. Zie
   R-V6 en S2b.
 - R-S1.5: De hero staat op een foto: een steenarend die boven een groen bladerdak glijdt,
@@ -306,12 +306,12 @@ Vier inhoudelijke secties.
   daarvoor op 23 september 2026: wie het aanbod ziet, mag niet het gevoel krijgen dat het
   een salesgesprek is. Gratis zijn het gesprek van een uur en de kansenschets daarna. Of
   het uitzoeken en het plan daarna betaald zijn, laat de site open.
-- R-S2b.2: Kopje *Zo kan ik bijdragen*, kop *Begin met een AI-Kansenscan*. Twee
+- R-S2b.2: Kopje *Zo kan ik bijdragen*, kop *Begin met de AI-Kansenscan*. Twee
   alinea's, door Simon geschreven: *In één uur kijken we samen naar de kansen voor jouw
   onderneming*, met de drie ingangen erin (nog niets met AI gedaan, al geëxperimenteerd,
   een idee om te onderzoeken), en de **Kansenschets** die de lezer na afloop vrijblijvend
   ontvangt, met een eerstvolgende stap waarmee hij zelf aan de slag kan. In het Engels: kopje *How I can help*,
-  kop *Start with an AI Opportunity Scan*; *gratis* staat niet in de kop, omdat het al
+  kop *Start with the AI Opportunity Scan*; *gratis* staat niet in de kop, omdat het al
   op de hero-knop en groot in de aanbodkaart staat; de kansenschets heet daar *opportunity
   brief*.
 - R-S2b.2a: **De sectie valt op door een aanbodkaart op warm light.** De sectie zelf staat
@@ -336,7 +336,9 @@ Vier inhoudelijke secties.
   vrijblijvend*. In het Engels *Free*, *A one-hour conversation*, *Receive the **Opportunity
   Brief***, *No strings attached*. De knop staat onderaan in de kaart, over de volle breedte.
   Onder 640px zakt hij naar de bodymaat met 16px zijkant.
-- R-S2b.2c: **Spelling van het aanbod.** Scan en document zijn producten met een eigen
+- R-S2b.2c: **Spelling en lidwoord van het aanbod.** Altijd met het bepaalde lidwoord:
+  *de AI-Kansenscan* en *de Kansenschets*, *the AI Opportunity Scan* en *the Opportunity
+  Brief*, nooit *een* of *a/an* (Simon, 24 september 2026). Scan en document zijn producten met een eigen
   naam, met hoofdletters: *AI-Kansenscan* en *de Kansenschets*, in het Engels *AI
   Opportunity Scan* en *the Opportunity Brief*. De naam van het document staat op de site
   bovendien vet, overal waar hij genoemd wordt. Simon koos daarvoor op 23 september 2026;
@@ -344,8 +346,8 @@ Vier inhoudelijke secties.
   `sources/brand-record/voice-and-messaging.md`). In `copy.ts` staat de naam tussen `<strong>`, en de
   alinea's en feiten van de scan worden daarom als HTML weergegeven.
 - R-S2b.3: Eén knop, `signal` met het WhatsApp-icoon, die WhatsApp opent met
-  een vooringevuld bericht: *Hoi Simon, ik wil graag een gratis AI-Kansenscan plannen.*
-  (Engels: *Hi Simon, I’d like to book a free AI Opportunity Scan.*). Label *Nu plannen*
+  een vooringevuld bericht: *Hoi Simon, ik wil graag de gratis AI-Kansenscan plannen.*
+  (Engels: *Hi Simon, I’d like to book the free AI Opportunity Scan.*). Label *Nu plannen*
   (Engels: *Book now*): de naam van de scan staat al in de kop en bovenaan de kaart, en een
   kort label past op elke breedte op één regel in een kaart van 4 kolommen. Gevuld, op verzoek van Simon:
   de hero-knop en deze knop vragen allebei om dezelfde actie (R-V6). De knop opent een nieuw
@@ -591,7 +593,7 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   Engels *Message me on WhatsApp (opens in a new tab)*. Bereikbaar via toetsenbord,
   zichtbare focus-outline.
 - R-S6.4: **Geen gevulde blauwe knop**, want de vulling is voor de ene actie van de pagina,
-  een kansenscan plannen (R-V6).
+  de AI-Kansenscan plannen (R-V6).
   Uitvoering als blauw omlijnde knop (`.btn--outline-signal`, zie R-V6): alleen het icoon,
   geen tekst. Hetzelfde WhatsApp-icoon uit Tabler als in de scan-knop, op 24px, in signal
   blue. **Rond**, 56 bij 56px (`space-12` plus `space-2`), de gebruikelijke maat voor een
@@ -818,7 +820,7 @@ in `tokens/` en `guidelines/`.
   houden, nooit op merkgrafiek. Voor de radius is er ook één uitzondering: de zwevende
   WhatsApp-knop is rond, op verzoek van Simon (R-S6.4).
 - R-V6: **Eén actie in `signal` op de hele pagina.** Blauw betekent "dit is wat je moet
-  doen", en dat is hier één ding: een gratis kansenscan plannen. Twee knoppen dragen die
+  doen", en dat is hier één ding: de gratis AI-Kansenscan plannen. Twee knoppen dragen die
   actie gevuld: de hero-CTA, die naar `#kansenscan` ankert, en de knop in de scan-sectie,
   die WhatsApp opent (R-S2b.3). Tot 23 september 2026 was de hero-CTA de enige gevulde
   knop; Simon koos ervoor de scan-knop ook te vullen, omdat het dezelfde actie is. Een
@@ -1465,7 +1467,7 @@ controleren dat antwoorden naar het ingevulde adres gaat.
   belang*. S4, R-S2b.2a, R-S2b.3, R-S3.7, R-V4c, R-T2,
   R-T12, R-J3, R-S6.7, R-A7 en hoofdstuk 15.
 - **Nieuwe sectie: de gratis AI-Kansenscan**, tussen visie en Over mij, met een knop die
-  WhatsApp opent met een vooringevuld bericht. De hero-knop heet nu *Plan een gratis
+  WhatsApp opent met een vooringevuld bericht. De hero-knop heet nu *Plan de gratis
   AI-Kansenscan* en ankert daarheen. De scan-knop is gevuld, zoals de hero-knop: beide
   vragen om dezelfde actie. De zwevende WhatsApp-knop verdwijnt zolang de scan-knop in beeld
   is. De tekst noemt drie ingangen: nog niets met AI gedaan, al geëxperimenteerd, of een

@@ -6,7 +6,7 @@
 > Tagline: Automation in Service of Life.
 
 The website is a single page in Dutch and English. It gives examples, describes
-what has become possible, offers a free AI Opportunity Scan, introduces Simon and
+what has become possible, offers the free AI Opportunity Scan, introduces Simon and
 explains how to get in touch. It deliberately carries no service catalogue and no
 pricing; the free scan is its one offer.
 
@@ -17,7 +17,7 @@ the path from an idea to a working system, and what used to be a major project
 is now manageable. That opens the door for small businesses and organisations
 doing meaningful work.
 
-## Free AI Opportunity Scan
+## The free AI Opportunity Scan
 
 An hour-long conversation about the opportunities for the business, whether
 the client has not touched AI yet, has already been experimenting with it or

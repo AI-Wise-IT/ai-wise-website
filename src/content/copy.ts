@@ -180,7 +180,7 @@ const nl: Copy = {
     eyebrowLang: "en",
     title: ["Jij kent je onderneming.", "Ik ken de mogelijkheden."],
     lead: "Samen ontdekken we hoe AI jou verder helpt. Daarna bouw ik het: een website, een app of een tool die terugkerend werk overneemt.",
-    cta: "Plan een gratis AI-Kansenscan",
+    cta: "Plan de gratis AI-Kansenscan",
   },
   vision: {
     eyebrow: "Wat er nu kan",
@@ -202,7 +202,7 @@ const nl: Copy = {
   },
   scan: {
     eyebrow: "Zo kan ik bijdragen",
-    heading: "Begin met een AI-Kansenscan",
+    heading: "Begin met de AI-Kansenscan",
     paragraphs: [
       "In één uur kijken we samen naar de kansen voor jouw onderneming, of je nu nog niets met AI hebt gedaan, er al mee hebt geëxperimenteerd, of een idee hebt dat je wilt onderzoeken.",
       "Je ontvangt na afloop geheel vrijblijvend de <strong>Kansenschets</strong> met een logische eerstvolgende stap waarmee je zelf aan de slag kunt.",
@@ -211,7 +211,7 @@ const nl: Copy = {
     factsTitle: "Gratis",
     facts: ["1 uur in gesprek", "Ontvang de <strong>Kansenschets</strong>", "Geheel vrijblijvend"],
     cta: "Nu plannen",
-    whatsappPrefill: "Hoi Simon, ik wil graag een gratis AI-Kansenscan plannen.",
+    whatsappPrefill: "Hoi Simon, ik wil graag de gratis AI-Kansenscan plannen.",
   },
   about: {
     eyebrow: "Over mij",
@@ -352,7 +352,7 @@ const en: Copy = {
     eyebrow: COMPANY.tagline,
     title: ["You know your business.", "I know what’s possible."],
     lead: "Together we work out where AI can make a difference for you. Then I build what’s needed: a website, an app or a tool that takes repetitive work off your plate.",
-    cta: "Book a free AI Opportunity Scan",
+    cta: "Book the free AI Opportunity Scan",
   },
   vision: {
     eyebrow: "What’s possible now",
@@ -374,7 +374,7 @@ const en: Copy = {
   },
   scan: {
     eyebrow: "How I can help",
-    heading: "Start with an AI Opportunity Scan",
+    heading: "Start with the AI Opportunity Scan",
     paragraphs: [
       "In one hour, we explore the opportunities for your business, whether you haven’t touched AI yet, have already been experimenting with it or have an idea you’d like to build on.",
       "Afterwards you receive the <strong>Opportunity Brief</strong>, describing a sensible next step you can take yourself. No strings attached.",
@@ -383,7 +383,7 @@ const en: Copy = {
     factsTitle: "Free",
     facts: ["A one-hour conversation", "Receive the <strong>Opportunity Brief</strong>", "No strings attached"],
     cta: "Book now",
-    whatsappPrefill: "Hi Simon, I’d like to book a free AI Opportunity Scan.",
+    whatsappPrefill: "Hi Simon, I’d like to book the free AI Opportunity Scan.",
   },
   about: {
     eyebrow: "About me",
