@@ -411,9 +411,11 @@
    The loop hangs from the top edge of the section, centred on it. Its right
    edge lies on the page's right edge, and it reaches two thirds of a tile into
    the page, so the tile size keeps the turn clear of the text on either side:
-   150px below 768px, 200px from 768px, 260px from 1200px. The section clips
-   horizontally, so the part that runs past the edge never widens the page. */
-.section.contact{position:relative;overflow-x:clip}
+   150px below 768px, 200px from 768px, 260px from 1200px. The tiles sit at
+   right:0 inside the section and paint as backgrounds, so nothing runs past the
+   page edge and no overflow clipping is needed; Safari applied overflow-x:clip
+   vertically too and cut off the half of the loop above the seam. */
+.section.contact{position:relative}
 .contact__cords{--tile:150px;position:absolute;right:0;top:0;z-index:-1;width:var(--tile);height:calc(2 * var(--tile) - 2px);transform:translateY(-50%);pointer-events:none;user-select:none}
 .contact__cord{height:var(--tile);background:center / 100% 100% no-repeat}
 .contact__cord--out{margin-top:-2px}
@@ -588,7 +590,11 @@ textarea.field__control{line-height:var(--aiw-leading-body);resize:vertical}
    stacking context can only go behind that context, not behind the examples
    card that was painted before it. Putting the band itself behind the content
    settles it wherever the drift is running or not. */
-.cord--band{position:relative;z-index:-1;height:0;overflow-x:clip}
+/* No overflow clipping on the marker: the art paints as a background inside a
+   box exactly as wide as the page, so nothing runs past the edge. Safari (and
+   so Chrome on iOS) treats overflow-x:clip on this zero-height marker as a
+   clip in both directions and hid the whole band; removed 24 September 2026. */
+.cord--band{position:relative;z-index:-1;height:0}
 .cord--band .cord__art{position:absolute;z-index:-1;left:0;right:0;top:0;aspect-ratio:3379/436;transform:translateY(-32%) scaleX(-1);background:url("/assets/weave/cord-o3-horizontal.svg") center / 100% 100% no-repeat}
 
 /* Mirrored on every width, on Simon's request: low on the left, high on the

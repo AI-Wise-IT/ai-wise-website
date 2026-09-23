@@ -810,6 +810,12 @@ in `tokens/` en `guidelines/`.
     wisselden; Simon wilde dat een doorlopend koord één kleur houdt. De vorm is
     gespiegeld, omdat beide sets dezelfde vorm hebben; tegels van verschillende maat
     sluiten niet aan.
+  - **Geen `overflow-x: clip` op de koorden.** Safari, en dus Chrome op iOS, past dat op het
+    marker-element van 0px hoog ook verticaal toe; het koord tussen visie en kansenscan was
+    daardoor op een iPhone onzichtbaar, en van de lus bij Contact viel de bovenste helft weg.
+    De koorden worden als achtergrond binnen een vak van paginabreedte getekend, dus afknippen
+    is niet nodig; gecontroleerd dat de pagina op 375, 768 en 1440px niet breder wordt
+    (24 september 2026).
   - **Het koord tussen visie en kansenscan is op alle breedtes gespiegeld**, laag links en
     hoog rechts, zoals eerst alleen in de tweekoloms opmaak. Op smallere schermen liep het
     hoge linkereinde anders door de laatste regels van de visietekst.
