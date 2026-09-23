@@ -512,7 +512,8 @@ Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
   Formward stuurt de bezoeker na verzenden door naar
   `/bedankt` of `/en/thanks`. Die pagina's hebben noindex, geen canonical of alternates, en
   staan niet in de sitemap. Met script gaat het verzenden op de achtergrond (`Accept: application/json`), en verschijnt *Bedankt voor je
-  bericht* op de plek van het formulier, met de focus erop. Lukt het niet, dan zegt een
+  bericht* op de plek van het formulier, met de focus erop, in een kader (de standaard
+  `Card`), zodat de melding niet in de lege ruimte zweeft. Lukt het niet, dan zegt een
   statusregel dat, met Simons e-mailadres als uitweg.
 - R-S4.4: Er is geen afsluiter onder het formulier meer; de lage drempel zit in het
   voorbeeld in het berichtveld (R-S4.3b).

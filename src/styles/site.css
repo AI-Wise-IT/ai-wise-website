@@ -466,6 +466,9 @@ textarea.field__control{line-height:var(--aiw-leading-body);resize:vertical}
 /* Formward's honeypot: off screen rather than display:none, as Formward asks,
    and out of the tab order and the accessibility tree (Contact.astro). */
 .contact-form__trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+/* The thanks stand in a frame, the standard Card, so they do not float in the
+   space the form leaves behind. The form is gone by then, so it is the only
+   card in the section. */
 .contact-form__done{margin-top:var(--aiw-space-10)}
 .contact-form__done:focus{outline:none}
 .contact-form__done-heading{font-size:var(--aiw-text-lg);font-weight:var(--aiw-weight-semibold);color:var(--aiw-text-primary);margin-bottom:var(--aiw-space-2)}
