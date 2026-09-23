@@ -25,6 +25,8 @@ export default defineConfig({
   // finds one version finds the other. See docs/prd.md, R-S.4 and R-L5.
   integrations: [
     sitemap({
+      // The thank-you pages are only reached by sending the contact form.
+      filter: (page) => !/\/(bedankt|en\/thanks)$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: "nl",
         // Same hreflang codes the pages declare in their own head, so the two
@@ -33,7 +35,9 @@ export default defineConfig({
       },
     }),
   ],
-  // The site loads nothing from anywhere else, so the policy is simply "self".
+  // The site loads nothing from anywhere else, so the policy is "self", with one
+  // exception: the contact form posts to Formward (forms.formward.eu), as a form
+  // submission without JavaScript and as a fetch with it. See docs/prd.md, S4.
   // Astro hashes the inline stylesheet and the analytics bootstrap script and
   // puts those hashes in the policy, which is why 'unsafe-inline' is not needed.
   // frame-ancestors is omitted on purpose: it is ignored in a meta-tag policy,
@@ -45,10 +49,10 @@ export default defineConfig({
         "default-src 'self'",
         "img-src 'self' data:",
         "font-src 'self'",
-        "connect-src 'self'",
+        "connect-src 'self' https://forms.formward.eu",
         "object-src 'none'",
         "base-uri 'self'",
-        "form-action 'self'",
+        "form-action 'self' https://forms.formward.eu",
       ],
     },
   },

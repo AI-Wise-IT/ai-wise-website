@@ -2,20 +2,23 @@
 /**
  * S6. Persistent contact route, bottom right.
  *
- * The blue outline variant rather than a fill: the design system allows one
- * signal button per view and that is the hero call to action. No WhatsApp green
+ * The blue outline variant rather than a fill: the signal fill is kept for the
+ * page's one action, booking a free scan (R-V6). No WhatsApp green
  * either, because the palette is four colours and green is not one of them.
  * Icon only, with the same Tabler WhatsApp logo as the contact button. What a
  * screen reader hears is the visually hidden text: the label from the copy
  * ("Message me on WhatsApp") and the hint that the link opens in a new tab.
  * Round, by Simon's choice; see site.css.
  *
- * The script below gets the button out of the way in two situations: while the
- * page is being scrolled, and once the reader has reached the contact buttons,
- * because those include a WhatsApp button of their own. "Reached" means the top
+ * The script below gets the button out of the way in three situations: while
+ * the page is being scrolled, while the scan section's button is in view, and
+ * once the reader has reached the contact form. The scan button opens WhatsApp
+ * too, so two WhatsApp buttons would be on screen at once; over the form, the
+ * floating button would cover its fields. "Reached" means the top
  * of the buttons is above the bottom edge of the window: they are in view, or
  * the page is scrolled past them towards the footer. Scrolling back up above
- * them brings the floating button back. The heading and the text of the contact
+ * them brings the floating button back. The scan button only hides it while it
+ * is on screen; past it, the floating button returns. The heading and the text of the contact
  * section come before the buttons, so the floating button is still there while
  * someone reads them. The script only toggles a class; the fades and the
  * non-interactive hidden state live in site.css (.wa-float--hidden).
@@ -57,7 +60,8 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
   if (button) {
     // Only the home pages have contact buttons; the privacy pages do not, and
     // there the button only steps aside while the page scrolls.
-    const contactActions = document.querySelector<HTMLElement>(".contact__actions");
+    const contactActions = document.querySelector<HTMLElement>(".contact-form");
+    const scanActions = document.querySelector<HTMLElement>(".scan__actions");
     let scrolling = false;
     let idleTimer: number | undefined;
     let lastTabAt = Number.NEGATIVE_INFINITY;
@@ -80,18 +84,28 @@ const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.co
     const reachedContactActions = (): boolean =>
       contactActions !== null && contactActions.getBoundingClientRect().top < window.innerHeight;
 
+    // True only while the scan button is on screen, not below it.
+    const scanActionsInView = (): boolean => {
+      if (scanActions === null) return false;
+      const rect = scanActions.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    };
+
     const update = (): void => {
       // While scrolling the button is hidden anyway, so the position is only
       // measured once the page is still.
-      const hide = (scrolling || reachedContactActions()) && !hasKeyboardFocus();
+      const hide =
+        (scrolling || scanActionsInView() || reachedContactActions()) && !hasKeyboardFocus();
       button.classList.toggle(HIDDEN_CLASS, hide);
     };
 
     // The observer catches the buttons coming into or leaving view without a
     // scroll the handler below counts, such as a scroll caused by moving focus
     // with Tab. Its first callback also sets the state on page load.
-    if (contactActions && "IntersectionObserver" in window) {
-      new IntersectionObserver(update).observe(contactActions);
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(update);
+      if (contactActions) observer.observe(contactActions);
+      if (scanActions) observer.observe(scanActions);
     }
 
     window.addEventListener("keydown", (event) => {

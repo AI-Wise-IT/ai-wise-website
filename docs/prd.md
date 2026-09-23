@@ -1,4 +1,4 @@
-# PRD, AI Wise website
+﻿# PRD, AI Wise website
 
 Status: versie 9, live. De site staat sinds 11 september 2026 in productie op Vercel en
 serveert https://aiwise.it.com en https://www.aiwise.it.com. Beide taalversies zijn
@@ -101,12 +101,14 @@ weten nog niet welke. Ze zoeken geen leverancier, ze zoeken een gesprek.
 
 Vakgenoten die op dezelfde manier werken: bouwen met AI-agents, praktisch, met zorg voor
 overdracht en craft. Voor uitwisseling en samenwerking, niet als klant. Vermoedelijk vaker
-Engelstalig, wat een van de redenen is dat de site tweetalig is.
+Engelstalig, wat een van de redenen is dat de site tweetalig is. Sinds 23 september 2026
+spreekt de site hen niet meer apart aan (R-S4.1b); het contactformulier staat voor hen net
+zo open als voor iedereen.
 
 ### 3.2a Samenwerkingspartners: ontwerpers en contentschrijvers
 
-Vakmensen die vormgeving en tekst voor hun rekening nemen, zodat Simon zich op de
-functionaliteit kan richten. Ze worden in Contact apart aangesproken, na ontwikkelaars.
+Ontwerpers en contentschrijvers met wie Simon samenwerkt. Tot 23 september 2026 werden ze
+in Contact apart aangesproken; dat is weg (R-S4.1b).
 
 ### 3.3 Terzijde: de warme lead die de site checkt
 
@@ -139,7 +141,7 @@ taalversies, en wordt niet vertaald. Bevestigd door het designsysteem.
 | S1 | Hero | Wie is dit, waar staat het voor | `Home.Hero` |
 | S2 | Visie | De stelling uitwerken in herkenbare taal | `Home`: "What I build" en "Who it is for", samengevoegd tot proza |
 | S3 | Over Simon | De mens achter AI Wise, met portret | `Practice.jsx`, sterk ingedikt |
-| S4 | Contact | Beide doelgroepen uitnodigen, twee contactroutes | `Contact.jsx` zonder formulier |
+| S4 | Contact | Beide doelgroepen uitnodigen, contactformulier | Formulier naar Formward (R-S4.3) |
 | S5 | Footer | Zakelijke gegevens, tagline, privacylink | `Chrome.Footer` |
 | S6 | WhatsApp-knop | Zwevend, altijd bereikbaar | Nieuw |
 
@@ -187,22 +189,30 @@ Vier inhoudelijke secties.
   `lang="en"` op de Nederlandse pagina. De `h1` zegt in de taal van de pagina wat Simon
   doet. Dit wijkt af van `Home.jsx` in het designsysteem, waar de tagline de `h1` is: een
   Engelse kop vertelde een Nederlandse bezoeker niets over het werk. Vastgesteld (NL):
-  *"Jij ziet het voor je. Ik bouw het."* Vastgesteld (EN): *"You picture it. I’ll build
-  it."* De Engelse pagina heeft geen `lang` op de eyebrow nodig.
+  *"Jij kent je onderneming. Ik ken de mogelijkheden."* Vastgesteld (EN): *"You know your
+  business. I know what’s possible."* De Engelse pagina heeft geen `lang` op de eyebrow
+  nodig. Tot 23 september 2026 stond hier *"Jij ziet het voor je. Ik bouw het."* Inge
+  wees erop dat die kop lezers afschrikt die het nog niet voor zich zien. De nieuwe kop zet
+  twee soorten kennis naast elkaar, zodat ook wie nog geen idee heeft zich aangesproken
+  voelt.
 - R-S1.2a: De kop breekt op de zinsgrens. Elke zin is een eigen regel in de markup, want
   een gebalanceerde regelafbreking splitst anders de eerste zin. De display-maat van 54px
   geldt vanaf 1200px; daaronder is het 45px, zodat de eerste zin ook tussen 1024 en 1200px
   op één regel past. Op mobiel mag de eerste zin zelf over twee regels lopen.
 - R-S1.3: Lead-paragraaf: in gewone taal wat Simon maakt en voor wie. Vastgesteld (NL):
-  *"Een website, een app of een tool die terugkerend werk overneemt. Zodat organisaties zich
-  kunnen richten op werk dat ertoe doet."* Vastgesteld (EN): *"A website, an app or a tool
-  that takes repetitive work off your plate. So organisations can do the work that
-  matters."* De lead werkt de kop uit: de opsomming is wat "het" kan zijn. De bijzin hoort
+  *"Samen ontdekken we wat jou verder helpt. Daarna bouw ik het: een website, een app of een
+  tool die terugkerend werk overneemt."* Vastgesteld (EN): *"Together we find out what will
+  move you forward. Then I build it: a website, an app or a tool that takes repetitive work
+  off your plate."* De lead zegt wat er gebeurt als de twee kanten uit de kop samenkomen:
+  eerst samen uitzoeken, dan bouwen. Het bouwen staat daarmee weer in de hero, nu de kop het
+  niet meer noemt. De opsomming is wat "het" kan zijn. De bijzin hoort
   bij de tool en niet bij de website, want een website neemt geen terugkerend werk over, en
   de eerdere formulering liet hem op alle drie slaan. AI staat niet meer in de hero; de
-  visie werkt dat uit. De tweede zin noemt het gevolg in plaats van de doelgroep, want
-  "Voor organisaties die..." sloot werk buiten die grens impliciet uit.
-- R-S1.4: Eén knop, `signal`, die naar `#contact` ankert. Zie R-V6.
+  visie werkt dat uit.
+- R-S1.4: Eén knop, `signal`, die naar `#kansenscan` ankert: *Plan een gratis
+  AI-Kansenscan* (Engels: *Book a free AI Opportunity Scan*). Onder 640px zakt de knop naar
+  de bodymaat met 16px zijkant, zodat het Engelse label op 375px op één regel past. Zie
+  R-V6 en S2b.
 - R-S1.5: De hero staat op een foto: een steenarend die boven een groen bladerdak glijdt,
   met een donkere laag die de tekst leesbaar houdt. Zie R-V4 en R-V4a. De weave staat niet
   meer op de website.
@@ -214,39 +224,64 @@ Vier inhoudelijke secties.
 
 - R-S2.1: **De visie is algemeen.** Ze beschrijft de verschuiving: een website, app of tool
   laten bouwen is een stuk toegankelijker geworden, en daarmee haalbaar voor kleine
-  praktijken en organisaties die betekenisvol werk doen. Concrete situaties horen in de
+  ondernemers en organisaties die betekenisvol werk doen. Concrete situaties horen in de
   voorbeelden, niet in de visie.
 - R-S2.2: **AI is de reden, niet het onderwerp.** De visie gaat over wat er nu mogelijk is.
   Ze neemt geen deel aan de discussie of AI er zou moeten zijn, en formuleert positief. Het
-  doel is de lezer te inspireren over wat er nu kan. Er wordt geen aanbod gedaan.
-- R-S2.2a: Kopje *Wat er nu kan*, kop *Wat je voor ogen hebt, is nu binnen bereik*. De
-  laatste zin nodigt uit om eerder onhaalbare plannen opnieuw te bekijken: *Dat maakt het
-  de moeite waard om opnieuw te kijken naar plannen die eerder niet haalbaar leken.* De
-  reflectie sluit de visie af: *Welk idee zou jij alsnog tot leven willen brengen?*
-  In het Engels: kopje *What’s possible now*, kop *Your idea is closer than you think*,
-  laatste zin *It’s worth revisiting plans that once felt out of reach.*, reflectie
-  *What’s an idea you’d still love to bring to life?*
+  doel is de lezer te inspireren over wat er nu kan. Er wordt geen aanbod gedaan; dat doet
+  de scan-sectie erna (S2b), en daar mag AI wel het onderwerp zijn.
+- R-S2.2a: Kopje *Wat er nu kan*, kop *Je idee is dichterbij dan je denkt*. De visie telt
+  drie zinnen en eindigt bij *kleine ondernemers en organisaties die betekenisvol werk
+  doen*. In het Engels: kopje *What’s possible now*, kop *Your idea is closer than you
+  think*. De oude kop, *Wat je voor ogen hebt, is nu binnen bereik*, ging ervan uit dat de
+  lezer al wist wat hij wilde. De reflectie *Welk idee zou jij alsnog tot leven willen
+  brengen?* is weg: de scan-sectie erna nodigt al uit, en een vraag ertussen remde dat af.
+  De zin die uitnodigde
+  om eerder onhaalbare plannen opnieuw te bekijken is weg, op advies van Inge: hij herhaalde
+  wat erboven al stond. Om dezelfde reden zegt de visie *een idee* en niet *een helder
+  idee*: veel lezers hebben dat heldere idee nog niet.
 - R-S2.3: **Geen servicegrid, wel een opsomming ter inspiratie.** De vier `Card`-tegels uit
   `Home` ("Workflow automation", "Dashboards and reporting", "Internal tools", "Data
   groundwork") worden niet overgenomen: tegels met dienstnamen lezen als een menu. In
-  plaats daarvan een lijst van zeven korte, volledige voorbeelden onder de intro *Misschien
-  zie je zoiets voor je:* (Engels: *You may be picturing something like this:*), zonder
+  plaats daarvan een lijst van zeven korte, volledige voorbeelden onder de intro *Hier kun
+  je aan denken:* (Engels: *Some ideas to think about:*), zonder
   iconen, kopjes of categorieën, en zonder afsluitende regel. Beide talen hebben dezelfde
   opbouw: intro, zeven voorbeelden, geen notitie eronder. Elk voorbeeld is kort maar
-  compleet en draagt nog steeds de waarde. De laatste twee gaan over gespreksverslagen die
-  automatisch verwerkt worden en een agent die een tijdrovend klusje overneemt. De lijst is
-  door Simon zelf geschreven, in beide talen.
+  compleet en draagt nog steeds de waarde. De lijst is door Simon zelf geschreven, in beide
+  talen. Sinds 23 september 2026:
+  1. *Een doorzoekbaar archief van je WhatsApp-gesprekken, inclusief spraakberichten.*
+     Gebaseerd op Simons eigen WhatsApp-archief.
+  2. *Een vernieuwing van je website.*
+  3. *Alles wat een klant je stuurde, via mail of WhatsApp, in één overzicht.* Data-integratie,
+     uitgelegd aan een alledaagse situatie.
+  4. *Een webshop of online lesomgeving naast je fysieke aanbod.* (eerder twee punten)
+  5. *Deelnemers die hun aanmeldingen of lidmaatschap kunnen beheren.*
+  6. *Gespreksverslagen die automatisch verwerkt worden.*
+  7. *Een agent die dat tijdrovende klusje overneemt.*
+
+  De volgorde is Simons keuze: de voorbeelden die de meeste mensen aanspreken staan
+  bovenaan. *Aanmeldingen die rechtstreeks in je administratie terechtkomen* is weggehaald,
+  zodat het er zeven blijven. In het Engels, in dezelfde volgorde: *A searchable archive of
+  your WhatsApp chats, voice messages included.*, *A modernised website.*, *Everything a
+  client sent you, by email or WhatsApp, in one overview.*, *A webshop or online teaching
+  space alongside your in-person offering.*, *Participants who manage their own bookings or
+  memberships.*, *Meeting notes processed automatically.*, *An agent that takes over your
+  most tedious task.*
 - R-S2.3c: **De lijst staat in één kader** dat iets afsteekt van de achtergrond: de
   standaardvariant van `Card` uit het designsysteem, dus `surface-card` met een 1px rand in
   `border-default`, 2px hoeken, 24px binnenruimte op mobiel en 32px vanaf 768px. Eén kader
   om de hele lijst, geen kader per voorbeeld.
 - R-S2.3b: **Twee kolommen vanaf 1024px.** Het label *Wat er nu kan* staat boven beide
-  kolommen. Daaronder staat links de visie, inclusief de kop, en rechts de voorbeelden in
-  hun kader. Het kader begint daardoor op dezelfde hoogte als de kop. Beide kolommen komen
+  kolommen. Daaronder staan links de voorbeelden in hun kader en rechts de visie, inclusief
+  de kop, zodat de lezer eerst iets concreets ziet om zich in te herkennen (op advies van
+  Inge). De kop begint daardoor op dezelfde hoogte als het kader. Gestapeld is de volgorde
+  kop, kader, tekst, zodat het kader niet zonder kop bovenaan staat; de introzin *Hier kun
+  je aan denken:* is dan verborgen, omdat de kop de lijst al inleidt. Naast de visie heeft
+  de introzin wel een functie en staat hij er. Beide kolommen komen
   op 488px uit binnen
   de 1200px-container, wat neerkomt op 58 tekens: binnen de leesmaat van 68 die het
   designsysteem stelt. Op het breekpunt zelf is elke kolom 432px, ofwel 51 tekens, wat nog
-  comfortabel leest. Onder 1024px stapelen ze, visie eerst. De voorbeeldenlijst is altijd één kolom;
+  comfortabel leest. Onder 1024px stapelen ze: kop, voorbeelden, tekst. De voorbeeldenlijst is altijd één kolom;
   twee kolommen binnen een kolom zouden de lijst terugbrengen tot losse fragmenten.
 - R-S2.3a: De voorbeelden zijn illustratie, geen aanbod. Ze noemen geen prijs, geen
   doorlooptijd, geen pakket, en er staat geen call to action bij. `llms.txt` zegt er
@@ -255,10 +290,65 @@ Vier inhoudelijke secties.
 - R-S2.4: De vier kernwaarden worden **niet** als genummerd blok opgevoerd zoals in de
   kit. Een eigen sectie over kernwaarden, met *passende technologie in plaats van zoveel
   mogelijk* als vertrekpunt, is een kandidaat voor een latere uitbreiding van de site.
-- R-S2.5: Hier staat de enige reflectie op de pagina, in Newsreader. Het designsysteem
-  staat er maximaal één per surface toe.
-- R-S2.6: De visie is kort: rond de zeventig woorden, exclusief de reflectie.
+- R-S2.5: Er staat geen reflectie meer op de pagina, en dus geen Newsreader. Het
+  designsysteem staat er maximaal één per surface toe; nul mag ook. Het lettertype wordt
+  alleen gedownload als een pagina het gebruikt.
+- R-S2.6: De visie is kort: rond de vijftig woorden.
 - R-S2.7: Geen kwantitatieve claim over tijdsbesparing, veiligheid of privacy.
+
+**S2b, AI-Kansenscan**
+
+- R-S2b.1: **Een gratis aanbod, geen verkooptraject.** De sectie beschrijft de gratis
+  AI-Kansenscan in lopende tekst, zonder genummerde stappen en zonder prijs behalve
+  *gratis*. Wat er na de scan kan komen, noemt de sectie niet. Simon koos
+  daarvoor op 23 september 2026: wie het aanbod ziet, mag niet het gevoel krijgen dat het
+  een salesgesprek is. Gratis zijn het gesprek van een uur en de kansenschets daarna. Of
+  het uitzoeken en het plan daarna betaald zijn, laat de site open.
+- R-S2b.2: Kopje *Zo kan ik bijdragen*, kop *Begin met een AI-Kansenscan*. Twee
+  alinea's, door Simon geschreven: *In één uur kijken we samen naar de kansen voor jouw
+  onderneming*, met de drie ingangen erin (nog niets met AI gedaan, al geëxperimenteerd,
+  een idee om te onderzoeken), en de **Kansenschets** die de lezer na afloop vrijblijvend
+  ontvangt, met een eerstvolgende stap waarmee hij zelf aan de slag kan. In het Engels: kopje *How I can help*,
+  kop *Start with an AI Opportunity Scan*; *gratis* staat niet in de kop, omdat het al
+  op de hero-knop en groot in de aanbodkaart staat; de kansenschets heet daar *opportunity
+  brief*.
+- R-S2b.2a: **De sectie valt op door een aanbodkaart op warm light.** De sectie zelf staat
+  op de gewone paginagrond. De plek van de kaart volgt het 12-koloms grid van het
+  designsysteem (24px gutter), op verzoek van Simon: de kaart heeft 6 van de 12 kolommen
+  tot zijn beschikking en staat daarin gecentreerd op 4 kolommen op een breed scherm, en
+  gecentreerd op 8 kolommen op een smal scherm. Concreet: onder 640px de volle breedte,
+  vanaf 640px kolom 3 tot en met 10 onder de tekst, vanaf 1024px kolom 8 tot en met 11
+  naast kop en tekst (1 tot en met 6), met de bovenkant van de kaart op de hoogte van de
+  kop. Onder 640px rekt de kaart niet over het hele scherm: hij staat gecentreerd op
+  hoogstens 360px, ongeveer de breedte van de kaart op een breed scherm. De kaart staat op warm
+  light, het vlak dat het designsysteem voor aanbiedingen en briefs bestemt. Ze krijgt
+  `data-aiw-surface="light"`, zodat alle tokens erin naar de lichte set wisselen. Vlak in de
+  paginakleur van de lichte set (`ink-0`, warm light), zonder rand, met de 2px hoeken en
+  binnenruimte van `Card`. Een eerdere versie zette de hele sectie op een band een stap
+  hoger op de donkere ramp; Simon vond die niet onderscheidend genoeg, en de band begon
+  direct onder de inhoud van de visie. Een mosgroen vlak viel af: warm light op mos haalt
+  geen 4,5:1 en de blauwe knop valt weg tegen het groen.
+- R-S2b.2b: **Inhoud van de kaart:** de naam van het aanbod als eyebrow (*AI-Kansenscan*,
+  Engels *AI Opportunity Scan*), dan *Gratis* groot, op de h2-maat, dan drie feiten als
+  opsomming, geen stappen: *1 uur in gesprek*, *Ontvang de **Kansenschets***, *Geheel
+  vrijblijvend*. In het Engels *Free*, *A one-hour conversation*, *Receive the **Opportunity
+  Brief***, *No strings attached*. De knop staat onderaan in de kaart, over de volle breedte.
+  Onder 640px zakt hij naar de bodymaat met 16px zijkant.
+- R-S2b.2c: **Spelling van het aanbod.** Scan en document zijn producten met een eigen
+  naam, met hoofdletters: *AI-Kansenscan* en *de Kansenschets*, in het Engels *AI
+  Opportunity Scan* en *the Opportunity Brief*. De naam van het document staat op de site
+  bovendien vet, overal waar hij genoemd wordt. Simon koos daarvoor op 23 september 2026;
+  het designsysteem is op dezelfde dag bijgewerkt (readme, *Offer language, exactly*, en
+  `sources/brand-record/voice-and-messaging.md`). In `copy.ts` staat de naam tussen `<strong>`, en de
+  alinea's en feiten van de scan worden daarom als HTML weergegeven.
+- R-S2b.3: Eén knop, `signal` met het WhatsApp-icoon, die WhatsApp opent met
+  een vooringevuld bericht: *Hoi Simon, ik wil graag een gratis AI-Kansenscan plannen.*
+  (Engels: *Hi Simon, I’d like to book a free AI Opportunity Scan.*). Label *Nu plannen*
+  (Engels: *Book now*): de naam van de scan staat al in de kop en bovenaan de kaart, en een
+  kort label past op elke breedte op één regel in een kaart van 4 kolommen. Gevuld, op verzoek van Simon:
+  de hero-knop en deze knop vragen allebei om dezelfde actie (R-V6). De knop opent een nieuw
+  tabblad en zegt dat.
+- R-S2b.4: De sectie heeft `id="kansenscan"`; de hero-knop ankert hierheen.
 
 **S3, Over Simon**
 
@@ -288,17 +378,28 @@ Vier inhoudelijke secties.
   die het professionele kader ondermijnen.
 - R-S3.5: Geen ervaringsclaims ("wat ik vaak zie", "uit ervaring") tenzij expliciet
   bevestigd.
-- R-S3.6: Maximaal circa 150 woorden per taalversie. De Nederlandse versie telt 76 woorden,
-  de Engelse 74.
+- R-S3.6: Maximaal circa 150 woorden per taalversie. De Nederlandse versie telt 67 woorden,
+  de Engelse 68.
 - R-S3.7: **Op de Nederlandse pagina is de tekst een opsomming van vijf korte punten**, door
   Simon zelf geschreven en zonder correcties overgenomen (R-C7). Kopje *Over mij*, kop
   *Simon van Meegdenburg*. De vijf punten:
-  1. *Sinds 2018 bouw ik systemen met data, als BI-consultant en als data engineer.*
-  2. *Naast mijn werk leerde ik websites en apps bouwen, en daar heb ik nog meer plezier in.*
-  3. *Met AI werk ik een idee in ongeveer een dag uit tot een eerste prototype.*
-  4. *Door te experimenteren leerde ik wat er nodig is om een werkend systeem te maken dat
-     mensen dagelijks gebruiken.*
-  5. *Als techneut bouw ik graag voor organisaties waarmee ik me verbonden voel.*
+  1. *Al acht jaar bouw ik systemen met data, als BI-consultant en als data engineer.*
+  2. *Ik bouw websites en apps, van ontwerp tot een werkend product.*
+  3. *Ik weet wat er nodig is om een volwaardig systeem te maken dat mensen dagelijks
+     gebruiken.*
+  4. *Als techneut bouw ik graag voor organisaties met een maatschappelijk belang.* Tot 23
+     september 2026: *…waarmee ik me verbonden voel*; Inge wees erop dat lezers niet weten
+     waarmee Simon zich verbonden voelt.
+  5. *Met AI werk ik een idee in ongeveer een dag uit tot een eerste prototype.*
+
+  Op 23 september 2026 herschreven na feedback van Inge, Simons coach, en door Simon
+  goedgekeurd. Punt 2 zegt nu actief wat Simon bouwt, *van ontwerp tot een werkend
+  product*, zodat ook blijkt dat hij een complete website maakt; in punt 3 werd *werkend*
+  daarom *volwaardig*, om het woord niet twee keer te hebben. Het prototype staat als
+  laatste, als afsluiter vlak voor Contact. Inge vond dat punt eerder een stap uit een
+  werkwijze; die sectie is er niet gekomen, dus het bleef in Over mij. Een jaartal zegt lezers weinig, dus punt 1 noemt het aantal
+  jaren; dat getal moet jaarlijks mee. *Nog meer plezier* deed het data-werk uit punt 1
+  tekort, en *door te experimenteren* klonk voorzichtiger dan bedoeld.
 
   Het vierde punt begon eerst met *Al experimenterend*. In Source Sans 3 lijken de kleine l
   en de hoofdletter I op elkaar, dus *Al* las als *AI*. Simon heeft de nieuwe zin
@@ -310,13 +411,12 @@ Vier inhoudelijke secties.
 - R-S3.8: **Op de Engelse pagina is de tekst ook een opsomming van vijf punten**, als eigen
   tekst en geen vertaling, in Brits Engels, door Simon goedgekeurd. Kopje *About me*, kop
   *Simon van Meegdenburg*. De vijf punten:
-  1. *I’ve been building data systems since 2018, first as a BI consultant and later as a
-     data engineer.*
-  2. *In my spare time I learned to build websites and apps, and realised I enjoy that even
-     more.*
-  3. *With AI, I can turn an idea into a first prototype in about a day.*
-  4. *Experimenting taught me what it takes to build a system ready for everyday use.*
-  5. *I’m happiest building for organisations I feel connected to.*
+  1. *I’ve been building data systems for eight years, first as a BI consultant and later as
+     a data engineer.*
+  2. *I build websites and apps, from design to a working product.*
+  3. *I know what it takes to build a system ready for everyday use.*
+  4. *I’m happiest building for organisations that serve the public good.*
+  5. *With AI, I can turn an idea into a first prototype in about a day.*
 
   Beide talen gebruiken dezelfde structuur: `points` in `copy.ts`, weergegeven als
   `.bullet-list`. Het veld voor proza (`paragraphs`) is uit de sectie verwijderd.
@@ -325,56 +425,101 @@ Vier inhoudelijke secties.
 
 Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
 
-- R-S4.1: Kop *Ik hoor graag van je*. De eerste alinea nodigt iedereen uit met een idee dat
-  gebouwd wil worden, een website die aan vernieuwing toe is, of terugkerend werk, ook als het
-  nog niet uitgedacht is.
-- R-S4.1a: **De onderzoeksfase wordt hier benoemd, positief.** *AI Wise is jong en ik ontdek
-  nog volop waar ik het meeste kan betekenen.* Eerder was de afspraak dat de onderzoeksfase
-  impliciet uit de visie zou blijken, maar sinds de visie over wat er nu kan gaat, doet die
-  dat niet meer. De zin staat daarom in Contact, als nieuwsgierigheid en niet als voorbehoud.
-- R-S4.1b: Na een korte overgangszin, *Ik sta open voor samenwerking.*, volgen twee alinea's:
-  een voor ontwikkelaars (werkwijzen uitwisselen, elkaar inspireren in een vak dat snel
-  beweegt) en een voor ontwerpers en contentschrijvers (vormgeving en tekst in handen van
-  vakmensen, zodat Simon zich op de functionaliteit richt). De overgangszin is semibold met
-  extra ruimte erboven, zodat de sectie als twee delen leest.
+- R-S4.1: Kop *Ik hoor graag van je*. Eén korte alinea nodigt uit voor alles wat niet de
+  scan is: *Heb je een vraag, een idee of werk dat steeds weer terugkomt? Stuur me een
+  bericht, ook als het nog niet helemaal uitgedacht is.* Het aanbod zelf staat in S2b.
+- R-S4.1a: **Geen onderzoeksfase meer in de tekst.** De zin *AI Wise is jong en ik ontdek nog
+  volop waar ik het meeste kan betekenen* is op 23 september 2026 weggehaald, op advies van
+  Inge: hij haalde Simon onderuit. De drempelloze uitnodiging die hij droeg, doet nu de
+  AI-Kansenscan.
+- R-S4.1b: **Geen partnertekst.** Tot 23 september 2026 volgden na de uitnodiging een
+  overgangszin (*Ik sta open voor samenwerking*, later *partnerschappen*) en twee alinea's
+  voor ontwikkelaars en voor ontwerpers en contentschrijvers. Simon heeft ze weggehaald,
+  zodat de contactsectie alleen de uitnodiging en het formulier bevat. Het veld in
+  `copy.ts` en de weergave zijn mee verdwenen.
+- R-S4.1c: **De enige gecentreerde sectie, als afsluiting van de pagina.** Kop, uitnodiging
+  en formulier staan in één kolom op het 12-koloms grid: de volle breedte onder 640px en
+  kolom 3 tot en met 10 (8 kolommen) vanaf 640px. Kop, uitnodiging en bedankmelding zijn
+  gecentreerd; de velden en hun tekst blijven links uitgelijnd. De verzendknop loopt over de
+  volle breedte van het formulier, omlijnd en met ook het label in signal blue (5,11:1).
+  Een koord op de naad met Over mij scheidt de sectie van de rest (R-V4c): de gewone
+  sectieruimte erboven, 64px eronder; de onderste helft van de lus mag daar voorbij
+  reiken, want hij ligt aan de rechterrand, naast de kop. Eerder was
+  dat een hairline zoals boven de footer. Een kader om het formulier viel af, omdat het
+  naast de aanbodkaart een tweede kaart zou zijn. **De sectie heeft geen label (eyebrow)**: alle andere labels
+  staan op de linkerkantlijn, en één gecentreerd label zou de uitzondering zijn. De kop
+  draagt de sectie alleen. Simon koos hiervoor op 23 september 2026, nadat de partnertekst
+  was weggehaald en de sectie kort genoeg was om te centreren.
 - R-S4.2: Geen fit-criteria, geen uitsluitingen, geen "ik werk alleen met...". De rode
   lijnen uit het klantprofiel zijn intern materiaal.
-- R-S4.3: Contactroutes als drie knoppen, even prominent: E-mail, LinkedIn
-  (`https://www.linkedin.com/in/simon-v-13833a131/`) en WhatsApp. Blauw omlijnde variant
-  (`.btn--outline-signal`): rand en icoon in signal blue, de naam in warm light, zodat ze
-  duidelijk als knop lezen zonder een tweede gevulde blauwe knop te zijn (R-V6). Vanaf 640px
-  staan ze naast elkaar met icoon en naam. Daaronder tonen ze alleen het icoon, verdelen ze de kolom in
-  gelijke delen en zijn ze minimaal 48px hoog; de naam blijft als toegankelijke naam in de
-  markup. LinkedIn en WhatsApp openen in een nieuw tabblad en dragen de hint uit R-A7, binnen
-  het label, zodat de naam op elke breedte *LinkedIn (opent in een nieuw tabblad)* is. De
-  iconen komen uit Tabler Icons (MIT), omdat Lucide geen WhatsApp-logo heeft.
-  LinkedIn staat ook in `llms.txt` en als `sameAs` in de gestructureerde data van de persoon.
-- R-S4.4: De sectie sluit af met *Een kort bericht is genoeg.* De lage drempel staat daarmee
-  positief geformuleerd, zonder ontkenning.
-- R-S4.4a: De tekst is door Simon geschreven. Eén correctie: *ik inspireer en help elkaar*
-  werd *zodat we elkaar kunnen inspireren en verder helpen*, omdat *elkaar* een meervoud
-  vraagt.
-- R-S4.5: Geen contactformulier in deze ronde. De `components/forms/` groep wordt niet
-  geïmporteerd.
-- R-S4.6: Geen tweede blauwe knop. Zie R-V6.
-- R-S4.7: **Op de Engelse pagina heeft Contact dezelfde opbouw**, als eigen tekst en geen
-  vertaling, in Brits Engels, door Simon goedgekeurd: één alinea, de overgangszin en twee
-  alinea's voor samenwerking. Kopje *Contact*, kop *I’d love to hear from you*.
-  - Alinea: *Is there an idea you’d like to see built, a website that’s overdue for an
-    update, or work that keeps coming back? Tell me about it, even if it isn’t fully thought
-    through yet. AI Wise is young and I’m still discovering where I can be most useful, so
-    I’m curious what you’re picturing.*
-  - Overgangszin: *I’m open to working together.*
-  - Ontwikkelaars: *Are you a developer too? AI moves so fast that we’ll get further
-    together than on our own. I like comparing notes on how we work, so we can inspire one
-    another and keep moving forward.*
-  - Ontwerpers en contentschrijvers: *Are you a designer or content writer? I’m happy to
-    leave design and writing to people who have made it their craft. That lets me focus on
-    what I do best: building the functionality.*
-  - Knoppen *Email*, *LinkedIn* en *WhatsApp*; afsluiter *A short message will do.*
-  - Het WhatsApp-bericht dat klaarstaat: *Hi Simon, I found the AI Wise website and have a
-    question.* Net als het Nederlandse gaat het via `encodeURIComponent` in de `wa.me`-link,
-    in de contactknop en in de zwevende knop.
+- R-S4.3: **Een contactformulier in plaats van contactknoppen**, sinds 23 september 2026 op
+  verzoek van Simon. De knoppen voor e-mail, LinkedIn en WhatsApp zijn weg: WhatsApp staat
+  al op de scan-knop en in de zwevende knop, en het formulier komt rechtstreeks in Simons
+  mailbox. LinkedIn blijft als `sameAs` in de gestructureerde data en in `llms.txt`.
+  - Velden: *Naam* en *E-mail* (verplicht), *Telefoon (optioneel)* naast *E-mail* vanaf
+    1024px (daaronder zou het veld te smal zijn voor zijn placeholder), en *Bericht (optioneel)*. Een eerdere versie liet e-mail of telefoon kiezen, met
+    een hint eronder; Simon koos voor e-mail verplicht en telefoon optioneel.
+  - Opmaak als `Input` en `Textarea` uit het designsysteem (`components/forms`), vertaald
+    naar CSS in `site.css`: veld op `surface-inset` met een 1px rand, 10 bij 12px
+    binnenruimte, 2px hoeken, rand in signal blue bij focus en in clay bij een ongeldig
+    veld na een poging.
+  - **Geen zichtbare labels, wel iconen in het veld**, op verzoek van Simon. Naam, e-mail en
+    telefoon hebben een icoon uit Tabler (`user`, `mail`, `phone`) 12px van de linkerrand,
+    in de muted tekstkleur en signal blue bij focus, met hun naam als placeholder:
+    *Naam*, *E-mail*, *Telefoon (optioneel)*. De labels staan visueel verborgen in de
+    markup, zodat elk veld zijn toegankelijke naam houdt. Dit is sinds 23 september 2026 de
+    standaard in het designsysteem voor herkenbare velden (`Field.prompt.md`, met de props
+    `icon` op `Input` en `hideLabel` op `Field`). Langere formulieren en open vragen houden
+    daar een zichtbaar label. Het berichtveld heeft
+    geen icoon: de voorbeeldzin is zijn placeholder. Rechtsonder in het berichtveld staat
+    een pen (Tabler `pencil`, 32px vlak, 12px van de onderkant en 20px van rechts, zodat de
+    sleepgreep in de hoek vrij blijft). Een klik zet de voorbeeldzin als tekst in het veld,
+    met de cursor aan het eind, als beginpunt om aan te passen. De pen is er alleen zolang
+    het veld leeg is, en alleen met JavaScript. Toegankelijke naam en tooltip: *Gebruik
+    deze tekst als begin* (Engels *Use this text as a starting point*).
+  - De verzendknop *Verstuur bericht* (Engels *Send message*) is omlijnd
+    (`.btn--outline-signal`): de gevulde knop is voor de ene actie van de pagina (R-V6).
+- R-S4.3a: **Verwerking door Formward**, `https://forms.formward.eu/f/237b4807-6292-4fff-9a13-ed0ddd7be363`.
+  Formward is een Zweedse formulierdienst waarvan de hele keten in de EU blijft: hosting en
+  database bij Hostup in Zweden, e-mail via Mailjet in Frankrijk. Gekozen op 23 september
+  2026 na een vergelijking van EU-aanbieders, omdat alleen Formward zowel een eigen
+  bedankpagina als verzenden op de achtergrond ondersteunt; FormPost (Duitsland) viel af
+  omdat de bezoeker daar na verzenden op een pagina van FormPost belandt. Het formulier is
+  gewone HTML met één adres als bestemming, dus overstappen kost één regel.
+  - Verborgen velden: `_subject` (*Nieuw bericht via aiwise.it.com*), `_redirect` (de
+    bedankpagina in de taal van de pagina), `_replyto` (door het script gevuld met het
+    e-mailadres van de bezoeker, zodat Simon direct kan antwoorden) en `_gotcha`, het
+    lokveld van Formward, buiten beeld gezet en uit de tabvolgorde en de
+    toegankelijkheidsboom.
+  - In Formward staan Cloudflare Turnstile en de AI-verrijking uit: beide zouden er een
+    partij bij halen.
+- R-S4.3b: **Het berichtveld schrijft zijn eigen voorbeeld.** De placeholder is *Hoi Simon,
+  ik kom graag met je in contact. Mail of bel me op …* en vult zich met wat de bezoeker
+  invult: *Mail me op anna@bedrijf.nl.*, *Bel me op 06 12345678.* of *Bel me op 06 12345678
+  of mail me op anna@bedrijf.nl.* Blijft het veld leeg, dan wordt precies die zin
+  meegestuurd. Zo is een kort bericht genoeg zonder dat het er hoeft te staan; de oude
+  afsluiter *Een kort bericht is genoeg.* is weg. In het Engels *Hi Simon, I’d like to get
+  in touch.* met *Email or call me at …*, *Email me at …*, *Call me on …* en *Call me on …
+  or email me at …*.
+- R-S4.3c: **Werkt ook zonder JavaScript.** Zonder script is het een gewoon formulier, en
+  Formward stuurt de bezoeker na verzenden door naar
+  `/bedankt` of `/en/thanks`. Die pagina's hebben noindex, geen canonical of alternates, en
+  staan niet in de sitemap. Met script gaat het verzenden op de achtergrond (`Accept: application/json`), en verschijnt *Bedankt voor je
+  bericht* op de plek van het formulier, met de focus erop. Lukt het niet, dan zegt een
+  statusregel dat, met Simons e-mailadres als uitweg.
+- R-S4.4: Er is geen afsluiter onder het formulier meer; de lage drempel zit in het
+  voorbeeld in het berichtveld (R-S4.3b).
+- R-S4.5: De formuliercomponenten van het designsysteem worden niet geïmporteerd; hun maten
+  en kleuren staan als CSS in `site.css` (R-S4.3).
+- R-S4.6: Geen tweede actie in gevuld blauw. Zie R-V6.
+- R-S4.7: **Op de Engelse pagina heeft Contact dezelfde opbouw**, in Brits Engels, zonder
+  label, met de kop *I’d love to hear from you*.
+  - Alinea: *Do you have a question, an idea, or work that keeps coming back? Send me a
+    message, even if it isn’t fully thought through yet.*
+  - Formulier: *Name*, *Email*, *Phone (optional)*, *Message (optional)*, *Send message*; bedankt:
+    *Thanks for your message* / *I’ll get back to you as soon as I can.*
+  - Het WhatsApp-bericht van de zwevende knop blijft *Hi Simon, I found the AI Wise website
+    and have a question.*
 
 **S5, Footer**
 
@@ -437,9 +582,10 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   schermlezer hoort: *Stuur een bericht via WhatsApp (opent in een nieuw tabblad)*, in het
   Engels *Message me on WhatsApp (opens in a new tab)*. Bereikbaar via toetsenbord,
   zichtbare focus-outline.
-- R-S6.4: **Geen gevulde blauwe knop**, want dat zou een tweede `signal` op de pagina zijn.
+- R-S6.4: **Geen gevulde blauwe knop**, want de vulling is voor de ene actie van de pagina,
+  een kansenscan plannen (R-V6).
   Uitvoering als blauw omlijnde knop (`.btn--outline-signal`, zie R-V6): alleen het icoon,
-  geen tekst. Hetzelfde WhatsApp-icoon uit Tabler als in de contactknop, op 24px, in signal
+  geen tekst. Hetzelfde WhatsApp-icoon uit Tabler als in de scan-knop, op 24px, in signal
   blue. **Rond**, 56 bij 56px (`space-12` plus `space-2`), de gebruikelijke maat voor een
   zwevende actieknop en goed te raken, met 1px rand in signal blue en een vlak in
   `surface-card`, omdat hij over tekst en de herofoto zweeft. De focus-outline volgt de
@@ -449,18 +595,22 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
   Het kleine eigen script uit R-S6.7 wordt door Astro gebundeld, staat inline en valt onder
   de CSP-hashes uit R-T3a.
 - R-S6.6: Overlapt op mobiel geen tekst of links.
-- R-S6.7: **Verborgen tijdens scrollen en vanaf de contactknoppen.** Zolang de pagina
+- R-S6.7: **Verborgen tijdens scrollen, bij de scan-knop en vanaf het contactformulier.** Zolang de pagina
   scrolt, vervaagt de knop in 200ms (`duration-base`); zodra er 600ms niet gescrold is, komt
   hij in 320ms (`duration-slow`) terug, beide met `ease-standard`.
-  - Hij blijft verborgen zodra de contactknoppen (`.contact__actions`) in beeld komen, en
-    zolang de pagina voorbij die knoppen gescrold is, tot en met de footer. De regel is: de
+  - Hij blijft verborgen zodra het contactformulier (`.contact-form`) in beeld komt, en
+    zolang de pagina voorbij de bovenkant ervan gescrold is, tot en met de footer; anders
+    ligt hij over de velden. Tot 23 september 2026 waren dat de contactknoppen, en gold wat
+    hieronder over knoppen staat voor die knoppen. De regel is: de
     bovenkant van de knoppen ligt boven de onderrand van het venster. Wie terugscrolt tot
     boven de knoppen, krijgt de zwevende knop terug.
   - Zo staat hij er nog terwijl de kop en de tekst van de contactsectie in beeld zijn, en
     verdwijnt hij pas als de eigen WhatsApp-knop van die sectie zichtbaar wordt. Eerder
     verdween hij al zodra de bovenmarge van `#contact` in beeld kwam, nog voor het woord
     *Contact* te zien was.
-  - Een IntersectionObserver op `.contact__actions` meldt het moment dat de knoppen in of
+  - Hij is ook verborgen zolang de knop van de scan-sectie (`.scan__actions`) in beeld is,
+    want die opent ook WhatsApp. Voorbij die knop komt hij terug.
+  - Een IntersectionObserver op `.contact-form` en `.scan__actions` meldt het moment dat de knoppen in of
     uit beeld gaan, ook bij scrollen door Tab. De positie zelf wordt bij elke evaluatie
     gemeten, zodra de pagina stilstaat. Een sprong in één keer van boven de knoppen naar
     eronder (End-toets, herstelde scrollpositie na herladen) laat de knoppen nooit snijden
@@ -469,7 +619,7 @@ Structuur volgt `Chrome.Footer`, met de pagina-kolom vervangen door zakelijke ge
     bovenaan, zichtbaar met de kop van Contact in beeld en de knoppen net onder de vouw,
     verborgen zodra de knoppen 20px in beeld zijn, verborgen bij de footer, na een sprong
     naar onderen en na herladen onderaan, en weer zichtbaar na terugscrollen.
-  - Alleen de homepagina's hebben contactknoppen; de privacypagina's kennen alleen het
+  - Alleen de homepagina's hebben het formulier; de andere pagina's kennen alleen het
     verbergen tijdens scrollen. Het script zet alleen een klasse (`.wa-float--hidden`), geen
     inline stijlen.
 - R-S6.8: Verborgen betekent: dekking 0, niet klikbaar (`pointer-events: none`) en na de
@@ -558,8 +708,8 @@ in `tokens/` en `guidelines/`.
     een taallink, 14px onder een kopje en onder een footerkolomtitel, 18px boven de
     copyrightregel, 22px onder de hero-eyebrow, 44px boven de footer-baseline en 56px
     footerpadding.
-  - 48px minimale hoogte voor de contactknoppen onder 640px: een touch target, en
-    tegelijk de waarde van `--aiw-space-12` (R-S4.3).
+  - 10 bij 12px binnenruimte in de velden van het contactformulier, uit `Input.jsx` van
+    het designsysteem (R-S4.3), en het lokveld 10000px buiten beeld.
   - De art direction van de hero: de 520px in de hoogte van het staande kader en de
     verloopstops op 56, 110, 170 en 240px. Die volgen de foto en geen schaal (R-V4a en
     R-V4b).
@@ -575,8 +725,9 @@ in `tokens/` en `guidelines/`.
   - Breekpunten op 640, 768, 1024 en 1200px, waarbij de max-width-vormen 0,02px lager
     staan zodat ze de min-width-vormen niet overlappen. De layout-tokens kennen geen
     breekpunten.
-  - De 1px-uitsnede van `.visually-hidden` en `.contact__action-label`, het gebruikelijke
-    idioom.
+  - De 1px-uitsnede van `.visually-hidden`, het gebruikelijke idioom.
+  - 360px als grootste breedte van de aanbodkaart onder 640px (R-S2b.2a), en de tegelmaten
+    van het koord op de naad met Contact: 150, 200 en 260px, met 2px overlap (R-V4c).
 - R-V2: **Near-black surface.** De hele site staat op `#0B0D0C`. Het designsysteem heeft
   een volwaardige lichte surface, maar wijst die expliciet toe aan documenten: geen enkele
   pagina in de site-set staat op warm light. De `moss-deep` en `blue-deep` varianten zijn
@@ -608,14 +759,15 @@ in `tokens/` en `guidelines/`.
   Staand: vanaf de bovenrand over het hele tekstblok (84% naar 78%) en daarna in 192px
   uitlopend; de laag hangt aan het tekstblok en volgt dus de teksthoogte op elke breedte.
   Metingen staan in R-A1a.
-- R-V4c: **Eén koord als stil accent op de naad tussen visie en Over mij.** Het koord staat
+- R-V4c: **Eén koord als stil accent op de naad tussen visie en kansenscan.** Het koord staat
   live, maar **het koordsysteem als geheel blijft experimenteel**. Dat is Simons positie: de
   ring is niet opgelost, en één werkend horizontaal koord bewijst niet dat het systeem
   structureel werkt. Wat hieronder staat beschrijft dus wat er staat, niet een vastgestelde
   visuele taal.
   - Het koord loopt op smalle schermen hoog links en laag rechts over de volle breedte.
-    Vanaf 1024px is het horizontaal gespiegeld: laag onder de reflectie links en hoog
-    achter het voorbeeldenkader rechts, zodat de langere Nederlandse slotvraag vrij blijft.
+    Vanaf 1024px is het horizontaal gespiegeld: laag achter het voorbeeldenkader links en
+    hoog rechts, onder de visietekst. Op 23 september 2026 visueel gecontroleerd op 1440px
+    en 375px, nadat de kolommen van plaats wisselden en de reflectie verdween.
     `cord-o3-horizontal.svg`, afgeleid van O3. Het is een kwartslag gedraaid en 2,2 keer
     verlengd langs het koord, met ronde strengen van ongeveer 12px op 1440px.
   - Het staat in `Cord.astro`, als achtergrondafbeelding onder de inhoud, zonder eigen
@@ -632,18 +784,40 @@ in `tokens/` en `guidelines/`.
   - Een ring naast de contacttekst is geprobeerd en in deze vorm afgewezen: Simon had niet een
     hele ring in de lege ruimte voor ogen, maar 50 à 60 procent ervan, aflopend over de
     paginarand. Misschien een andere keer opnieuw te proberen.
+  - **Experiment sinds 23 september 2026: een koord op de naad tussen Over mij en
+    Contact**, in plaats van een hairline. Het koord komt rechts de pagina in, maakt een
+    bocht en gaat er weer uit, gecentreerd op de bovenrand van de contactsectie. Het is
+    opgebouwd uit twee hoektegels van het designsysteem (`assets/weave/corners/`),
+    bottom-right A boven right-top B, zonder hun near-black achtergrondvlak. Op de naad komt
+    de registratie overeen, dus elke streng houdt één kleur; de twee sets kruisen de andere
+    kant op, zoals het designsysteem voor een run vraagt. De tegels overlappen 2px, zodat op
+    de naad geen haarlijn van de pagina doorschemert. Tegelmaat 150px onder 768px, 200px
+    vanaf 768px en 260px vanaf 1200px, zodat de bocht, twee derde tegel diep, vrij blijft
+    van de tekst erboven en eronder. Onder de inhoud, `aria-hidden`, en de sectie knipt
+    horizontaal af, zodat de pagina niet breder wordt.
+  - Eerdere stappen in dit experiment, dezelfde dag: het koord stond eerst naast het
+    midden van het formulier, en eerst met twee A-tegels, waardoor de kleuren op de naad
+    wisselden; Simon wilde dat een doorlopend koord één kleur houdt. De vorm is
+    gespiegeld, omdat beide sets dezelfde vorm hebben; tegels van verschillende maat
+    sluiten niet aan.
+  - **Het koord tussen visie en kansenscan is op alle breedtes gespiegeld**, laag links en
+    hoog rechts, zoals eerst alleen in de tweekoloms opmaak. Op smallere schermen liep het
+    hoge linkereinde anders door de laatste regels van de visietekst.
 - R-V5: **Geen schaduwen, glows, gradients of blur.** Elevatie is een stap op de neutrale
   ramp plus een 1px hairline. Radius is 2px voor knoppen, kaarten en beeldcrops, 0 voor
   banden en rules. De enige uitzondering is de leesbaarheidslaag over de herofoto uit
   R-V4b: een verloop van near-black naar transparant, uitsluitend om tekst leesbaar te
   houden, nooit op merkgrafiek. Voor de radius is er ook één uitzondering: de zwevende
   WhatsApp-knop is rond, op verzoek van Simon (R-S6.4).
-- R-V6: **Eén `signal`-knop op de hele pagina.** Blauw betekent "dit is wat je moet doen".
-  Dat is hier de hero-CTA naar `#contact`. Op een single pager is de hele pagina één view,
-  dus de regel geldt over de volle lengte. De regel gaat over het gevulde vlak: omlijnde
+- R-V6: **Eén actie in `signal` op de hele pagina.** Blauw betekent "dit is wat je moet
+  doen", en dat is hier één ding: een gratis kansenscan plannen. Twee knoppen dragen die
+  actie gevuld: de hero-CTA, die naar `#kansenscan` ankert, en de knop in de scan-sectie,
+  die WhatsApp opent (R-S2b.3). Tot 23 september 2026 was de hero-CTA de enige gevulde
+  knop; Simon koos ervoor de scan-knop ook te vullen, omdat het dezelfde actie is. Een
+  gevulde knop voor iets anders blijft uitgesloten. De regel gaat over het gevulde vlak: omlijnde
   knoppen hoeven niet grijs te zijn en mogen signal blue gebruiken voor rand en icoon. Dat
   is de variant `.btn--outline-signal` in `site.css`, een aanvulling van de site op de
-  `Button` uit het designsysteem, gebruikt voor de drie contactknoppen (R-S4.3) en de
+  `Button` uit het designsysteem, gebruikt voor de verzendknop van het formulier (R-S4.3) en de
   zwevende WhatsApp-knop (R-S6.4). De naam blijft warm light. Hover en indrukken verschuiven
   het blauw zoals bij de `signal`-knop (90% met warm light, 86% met near-black, via
   `color-mix` in oklab) en zetten het vlak een stap op de neutrale ramp, zonder nieuwe
@@ -651,7 +825,8 @@ in `tokens/` en `guidelines/`.
   zwevende knop in rust, 5,31:1 bij hover (4,94:1 op de zwevende knop) en 3,71:1 bij
   indrukken, alles boven de 3:1 voor interface-onderdelen.
 - R-V7: Typografie: Source Sans 3 dominant, gewichten 400 en 600, geen 700 en geen light.
-  Newsreader uitsluitend voor de reflectie, maximaal één keer op de pagina.
+  Newsreader uitsluitend voor een reflectie, maximaal één keer op de pagina. Op dit moment
+  staat er geen (R-S2.5).
 - R-V8: Sentence case voor koppen en knoppen. Uppercase alleen voor eyebrows, badges en
   het wordmark. Geen Title Case.
 - R-V9: Body 17px op 1.6, maximaal 68ch. Leads 19px op 52ch. Content 1200px, artikelkolom
@@ -761,8 +936,10 @@ in `tokens/` en `guidelines/`.
 - R-T1a: Alle afhankelijkheden staan op de meest recente stabiele versie, met één bewuste
   uitzondering: **TypeScript 6, niet 7**. `@astrojs/check` accepteert `^5 || ^6`, dus TS 7
   zou de typecontrole breken. Zodra `@astrojs/check` TS 7 ondersteunt, kan dat mee omhoog.
-- R-T2: Geen serveradapter. Zonder formulier is er geen serverfunctie nodig, dus Vercel
-  serveert alleen statische bestanden.
+- R-T2: Geen serveradapter. Het contactformulier gaat naar Formward (R-S4.3a), dus er is
+  geen eigen serverfunctie nodig en Vercel serveert alleen statische bestanden. De CSP
+  staat `https://forms.formward.eu` toe in `connect-src` en `form-action`, en verder
+  niets van buiten.
 - R-T3: TypeScript in strict mode. `astro check` hoort schoon te draaien.
 - R-T3a: **Content-Security-Policy via Astro**, niet via een header in `vercel.json`.
   `security.csp` is stabiel sinds Astro 6 en berekent hashes voor de inline stylesheet en
@@ -814,13 +991,14 @@ in `tokens/` en `guidelines/`.
   reproduceerbaar beschreven.
 - R-T12: **Iconen niet via CDN.** Het designsysteem laadt Lucide van `unpkg.com`, een
   prototypekeuze die een externe partij aan de privacyverklaring zou toevoegen. Deze site
-  gebruikt vier iconen, dus de paden staan inline in `Icon.astro`, met bronvermelding. Dat
+  gebruikt zes iconen, dus de paden staan inline in `Icon.astro`, met bronvermelding. Dat
   is precies wat het designsysteem zelf voorschrijft ("icons are inline SVG at render
   time"). Stroke 1.5px, `currentColor`, outline only.
   - `arrow-right` komt uit Lucide (ISC), in de hero-knop.
-  - `mail`, `brand-linkedin` en `brand-whatsapp` komen uit Tabler Icons 3.46.0 (MIT),
-    omdat Lucide geen WhatsApp-logo heeft en de drie contactroutes als één familie horen
-    te lezen (R-S4.3). De zwevende knop gebruikt hetzelfde WhatsApp-icoon.
+  - `brand-whatsapp` komt uit Tabler Icons 3.46.0 (MIT), omdat Lucide geen WhatsApp-logo
+    heeft; de scan-knop en de zwevende knop gebruiken het. `user`, `mail`, `phone` en
+    `pencil` uit dezelfde set staan in de velden van het contactformulier (R-S4.3). `brand-linkedin` is
+    op 23 september 2026 met de contactknoppen verdwenen.
 
 ### 8.3 Repository
 
@@ -905,8 +1083,8 @@ in `tokens/` en `guidelines/`.
 - R-A6: `prefers-reduced-motion` wordt gerespecteerd.
 - R-A7: Elke link met `target="_blank"` draagt de visueel verborgen hint *(opent in een
   nieuw tabblad)*, in het Engels *(opens in a new tab)*, uit `nav.newTab` in `copy.ts`, via
-  de klasse `.visually-hidden`. Dat zijn nu de contactknoppen voor LinkedIn en WhatsApp en de
-  zwevende WhatsApp-knop (R-S4.3 en R-S6.3).
+  de klasse `.visually-hidden`. Dat zijn nu de scan-knop en de zwevende WhatsApp-knop
+  (R-S2b.3 en R-S6.3).
 
 ### 9.2 Performance
 
@@ -948,11 +1126,15 @@ behandeld.
   - Titel (EN): *AI Wise · Apps, websites, tools & agents built with AI*.
   - In de HTML staat de `&` als `&amp;`, in `<title>` en in `og:title`; gecontroleerd in de
     build.
-  - Description (NL): *Heb je een idee voor een app, website, tool of agent waar de wereld
-    iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.* (144 tekens).
-  - Description (EN): *Have an idea for an app, website, tool or agent that makes a
-    difference? With AI it’s now within reach, and I’d be glad to build it for you.*
-    (140 tekens).
+  - Description (NL): *Jij kent je onderneming, ik de mogelijkheden met AI. Boek nu de
+    gratis AI-Kansenscan en ontdek wat een app, website, tool of agent voor jou kan doen.*
+    (149 tekens).
+  - Description (EN): *You know your business, I know what’s possible with AI. Book the free
+    AI Opportunity Scan and find out what an app, website, tool or agent can do for you.*
+    (154 tekens).
+  - Tot 23 september 2026 begonnen beide met een vraag die ervan uitging dat de lezer al
+    een idee had (*Heb je een idee voor…*), en zeiden ze alleen dat Simon het bouwt. De
+    nieuwe tekst volgt de hero en noemt de scan, het enige aanbod op de pagina.
   - Per taal staat dezelfde tekst in `og:description` en als `description` van de
     organisatie in de JSON-LD. De organisatie krijgt die description van de startpagina op
     elke pagina, ook op de privacypagina's, die zelf hun eigen lead als meta-description
@@ -1020,8 +1202,7 @@ behandeld.
   organisaties die werk doen dat ertoe doet, met de tagline. *What has changed* volgt de
   visie; *Examples* bevat precies de zeven Engelse voorbeelden, alleen waar nodig naar de
   derde persoon gezet; *About Simon* volgt de vijf punten van Over mij; *Contact* volgt de
-  contactsectie: de uitnodiging, samenwerking met ontwikkelaars, ontwerpers en
-  contentschrijvers, en e-mail, LinkedIn en WhatsApp zonder formulier. De blokken met feiten,
+  contactsectie: de uitnodiging en het contactformulier via Formward. De blokken met feiten,
   pagina's, wat er niet op de site staat en crawlen blijven.
 - R-S.10: De copy zelf is de belangrijkste AI-vindbaarheidsmaatregel. Concrete, herkenbare
   werksituaties zijn beter samen te vatten en te citeren dan abstracte capaciteitenlijstjes.
@@ -1065,16 +1246,19 @@ behandeld.
   verwerkersovereenkomst zijn nagegaan; het EU-US Data Privacy Framework staat alleen nog
   bij Google. Vercel bewaart de statistieken 12 maanden, de termijn die de limietenpagina van
   Vercel noemt voor het Pro-abonnement waarop de site draait.
-- R-J3: Privacyverklaring op `/privacy` en `/en/privacy`, met een link in de footer. Zonder
-  formulier is de inhoud kort, en dekt ze wat artikel 13 AVG vraagt: de
-  verwerkingsverantwoordelijke, doel en grondslag per verwerking, de ontvangers (Vercel voor
-  hosting en statistiek, Google Workspace voor e-mail, WhatsApp), doorgifte buiten de EER
+- R-J3: Privacyverklaring op `/privacy` en `/en/privacy`, met een link in de footer. De
+  inhoud dekt wat artikel 13 AVG vraagt: de verwerkingsverantwoordelijke, doel en grondslag
+  per verwerking, de ontvangers (Vercel voor hosting en statistiek, Formward voor het
+  contactformulier met Hostup en Mailjet in de EU, Google Workspace voor e-mail, WhatsApp), doorgifte buiten de EER
   met de waarborg, bewaartermijnen (statistiek 12 maanden, contact dat niet tot een opdracht
   leidt uiterlijk een jaar na het laatste contact, contact dat wel tot een opdracht leidt
   zolang de opdracht dat nodig heeft, administratie zeven jaar), alle rechten, de klacht bij
   de Autoriteit Persoonsgegevens, dat niemand gegevens hoeft te geven, en dat er geen
   geautomatiseerde besluitvorming of profilering is. Eén zin zegt dat na doorklikken naar
-  LinkedIn of WhatsApp hun eigen voorwaarden gelden. De bewaarzin voor contact dat wel tot
+  WhatsApp hun eigen voorwaarden gelden. Een eigen paragraaf beschrijft het
+  contactformulier, sinds 23 september 2026: welke velden, dat een leeg bericht als de
+  voorbeeldzin wordt meegestuurd, Formward als verwerker met de keten in de EU, en dat voor
+  inzendingen dezelfde bewaartermijnen gelden als voor e-mail. De bewaarzin voor contact dat wel tot
   een opdracht leidt is door Simon bevestigd: *Komt er wel een opdracht uit voort, dan bewaar
   ik ze zolang ze daarvoor nodig zijn.* en *If it does, I keep them for as long as the work
   needs them.*
@@ -1147,11 +1331,12 @@ Alles staat er, en het staat live.
 | Fonts gesubset en geconverteerd, samen 42 KB | Klaar |
 | S0 header met taalwissel, doorzichtig boven de herofoto en dicht na scrollen, zonder JavaScript | Klaar |
 | S1 hero op de arendfoto, art direction per schermvorm, leesbaarheidslaag en de enige signal-knop | Klaar; tekst in beide talen vastgesteld; de tagline in de eyebrow is de contrastuitzondering uit R-A1b |
-| S2 visie met de reflectie in Newsreader en zeven voorbeelden ter inspiratie | Klaar; tekst in beide talen vastgesteld |
+| S2 visie met zeven voorbeelden ter inspiratie, voorbeelden eerst | Klaar; tekst in beide talen vastgesteld |
+| S2b gratis AI-Kansenscan met WhatsApp-knop | Klaar; tekst in beide talen vastgesteld |
 | S3 over mij, opsomming in vijf punten naast het portret: liggend 3:2 onder 768px, staand 4:5 vanaf 768px | Klaar; tekst in beide talen vastgesteld, de Nederlandse door Simon zelf geschreven |
-| S4 contact: uitnodiging, onderzoeksfase in één zin, samenwerking met ontwikkelaars en met ontwerpers en contentschrijvers; e-mail, LinkedIn en WhatsApp | Klaar; tekst in beide talen door Simon vastgesteld |
+| S4 contact: uitnodiging en contactformulier via Formward | Gebouwd; wacht op de stappen in hoofdstuk 15 |
 | S5 footer met het volledige logo, de tagline als leesbare tekst, KvK, btw-id, blauwe privacylink en copyrightregel | Klaar; tekst in beide talen vastgesteld |
-| S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen vanaf de contactknoppen | Klaar |
+| S6 zwevende WhatsApp-knop, rond en omlijnd, verborgen bij de scan-knop en vanaf het contactformulier | Klaar |
 | Privacyverklaring in NL en EN, inclusief de analytics-paragraaf | Klaar |
 | 404-pagina in beide talen, noindex, zonder canonical en buiten de sitemap | Klaar |
 | i18n-routering, hreflang, canonical, sitemap | Klaar |
@@ -1228,7 +1413,18 @@ Gesloten sinds versie 4:
 
 ## 15. Wat er nog moet gebeuren
 
-De deploy is achter de rug en Lighthouse is gemeten. Er staat niets meer open.
+Het contactformulier (R-S4.3) werkt pas live als Simon in Formward drie dingen doet, en die
+kunnen niet vanuit de code:
+
+- Onder *allowed origins* van het formulier `https://aiwise.it.com` en
+  `https://www.aiwise.it.com` zetten. Zonder die instelling weigert Formward het verzenden op
+  de achtergrond (403) en ook een `_redirect` naar de eigen bedankpagina.
+- De verwerkersovereenkomst (DPA) van Formward afsluiten, want de privacyverklaring noemt
+  Formward als verwerker.
+- Controleren dat Cloudflare Turnstile en de AI-verrijking uit staan.
+
+Daarna één echte inzending op de live site, met en zonder JavaScript, en controleren dat
+de mail aankomt met het goede antwoordadres.
 
 ---
 
@@ -1236,6 +1432,48 @@ De deploy is achter de rug en Lighthouse is gemeten. Er staat niets meer open.
 
 ### Versie 9 ten opzichte van versie 8
 
+- **Eerste ronde feedback van Inge verwerkt**, in beide talen en in `llms.txt`. De visie is
+  ingekort tot drie zinnen, zegt *een idee* in plaats van *een helder idee*, en noemt *kleine
+  ondernemers* in plaats van *kleine praktijken*. De voorbeelden staan onder *Hier kun je aan
+  denken:*, zonder *misschien* en zonder dat het als aanbod leest (R-S2.3a). In Over mij noemt punt 1 acht jaar in plaats van 2018, zegt
+  punt 2 zonder vergelijking dat Simon ervaring heeft met websites en apps, en begint punt 4
+  met *Ik weet*. `llms.txt` houdt 2018, omdat een jaartal daar niet veroudert. R-S2.1,
+  R-S2.2a, R-S2.3, R-S3.6, R-S3.7 en R-S3.8.
+- **Nieuwe hero**, als eerste stap van een nieuwe opbouw van de pagina: *Jij kent je
+  onderneming. Ik ken de mogelijkheden.*, met een lead die samen uitzoeken en bouwen noemt.
+  In het Engels *You know your business. I know what’s possible.* R-S1.2 en R-S1.3.
+- **Voorbeeldenlijst herzien, zeven punten.** Webshop en online lesomgeving zijn samengevoegd,
+  de aanmeldingen in de administratie zijn weg, en er zijn twee bij: een doorzoekbaar
+  WhatsApp-archief met spraakberichten, en alles wat een klant stuurde via mail of WhatsApp
+  in één overzicht. R-S2.3 en `llms.txt`.
+- **Contactformulier in plaats van contactknoppen.** Het formulier gaat via Formward, een
+  formulierdienst met de hele keten in de EU, naar Simons mailbox. Het berichtveld schrijft
+  zijn eigen voorbeeld uit de ingevulde gegevens, en een leeg bericht wordt als die zin
+  verstuurd. Zonder JavaScript werkt het als gewoon formulier met bedankpagina's op
+  `/bedankt` en `/en/thanks`. De knoppen voor e-mail, LinkedIn en WhatsApp, *Een kort
+  bericht is genoeg.* en de iconen `mail` en `linkedin` zijn weg. De contacttekst is
+  ingekort tot één uitnodiging: de zin over *AI Wise is jong* en de alinea's over
+  samenwerking met ontwikkelaars, ontwerpers en contentschrijvers zijn weg. De privacyverklaring beschrijft het formulier,
+  de CSP laat Formward toe, en de zwevende knop verdwijnt vanaf het formulier. De sectie
+  staat nu gecentreerd in een smalle kolom, zonder label. De knop in de aanbodkaart heet
+  *Nu plannen* (*Book now*), en de kaart staat gecentreerd op 4 van de rechter 6 kolommen.
+  Rechts naast het formulier komt, als experiment, een koord uit twee hoektegels de pagina
+  in en weer uit (R-V4c). Over mij punt 5 zegt nu *organisaties met een maatschappelijk
+  belang*. S4, R-S2b.2a, R-S2b.3, R-S3.7, R-V4c, R-T2,
+  R-T12, R-J3, R-S6.7, R-A7 en hoofdstuk 15.
+- **Nieuwe sectie: de gratis AI-Kansenscan**, tussen visie en Over mij, met een knop die
+  WhatsApp opent met een vooringevuld bericht. De hero-knop heet nu *Plan een gratis
+  AI-Kansenscan* en ankert daarheen. De scan-knop is gevuld, zoals de hero-knop: beide
+  vragen om dezelfde actie. De zwevende WhatsApp-knop verdwijnt zolang de scan-knop in beeld
+  is. De tekst noemt drie ingangen: nog niets met AI gedaan, al geëxperimenteerd, of een
+  idee. Naast de tekst staat een aanbodkaart op warm light met de naam van het aanbod,
+  *Gratis*, drie feiten en de knop. De spelling volgt het designsysteem: *AI-Kansenscan* en
+  *kansenschets*. S2b, R-S1.4, R-S6.7 en R-V6.
+- **Visie: voorbeelden eerst, nieuwe kop, geen reflectie meer.** De voorbeelden staan links;
+  gestapeld staat de kop boven het kader en vervalt de introzin erin. De kop is *Je idee is dichterbij dan je denkt*, gelijk aan het
+  Engels, en de slotvraag in Newsreader is weg. Het koord hangt nu tussen visie en
+  kansenscan en is op de nieuwe opbouw gecontroleerd. R-S2.2a, R-S2.3b, R-S2.5, R-V4c en
+  R-V7.
 - **De pagina beweegt.** Vijf effecten, alle in CSS en zonder een regel extra JavaScript: de
   herofoto die langzaam indrijft, de herotekst die regel voor regel omhoogschuift, blokken die
   opkomen bij binnenrollen, het koord dat meedrijft tegen de scroll in, en het pijltje in de

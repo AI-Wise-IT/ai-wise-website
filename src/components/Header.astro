@@ -30,7 +30,7 @@ import { COPY, path, type Lang } from "../content/copy";
 
 interface Props {
   lang: Lang;
-  page: "home" | "privacy" | "404";
+  page: "home" | "privacy" | "404" | "thanks";
 }
 
 const { lang, page } = Astro.props;
@@ -39,7 +39,8 @@ const t = COPY[lang];
 /* Only the home page has a hero photograph to lie over. */
 const overHero = page === "home";
 
-/* The 404 page has no counterpart in the other language. */
+/* The 404 page has no counterpart in the other language, and the thank-you
+   page only exists after a submission, so both switch to the home pages. */
 const switchPage = page === "privacy" ? "privacy" : "home";
 const current = (l: Lang) => (page !== "404" && lang === l ? "true" : undefined);
 

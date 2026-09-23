@@ -72,11 +72,28 @@ export interface Copy {
     /** General: the shift in what is possible, and who it is for. Concrete
      *  situations belong in the examples. */
     paragraphs: string[];
-    /** The one Newsreader moment on the page: a question the reader leaves with. */
-    reflection: string;
     /** Concrete possibilities, to give the reader something to react to. */
     examplesIntro: string;
     examples: string[];
+  };
+  /** The free AI opportunity scan: what it is and what it gives, in plain
+   *  prose. No numbered steps and no price beyond "free", so it does not read
+   *  as the start of a sales track. The button opens WhatsApp. */
+  scan: {
+    eyebrow: string;
+    heading: string;
+    /** May carry <strong> around the name of the deliverable (Kansenschets,
+     *  Opportunity Brief), which is set in bold wherever it appears. Rendered as
+     *  HTML, so only trusted copy from this file goes here. The same holds for
+     *  facts. */
+    paragraphs: string[];
+    /** The offer card beside the text: the offer at a glance, with the button.
+     *  Facts, not steps. offerName is the brand's exact offer term. */
+    offerName: string;
+    factsTitle: string;
+    facts: string[];
+    cta: string;
+    whatsappPrefill: string;
   };
   about: {
     eyebrow: string;
@@ -86,23 +103,44 @@ export interface Copy {
     portraitAlt: string;
   };
   contact: {
-    eyebrow: string;
     heading: string;
-    /** The invitation to anyone with something they want built. */
+    /** A short invitation for anything that is not the scan. */
     paragraphs: string[];
-    /** A short line that turns from clients to collaborators, followed by one
-     *  paragraph per kind of collaborator. Both languages use them; the section
-     *  renders without them when they are left out. */
-    collaborationIntro?: string;
-    collaboration?: string[];
-    /** Names on the contact buttons; on narrow screens they are the buttons'
-     *  accessible names behind the icons. */
-    emailLabel: string;
-    linkedinLabel: string;
-    whatsappLabel: string;
+    /** The floating WhatsApp button's message and accessible name. */
     whatsappPrefill: string;
     whatsappFloatLabel: string;
-    note: string;
+    /** The contact form (Contact.astro). */
+    form: {
+      nameLabel: string;
+      emailLabel: string;
+      phoneLabel: string;
+      messageLabel: string;
+      optional: string;
+      /** The message placeholder, built from what the visitor fills in: start,
+       *  then one of the endings. {email} and {phone} are replaced by the
+       *  values. A message left empty is sent as that sentence. */
+      placeholder: { start: string; none: string; email: string; phone: string; both: string };
+      /** Accessible name and tooltip of the pencil in the message field, which
+       *  turns the example sentence into the message itself. */
+      useExample: string;
+      submit: string;
+      sending: string;
+      successHeading: string;
+      successText: string;
+      error: string;
+      /** Subject of the notification email Simon receives. */
+      subject: string;
+      /** The thank-you page a visitor without JavaScript lands on. */
+      thanksPath: string;
+    };
+  };
+  /** The thank-you page after the contact form, for visitors without
+   *  JavaScript (pages/bedankt.astro, pages/en/thanks.astro). */
+  thanks: {
+    title: string;
+    heading: string;
+    text: string;
+    backHome: string;
   };
   footer: {
     blurb: string;
@@ -127,7 +165,7 @@ const nl: Copy = {
   meta: {
     title: "AI Wise · Apps, websites, tools & agents laten bouwen met AI",
     description:
-      "Heb je een idee voor een app, website, tool of agent waar de wereld iets aan heeft? Met AI is het nu binnen bereik en ik bouw het graag voor je.",
+      "Jij kent je onderneming, ik de mogelijkheden met AI. Boek nu de gratis AI-Kansenscan en ontdek wat een app, website, tool of agent voor jou kan doen.",
     ogAlt:
       "Logo van AI Wise met de tagline Automation in Service of Life, op een donkere foto van beboste heuvels",
   },
@@ -140,58 +178,88 @@ const nl: Copy = {
   hero: {
     eyebrow: COMPANY.tagline,
     eyebrowLang: "en",
-    title: ["Jij ziet het voor je.", "Ik bouw het."],
-    lead: "Een website, een app of een tool die terugkerend werk overneemt. Zodat organisaties zich kunnen richten op werk dat ertoe doet.",
-    cta: "Neem contact op",
+    title: ["Jij kent je onderneming.", "Ik ken de mogelijkheden."],
+    lead: "Samen ontdekken we wat jou verder helpt. Daarna bouw ik het: een website, een app of een tool die terugkerend werk overneemt.",
+    cta: "Plan een gratis AI-Kansenscan",
   },
   vision: {
     eyebrow: "Wat er nu kan",
-    heading: "Wat je voor ogen hebt, is nu binnen bereik",
+    heading: "Je idee is dichterbij dan je denkt",
     paragraphs: [
-      "Een website, een app of een tool laten bouwen is een stuk toegankelijker geworden. Met AI is de weg van een helder idee naar iets dat echt werkt veel korter. Wat vroeger een groot project was, is nu goed te overzien.",
-      "Daarmee wordt het ook haalbaar voor kleine praktijken en organisaties die betekenisvol werk doen. Dat maakt het de moeite waard om opnieuw te kijken naar plannen die eerder niet haalbaar leken.",
+      "Een website, een app of een tool laten bouwen is een stuk toegankelijker geworden. Met AI is de weg van een idee naar iets dat echt werkt veel korter. Wat vroeger een groot project was, is nu goed te overzien.",
+      "Daarmee wordt het ook haalbaar voor kleine ondernemers en organisaties die betekenisvol werk doen.",
     ],
-    reflection: "Welk idee zou jij alsnog tot leven willen brengen?",
-    examplesIntro: "Misschien zie je zoiets voor je:",
+    examplesIntro: "Hier kun je aan denken:",
     examples: [
+      "Een doorzoekbaar archief van je WhatsApp-gesprekken, inclusief spraakberichten.",
       "Een vernieuwing van je website.",
-      "Een webshop naast je praktijk.",
-      "Een online lesomgeving naast je fysieke aanbod.",
-      "Aanmeldingen die rechtstreeks in je administratie terechtkomen.",
+      "Alles wat een klant je stuurde, via mail of WhatsApp, in één overzicht.",
+      "Een webshop of online lesomgeving naast je fysieke aanbod.",
       "Deelnemers die hun aanmeldingen of lidmaatschap kunnen beheren.",
       "Gespreksverslagen die automatisch verwerkt worden.",
       "Een agent die dat tijdrovende klusje overneemt.",
     ],
   },
+  scan: {
+    eyebrow: "Zo kan ik bijdragen",
+    heading: "Begin met een AI-Kansenscan",
+    paragraphs: [
+      "In één uur kijken we samen naar de kansen voor jouw onderneming, of je nu nog niets met AI hebt gedaan, er al mee hebt geëxperimenteerd, of een idee hebt dat je wilt onderzoeken.",
+      "Je ontvangt na afloop geheel vrijblijvend de <strong>Kansenschets</strong> met een logische eerstvolgende stap waarmee je zelf aan de slag kunt.",
+    ],
+    offerName: "AI-Kansenscan",
+    factsTitle: "Gratis",
+    facts: ["1 uur in gesprek", "Ontvang de <strong>Kansenschets</strong>", "Geheel vrijblijvend"],
+    cta: "Nu plannen",
+    whatsappPrefill: "Hoi Simon, ik wil graag een gratis AI-Kansenscan plannen.",
+  },
   about: {
     eyebrow: "Over mij",
     heading: "Simon van Meegdenburg",
     points: [
-      "Sinds 2018 bouw ik systemen met data, als BI-consultant en als data engineer.",
-      "Naast mijn werk leerde ik websites en apps bouwen, en daar heb ik nog meer plezier in.",
+      "Al acht jaar bouw ik systemen met data, als BI-consultant en als data engineer.",
+      "Ik bouw websites en apps, van ontwerp tot een werkend product.",
+      "Ik weet wat er nodig is om een volwaardig systeem te maken dat mensen dagelijks gebruiken.",
+      "Als techneut bouw ik graag voor organisaties met een maatschappelijk belang.",
       "Met AI werk ik een idee in ongeveer een dag uit tot een eerste prototype.",
-      "Door te experimenteren leerde ik wat er nodig is om een werkend systeem te maken dat mensen dagelijks gebruiken.",
-      "Als techneut bouw ik graag voor organisaties waarmee ik me verbonden voel.",
     ],
     portraitAlt: "Portret van Simon van Meegdenburg",
   },
   contact: {
-    eyebrow: "Contact",
     heading: "Ik hoor graag van je",
     paragraphs: [
-      "Heb je een idee dat gebouwd wil worden, een website die aan vernieuwing toe is, of werk dat steeds weer terugkomt? Laat het me weten, ook als het nog niet helemaal uitgedacht is. AI Wise is jong en ik ontdek nog volop waar ik het meeste kan betekenen, dus ik ben benieuwd wat jij voor je ziet.",
+      "Heb je een vraag, een idee of werk dat steeds weer terugkomt? Stuur me een bericht, ook als het nog niet helemaal uitgedacht is.",
     ],
-    collaborationIntro: "Ik sta open voor samenwerking.",
-    collaboration: [
-      "Ben je zelf ontwikkelaar? AI ontwikkelt zich zo snel dat je samen verder komt dan alleen. Ik wissel graag werkwijzen uit, zodat we elkaar kunnen inspireren en verder helpen.",
-      "Ben je ontwerper of contentschrijver? Vormgeving en teksten laat ik graag over aan mensen die daar hun vak van hebben gemaakt. Zo kan ik me richten op waar ik goed in ben: de functionaliteit bouwen.",
-    ],
-    emailLabel: "E-mail",
-    linkedinLabel: "LinkedIn",
-    whatsappLabel: "WhatsApp",
     whatsappPrefill: "Hoi Simon, ik kwam op de site van AI Wise terecht en heb een vraag.",
     whatsappFloatLabel: "Stuur een bericht via WhatsApp",
-    note: "Een kort bericht is genoeg.",
+    form: {
+      nameLabel: "Naam",
+      emailLabel: "E-mail",
+      phoneLabel: "Telefoon",
+      messageLabel: "Bericht",
+      optional: "optioneel",
+      placeholder: {
+        start: "Hoi Simon, ik kom graag met je in contact.",
+        none: " Mail of bel me op …",
+        email: " Mail me op {email}.",
+        phone: " Bel me op {phone}.",
+        both: " Bel me op {phone} of mail me op {email}.",
+      },
+      useExample: "Gebruik deze tekst als begin",
+      submit: "Verstuur bericht",
+      sending: "Bezig met versturen…",
+      successHeading: "Bedankt voor je bericht",
+      successText: "Ik neem zo snel mogelijk contact met je op.",
+      error: "Het versturen is niet gelukt. Probeer het nog eens, of mail me op simon@aiwise.it.com.",
+      subject: "Nieuw bericht via aiwise.it.com",
+      thanksPath: "/bedankt",
+    },
+  },
+  thanks: {
+    title: "Bedankt · AI Wise",
+    heading: "Bedankt voor je bericht",
+    text: "Ik neem zo snel mogelijk contact met je op.",
+    backHome: "Terug naar de startpagina",
   },
   footer: {
     blurb: "Apps, websites en tools, gebouwd met AI. Voor werk waar de wereld iets aan heeft.",
@@ -203,15 +271,15 @@ const nl: Copy = {
   },
   privacy: {
     title: "Privacyverklaring",
-    lead: "Deze website plaatst geen cookies en vraagt je nergens om gegevens. Hieronder staat wat er wel gebeurt: bij het bezoeken van de site, en zodra je contact opneemt.",
-    updated: "Laatst bijgewerkt op 11 september 2026.",
+    lead: "Deze website plaatst geen cookies en vraagt alleen om gegevens als je zelf het contactformulier invult. Hieronder staat wat er gebeurt: bij het bezoeken van de site, en zodra je contact opneemt.",
+    updated: "Laatst bijgewerkt op 23 september 2026.",
     sections: [
       {
         heading: "Wat deze website doet",
         paragraphs: [
-          "De site bestaat uit statische pagina's. Er staan geen formulieren op, geen advertentienetwerken en geen ingesloten inhoud van derden. Lettertypen, afbeeldingen en scripts worden vanaf deze site zelf geladen, niet vanaf een externe dienst.",
+          "De site bestaat uit statische pagina's. Er staan geen advertentienetwerken op en geen ingesloten inhoud van derden. Lettertypen, afbeeldingen en scripts worden vanaf deze site zelf geladen, niet vanaf een externe dienst. Het enige dat de site naar een andere partij stuurt, is een ingevuld contactformulier; zie hieronder.",
           "Er worden geen cookies geplaatst, voor geen enkel doel. De site slaat geen gegevens over jou op in je browser.",
-          "Klik je door naar LinkedIn of WhatsApp, dan gelden vanaf dat moment de privacyvoorwaarden van dat bedrijf.",
+          "Klik je door naar WhatsApp, dan gelden vanaf dat moment de privacyvoorwaarden van dat bedrijf.",
         ],
       },
       {
@@ -227,6 +295,13 @@ const nl: Copy = {
           "Ik gebruik Vercel Web Analytics om te zien hoeveel mensen de site bezoeken en welke pagina's ze bekijken. Dat gebeurt zonder cookies. In plaats van een bezoeker te markeren, berekent Vercel uit het binnenkomende verzoek, waar ook je IP-adres bij hoort, een hash: een afgeleide code waarmee herhaalbezoeken binnen een dag geteld kunnen worden. Die code wordt na 24 uur verwijderd.",
           "Per paginaweergave legt Vercel vast: het tijdstip, de pagina, de verwijzende website, een globale locatie afgeleid van je IP-adres, en het soort apparaat, besturingssysteem en browser. Wat ik zie is geaggregeerd. Er wordt geen profiel opgebouwd, niets gekoppeld aan een persoon, en niets gevolgd over andere websites heen. Het script komt van deze site zelf, niet van een extern domein.",
           "Ik kan deze gegevens niet tot jou herleiden, maar omdat de code is afgeleid van je verzoek, behandel ik ze voor de zekerheid als persoonsgegevens. De grondslag is gerechtvaardigd belang: ik wil weten of de site gelezen wordt. Vercel verwerkt ook deze gegevens buiten de Europese Economische Ruimte, met dezelfde waarborgen als bij de hosting. Vercel bewaart de statistieken 12 maanden.",
+        ],
+      },
+      {
+        heading: "Contactformulier",
+        paragraphs: [
+          "Vul je het contactformulier in, dan verwerk ik wat je daarin invult: je naam, je e-mailadres, en als je die invult je telefoonnummer en je bericht. Laat je het berichtveld leeg, dan wordt de zin meegestuurd die als voorbeeld in dat veld staat, met de contactgegevens die je invulde. Ik gebruik deze gegevens alleen om contact met je op te nemen en een eventueel vervolg af te stemmen. De grondslag is gerechtvaardigd belang, of het voorbereiden van een opdracht als je daarom vraagt.",
+          "Het formulier wordt verwerkt door Formward (Formward, Stockholm, Zweden), dat daarbij als mijn verwerker optreedt en je bericht naar mijn mailbox doorstuurt. Formward host de gegevens in Zweden (Hostup AB) en verstuurt de e-mail via Mailjet in Frankrijk. De gegevens blijven daarmee binnen de Europese Unie. Voor de bewaartermijnen gelden dezelfde afspraken als bij contact per e-mail, hieronder; inzendingen die Formward voor mij bewaart, verwijder ik ook binnen die termijnen.",
         ],
       },
       {
@@ -263,7 +338,7 @@ const en: Copy = {
   meta: {
     title: "AI Wise · Apps, websites, tools & agents built with AI",
     description:
-      "Have an idea for an app, website, tool or agent that makes a difference? With AI it’s now within reach, and I’d be glad to build it for you.",
+      "You know your business, I know what’s possible with AI. Book the free AI Opportunity Scan and find out what an app, website, tool or agent can do for you.",
     ogAlt:
       "AI Wise logo with the tagline Automation in Service of Life, over a dark photograph of wooded hills",
   },
@@ -275,58 +350,88 @@ const en: Copy = {
   },
   hero: {
     eyebrow: COMPANY.tagline,
-    title: ["You picture it.", "I’ll build it."],
-    lead: "A website, an app or a tool that takes repetitive work off your plate. So organisations can do the work that matters.",
-    cta: "Get in touch",
+    title: ["You know your business.", "I know what’s possible."],
+    lead: "Together we find out what will move you forward. Then I build it: a website, an app or a tool that takes repetitive work off your plate.",
+    cta: "Book a free AI Opportunity Scan",
   },
   vision: {
     eyebrow: "What’s possible now",
     heading: "Your idea is closer than you think",
     paragraphs: [
-      "Having a website, app or tool built has become far more attainable. AI shortens the path from a clear idea to a working system, and what used to be a major project is now manageable.",
-      "That opens the door for small practices and organisations doing meaningful work. It’s worth revisiting plans that once felt out of reach.",
+      "Having a website, app or tool built has become far more attainable. AI shortens the path from an idea to a working system, and what used to be a major project is now manageable.",
+      "That opens the door for small businesses and organisations doing meaningful work.",
     ],
-    reflection: "What’s an idea you’d still love to bring to life?",
-    examplesIntro: "You may be picturing something like this:",
+    examplesIntro: "Some ideas to think about:",
     examples: [
+      "A searchable archive of your WhatsApp chats, voice messages included.",
       "A modernised website.",
-      "A webshop alongside your practice.",
-      "An online teaching space to complement your in-person classes.",
-      "Sign-ups landing straight in your records.",
+      "Everything a client sent you, by email or WhatsApp, in one overview.",
+      "A webshop or online teaching space alongside your in-person offering.",
       "Participants who manage their own bookings or memberships.",
       "Meeting notes processed automatically.",
       "An agent that takes over your most tedious task.",
     ],
   },
+  scan: {
+    eyebrow: "How I can help",
+    heading: "Start with an AI Opportunity Scan",
+    paragraphs: [
+      "In one hour, we explore the opportunities for your business, whether you haven’t touched AI yet, have already been experimenting with it or have an idea you’d like to build on.",
+      "Afterwards you receive the <strong>Opportunity Brief</strong>, describing a sensible next step you can take yourself. No strings attached.",
+    ],
+    offerName: "AI Opportunity Scan",
+    factsTitle: "Free",
+    facts: ["A one-hour conversation", "Receive the <strong>Opportunity Brief</strong>", "No strings attached"],
+    cta: "Book now",
+    whatsappPrefill: "Hi Simon, I’d like to book a free AI Opportunity Scan.",
+  },
   about: {
     eyebrow: "About me",
     heading: "Simon van Meegdenburg",
     points: [
-      "I’ve been building data systems since 2018, first as a BI consultant and later as a data engineer.",
-      "In my spare time I learned to build websites and apps, and realised I enjoy that even more.",
+      "I’ve been building data systems for eight years, first as a BI consultant and later as a data engineer.",
+      "I build websites and apps, from design to a working product.",
+      "I know what it takes to build a system ready for everyday use.",
+      "I’m happiest building for organisations that serve the public good.",
       "With AI, I can turn an idea into a first prototype in about a day.",
-      "Experimenting taught me what it takes to build a system ready for everyday use.",
-      "I’m happiest building for organisations I feel connected to.",
     ],
     portraitAlt: "Portrait of Simon van Meegdenburg",
   },
   contact: {
-    eyebrow: "Contact",
     heading: "I’d love to hear from you",
     paragraphs: [
-      "Is there an idea you’d like to see built, a website that’s overdue for an update, or work that keeps coming back? Tell me about it, even if it isn’t fully thought through yet. AI Wise is young and I’m still discovering where I can be most useful, so I’m curious what you’re picturing.",
+      "Do you have a question, an idea, or work that keeps coming back? Send me a message, even if it isn’t fully thought through yet.",
     ],
-    collaborationIntro: "I’m open to working together.",
-    collaboration: [
-      "Are you a developer too? AI moves so fast that we’ll get further together than on our own. I like comparing notes on how we work, so we can inspire one another and keep moving forward.",
-      "Are you a designer or content writer? I’m happy to leave design and writing to people who have made it their craft. That lets me focus on what I do best: building the functionality.",
-    ],
-    emailLabel: "Email",
-    linkedinLabel: "LinkedIn",
-    whatsappLabel: "WhatsApp",
     whatsappPrefill: "Hi Simon, I found the AI Wise website and have a question.",
     whatsappFloatLabel: "Message me on WhatsApp",
-    note: "A short message will do.",
+    form: {
+      nameLabel: "Name",
+      emailLabel: "Email",
+      phoneLabel: "Phone",
+      messageLabel: "Message",
+      optional: "optional",
+      placeholder: {
+        start: "Hi Simon, I’d like to get in touch.",
+        none: " Email or call me at …",
+        email: " Email me at {email}.",
+        phone: " Call me on {phone}.",
+        both: " Call me on {phone} or email me at {email}.",
+      },
+      useExample: "Use this text as a starting point",
+      submit: "Send message",
+      sending: "Sending…",
+      successHeading: "Thanks for your message",
+      successText: "I’ll get back to you as soon as I can.",
+      error: "Sending didn’t work. Try again, or email me at simon@aiwise.it.com.",
+      subject: "New message via aiwise.it.com",
+      thanksPath: "/en/thanks",
+    },
+  },
+  thanks: {
+    title: "Thanks · AI Wise",
+    heading: "Thanks for your message",
+    text: "I’ll get back to you as soon as I can.",
+    backHome: "Back to the home page",
   },
   footer: {
     blurb: "Apps, websites and tools, built with AI. For work that matters.",
@@ -338,15 +443,15 @@ const en: Copy = {
   },
   privacy: {
     title: "Privacy statement",
-    lead: "This website sets no cookies and asks you for nothing. Below is what does happen: when you visit, and once you get in touch.",
-    updated: "Last updated 11 September 2026.",
+    lead: "This website sets no cookies and only asks for your details if you fill in the contact form yourself. Below is what happens: when you visit, and once you get in touch.",
+    updated: "Last updated 23 September 2026.",
     sections: [
       {
         heading: "What this website does",
         paragraphs: [
-          "The site is a set of static pages. There are no forms, no ad networks and no embedded third-party content. Fonts, images and scripts are served from this site rather than from an external service.",
+          "The site is a set of static pages. There are no ad networks and no embedded third-party content. Fonts, images and scripts are served from this site rather than from an external service. The only thing the site sends to another party is a completed contact form; see below.",
           "No cookies are set, for any purpose. The site stores no data about you in your browser.",
-          "If you follow a link to LinkedIn or WhatsApp, that company’s own privacy terms apply from then on.",
+          "If you follow a link to WhatsApp, that company’s own privacy terms apply from then on.",
         ],
       },
       {
@@ -362,6 +467,13 @@ const en: Copy = {
           "I use Vercel Web Analytics to see how many people visit the site and which pages they read. It works without cookies. Rather than marking a visitor, Vercel derives a hash, a one-way code, from the incoming request, which includes your IP address, so that repeat visits within a day can be counted. That code is discarded after 24 hours.",
           "For each page view, Vercel records the time, the page, the referring site, an approximate location derived from your IP address, and your type of device, operating system and browser. What I see is aggregated. No profile is built, nothing is tied to a person, and nothing is followed across other websites. The script is served from this site itself, not from an external domain.",
           "I cannot trace this data back to you, but because the code is derived from your request, I treat it as personal data to be safe. The basis is legitimate interest: I want to know whether the site is being read. Vercel processes this data outside the European Economic Area too, with the same safeguards as for hosting. Vercel keeps the statistics for 12 months.",
+        ],
+      },
+      {
+        heading: "Contact form",
+        paragraphs: [
+          "If you fill in the contact form, I process what you enter: your name, your email address, and if you fill them in your phone number and your message. If you leave the message empty, the example sentence shown in that field is sent instead, with the contact details you entered. I use this only to get in touch with you and to agree on any next step. The basis is legitimate interest, or preparing work you ask me to do.",
+          "The form is handled by Formward (Formward, Stockholm, Sweden), acting as my processor, which forwards your message to my inbox. Formward hosts the data in Sweden (Hostup AB) and sends the email through Mailjet in France, so the data stays within the European Union. The same retention periods apply as for contact by email, below; submissions Formward keeps for me I delete within those periods too.",
         ],
       },
       {

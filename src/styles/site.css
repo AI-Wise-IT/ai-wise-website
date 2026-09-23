@@ -13,8 +13,13 @@
      a language link, 14px under an eyebrow and under a footer column title, 18px
      above the copyright line, 22px under the hero eyebrow, 44px above the footer
      baseline, and 56px of footer padding.
-   - 48px minimum height on the contact buttons below 640px: a touch target, and the
-     same value as --aiw-space-12 (R-S4.3).
+   - 360px as the largest width of the offer card below 640px, about the width of
+     the 4-column card on a wide screen (R-S2b.2a).
+   - 10px by 12px padding in the contact form's fields, taken from the design
+     system's Input.jsx, the icon 12px in with the text starting at 40px, and the
+     pencil 12px from the bottom and 20px from the right of the message field,
+     clear of the resize grip (R-S4.3). The honeypot sits 10000px off screen, the usual
+     idiom for a field only bots should find.
    - The hero art direction: the 520px in the portrait frame's height and the gradient
      stops at 56, 110, 170 and 240px. They follow the photograph rather than a scale;
      measured and settled in R-V4a and R-V4b.
@@ -26,7 +31,7 @@
    - Breakpoints at 640, 768, 1024 and 1200px; the max-width forms are written 0.02px
      lower so they cannot overlap the min-width ones. The layout tokens define no
      breakpoints.
-   - The 1px clip of .visually-hidden and .contact__action-label, the standard idiom.
+   - The 1px clip of .visually-hidden and of the form's honeypot, the standard idiom.
 
    The button rules below are a faithful CSS translation of components/core/Button.jsx,
    and .card is the same for components/core/Card.jsx. The JSX tracks hover and press
@@ -245,6 +250,12 @@
 .hero__title-line{display:block}
 .hero__lead{margin-bottom:var(--aiw-space-8);max-width:46ch;font-size:var(--aiw-text-md)}
 .hero__actions{display:flex;flex-wrap:wrap;gap:var(--aiw-space-4);align-items:center}
+/* On narrow screens the call to action drops to the body size with 16px sides,
+   like the button in the scan's offer card, so "Book a free AI Opportunity
+   Scan" keeps to one line on a 375px screen. */
+@media (max-width:639.98px){
+  .hero__actions .btn{font-size:var(--aiw-text-base);padding-inline:var(--aiw-space-4)}
+}
 
 /* Landscape-shaped screens: the text column is vertically centred in the part
    of the hero below the header and stops short of the eagle on the right. */
@@ -264,23 +275,31 @@
 }
 
 /* ---- vision ------------------------------------------------------------- */
-/* The reflection closes the vision, so it takes space above and none below. */
-.vision__reflection{margin-top:var(--aiw-space-10);padding-left:var(--aiw-space-6);border-left:var(--aiw-border-width-strong) solid var(--aiw-moss-green)}
-
-/* The stance and the examples. Stacked below 1024px, side by side above it. */
-.vision__layout{display:grid;gap:var(--aiw-space-12)}
+/* The heading, the examples and the stance on one grid (Vision.astro).
+   Below 1024px they stack in that order: the heading's usual 32px above the
+   frame, and 48px from the frame to the text, as between the blocks before.
+   The intro line in the frame is hidden there, because the heading right above
+   already introduces the list.
+   From 1024px the frame takes the left column over both rows; the heading and
+   the text stack on the right, 32px apart. The second row takes the leftover
+   height of the taller frame (1fr), so the text stays right under the heading. */
+.vision__layout{display:grid;row-gap:var(--aiw-space-8)}
+.vision__heading{margin-bottom:0}
+.vision__text{margin-top:var(--aiw-space-4)}
 
 /* The examples: one list inside one frame. The frame sets the possibilities
    apart from the vision beside them; inside it there are still no tiles, icons
-   or service names, because a grid of capabilities reads as a menu and there is
-   no offer on this page. */
+   or service names, because a grid of capabilities reads as a menu. */
 .vision__examples{max-width:var(--aiw-measure)}
-.vision__examples-intro{color:var(--aiw-text-secondary)}
-.vision__examples-list{margin-top:var(--aiw-space-6)}
+.vision__examples-intro{display:none;color:var(--aiw-text-secondary)}
 
 @media (min-width:1024px){
-  .vision__layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--aiw-space-16);align-items:start}
-  .vision__examples{max-width:none}
+  .vision__layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"examples heading" "examples text";column-gap:var(--aiw-space-16);align-items:start}
+  .vision__heading{grid-area:heading}
+  .vision__examples{grid-area:examples;max-width:none}
+  .vision__examples-intro{display:block}
+  .vision__examples-list{margin-top:var(--aiw-space-6)}
+  .vision__text{grid-area:text;margin-top:0}
 }
 
 /* ---- card --------------------------------------------------------------- */
@@ -289,6 +308,48 @@
    follows the Card's md (24px) and, from 768px, lg (32px). */
 .card{background:var(--aiw-surface-card);border:var(--aiw-border-width) solid var(--aiw-border-default);border-radius:var(--aiw-radius-sm);padding:var(--aiw-space-6)}
 @media (min-width:768px){.card{padding:var(--aiw-space-8)}}
+
+/* ---- scan --------------------------------------------------------------- */
+/* The heading, the text and the offer card (Scan.astro), on the design system's
+   12-column grid with its 24px gutter. The card's place follows Simon's rule:
+   it has 6 of the 12 columns to itself and sits centred in them at 4 columns on
+   a wide screen, and centred at 8 columns on a narrow one.
+   - Below 640px everything stacks at full width: 8 columns of a phone screen
+     would leave the card too narrow.
+   - From 640px the card spans columns 3 to 10, centred under the text.
+   - From 1024px the heading and the text take columns 1 to 6 and the card
+     columns 8 to 11, the middle 4 of the right-hand 6, over both rows, its top
+     level with the heading. The second row takes the leftover height of the
+     taller side (1fr), so the text stays right under the heading.
+   Stacked, the heading keeps its usual 32px above the text and the card sits
+   40px under the text. Below 640px the card does not stretch across the
+   screen: it is centred at no more than 360px, about the width of the 4-column
+   card on a wide screen. From 640px the grid sets its width again.
+   The card sits on warm light (Scan.astro sets data-aiw-surface="light"), the
+   brand's surface for offerings: the page colour of the light set, with no
+   border, since warm light on near-black needs no hairline to hold its edge. It
+   keeps the Card's 2px corners and padding. "Gratis" is set large, at the h2
+   size, because it is the one word a scrolling reader should catch. */
+.scan__layout{display:grid;row-gap:var(--aiw-space-8)}
+.scan__heading{margin-bottom:0}
+.scan__facts{width:100%;max-width:360px;margin-top:var(--aiw-space-2);justify-self:center;background:var(--aiw-surface-page);border-color:transparent;color:var(--aiw-text-primary)}
+.scan__facts-title{margin-top:var(--aiw-space-2);font-size:var(--aiw-text-2xl);font-weight:var(--aiw-weight-semibold);line-height:var(--aiw-leading-heading);color:var(--aiw-text-primary)}
+.scan__facts-list{margin-top:var(--aiw-space-4)}
+.scan__actions{margin-top:var(--aiw-space-8)}
+/* In the card the button spans the card's width and reads as its conclusion. */
+.scan__actions .btn{width:100%}
+@media (min-width:640px){
+  .scan__facts{max-width:none}
+  .scan__layout{grid-template-columns:repeat(var(--aiw-grid-columns),minmax(0,1fr));column-gap:var(--aiw-grid-gutter)}
+  .scan__heading,.scan__text{grid-column:1 / -1}
+  .scan__facts{grid-column:3 / span 8}
+}
+@media (min-width:1024px){
+  .scan__layout{grid-template-rows:auto 1fr;align-items:start}
+  .scan__heading{grid-column:1 / span 6;grid-row:1}
+  .scan__text{grid-column:1 / span 6;grid-row:2}
+  .scan__facts{grid-column:8 / span 4;grid-row:1 / span 2;margin-top:0}
+}
 
 /* ---- about -------------------------------------------------------------- */
 /* Stacked below 768px, portrait first, as a 3:2 landscape frame across the full
@@ -308,22 +369,102 @@
 }
 
 /* ---- contact ------------------------------------------------------------ */
-/* The line that turns from clients to collaborators: a little more space above
-   and the primary text weight, so the section reads as two parts. */
-.contact__turn{margin-top:var(--aiw-space-8);font-weight:var(--aiw-weight-semibold);color:var(--aiw-text-primary)}
-/* The contact routes: outline buttons with an icon and a name, side by side. */
-.contact__actions{display:flex;flex-wrap:wrap;gap:var(--aiw-space-4);margin-top:var(--aiw-space-8)}
-
-/* Narrow screens: icons only. The buttons share the column in equal parts and are
-   at least 48px tall, so they stay easy to tap. The name is hidden visually but
-   kept in the markup as each button's accessible name. */
-@media (max-width:639.98px){
-  .contact__actions{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:var(--aiw-space-3)}
-  .contact__action{min-height:48px;padding:var(--aiw-space-3)}
-  .contact__action-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+/* The one centred section, as the page's closing (Contact.astro). Heading,
+   invitation and form stand in one column on the 12-column grid: full width
+   below 640px, columns 3 to 10 from 640px. The heading and the invitation are
+   centred; inside the form the fields stay left-aligned, the submit button
+   spans the form, and the thanks sit in the middle.
+   The cord on the seam above sets the section apart from the one before (see
+   "contact cords"). The section keeps its usual space above the seam (as a
+   margin) and has 64px between the seam and the heading: the eyebrow the other
+   sections carry is gone here, and so is the room it took. The lower half of
+   the loop may reach past that; it lies at the right edge, beside the heading. */
+.section.contact{margin-top:var(--aiw-section-gap);padding-top:var(--aiw-space-16)}
+@media (min-width:1024px){.section.contact{margin-top:var(--aiw-section-gap-lg)}}
+.contact__layout{display:grid}
+.contact__heading,.contact__intro{text-align:center}
+.contact__heading{margin-inline:auto}
+.contact__body{max-width:none}
+.contact-form__status,.contact-form__done{text-align:center}
+/* The submit button spans the form and closes it, like the button in the offer
+   card. It stays an outline button, the fill being kept for booking a scan
+   (R-V6), and its label is in signal blue as well as its border (5.11:1 on the
+   page), so it still reads clearly as the form's action. The label stays blue
+   on hover too, as the icon in the other outline buttons does. */
+.contact-form__submit{width:100%;color:var(--aiw-interactive)}
+.contact-form__submit:hover,.contact-form__submit:active{color:var(--aiw-interactive)}
+@media (min-width:640px){
+  .contact__layout{grid-template-columns:repeat(var(--aiw-grid-columns),minmax(0,1fr));column-gap:var(--aiw-grid-gutter)}
+  .contact__inner{grid-column:3 / span 8}
 }
 
-.contact__note{margin-top:var(--aiw-space-8);color:var(--aiw-text-secondary)}
+/* ---- contact cords (experiment) ---------------------------------------- */
+/* On the seam between About and Contact, in place of a hairline: a cord comes
+   in from the right edge of the page, turns and goes back out (Contact.astro).
+   Two corner tiles from the design system, 1200 by 1200 each, stacked:
+   bottom-right A on top, right-top B under it. A and B are the two sets; at the
+   shared edge their registrations match (moss at 37%, blue at 63%), so each
+   strand keeps one colour all the way round, and the two variants cross the
+   opposite way, as the design system asks of a run. The tiles overlap by 2px, so
+   no hairline of page shows at the seam. They are the masters without their
+   near-black backing square, which is the page colour anyway.
+   The loop hangs from the top edge of the section, centred on it. Its right
+   edge lies on the page's right edge, and it reaches two thirds of a tile into
+   the page, so the tile size keeps the turn clear of the text on either side:
+   150px below 768px, 200px from 768px, 260px from 1200px. The section clips
+   horizontally, so the part that runs past the edge never widens the page. */
+.section.contact{position:relative;overflow-x:clip}
+.contact__cords{--tile:150px;position:absolute;right:0;top:0;z-index:-1;width:var(--tile);height:calc(2 * var(--tile) - 2px);transform:translateY(-50%);pointer-events:none;user-select:none}
+.contact__cord{height:var(--tile);background:center / 100% 100% no-repeat}
+.contact__cord--out{margin-top:-2px}
+.contact__cord--in{background-image:url("/assets/weave/corners/corner-bottom-right-a.svg")}
+.contact__cord--out{background-image:url("/assets/weave/corners/corner-right-top-b.svg")}
+@media (min-width:768px){.contact__cords{--tile:200px}}
+@media (min-width:1200px){.contact__cords{--tile:260px}}
+
+/* The contact form, a CSS translation of the design system's Input and
+   Textarea (components/forms): the control on the inset surface with a 1px
+   border, 10px by 12px padding, 2px corners, the border in signal blue on focus
+   and in clay when the browser marks it invalid after an attempt.
+   The fields follow the design system's standard for recognisable fields
+   (Field.prompt.md): no visible label, an icon inside the field and the name
+   as the placeholder; the labels stay in the markup, visually hidden
+   (Contact.astro). The icon sits
+   12px from the left edge, in the muted text colour, and turns signal blue with
+   the border when the field has focus; the text starts 40px in, clear of it. */
+.contact-form{display:grid;gap:var(--aiw-space-6);margin-top:var(--aiw-space-10)}
+.contact-form__pair{display:grid;gap:var(--aiw-space-6)}
+/* Email and phone side by side only from 1024px: in the 8-column form on a
+   tablet each field would be about 200px, too narrow for "Telefoon (optioneel)". */
+@media (min-width:1024px){.contact-form__pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.field{display:flex;flex-direction:column;gap:var(--aiw-space-2)}
+.field__control{width:100%;padding:10px 12px;background:var(--aiw-surface-inset);color:var(--aiw-text-primary);font:inherit;font-size:var(--aiw-text-base);line-height:var(--aiw-leading-heading);border:var(--aiw-border-width) solid var(--aiw-border-default);border-radius:var(--aiw-radius-sm);transition:var(--aiw-transition-colour)}
+textarea.field__control{line-height:var(--aiw-leading-body);resize:vertical}
+.field__control::placeholder{color:var(--aiw-text-muted);opacity:1}
+.field--icon{position:relative}
+.field__icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--aiw-text-muted);pointer-events:none;transition:var(--aiw-transition-colour)}
+.field--icon .field__control{padding-left:40px}
+.field--icon:focus-within .field__icon{color:var(--aiw-signal-blue)}
+/* The pencil in the message field's bottom right corner, which turns the
+   example sentence into the message. 32px square, 12px from the bottom and 20px
+   from the right, so the browser's resize grip in the very corner stays free.
+   The field keeps 48px of room at the bottom, so text never runs under it. */
+.field--message{position:relative}
+.field--message .field__control{padding-bottom:var(--aiw-space-12)}
+.field__use-example{position:absolute;right:20px;bottom:12px;display:inline-flex;align-items:center;justify-content:center;width:var(--aiw-space-8);height:var(--aiw-space-8);padding:0;background:transparent;border:0;border-radius:var(--aiw-radius-sm);color:var(--aiw-text-muted);cursor:pointer;transition:var(--aiw-transition-colour)}
+.field__use-example:hover{color:var(--aiw-signal-blue);background:var(--aiw-surface-card)}
+.field__use-example[hidden]{display:none}
+.field__control:focus{outline:none;border-color:var(--aiw-signal-blue)}
+.field__control:user-invalid{border-color:var(--aiw-status-problem)}
+.contact-form__actions{margin-top:var(--aiw-space-2)}
+.contact-form__status:empty{display:none}
+.contact-form__status{color:var(--aiw-text-secondary)}
+/* Formward's honeypot: off screen rather than display:none, as Formward asks,
+   and out of the tab order and the accessibility tree (Contact.astro). */
+.contact-form__trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.contact-form__done{margin-top:var(--aiw-space-10)}
+.contact-form__done:focus{outline:none}
+.contact-form__done-heading{font-size:var(--aiw-text-lg);font-weight:var(--aiw-weight-semibold);color:var(--aiw-text-primary);margin-bottom:var(--aiw-space-2)}
 
 /* ---- footer ------------------------------------------------------------- */
 .site-footer{border-top:var(--aiw-border-width) solid var(--aiw-border-subtle);margin-top:var(--aiw-section-gap-lg);padding-block:56px}
@@ -362,8 +503,8 @@
 .site-footer__copyright{margin-top:18px;font-size:var(--aiw-text-2xs);color:var(--aiw-text-muted)}
 
 /* ---- floating WhatsApp button ------------------------------------------- */
-/* The blue outline variant, not a fill: the design system allows one signal
-   button per view and that is the hero call to action. No WhatsApp green either:
+/* The blue outline variant, not a fill: the signal fill is kept for the page's
+   one action, booking a free scan (R-V6). No WhatsApp green either:
    the palette is four colours and this is not one. Icon only; the name is
    visually hidden text.
    Round and 56px across (48px plus 8px), the usual size of a floating action
@@ -422,7 +563,7 @@
 
 /* ---- cord ---------------------------------------------------------------- */
 /* One of the brand's woven cords as a quiet accent under the content: a band
-   across the seam between the vision and the about section. Markup:
+   across the seam between the vision and the scan section. Markup:
    Cord.astro. It takes no space: the band hangs from a marker of zero height.
    It sits at z-index -1, under text, cards, photograph and buttons, and never
    takes pointer events.
@@ -431,7 +572,7 @@
    It is drawn at the page width, so its strands grow and shrink with the
    screen: about 12px wide at 1440px. It is lifted by a third of its own height
    above the seam, so its high left end runs past the bottom of the vision and
-   its low right end towards the about heading. */
+   its low right end towards the scan heading. */
 .cord{pointer-events:none;user-select:none}
 /* The band carries the z-index, not only the art inside it. The art's own
    z-index:-1 is enough to sit under the page as long as nothing in between
@@ -441,13 +582,13 @@
    card that was painted before it. Putting the band itself behind the content
    settles it wherever the drift is running or not. */
 .cord--band{position:relative;z-index:-1;height:0;overflow-x:clip}
-.cord--band .cord__art{position:absolute;z-index:-1;left:0;right:0;top:0;aspect-ratio:3379/436;transform:translateY(-32%);background:url("/assets/weave/cord-o3-horizontal.svg") center / 100% 100% no-repeat}
+.cord--band .cord__art{position:absolute;z-index:-1;left:0;right:0;top:0;aspect-ratio:3379/436;transform:translateY(-32%) scaleX(-1);background:url("/assets/weave/cord-o3-horizontal.svg") center / 100% 100% no-repeat}
 
-/* Keep the low end beneath the reflection in the left column; the high end
-   sits behind the opaque examples card on the right. */
-@media (min-width:1024px){
-  .cord--band .cord__art{transform:translateY(-32%) scaleX(-1)}
-}
+/* Mirrored on every width, on Simon's request: low on the left, high on the
+   right. Beside the examples the low end runs behind the opaque card in the
+   left column and the high end rises on the right, below the end of the vision
+   text. Until 23 September 2026 only the two-column layout was mirrored, and on
+   narrower screens the high left end ran through the last lines of the text. */
 /* Narrow columns need a little more clearance below the longer vision. */
 @media (min-width:1024px) and (max-width:1199.98px){
   .cord--band .cord__art{transform:translateY(-20%) scaleX(-1)}
@@ -455,11 +596,11 @@
 
 /* Narrow screens: the band keeps the height of the gap between the sections
    (96px, drawn 744px wide), so the strands keep some body and only its middle
-   part crosses the screen. It starts just under the bottom edge of the
-   examples card and ends above the about eyebrow. Past 744px it follows the
+   part crosses the screen. It starts just under the last line of the vision
+   and ends above the scan eyebrow. Past 744px it follows the
    page width again, so its ends never stop short of the screen edge. */
 @media (max-width:767.98px){
-  .cord--band .cord__art{aspect-ratio:auto;height:max(var(--aiw-section-gap),12.91vw);transform:translateY(-4%);background-size:max(100%,744px) auto}
+  .cord--band .cord__art{aspect-ratio:auto;height:max(var(--aiw-section-gap),12.91vw);transform:translateY(-4%) scaleX(-1);background-size:max(100%,744px) auto}
 }
 
 /* Readability comes from placement, not from a layer over the cord. The band
@@ -537,9 +678,9 @@
 /* Each block of a section rises into place as it comes into view: one
    --aiw-space-4 up and from nothing to full, driven by scroll position rather than by a clock, so it
    can never lag behind a fast scroll or finish before the block is on screen.
-   The blocks are the ones that read as units, and they never nest: the vision
-   keeps its heading inside .section__body, so only a heading that is a direct
-   child of the container is taken separately.
+   The blocks are the ones that read as units, and they never nest: a heading
+   is taken separately when it is a direct child of the container, and the
+   vision's heading, which sits on the vision grid, by its own class.
    The range is set in pixels, not percentages. A percentage of the entry phase
    is a share of the element's own height, which would make the contact text,
    several times the height of its eyebrow, take several times as long to
@@ -549,13 +690,21 @@
     .section__eyebrow,
     .aiw-container>.section__heading,
     .section__body,
+    .vision__heading,
     .vision__examples,
+    .scan__heading,
+    .contact__heading,
+    .scan__facts,
     .about__media{animation-name:aiw-rise;animation-timing-function:linear;animation-fill-mode:both}
 
     .section .section__eyebrow,
     .section .aiw-container>.section__heading,
     .section .section__body,
+    .section .vision__heading,
     .section .vision__examples,
+    .section .scan__heading,
+    .section .contact__heading,
+    .section .scan__facts,
     .section .about__media{animation-timeline:view();animation-range:entry 40px entry 340px}
 
     /* The two blocks that stand beside another one start a little later, so a
@@ -563,12 +712,13 @@
        no such offset: they are already apart on the page, and that distance is
        the stagger. */
     .section .vision__examples,
+    .section .scan__facts,
     .section .about__media{animation-range:entry 100px entry 400px}
   }
 }
 @keyframes aiw-rise{from{opacity:0;transform:translateY(var(--aiw-space-4))}to{opacity:1;transform:none}}
 
-/* The cord between the vision and the about section drifts against the scroll,
+/* The cord between the vision and the scan section drifts against the scroll,
    one --aiw-space-6 either way over one screenful, which reads as depth rather than as movement.
    The drift sits on .cord--band, the zero-height marker, and not on .cord__art:
    the art's own transform carries the lift and changes at three breakpoints, and

@@ -1,12 +1,11 @@
 ---
 /**
- * S2. The vision describes the shift: what used to be a large project is now
- * within reach, also for small practices doing meaningful work. It stays
- * general; the examples beside it do the concrete work. AI appears as the reason
- * this is possible, not as the subject. It makes no offer.
- *
- * The one Reflection on the page closes the vision, as a question the reader
- * leaves with. It is also the only place Newsreader appears.
+ * S2. The examples come first, so a reader sees something concrete to recognise
+ * before the general text. The vision beside them describes the shift: what
+ * used to be a large project is now within reach, also for small businesses
+ * doing meaningful work. It stays general; the examples do the concrete work.
+ * AI appears as the reason this is possible, not as the subject. It makes no
+ * offer; the scan section after it does.
  */
 import { COPY, type Lang } from "../content/copy";
 
@@ -22,29 +21,30 @@ const t = COPY[lang];
   <div class="aiw-container">
     <p class="aiw-eyebrow section__eyebrow">{t.vision.eyebrow}</p>
 
-    {/* Two blocks side by side from 1024px up: the vision on the left, what it
-        can look like in practice on the right. The label spans both; the heading
-        belongs to the left block, so the frame on the right starts level with
-        the heading, just under the label. Below 1024px they stack, vision first.
-        Each column lands at roughly 58 characters, inside the 68 the design
-        system sets as the reading measure. */}
+    {/* Three blocks on one grid, in reading order for narrow screens: the
+        heading, the examples, the vision. Below 1024px they stack in that
+        order, so the frame never stands without a heading above it. From 1024px
+        the examples take the left column over the full height and the heading
+        and the vision stack on the right, the heading level with the top of the
+        frame. Each column lands at roughly 58 characters, inside the 68 the
+        design system sets as the reading measure. See site.css, "vision". */}
     <div class="vision__layout">
-      <div class="section__body">
-        <h2 class="section__heading" id="vision-heading">{t.vision.heading}</h2>
-
-        {t.vision.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}
-
-        <p class="aiw-reflective vision__reflection">{t.vision.reflection}</p>
-      </div>
+      <h2 class="section__heading vision__heading" id="vision-heading">{t.vision.heading}</h2>
 
       {/* Possibilities, to give the reader something concrete to react to. One
           list in one frame that sets it apart from the vision; not a grid of
-          tiles, which would read as a menu of services. See docs/prd.md, R-S2.3. */}
+          tiles, which would read as a menu of services. See docs/prd.md, R-S2.3.
+          The intro line only shows beside the vision; stacked under the heading
+          the list needs no introduction. */}
       <div class="vision__examples card">
         <p class="aiw-body vision__examples-intro">{t.vision.examplesIntro}</p>
         <ul class="bullet-list vision__examples-list">
           {t.vision.examples.map((e) => <li>{e}</li>)}
         </ul>
+      </div>
+
+      <div class="section__body vision__text">
+        {t.vision.paragraphs.map((p) => <p class="aiw-body">{p}</p>)}
       </div>
     </div>
   </div>

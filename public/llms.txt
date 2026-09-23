@@ -5,27 +5,36 @@
 > that matters. Many of them take over repetitive work.
 > Tagline: Automation in Service of Life.
 
-The website is a single page in Dutch and English. It describes what has become
-possible, gives examples, introduces Simon and explains how to get in touch. It
-deliberately carries no service catalogue, no pricing and no productised offer.
+The website is a single page in Dutch and English. It gives examples, describes
+what has become possible, offers a free AI Opportunity Scan, introduces Simon and
+explains how to get in touch. It deliberately carries no service catalogue and no
+pricing; the free scan is its one offer.
 
 ## What has changed
 
 Having a website, app or tool built has become far more attainable. AI shortens
-the path from a clear idea to a working system, and what used to be a major
-project is now manageable. That opens the door for small practices and
-organisations doing meaningful work. It’s worth revisiting plans that once felt
-out of reach. AI is the method here, not the subject.
+the path from an idea to a working system, and what used to be a major project
+is now manageable. That opens the door for small businesses and organisations
+doing meaningful work.
+
+## Free AI Opportunity Scan
+
+An hour-long conversation about the opportunities for the business, whether
+the client has not touched AI yet, has already been experimenting with it or
+has an idea to build on. Afterwards the client receives the Opportunity Brief
+(Dutch: Kansenschets), describing a sensible next step they can take
+themselves. No strings attached. The scan is free; the site names no price for
+anything after it. It is booked by WhatsApp.
 
 ## Examples
 
 The website gives these as examples of what is possible, to think with. They
 are not a service catalogue.
 
+- A searchable archive of WhatsApp chats, voice messages included.
 - A modernised website.
-- A webshop alongside a practice.
-- An online teaching space to complement in-person classes.
-- Sign-ups landing straight in the records.
+- Everything a client sent, by email or WhatsApp, in one overview.
+- A webshop or online teaching space alongside an in-person offering.
 - Participants who manage their own bookings or memberships.
 - Meeting notes processed automatically.
 - An agent that takes over the most tedious task.
@@ -34,16 +43,14 @@ are not a service catalogue.
 
 - He has been building data systems since 2018, first as a BI consultant and
   later as a data engineer.
-- In his spare time he learned to build websites and apps, and realised he
-  enjoys that even more.
+- He builds websites and apps, from design to a working product.
+- He knows what it takes to build a system ready for everyday use.
+- He is happiest building for organisations that serve the public good.
 - With AI, he can turn an idea into a first prototype in about a day.
-- Experimenting taught him what it takes to build a system ready for everyday
-  use.
-- He is happiest building for organisations he feels connected to.
 
 ## What the website does not include
 
-- No pricing, packages or scope.
+- No pricing, packages or scope beyond the free scan.
 - No case studies, client names or testimonials, because none are confirmed for
   public use.
 - No claims about time saved, safety or privacy outcomes.
@@ -62,25 +69,19 @@ are not a service catalogue.
 
 ## Pages
 
-- [Home, Dutch](https://aiwise.it.com/): what is possible, examples, about Simon, contact
+- [Home, Dutch](https://aiwise.it.com/): examples, what is possible, the free scan, about Simon, contact
 - [Home, English](https://aiwise.it.com/en): the same page in English
 - [Privacy statement, Dutch](https://aiwise.it.com/privacy)
 - [Privacy statement, English](https://aiwise.it.com/en/privacy)
 
 ## Contact
 
-The site invites anyone with an idea they would like to see built, a website
-that is overdue for an update, or work that keeps coming back, even if it is not
-fully thought through yet. AI Wise is young and Simon is still discovering where
-he can be most useful.
+The site invites anyone with a question, an idea or work that keeps coming back,
+even if it is not fully thought through yet.
 
-It also invites collaboration. Other developers are welcome to compare notes on
-how they work, since AI moves so fast that people get further together than on
-their own. Designers and content writers are welcome to take on design and
-writing, so Simon can focus on building the functionality.
-
-Contact runs by email at simon@aiwise.it.com, through LinkedIn, or by WhatsApp on
-+31 6 13926494. A short message will do. There is no contact form.
+Contact runs through a contact form on the site, which sends the message to
+Simon's inbox via Formward, an EU-based form service. He can also be reached by
+email at simon@aiwise.it.com or by WhatsApp on +31 6 13926494.
 
 ## Crawling
 

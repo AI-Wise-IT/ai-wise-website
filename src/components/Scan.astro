@@ -1,0 +1,65 @@
+---
+/**
+ * S2b. The free AI opportunity scan: an hour's conversation and a short
+ * opportunity brief afterwards. Plain prose on purpose, with no numbered steps
+ * and no price beyond "free", so it reads as an invitation rather than the first
+ * stage of a sales track. What may come after the scan is named once, as a
+ * possibility.
+ *
+ * The section itself stays on the page ground. What makes it stand out is the
+ * offer card beside the text: a card on warm light, the surface the brand keeps
+ * for offerings and briefs (design system readme, "The light surface"), so it
+ * reads as an offer laid on the table. It carries the offer's name, "Gratis",
+ * three facts rather than steps, and the button. The heading, the text and the
+ * card share one grid: from 1024px the card takes the right column level with
+ * the heading; below it they stack as heading, text, card. data-aiw-surface="light" switches every token inside it to the
+ * light set, so text, markers and focus ring take their light-surface values.
+ *
+ * The hero's call to action anchors here. The button opens WhatsApp with a
+ * message that asks for a scan, so booking one is a single step. It is a filled
+ * signal button, like the hero's: both are the page's one action, booking a
+ * scan, so they share the fill (R-V6).
+ */
+import Icon from "./Icon.astro";
+import { COMPANY, COPY, type Lang } from "../content/copy";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = COPY[lang];
+const waHref = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(t.scan.whatsappPrefill)}`;
+---
+
+<section class="section scan" id="kansenscan" aria-labelledby="scan-heading">
+  <div class="aiw-container">
+    <p class="aiw-eyebrow section__eyebrow">{t.scan.eyebrow}</p>
+    <div class="scan__layout">
+      <h2 class="section__heading scan__heading" id="scan-heading">{t.scan.heading}</h2>
+
+      <div class="section__body scan__text">
+        {t.scan.paragraphs.map((p) => <p class="aiw-body" set:html={p} />)}
+      </div>
+
+      <div class="scan__facts card" data-aiw-surface="light">
+        <p class="aiw-eyebrow">{t.scan.offerName}</p>
+        <p class="scan__facts-title">{t.scan.factsTitle}</p>
+        <ul class="bullet-list scan__facts-list">
+          {t.scan.facts.map((f) => <li set:html={f} />)}
+        </ul>
+        <div class="scan__actions">
+          <a
+            class="btn btn--lg btn--signal"
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="whatsapp" size={22} />
+            <span>{t.scan.cta} <span class="visually-hidden">{t.nav.newTab}</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

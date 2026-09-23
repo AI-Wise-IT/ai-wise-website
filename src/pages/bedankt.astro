@@ -1,0 +1,22 @@
+---
+/**
+ * Thank-you page after the contact form, for visitors without JavaScript:
+ * Formward redirects here (the _redirect field in Contact.astro). With
+ * JavaScript the thanks appear in the contact section and this page is never
+ * shown. noindex, and left out of the sitemap in astro.config.mjs.
+ */
+import Base from "../layouts/Base.astro";
+import { COPY, path } from "../content/copy";
+
+const t = COPY.nl;
+---
+
+<Base lang="nl" page="thanks" title={t.thanks.title} description={t.thanks.text}>
+  <div class="aiw-container page-head">
+    <div class="prose">
+      <h1 class="page-head__title">{t.thanks.heading}</h1>
+      <p class="aiw-lead">{t.thanks.text}</p>
+      <p class="prose__back"><a href={path("nl", "home")}>{t.thanks.backHome}</a></p>
+    </div>
+  </div>
+</Base>
