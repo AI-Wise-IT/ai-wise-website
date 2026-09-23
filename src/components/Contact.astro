@@ -233,8 +233,14 @@ const thanksUrl = new URL(f.thanksPath, Astro.site).href;
             [...new FormData(form)].map(([k, v]) => [k, String(v)]),
           ),
         });
-        const result = (await response.json().catch(() => ({}))) as { ok?: boolean };
-        if (!response.ok || !result.ok) throw new Error("not sent");
+        const result = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+        if (!response.ok || !result.ok) {
+          // Formward says why in `error` (e.g. consent_required); keep it
+          // findable in the console without showing it to the visitor.
+          console.error("Contact form not sent:", response.status, result);
+          throw new Error("not sent");
+        }
+        if (status) status.textContent = "";
         form.hidden = true;
         if (done) {
           done.hidden = false;

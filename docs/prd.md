@@ -495,6 +495,11 @@ Deze sectie draagt ook het "voor wie", zonder kopjes per doelgroep.
     toegankelijkheidsboom.
   - In Formward staan Cloudflare Turnstile en de AI-verrijking uit: beide zouden er een
     partij bij halen.
+  - **In Formward staat de verplichte toestemming (`_consent`) uit.** Met die instelling aan
+    weigert Formward elke inzending zonder toestemmingsvinkje met `422 consent_required`;
+    zo ging het formulier op 23 september 2026 de eerste uren live mis. De grondslag in de
+    privacyverklaring is gerechtvaardigd belang, dus een vinkje is niet nodig. Een fout van
+    Formward komt sindsdien in de console, met status en foutcode.
 - R-S4.3b: **Het berichtveld schrijft zijn eigen voorbeeld.** De placeholder is *Hoi Simon,
   ik kom graag met je in contact. Mail of bel me op …* en vult zich met wat de bezoeker
   invult: *Mail me op anna@bedrijf.nl.*, *Bel me op 06 12345678.* of *Bel me op 06 12345678
@@ -1419,9 +1424,9 @@ Gesloten sinds versie 4:
 ## 15. Wat er nog moet gebeuren
 
 Het contactformulier staat live sinds 23 september 2026. In Formward zijn de allowed
-origins ingesteld, staat Turnstile uit en is de verwerkersovereenkomst geaccepteerd. Wat nog
-moet: één echte inzending op de live site, met en zonder JavaScript, en controleren dat de
-mail aankomt met het goede antwoordadres.
+origins ingesteld, staat Turnstile uit en is de verwerkersovereenkomst geaccepteerd. Een echte
+inzending komt aan (24 september 2026). Wat nog kan: dezelfde test zonder JavaScript, en
+controleren dat antwoorden naar het ingevulde adres gaat.
 
 ---
 

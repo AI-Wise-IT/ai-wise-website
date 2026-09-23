@@ -433,6 +433,10 @@
    12px from the left edge, in the muted text colour, and turns signal blue with
    the border when the field has focus; the text starts 40px in, clear of it. */
 .contact-form{display:grid;gap:var(--aiw-space-6);margin-top:var(--aiw-space-10)}
+/* The script hides the form once it is sent. display:grid above would win over
+   the hidden attribute, so the form would stay with "Bezig met versturen…" in
+   it and the thanks below it, out of view. */
+.contact-form[hidden],.contact-form__done[hidden]{display:none}
 .contact-form__pair{display:grid;gap:var(--aiw-space-6)}
 /* Email and phone side by side only from 1024px: in the 8-column form on a
    tablet each field would be about 200px, too narrow for "Telefoon (optioneel)". */
