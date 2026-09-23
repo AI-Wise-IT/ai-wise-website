@@ -179,7 +179,7 @@ const nl: Copy = {
     eyebrow: COMPANY.tagline,
     eyebrowLang: "en",
     title: ["Jij kent je onderneming.", "Ik ken de mogelijkheden."],
-    lead: "Samen ontdekken we wat jou verder helpt. Daarna bouw ik het: een website, een app of een tool die terugkerend werk overneemt.",
+    lead: "Samen ontdekken we hoe AI jou verder helpt. Daarna bouw ik het: een website, een app of een tool die terugkerend werk overneemt.",
     cta: "Plan een gratis AI-Kansenscan",
   },
   vision: {
@@ -301,7 +301,7 @@ const nl: Copy = {
         heading: "Contactformulier",
         paragraphs: [
           "Vul je het contactformulier in, dan verwerk ik wat je daarin invult: je naam, je e-mailadres, en als je die invult je telefoonnummer en je bericht. Laat je het berichtveld leeg, dan wordt de zin meegestuurd die als voorbeeld in dat veld staat, met de contactgegevens die je invulde. Ik gebruik deze gegevens alleen om contact met je op te nemen en een eventueel vervolg af te stemmen. De grondslag is gerechtvaardigd belang, of het voorbereiden van een opdracht als je daarom vraagt.",
-          "Het formulier wordt verwerkt door Formward (Formward, Stockholm, Zweden), dat daarbij als mijn verwerker optreedt en je bericht naar mijn mailbox doorstuurt. Formward host de gegevens in Zweden (Hostup AB) en verstuurt de e-mail via Mailjet in Frankrijk. De gegevens blijven daarmee binnen de Europese Unie. Voor de bewaartermijnen gelden dezelfde afspraken als bij contact per e-mail, hieronder; inzendingen die Formward voor mij bewaart, verwijder ik ook binnen die termijnen.",
+          "Het formulier wordt verwerkt door Formward, een dienst van EGF Fastighetsservice AB (Zweden), dat daarbij als mijn verwerker optreedt en je bericht naar mijn mailbox doorstuurt. Formward host de gegevens in Zweden (Hostup AB) en verstuurt de e-mail via Mailjet in Frankrijk. De gegevens blijven daarmee binnen de Europese Unie. Formward bewaart een inzending 30 dagen en verwijdert haar daarna automatisch. Het bericht in mijn mailbox bewaar ik volgens de termijnen bij contact per e-mail, hieronder.",
         ],
       },
       {
@@ -351,7 +351,7 @@ const en: Copy = {
   hero: {
     eyebrow: COMPANY.tagline,
     title: ["You know your business.", "I know what’s possible."],
-    lead: "Together we find out what will move you forward. Then I build it: a website, an app or a tool that takes repetitive work off your plate.",
+    lead: "Together we work out where AI can make a difference for you. Then I build what’s needed: a website, an app or a tool that takes repetitive work off your plate.",
     cta: "Book a free AI Opportunity Scan",
   },
   vision: {
@@ -473,7 +473,7 @@ const en: Copy = {
         heading: "Contact form",
         paragraphs: [
           "If you fill in the contact form, I process what you enter: your name, your email address, and if you fill them in your phone number and your message. If you leave the message empty, the example sentence shown in that field is sent instead, with the contact details you entered. I use this only to get in touch with you and to agree on any next step. The basis is legitimate interest, or preparing work you ask me to do.",
-          "The form is handled by Formward (Formward, Stockholm, Sweden), acting as my processor, which forwards your message to my inbox. Formward hosts the data in Sweden (Hostup AB) and sends the email through Mailjet in France, so the data stays within the European Union. The same retention periods apply as for contact by email, below; submissions Formward keeps for me I delete within those periods too.",
+          "The form is handled by Formward, a service of EGF Fastighetsservice AB (Sweden), acting as my processor, which forwards your message to my inbox. Formward hosts the data in Sweden (Hostup AB) and sends the email through Mailjet in France, so the data stays within the European Union. Formward keeps a submission for 30 days and then deletes it automatically. The message in my inbox I keep for the periods given for contact by email, below.",
         ],
       },
       {

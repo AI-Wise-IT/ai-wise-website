@@ -200,10 +200,12 @@ Vier inhoudelijke secties.
   geldt vanaf 1200px; daaronder is het 45px, zodat de eerste zin ook tussen 1024 en 1200px
   op één regel past. Op mobiel mag de eerste zin zelf over twee regels lopen.
 - R-S1.3: Lead-paragraaf: in gewone taal wat Simon maakt en voor wie. Vastgesteld (NL):
-  *"Samen ontdekken we wat jou verder helpt. Daarna bouw ik het: een website, een app of een
-  tool die terugkerend werk overneemt."* Vastgesteld (EN): *"Together we find out what will
-  move you forward. Then I build it: a website, an app or a tool that takes repetitive work
-  off your plate."* De lead zegt wat er gebeurt als de twee kanten uit de kop samenkomen:
+  *"Samen ontdekken we hoe AI jou verder helpt. Daarna bouw ik het: een website, een app of
+  een tool die terugkerend werk overneemt."* Vastgesteld (EN): *"Together we work out where
+  AI can make a difference for you. Then I build what’s needed: a website, an app or a tool
+  that takes repetitive work off your plate."* AI staat daarmee in de hero, op Simons
+  verzoek van 23 september 2026; de Engelse zin is herschreven omdat de eerste versie te
+  letterlijk vertaald was. De lead zegt wat er gebeurt als de twee kanten uit de kop samenkomen:
   eerst samen uitzoeken, dan bouwen. Het bouwen staat daarmee weer in de hero, nu de kop het
   niet meer noemt. De opsomming is wat "het" kan zijn. De bijzin hoort
   bij de tool en niet bij de website, want een website neemt geen terugkerend werk over, en
@@ -1257,8 +1259,11 @@ behandeld.
   geautomatiseerde besluitvorming of profilering is. Eén zin zegt dat na doorklikken naar
   WhatsApp hun eigen voorwaarden gelden. Een eigen paragraaf beschrijft het
   contactformulier, sinds 23 september 2026: welke velden, dat een leeg bericht als de
-  voorbeeldzin wordt meegestuurd, Formward als verwerker met de keten in de EU, en dat voor
-  inzendingen dezelfde bewaartermijnen gelden als voor e-mail. De bewaarzin voor contact dat wel tot
+  voorbeeldzin wordt meegestuurd, Formward als verwerker (EGF Fastighetsservice AB, Zweden)
+  met de keten in de EU, en dat Formward een inzending na 30 dagen automatisch verwijdert
+  (de standaard van het gratis account); de mail zelf volgt de termijnen voor e-mail. Simon
+  heeft de verwerkersovereenkomst van Formward op 23 september 2026 geaccepteerd in het
+  dashboard. De bewaarzin voor contact dat wel tot
   een opdracht leidt is door Simon bevestigd: *Komt er wel een opdracht uit voort, dan bewaar
   ik ze zolang ze daarvoor nodig zijn.* en *If it does, I keep them for as long as the work
   needs them.*
@@ -1413,18 +1418,10 @@ Gesloten sinds versie 4:
 
 ## 15. Wat er nog moet gebeuren
 
-Het contactformulier (R-S4.3) werkt pas live als Simon in Formward drie dingen doet, en die
-kunnen niet vanuit de code:
-
-- Onder *allowed origins* van het formulier `https://aiwise.it.com` en
-  `https://www.aiwise.it.com` zetten. Zonder die instelling weigert Formward het verzenden op
-  de achtergrond (403) en ook een `_redirect` naar de eigen bedankpagina.
-- De verwerkersovereenkomst (DPA) van Formward afsluiten, want de privacyverklaring noemt
-  Formward als verwerker.
-- Controleren dat Cloudflare Turnstile en de AI-verrijking uit staan.
-
-Daarna één echte inzending op de live site, met en zonder JavaScript, en controleren dat
-de mail aankomt met het goede antwoordadres.
+Het contactformulier staat live sinds 23 september 2026. In Formward zijn de allowed
+origins ingesteld, staat Turnstile uit en is de verwerkersovereenkomst geaccepteerd. Wat nog
+moet: één echte inzending op de live site, met en zonder JavaScript, en controleren dat de
+mail aankomt met het goede antwoordadres.
 
 ---
 
