@@ -191,9 +191,9 @@ const nl: Copy = {
     ],
     examplesIntro: "Hier kun je aan denken:",
     examples: [
-      "Een doorzoekbaar archief van je WhatsApp-gesprekken, inclusief spraakberichten.",
+      "AI vragen stellen over je WhatsApp-geschiedenis, inclusief spraakberichten.",
       "Een vernieuwing van je website.",
-      "Alles wat een klant je stuurde, via mail of WhatsApp, in één overzicht.",
+      "Al je klantcommunicatie, via mail of WhatsApp, in één overzicht.",
       "Een webshop of online lesomgeving naast je fysieke aanbod.",
       "Deelnemers die hun aanmeldingen of lidmaatschap kunnen beheren.",
       "Gespreksverslagen die automatisch verwerkt worden.",
@@ -363,9 +363,9 @@ const en: Copy = {
     ],
     examplesIntro: "Some ideas to think about:",
     examples: [
-      "A searchable archive of your WhatsApp chats, voice messages included.",
+      "Ask AI about your WhatsApp history, voice messages included.",
       "A modernised website.",
-      "Everything a client sent you, by email or WhatsApp, in one overview.",
+      "All your customer interactions, by email or WhatsApp, in one overview.",
       "A webshop or online teaching space alongside your in-person offering.",
       "Participants who manage their own bookings or memberships.",
       "Meeting notes processed automatically.",

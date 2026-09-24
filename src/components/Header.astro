@@ -45,6 +45,10 @@ const switchPage = page === "privacy" ? "privacy" : "home";
 const current = (l: Lang) => (page !== "404" && lang === l ? "true" : undefined);
 
 const LANGUAGE_NAMES: Record<Lang, string> = { nl: "Nederlands", en: "English" };
+
+/* Switching language keeps the reader's place only where the other language
+   has the same page; the 404 and thank-you pages switch to the home page. */
+const keepPosition = page === "home" || page === "privacy";
 ---
 
 <header class:list={["site-header", { "site-header--over-hero": overHero }]}>
@@ -54,10 +58,85 @@ const LANGUAGE_NAMES: Record<Lang, string> = { nl: "Nederlands", en: "English" }
       <LogoSvg file="wordmark.svg" class="site-header__wordmark" />
     </a>
 
-    <nav class="lang-switch" aria-label={t.nav.language}>
+    <nav class="lang-switch" aria-label={t.nav.language} data-keep-position={keepPosition ? "" : undefined}>
       <a href={path("nl", switchPage)} hreflang="nl" lang="nl" aria-current={current("nl")}>NL<span class="visually-hidden">, {LANGUAGE_NAMES.nl}</span></a>
       <span class="lang-switch__sep" aria-hidden="true">/</span>
       <a href={path("en", switchPage)} hreflang="en" lang="en" aria-current={current("en")}>EN<span class="visually-hidden">, {LANGUAGE_NAMES.en}</span></a>
     </nav>
   </div>
 </header>
+
+<script>
+  // Keeps the reader's place when switching language. Both languages render the
+  // same components, so the page has the same blocks in the same order, only
+  // with text of a different length. The switch therefore remembers which block
+  // sits under the header and how far into it the reader is, rather than a
+  // pixel offset, and the other page scrolls to the same block. Nothing goes in
+  // the URL; without storage the page simply opens at the top, as before.
+  const KEY = "aiw-lang-switch-position";
+  const MAX_AGE_MS = 10_000;
+  const ANCHORS = "main :is(section, h1, h2, h3, p, li)";
+
+  // Hidden elements, such as the contact form's thank-you message, have no box
+  // and would count as sitting above the header, so they are left out.
+  const anchors = (): Element[] =>
+    [...document.querySelectorAll(ANCHORS)].filter((el) => el.getClientRects().length > 0);
+
+  const readingLine = (): number =>
+    document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 0;
+
+  document.querySelectorAll<HTMLAnchorElement>(".lang-switch[data-keep-position] a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.scrollY === 0) return;
+      const line = readingLine();
+      const blocks = anchors();
+      let index = -1;
+      blocks.forEach((el, i) => {
+        if (el.getBoundingClientRect().top <= line) index = i;
+      });
+      if (index < 0) return;
+      const rect = blocks[index].getBoundingClientRect();
+      const fraction = Math.min((line - rect.top) / Math.max(rect.height, 1), 1);
+      try {
+        sessionStorage.setItem(
+          KEY,
+          JSON.stringify({ to: link.pathname, count: blocks.length, index, fraction, at: Date.now() }),
+        );
+      } catch {}
+    });
+  });
+
+  let saved: { to: string; count: number; index: number; fraction: number; at: number } | null = null;
+  try {
+    saved = JSON.parse(sessionStorage.getItem(KEY) ?? "null");
+    sessionStorage.removeItem(KEY);
+  } catch {}
+
+  if (saved && saved.to === location.pathname && Date.now() - saved.at < MAX_AGE_MS) {
+    const { count, index, fraction } = saved;
+    const restore = (): void => {
+      const blocks = anchors();
+      // A different number of blocks means the pages no longer line up; then
+      // the page stays at the top rather than landing somewhere unrelated.
+      if (blocks.length !== count) return;
+      const rect = blocks[index].getBoundingClientRect();
+      const top = window.scrollY + rect.top + fraction * rect.height - readingLine();
+      window.scrollTo({ top, behavior: "instant" });
+    };
+    restore();
+    // Late images and fonts can still move the blocks; correct once more on
+    // load, unless the reader has started scrolling in the meantime.
+    let moved = false;
+    const stop = (): void => {
+      moved = true;
+    };
+    ["wheel", "touchstart", "keydown", "pointerdown"].forEach((type) =>
+      window.addEventListener(type, stop, { once: true, passive: true }),
+    );
+    if (document.readyState !== "complete") {
+      window.addEventListener("load", () => {
+        if (!moved) restore();
+      }, { once: true });
+    }
+  }
+</script>
