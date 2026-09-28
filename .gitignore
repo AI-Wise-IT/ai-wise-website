@@ -8,6 +8,9 @@ node_modules/
 # scratch space for asset conversion, not part of the site
 tmp/
 
+# renders from the brand-asset scripts; the design system holds the finished ones
+docs/whatsapp-cover/out/
+
 # environment
 .env
 .env.production
