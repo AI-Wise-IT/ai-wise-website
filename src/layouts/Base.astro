@@ -89,10 +89,15 @@ const jsonLd = {
       ...(COMPANY.linkedin ? { sameAs: [COMPANY.linkedin] } : {}),
     },
     {
+      // This is what Google reads for the site name above the URL in its results.
+      // Its url must be exactly the canonical home page, trailing slash included,
+      // or Google may ignore it and fall back to a name of its own: for a
+      // subdomain of it.com that was "it.com Domains".
       "@type": "WebSite",
       "@id": `${site.origin}/#website`,
-      url: site.origin,
+      url: abs("/"),
       name: COMPANY.name,
+      alternateName: "aiwise.it.com",
       inLanguage: LANGS,
       publisher: { "@id": `${site.origin}/#organization` },
     },
